@@ -18,7 +18,7 @@ public class HomeController {
 	public String home(Model model) {
 		logger.info("서비스 시작");
 		
-		return "home";
+		return "index";
 	}
 	
 }

@@ -18,7 +18,7 @@ public class MemberController {
 	public String join(Model model) {
 		logger.info("멤버");
 		
-		return "home";
+		return "member/index_join";
 	}
 	
 }

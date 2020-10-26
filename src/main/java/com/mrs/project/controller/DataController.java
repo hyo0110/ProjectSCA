@@ -18,7 +18,7 @@ public class DataController {
 	public String result(Model model) {
 		logger.info("결과");
 		
-		return "home";
+		return "main/main_what_result";
 	}
 	
 }

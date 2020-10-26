@@ -18,7 +18,7 @@ public class AdminController {
 	public String admin(Model model) {
 		logger.info("관리자");
 		
-		return "home";
+		return "admin/admin_board";
 	}
 	
 }

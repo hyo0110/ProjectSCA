@@ -18,7 +18,7 @@ public class BoardController {
 	public String list(Model model) {
 		logger.info("보드");
 		
-		return "home";
+		return "board/board_list";
 	}
 	
 }

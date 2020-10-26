@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- properties 사용을 위한 설정 -->
+	<bean id="propertyConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+ 		<property name="locations">
+	        <list>
+	           <value>classpath:props/*.properties</value>
+	        </list>
+      </property>
+   </bean>
+	
+	<!--  @Value 라는 annotation으로 properties 내의 값을 부를 수 있다. -->
+	<util:properties id="config" location="classpath:props/globals.properties"/>
+	
+	<!-- DB 설정 -->
+	<!--  datasource 를 이용해서 DB 접속 및 사용 설정  -->
+	<!--  DataSource 작성(접속정보) // driverSpy라는거 보고 log4jdbc를 사용하는 것을 알아차려야함... -->
+	<bean name="datasource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${Globals.DriverClassName}"/>
+		<property name="url" value="${Globals.Url}"/>
+		<property name="username" value="${Globals.UserName}"/>
+		<property name="password" value="${Globals.Password}"/>
+	</bean>
+	
+	<!-- MyBatis 설정 -->
+	<!--  name = 정해져있음, id = 내 맘대로 정함  -->
+	<!-- datasource 가져오기 / 	쿼리문이 있는 장소를 지정(mapperLocations) / 풀관련 설정 / 퓰네임 줄여주는 설정(configLocation)-->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">	
+		<property name="dataSource" ref="datasource"/>
+		<property name="mapperLocations" value="classpath:com/mrs/project/dao/*.xml"/>
+		<property name="environment" value="classpath:/config/pool-config.xml"/>	
+		<property name="configLocation" value="classpath:/config/alias-config.xml"/>
+ 	</bean>
+
+	<!--  마이바티스를 별다른 코드 없이 사용할수 있도록 해 주는 설정  -->
+	<mybatis-spring:scan base-package="com.mrs.project.dao"/>	
+	
+	<!-- Transaction 설정 -->
+	<!-- transaction manager 설정: DB연결 정보 필요 (DataSource가 있어야함)-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="datasource"/>
+	</bean>	
+	
+	<!-- @Transactional 이라는 어노테이션을 사용하기 위한 설정이 필요
+		특정한 클래스에서 사용할 것이라서 proxy-target-class를 false로 한다 -->
+	<tx:annotation-driven proxy-target-class="false"/>
+		
+	<!-- FileUpload 설정 -->
+	<!-- file endocing type / 업로드 제한용량 : 10MB /  -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name ="defaultEncoding" value="UTF-8"/>
+		<property name ="maxUploadSize" value="10000000"/>
+		<property name="maxInMemorySize" value="10000000"/>	
+	</bean>	
+	
+</beans>

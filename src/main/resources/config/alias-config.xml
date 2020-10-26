@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- typeAliase: DTO 경로를 축약해준다 -->
+<!-- 클래스 단위로 등록하는 법!
+alias="사용할 이름" type="클래스 경로" 
+이 경우 사용하는 DTO가 많아지면 설정할 내용이 많아져서 불편함... ㅠ
+<configuration>
+	<typeAliases>
+		<typeAlias alias="board" type="kr.co.goodee.dto.BoardDTO"/>	
+	</typeAliases>
+</configuration>
+-->
+
+<!-- 패키지 단위로 등록하는 법 -->
+<configuration>
+	<typeAliases>
+		<package name ="com.mrs.project.dto"/>	
+	</typeAliases>
+</configuration>

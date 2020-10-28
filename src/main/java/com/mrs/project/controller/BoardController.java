@@ -128,6 +128,14 @@ public class BoardController {
 			logger.info("params : "+params);
 			return service.write(params,session);
 		}
+	
+	//게시판 검색--------------------------------------------------------------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
+	public ModelAndView write(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
+		logger.info("검색 요청");	
+		logger.info("keyword : "+keyword);
+		return null;
+	}
 
 	
 

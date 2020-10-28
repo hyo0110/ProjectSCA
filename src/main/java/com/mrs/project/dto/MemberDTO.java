@@ -10,7 +10,6 @@ public class MemberDTO {
 	private String name;
 	private String email;
 	
-	
 	public String getId() {
 		return id;
 	}
@@ -35,7 +34,5 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
 
 }

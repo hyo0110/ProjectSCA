@@ -32,7 +32,7 @@
 			<td>${market_board.subject}</td>
 			<td>${market_board.id}</td>
 			<td>${market_board.reg_date}</td>
-			<td>${market_board.bhit}</td>
+			<td>${market_board.bHit}</td>
 			<td>
 			<input type="button" onclick="ajaxCall(${market_board.board_idx})" value="삭제" id="Del"/>
 			</td>
@@ -56,7 +56,8 @@
 				success:function(d){	
 					//디비랑 페이지가 삭제되지만 페이지 새로고침이 안된다.
 					console.log("성공했니?");
-					$('.Del').remove(this);
+					location.reload();
+					
 				},
 				error:function(e){
 					console.log(e);

@@ -13,10 +13,34 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 게시글 관리</title>
-<style></style>
+<style>
+	table{
+		position :relative;
+		top : 120px;
+		left: 300px;
+		height: 300px;
+		width: 1000px;
+	}
+		
+	table,th,td{
+		border : 1px solid black;
+		border-collapse: collapse;
+	}
+			
+	th,td{
+		border : 1px solid black;
+		border-collapse: collapsed;
+		padding: 5px;
+	}
+	
+
+</style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
+	
+	
+	<a href="admin_member"><div>멤버탈퇴</div></a>
 	<table>
 		<tr>
 			<th>글번호</th>
@@ -56,8 +80,7 @@
 				success:function(d){	
 					//디비랑 페이지가 삭제되지만 페이지 새로고침이 안된다.
 					console.log("성공했니?");
-					location.reload();
-					
+					location.reload();//페이지 새로고침	
 				},
 				error:function(e){
 					console.log(e);

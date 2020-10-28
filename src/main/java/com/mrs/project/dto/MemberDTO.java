@@ -5,29 +5,29 @@ import org.apache.ibatis.type.Alias;
 @Alias("member")
 public class MemberDTO {
 	
-	String user_id;
-	String user_pw;
-	String user_name;
-	String email;
+	private String id;
+	private String pw;
+	private String name;
+	private String email;
 	
-	public String getUser_id() {
-		return user_id;
+	
+	public String getId() {
+		return id;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getUser_pw() {
-		return user_pw;
+	public String getPw() {
+		return pw;
 	}
-	public void setUser_pw1(String user_pw) {
-		this.user_pw = user_pw;
-
+	public void setPw(String pw) {
+		this.pw = pw;
 	}
-	public String getUser_name() {
-		return user_name;
+	public String getName() {
+		return name;
 	}
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -35,5 +35,7 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 
 }

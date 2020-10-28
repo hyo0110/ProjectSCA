@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mrs.project.dao.AdminDAO;
 import com.mrs.project.dto.BoardDTO;
+import com.mrs.project.dto.MemberDTO;
 
 @Service
 public class AdminService {
@@ -32,6 +33,18 @@ public class AdminService {
 		logger.info("삭제 갯수"+success);	
 		return success;
 	}
+
+	public ModelAndView admemberlist() {
+		ArrayList<MemberDTO> list = dao.admemberlist();
+		logger.info("회원사이즈"+list.size());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("admemberlist",list);
+		mav.setViewName("admin/admin_member");
+		logger.info("admemberlist"+mav);
+		return mav;
+	}
+
+	
 	
 
 

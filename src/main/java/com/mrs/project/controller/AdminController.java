@@ -64,14 +64,22 @@ public class AdminController {
 				// 제이슨 형태로 결과값을 보내줘야함.
 		
 		map.put("msg", msg);
-		map.put("del_cnt", del_cnt);		
+		map.put("del_cnt", del_cnt);
 		return map;
 	}
 	
-	
-	
-	
-	
-	
+		
+	@RequestMapping(value = "/admin_member", method = RequestMethod.GET)
+	public ModelAndView admin_member(Model model) {
+		logger.info("여기오나요?");
+		ModelAndView mav = new ModelAndView();	
+		if(managerid!=null) {
+			mav = service.admemberlist();
+			mav.setViewName("admin/admin_member");
+			logger.info("회원리스트를 잘 불러오는가요?"+mav);
+		}			
+		return mav;
+	}
+		
 	
 }

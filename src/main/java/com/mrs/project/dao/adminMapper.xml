@@ -10,4 +10,8 @@
 	<delete id="admindel">
 			DELETE FROM market_board WHERE board_idx = #{param1}
 	</delete>
+	
+	<select id="admemberlist" resultType="member">
+		SELECT * FROM market_member 
+	</select>
 </mapper>

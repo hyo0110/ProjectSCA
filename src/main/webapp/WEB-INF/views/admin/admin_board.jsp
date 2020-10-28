@@ -32,7 +32,7 @@
 			<td>${market_board.subject}</td>
 			<td>${market_board.id}</td>
 			<td>${market_board.reg_date}</td>
-			<td>${market_board.bhit}</td>
+			<td>${market_board.bHit}</td>
 			<td>
 			<input type="button" onclick="ajaxCall(${market_board.board_idx})" value="삭제" id="Del"/>
 			</td>

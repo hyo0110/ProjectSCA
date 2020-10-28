@@ -2,5 +2,54 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mrs.project.dao.BoardDAO">
+
+	<select id="flist" resultType="board">
+		SELECT * FROM market_board WHERE board_type= #{param1} ORDER BY board_idx DESC
+	</select>
+	
+	<select id="clist" resultType="board">
+		SELECT * FROM market_board WHERE board_type= #{parma1} ORDER BY board_idx DESC
+	</select>
+	
+	<insert id="cwrite" parameterType="HashMap" >
+		INSERT INTO MARKET_BOARD (board_idx, board_type, ID, SUBJECT, CONTENT, bHit, private_bbs, bchk) 
+		VALUES(mb_idx.nextval, #{type}, #{id},#{subject},#{content},0,#{privateHidden},0)
+	</insert>
+	
+		<!-- 
+		등록한 글의 idx를 가져오기	
+		parameterType : 사용할 빈의 위치
+		useGenerateKeys : 방금 생성한 PK 가져올지 여부
+		keyProperty : PK가 되는 빈의 변수명
+		keyColumn : PK 컬럼
+		
+		=> 실행하고 나면 알아서 idx값을 넣어주게 됨
+	 -->
+	<insert 
+		parameterType="board"
+		useGeneratedKeys="true"
+		keyProperty="board_idx"
+		keyColumn="board_idx"
+		id ="write">
+		INSERT INTO MARKET_BOARD(board_idx, board_type, ID, SUBJECT, CONTENT, bHit, private_bbs, bchk)
+		VALUES(mb_idx.nextval, #{board_type}, #{id},#{subject},#{content},0,0,0)
+	</insert>
+	
+	<insert id="writeFile">
+		INSERT INTO market_photo (photo_idx, board_idx, ori_file_name, new_file_name)
+		VALUES(photo_seq.NEXTVAL, #{param1},#{param2},#{param3})
+	</insert>
+	
+	<select id="detail" resultType="board">
+		SELECT * FROM MARKET_BOARD WHERE board_idx = #{param1}
+	</select>
+	
+	<select id="fileList" resultType="files">
+		SELECT * FROM market_photo WHERE board_idx = #{parma1}
+	</select>
+	
+	<delete id="delete">
+		delete from market_board where board_idx = #{param1} 
+	</delete>
 	
 </mapper>

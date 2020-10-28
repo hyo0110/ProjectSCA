@@ -13,7 +13,7 @@ public class HomeController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
 		logger.info("서비스 시작");

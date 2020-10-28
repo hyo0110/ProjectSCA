@@ -1,21 +1,21 @@
 package com.mrs.project.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 import org.apache.ibatis.type.Alias;
 
 @Alias("board")
 public class BoardDTO {
-
 	private int board_idx;
 	private String board_type;
 	private String id;
 	private String subject;
 	private String content;
-	private int bhit;
+	private int bHit;
 	private Date reg_date;
 	private String private_bbs;
 	private String bchk;
+	
 	public int getBoard_idx() {
 		return board_idx;
 	}
@@ -46,11 +46,12 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public int getBhit() {
-		return bhit;
+
+	public int getbHit() {
+		return bHit;
 	}
-	public void setBhit(int bhit) {
-		this.bhit = bhit;
+	public void setbHit(int bHit) {
+		this.bHit = bHit;
 	}
 	public Date getReg_date() {
 		return reg_date;

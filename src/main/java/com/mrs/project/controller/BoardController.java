@@ -129,7 +129,15 @@ public class BoardController {
 			return service.write(params,session);
 		}
 
-	
+	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
+	public ModelAndView updateForm(@RequestParam String idx, @RequestParam String type,HttpSession session) {
+		logger.info("받아온 idx : "+idx+"/글 종류 : "+type);
+		HashMap<String, String> fileList = new HashMap<String, String>();
+		HashMap<String, String> delFileList = new HashMap<String, String>();
+		session.setAttribute("fileList", fileList);
+		session.setAttribute("delFileList", delFileList);
+		return service.updateForm(idx,type,session);
+	}
 
 	
 }

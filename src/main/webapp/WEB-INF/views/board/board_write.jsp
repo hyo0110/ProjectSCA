@@ -72,7 +72,6 @@
 			$("#editable input[type='button']").remove();
 			$("#content").val($("#editable").html()); 
 			$("form").submit(); 
-			
 		}
 	
 	

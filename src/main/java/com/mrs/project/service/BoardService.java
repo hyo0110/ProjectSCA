@@ -57,6 +57,8 @@ public class BoardService {
 	//게시판 상세보기(글 불러오기 + 사진불러오기)
 	public ModelAndView detail(String idx, String type) {
 		ModelAndView mav = new ModelAndView();
+		int success = dao.bhit(idx); //조회수
+		logger.info("조회수 올리기 : "+success);
 		BoardDTO dto = dao.detail(idx);
 		ArrayList<FileDTO> fileList = dao.fileList(idx);
 		logger.info("첨부된 파일 : " + fileList.size());
@@ -130,8 +132,9 @@ public class BoardService {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		int success = 0;
 		
-		//1. session 에서 fileList 가져오기
+		//1. session 에서 fileList와 delFileList 가져오기
 		HashMap<String, String> fileList = (HashMap<String, String>) session.getAttribute("fileList"); 
+		HashMap<String, String> delFileList = (HashMap<String, String>) session.getAttribute("delFileList");
 		
 		//2. 실제 파일 삭제 하기
 		String delFileName = root+"upload/"+fileName;
@@ -148,6 +151,7 @@ public class BoardService {
 		
 		//3. fileList에서 삭제한 파일명 지우기
 		if(fileList.get(fileName) != null) { //파일명이 리스트에 존재하면
+			
 			fileList.remove(fileName); 
 			logger.info("삭제 후 남은 파일 갯수 : " + fileList.size());
 		}
@@ -200,6 +204,18 @@ public class BoardService {
 		mav.setViewName(page);
 		mav.addObject("type", bean.getBoard_type());
 		return mav;
+	}
+
+
+	public ModelAndView updateForm(String idx, String type, HttpSession session) {
+			ModelAndView mav = new ModelAndView();
+			BoardDTO dto = dao.detail(idx);
+			//ArrayList<FileDTO> fileList = dao.fileList(idx);
+			//logger.info("첨부된 파일 : " + fileList.size());
+			//mav.addObject("fileList",fileList);
+			mav.addObject("info",dto);
+			mav.setViewName("board/board_update");
+			return mav;
 	}
 
 

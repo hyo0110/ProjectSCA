@@ -24,4 +24,6 @@ public interface BoardDAO {
 
 	int delete(String idx); //게시글 삭제하기
 
+	int bhit(String idx); // 조회수 올리기
+
 }

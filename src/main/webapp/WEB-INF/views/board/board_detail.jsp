@@ -24,7 +24,7 @@
 			<tr><th>내용</th><td>${info.content}</td></tr>
 		</table>
 		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
-		<a href="./update?idx=${info.board_idx}">수정</a>
+		<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
 		<a href="./typelist?type=${info.board_type}">목록보기</a>
 	</body>
 		<script>

@@ -40,6 +40,10 @@
 		VALUES(photo_seq.NEXTVAL, #{param1},#{param2},#{param3})
 	</insert>
 	
+	<update id="bhit">
+		UPDATE MARKET_BOARD SET bHit = bHit+1 WHERE board_idx = #{param1} 
+	</update>
+	
 	<select id="detail" resultType="board">
 		SELECT * FROM MARKET_BOARD WHERE board_idx = #{param1}
 	</select>

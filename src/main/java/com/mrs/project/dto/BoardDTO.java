@@ -16,7 +16,6 @@ public class BoardDTO {
 	private String private_bbs;
 	private String bchk;
 	
-	
 	public int getBoard_idx() {
 		return board_idx;
 	}
@@ -47,6 +46,7 @@ public class BoardDTO {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
 	public int getbHit() {
 		return bHit;
 	}
@@ -71,7 +71,4 @@ public class BoardDTO {
 	public void setBchk(String bchk) {
 		this.bchk = bchk;
 	}
-	
-	
-	
 }

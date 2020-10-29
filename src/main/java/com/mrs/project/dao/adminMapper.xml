@@ -3,4 +3,15 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mrs.project.dao.AdminDAO">
 	
+	<select id="list" resultType="board">
+		SELECT * FROM market_board ORDER BY board_idx DESC 
+	</select>
+	
+	<delete id="admindel">
+			DELETE FROM market_board WHERE board_idx = #{param1}
+	</delete>
+	
+	<select id="admemberlist" resultType="member">
+		SELECT * FROM market_member 
+	</select>
 </mapper>

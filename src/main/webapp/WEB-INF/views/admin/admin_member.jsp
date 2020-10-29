@@ -11,6 +11,20 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-
+<table>
+		<tr>
+			<th>아이디</th>
+			<th>이름</th>
+			<th>이메일</th>
+			<th>회원탈퇴</th>
+		</tr>
+		<c:forEach items="${admemberlist}" var="market_member">
+		<tr>
+			<td>${market_member.id}</td>
+			<td>${market_member.name}</td>
+			<td>${market_member.email}</td>
+		</tr>	
+		</c:forEach>	
+	</table>
 </body>
 </html>

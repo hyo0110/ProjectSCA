@@ -49,6 +49,15 @@
 				</c:forEach>
 			</tbody>
 		</table>
+		<form action="opSearch" method="POST">
+			<select name="search_option">
+				<option>제목+내용</option>
+				<option>제목</option>
+				<option>내용</option>
+			</select>
+			<input type="text" name="keyword"/>
+			<input type="submit" value="검색"/>
+		</form>
 		<button onclick="location.href='writeForm?type=${type}'">글쓰기</button>
 		</body>
 	<script>

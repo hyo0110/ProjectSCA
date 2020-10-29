@@ -1,6 +1,8 @@
 package com.mrs.project.controller;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mrs.project.dto.BoardDTO;
 import com.mrs.project.service.BoardService;
 
 
@@ -130,11 +133,33 @@ public class BoardController {
 		}
 	
 	//게시판 검색--------------------------------------------------------------------------------------------------------------------------------------------------------
+	/*
 	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
-	public ModelAndView write(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
+	public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
 		logger.info("검색 요청");	
 		logger.info("keyword : "+keyword);
-		return null;
+		return  service.listAll(search_option,keyword);
+	}
+	*/
+	
+	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
+	public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
+		logger.info("검색 요청");	
+		logger.info("option: "+search_option);
+		logger.info("keyword : "+keyword);
+		List<BoardDTO> list = service.listSearch(search_option,keyword);
+		int count = service.countRecord(search_option,keyword);
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("count", count);
+		map.put("search_option", search_option);
+		map.put("keyword",keyword);
+		//map.put("type", type);
+		mav.addObject("map",map);
+		mav.setViewName("redirect:/list"); //여기가 문젠가 typelist로 들어가야하나 근데 전체에서도 검색되야되는거아냐?????? 일단 좀 놀고올게 
+		logger.info("listcnt:"+list.size());
+		return mav;
 	}
 
 	

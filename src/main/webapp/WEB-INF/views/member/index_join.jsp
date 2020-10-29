@@ -15,7 +15,7 @@
 		<p>ID:<input type="text" name="user_id" id="user_id"/><span id="idchk"></span></p>
 		<p>PW:<input type="password" name="user_pw" /></p>
 		<p>PW:<input type="password" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span></p>
-		<aaap>NAME:<input type="text" name="user_name"/></p>
+		<p>NAME:<input type="text" name="user_name"/></p>
 		<p>EMAIL:<input type="text" name="user_email"/></p>
 		<input type="submit" value="가입"/>		
 		<input type="button" onclick="location.href='index'" value ="취소"/>

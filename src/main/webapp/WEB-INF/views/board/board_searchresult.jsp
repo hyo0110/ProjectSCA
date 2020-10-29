@@ -25,6 +25,7 @@
 	<body>
 		<button onclick="location.href='typelist?type=0'">자유게시판</button>
 		<button onclick="location.href='typelist?type=1'">고객센터</button>
+		 <!-- ${countRecord}개의 게시물이 있습니다.    -->             
 		<table>
 			<thead>
 				<tr>

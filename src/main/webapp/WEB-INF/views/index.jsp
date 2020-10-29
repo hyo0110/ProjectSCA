@@ -12,5 +12,6 @@
 </head>
 <body>
 <h3> 안녕하세요 :) </h3>
+<button onclick="location.href='logout'">로그아웃</button>
 </body>
 </html>

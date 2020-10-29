@@ -3,4 +3,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mrs.project.dao.MemberDAO">
 	
+	<select id="login" resultType="int">
+	SELECT COUNT(id) FROM market_member WHERE id=#{param1} AND pw=#{param2}
+	</select>
+	
+	<insert id="join" parameterType="HashMap">
+		INSERT INTO market_member(id,pw,name,email)
+		 VALUES(#{user_id},#{user_pw},#{user_name},#{user_email})
+	</insert>
+	
+	<select id="dbchk" resultType="Integer">
+		SELECT COUNT(id) FROM market_member WHERE id=#{param1}
+	</select>
 </mapper>

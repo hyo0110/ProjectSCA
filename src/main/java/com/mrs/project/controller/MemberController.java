@@ -13,12 +13,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mrs.project.dto.MemberDTO;
 import com.mrs.project.service.MemberService;
 
 
@@ -92,5 +94,54 @@ public class MemberController {
 		
 		return "member/index_login";
 	}
+	//마이페이지 재로그인 화면이동
+	@RequestMapping(value = "/mypage_login", method = RequestMethod.GET)
+	public String mypage_login(HttpSession session, Model model) {
+		
+		
+		
+		return "member/mypage_login";
+	}
+	//마이페이지 재로그인 화면이동
+	@RequestMapping(value = "/mypage_detail", method = RequestMethod.POST)
+	public String mypage_detail(HttpSession session, Model model, @RequestParam String pw) { 
+		 String id =(String) session.getAttribute("loginid");
+		 System.out.println(id);
+		MemberDTO dto = service.mypage_loginpw(pw, id);
+		if(dto != null) {
+			model.addAttribute("member", dto);
+			return "member/mypage_detail";	
+		}
+		return "redirect:/member/mypage_login";
+	}
+	
+	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
+	public String deleteMember(HttpSession session, Model model) {
+
+		String id = (String) session.getAttribute("loginid");
+		service.deleteMember(id);
+		session.removeAttribute("loginid");
+
+		return "redirect:/logout";
+	}
+	
+	// 내 정보 수정 페이지 들어갈때
+	@RequestMapping(value = "/mypage_update", method = RequestMethod.GET)
+	public String mypage_update(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("loginid");
+		MemberDTO dto = service.mypage_updatepage(id);
+		model.addAttribute("member", dto);
+		return "member/mypage_update";
+	}
+	
+	// 내 정보 수정하기
+	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+	public String updateMember(Model model, @RequestParam String user_id,
+			@RequestParam String user_pw, @RequestParam String user_name, @RequestParam String user_email) {		
+		MemberDTO dto = service.updateMember(user_id, user_pw, user_name, user_email);
+		
+		return "member/mypage_update";
+	}
+
 
 }

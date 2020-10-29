@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mrs.project.dao.MemberDAO;
+import com.mrs.project.dto.MemberDTO;
 
 @Service
 public class MemberService {
@@ -48,6 +49,34 @@ public class MemberService {
 		map.put("dbchk", result);
 		return map;
 	}
+
+	public MemberDTO mypage_loginpw(String pw, String id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("id", id);
+		map.put("pw", pw);
+		return dao.checkPassword(map);
+	}
+
+	public void deleteMember(String id) {
+
+		dao.deleteMember(id);
+
+	}
+	
+	public MemberDTO mypage_updatepage(String id) {
+		MemberDTO dto = dao.updatepage(id);
+		return dto;
+	}
+
+	public MemberDTO updateMember(String id, String user_pw, String user_name, String user_email) {
+
+		
+		return null;
+	}
+
+
+
+
 
 
 

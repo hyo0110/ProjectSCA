@@ -109,29 +109,18 @@ height : 100%;
 			</div>
 			<div class="re_login_wrap">
 				<div class="re_login">
-					<form>
-					<div>
-						<label for="user_id">아이디<input type="text" id="user_id" name="user_id" value="askyws"  disabled /></label>
-						<label for="user_pw">패스워드<input type="password" id="user_pw" name="user_pw"   /></label>
-					</div>
-					<div>
-						<button>로그인</button>
-					</div>
+					<form action="mypage_detail" method="POST">
+						<div>
+							<label for="user_id">아이디<input type="text" id="user_id" name="id" value="${loginid}"  disabled /></label>
+							<label for="user_pw">패스워드<input type="password" id="user_pw" name="pw"   /></label>
+						</div>
+						<div>
+							<input type="submit" value="로그인" />
+						</div>
 					</form>
 				</div>
 			</div>
-		</div>
-		
-		<table>
-			
-				<tr><th>아이디</th><td></td></tr>
-				<tr><th>비밀번호</th><td></td></tr>
-				<tr><th>이름</th><td></td></tr>
-				<tr><th>이메일</th><td></td></tr>
-			
-		
-		</table>
-	</div>
+	
 	
 	
 </body>

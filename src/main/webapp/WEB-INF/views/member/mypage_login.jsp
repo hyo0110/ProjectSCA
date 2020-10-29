@@ -6,11 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-재로그인</title>
-<style></style>
+<title>마이페이지-회원정보</title>
+<style>
+
+</style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 
+	
 </body>
 </html>

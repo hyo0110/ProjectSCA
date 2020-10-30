@@ -55,12 +55,14 @@
 	<select id="listSearch" resultType="board" >
 		SELECT * FROM market_board 
 		<include refid="search"></include>
+		AND board_type=#{param3}
 		ORDER BY board_idx DESC
 	</select>
 	
 	<select id="countRecord" resultType="int">
 		SELECT COUNT(*) FROM market_board
 		<include refid="search"></include>
+		AND board_type=#{param3}
 	</select>
 	
 	<sql id="search">
@@ -69,8 +71,11 @@
 				WHERE SUBJECT like '%'||#{keyword}||'%'
 				OR CONTENT like '%'||#{keyword}||'%'
 			</when>
+			<when test="search_option == 'title'">
+				WHERE SUBJECT like '%'||#{keyword}||'%'
+			</when>
 			<otherwise>
-				WHERE ${search_option} like '%'||#{keyword}||'%'
+				WHERE CONTENT like '%'||#{keyword}||'%'
 			</otherwise>
 		</choose>
 	</sql>

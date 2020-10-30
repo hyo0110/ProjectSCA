@@ -142,22 +142,25 @@ public class BoardController {
 	}
 	*/
 	
-	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
-	public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
+	@RequestMapping(value = "/opSearch", method = RequestMethod.GET)
+	public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
 		logger.info("검색 요청");	
 		logger.info("option: "+search_option);
 		logger.info("keyword : "+keyword);
-		List<BoardDTO> list = service.listSearch(search_option,keyword);
-		int count = service.countRecord(search_option,keyword);
+		logger.info("type : "+type);
+		List<BoardDTO> list = service.listSearch(search_option,keyword,type);
+		int count = service.countRecord(search_option,keyword,type);
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("count", count);
 		map.put("search_option", search_option);
 		map.put("keyword",keyword);
-		//map.put("type", type);
+		map.put("type", type);
 		mav.addObject("map",map);
-		mav.setViewName("redirect:/list"); //여기가 문젠가 typelist로 들어가야하나 근데 전체에서도 검색되야되는거아냐?????? 일단 좀 놀고올게 
+		mav.addObject("list", list);
+		mav.addObject("count",count);
+		mav.setViewName("board/board_resultlist"); 
 		logger.info("listcnt:"+list.size());
 		return mav;
 	}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+<!-- 인터셉터 : Controller를 기준으로 요청의 흐름을 가로채는 역할 수행 -->
+<!-- 인터셉터 그룹 -->
+<mvc:interceptors>
+	<!-- 개별 인터셉터 -->
+	<mvc:interceptor>
+		<!-- 가로챌 요청(list) -->
+		<mvc:mapping path="/typelist*"/>
+		<!-- 가로챌 요청(detail로 시작되는 요청) -->
+		<mvc:mapping path="/detail*"/>
+		<!-- 이동시킬 클래스 지정 -->
+		<bean class="com.mrs.project.service.LoginInterceptor"></bean>
+	</mvc:interceptor>
+</mvc:interceptors>
+
+</beans>

@@ -7,11 +7,47 @@
 <head>
 <meta charset="UTF-8">
 <title>MRS</title>
-<style></style>
+<style>
+	.lnb_items {
+	width : 560px;
+	height : 40px;
+	display: inline-block;
+	border : 1px solid #3d3d3d;
+	}
+	.lnb_item {
+		width : 24.8%;
+		height : 40px;
+		border-right : 1px solid #3d3d3d;
+		float : left;
+		text-align:center;
+	}
+	.lnb_item:last-child { /* lnb 중에 마지막 요소 */
+		border-right: 0;
+	}
+	.lnb_item a {
+		width : 100%;
+		height : 40px;
+		color : #3d3d3d;
+		text-align:center;
+		line-height : 40px;
+		vertical-align : middle;
+	}
+</style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-<h3> 안녕하세요 :) </h3>
+<div class="doc_wrap">
+		<div class="lnb_wrap">
+		<ul class="lnb_items">
+			<li class="lnb_item"><a href="#n">검색</a></li>
+			<li class="lnb_item"><a href="#n">마이페이지</a></li>
+			<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
+			<li class="lnb_item"><a href="#n">고객센터</a></li>
+		</ul>
+		</div>
+<button onclick="location.href='index'">로그인</button>		
 <button onclick="location.href='logout'">로그아웃</button>
+<h3>${sessionScope.loginid }</h3>
+
 </body>
 </html>

@@ -25,6 +25,7 @@
 	<body>
 		<button onclick="location.href='typelist?type=0'">자유게시판</button>
 		<button onclick="location.href='typelist?type=1'">고객센터</button>
+		<p>${count}개의 글이 있습니다. </p>
 		<table>
 			<thead>
 				<tr>

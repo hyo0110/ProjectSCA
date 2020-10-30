@@ -28,5 +28,9 @@
 		SELECT id, name, email FROM market_member WHERE id = #{param1}
 	</select>
 	
+	<update id = "updateMember">
+		UPDATE market_member SET pw = #{param2}, name = #{param3}, email = #{param3} WHERE id = #{param1}
+	</update>
+	
 	
 </mapper>

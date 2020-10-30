@@ -135,12 +135,15 @@ public class MemberController {
 	}
 	
 	// 내 정보 수정하기
-	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
 	public String updateMember(Model model, @RequestParam String user_id,
 			@RequestParam String user_pw, @RequestParam String user_name, @RequestParam String user_email) {		
-		MemberDTO dto = service.updateMember(user_id, user_pw, user_name, user_email);
-		
-		return "member/mypage_update";
+		int count = service.updateMember(user_id, user_pw, user_name, user_email);
+		String page ="redirect:/mypage_update";
+		if(count>0) {
+			page="redirect:/mypage_login";
+		}
+		return page;
 	}
 
 

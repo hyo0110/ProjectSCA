@@ -68,10 +68,10 @@ public class MemberService {
 		return dto;
 	}
 
-	public MemberDTO updateMember(String id, String user_pw, String user_name, String user_email) {
-
+	public int updateMember(String user_id, String user_pw, String user_name, String user_email) {
 		
-		return null;
+		
+		return dao.updateMember(user_id,user_pw,user_name,user_email);
 	}
 
 

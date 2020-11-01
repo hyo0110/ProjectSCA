@@ -1,6 +1,7 @@
 package com.mrs.project.controller;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.naming.ldap.ManageReferralControl;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,16 +41,22 @@ public class AdminController {
 	
 // 관리자 페이지 접속
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView index(Model model,HttpSession session) {
+	public ModelAndView index(Model model,HttpSession session,@RequestParam Map<String, String> params) {
 		logger.info("관리자모드 진입");
 	
 		ModelAndView mav = new ModelAndView();	
 			System.out.println(managerid+"어드민값");
+			String msg;
+			
 			if(managerid!=null) {
-				mav = service.adminlist();
+				mav = service.adminlist(params);
 				mav.setViewName("admin/admin_board");
 				logger.info("리스트를 잘 불러오는가요?"+mav);
-			}
+			}else {
+				if(!managerid.equals("admin")) {
+					msg = "접근할 수 없습니다.";
+				}
+			}		
 		return mav;
 	}	
 			
@@ -80,6 +88,22 @@ public class AdminController {
 		}			
 		return mav;
 	}
+	
+	@RequestMapping(value = "/adminmemberdel", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> adminmemberdel(@RequestParam String id) {
+		logger.info(id+"삭제 idx값");
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String msg = "실패";
+		int del_cnt = service.adminmemberdel(id);
+		if(del_cnt>0) {
+			msg = "성공";
+		}
+				// 제이슨 형태로 결과값을 보내줘야함.
 		
+		map.put("msg", msg);
+		map.put("del_cnt", del_cnt);
+		return map;
+	}
+	
 	
 }

@@ -33,14 +33,23 @@
 		padding: 5px;
 	}
 	
+	#pagination{
+		position : relative;
+		left : 1000px;
+	}
+
 
 </style>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
+<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>	
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 	
-	
 	<a href="admin_member"><div>멤버탈퇴</div></a>
+	
 	<table>
 		<tr>
 			<th>글번호</th>
@@ -60,15 +69,39 @@
 			<td>
 			<input type="button" onclick="ajaxCall(${market_board.board_idx})" value="삭제" id="Del"/>
 			</td>
+			<td></td>
 		</tr>	
-		</c:forEach>			
+		</c:forEach>
+		<tr>
+		</tr>		
 	</table>
+	<div class="text-center">
+		    		<ul class="pagination">
+		    			<li class="page-item">
+		    				<a class="page-link" href="./admin?page=1"><span>처음</span></a>
+		    				<a id="prevPage" class="page-link" href="./admin?page=${currPage-1}" aria-label="Previous">
+		    					<span aria-hidden="true">&laquo;</span>
+	                    		<span class="sr-only">Previous</span>
+		    				</a>
+		    			</li>
+		    			<li>
+							<a class="page-link" href="./admin?page=${iCount}">${iCount}</a>
+		    			</li>
+		    			<li class="page-item">
+		    				<a id="nextPage" class="page-link" href="./admin?page=${currPage+1}" aria-label="Next">
+		    					<span aria-hidden="true">&raquo;</span>
+	                    		<span class="sr-only">Next</span>
+		    				</a>
+		    				<a class="page-link" href="./admin?page=${endPage}"><span>끝</span></a>
+		    			</li>
+		    		</ul>
+		    	</div>
+		    </div>
+	    </div>
 
 </body> 
 
 <script>
-
-
 	function ajaxCall(board_idx){
 		
 		if(confirm('삭제하시겠습니까?')){
@@ -87,11 +120,31 @@
 				}
 			});
 		}else{
-			
+			("취소")
 		}
-		
 	}
-
-
+	var end = ${end}; //오른쪽
+	var start =${start}; //왼쪽
+	var currPage = ${currPage}; //현재 페이지
+	var endPage = ${end}; //끝페이지
+	
+	if(currPage==1){
+		document.getElementById("prevPage").style.display="none";
+		//alert("이전 페이지가 없습니다.");
+		//location.href="memberList";
+	}
+	if(currPage >1 && currPage < endPage){
+		document.getElementById("prevPage").style.display="inline";
+		document.getElementById("nextPage").style.display="inline";
+	}
+	
+	if(currPage == endPage){
+		document.getElementById("nextPage").style.display="none";
+		//alert('다음 페이지가 없습니다.');
+		//location.href="memberList";
+	}
+	
+	
+	
 </script>
 </html>

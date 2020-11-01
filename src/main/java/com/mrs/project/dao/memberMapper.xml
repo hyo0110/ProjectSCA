@@ -32,5 +32,16 @@
 		UPDATE market_member SET pw = #{param2}, name = #{param3}, email = #{param3} WHERE id = #{param1}
 	</update>
 	
+	<select id = "mypage_scrap" resultType="scrap">
+		SELECT * FROM market_scrapped_search WHERE id = #{param1}
+	</select>
+	
+	<delete id = "scrap_delete">
+		DELETE FROM market_scrapped_search WHERE scrap_idx = #{param1}
+	</delete>
+	
+	<select id = "mypage_written" resultType="board">
+		SELECT * FROM market_board WHERE id = #{param3}
+	</select>
 	
 </mapper>

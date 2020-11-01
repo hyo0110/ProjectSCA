@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mrs.project.dto.MemberDTO;
 import com.mrs.project.service.MemberService;
@@ -145,6 +146,30 @@ public class MemberController {
 		}
 		return page;
 	}
+	
+	// 스크랩 페이지 들어갈때
+		@RequestMapping(value = "/mypage_scrap", method = RequestMethod.GET)
+		public String mypage_scrap(HttpSession session, Model model) {
+			String id = (String) session.getAttribute("loginid");
+			service.mypage_scrap(id,model);
+			return "member/mypage_scrap";
+		}
+		
+		// 스크랩 페이지 삭제할때
+		@RequestMapping(value = "/scrap_delete", method = RequestMethod.GET)
+		public String scrap_delete(@RequestParam String idx) {
+			service.scrap_delete(idx);
+			return "redirect:/mypage_scrap";
+					
+		}
+		
+		// 내가쓴글 들어갈때
+		@RequestMapping(value = "/mypage_written", method = RequestMethod.GET)
+		public String mypage_written(HttpSession session, Model model) {
+			String id = (String) session.getAttribute("loginid");
+			service.mypage_written(id,model);
+			return "member/mypage_written";
+		}		
 
 
 }

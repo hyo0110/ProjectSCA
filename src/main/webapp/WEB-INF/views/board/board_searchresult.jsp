@@ -25,6 +25,7 @@
 	<body>
 		<button onclick="location.href='typelist?type=0'">자유게시판</button>
 		<button onclick="location.href='typelist?type=1'">고객센터</button>
+		 <!-- ${countRecord}개의 게시물이 있습니다.    -->             
 		<table>
 			<thead>
 				<tr>
@@ -49,7 +50,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<form action="opSearch" method="GET">
+		<form action="opSearch" method="POST">
 			<select name="search_option">
 				<option value="all" <c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
 				<option value="title"<c:if test="${search_option == 'title'}"></c:if>>제목</option>
@@ -57,7 +58,6 @@
 			</select>
 			<input type="text" name="keyword" value="${keyword}"/>
 			<input type="submit" value="검색"/>
-			<input type="hidden" name="type" value="${type}"/>
 		</form>
 		<button onclick="location.href='writeForm?type=${type}'">글쓰기</button>
 		</body>

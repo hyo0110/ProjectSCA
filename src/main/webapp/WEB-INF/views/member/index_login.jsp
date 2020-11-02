@@ -17,7 +17,7 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-	<form action="login" method=POST>
+	<form action="login" method=POST >
 		<table>
 			<tr>
 				<th>ID</th>
@@ -41,5 +41,6 @@
 	if(msg != ""){
 		alert(msg);
 		}
+	
 </script>
 </html>

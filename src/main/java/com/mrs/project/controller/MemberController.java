@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +32,8 @@ public class MemberController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired MemberService service;
-	
+	@Value("#{config['manager.id']}") String adminId;
+	@Value("#{config['manager.pw']}") String adminPw;
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String index() {
 		return "member/index_login";
@@ -49,17 +51,23 @@ public class MemberController {
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
+		ModelAndView mav = new ModelAndView();	
+		String page = "member/index_login";	
 		
-		int cnt = service.login(id,pw);
-		ModelAndView mav = new ModelAndView();
-		String msg = "로그인 실패했습니다.";
-		String page = "member/index_login";
-		if(cnt>0) {
+		if(id.equals(adminId) && pw.equals(adminPw)) {
+			session.setAttribute("loginid", adminId);
+			page = "redirect:/admin";
+		} else {
+			String msg = "로그인 실패했습니다.";
+			int cnt = service.login(id,pw);
+			if(cnt>0) {
 			session.setAttribute("loginid", id);
 			msg = "로그인 성공했습니다.";
 			page = "index";
 		}
-		mav.addObject("msg",msg);
+			mav.addObject("msg",msg);
+		}		
+		
 		mav.setViewName(page);
 		
 		return mav;
@@ -93,17 +101,15 @@ public class MemberController {
 		session.removeAttribute("loginid");
 		model.addAttribute("msg","로그아웃 되었습니다.");
 		
-		return "member/index_login";
+		return "index";
 	}
 	//마이페이지 재로그인 화면이동
 	@RequestMapping(value = "/mypage_login", method = RequestMethod.GET)
-	public String mypage_login(HttpSession session, Model model) {
-		
-		
+	public String mypage_login(HttpSession session, Model model) {	
 		
 		return "member/mypage_login";
 	}
-	//마이페이지 재로그인 화면이동
+	//마이페이지 내 정보 상세보기
 	@RequestMapping(value = "/mypage_detail", method = RequestMethod.POST)
 	public String mypage_detail(HttpSession session, Model model, @RequestParam String pw) { 
 		 String id =(String) session.getAttribute("loginid");

@@ -108,10 +108,10 @@ height : 100%;
 				<div class="detail">
 				<form action="updateMember" method="post" onsubmit="return pwchk()">
 					<p>아이디: <input type ="text" name="user_id" value="${member.id}" readonly></p>
-					<p>비밀번호 :<input type ="text" name="user_pw"></p>
-					<p>비밀번호확인 : <input type ="text" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span></p>
+					<p>비밀번호 :<input type ="password" name="user_pw"></p>
+					<p>비밀번호확인 : <input type ="password" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span></p>
 					<p>이름 :<input type ="text" name="user_name" value="${member.name}"></p>
-					<p>이메일 :<input type ="text" name="user_email" value="${member.email}"></p>
+					<p>이메일 :<input type ="email" name="user_email" value="${member.email}"></p>
 
 					<input type="submit" value ="확인" />
 					<button onclick="location.href='mypage_detail'"> 취소</button>

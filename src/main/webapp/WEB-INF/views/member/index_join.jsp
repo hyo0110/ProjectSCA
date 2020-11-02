@@ -16,7 +16,7 @@
 		<p>PW:<input type="password" name="user_pw" /></p>
 		<p>PW:<input type="password" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span></p>
 		<p>NAME:<input type="text" name="user_name"/></p>
-		<p>EMAIL:<input type="text" name="user_email"/></p>
+		<p>EMAIL:<input type="email" name="user_email"/></p>
 		<input type="submit" value="가입"/>		
 		<input type="button" onclick="location.href='index'" value ="취소"/>
 	</form>

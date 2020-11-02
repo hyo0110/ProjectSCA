@@ -29,7 +29,7 @@
 	</select>
 	
 	<update id = "updateMember">
-		UPDATE market_member SET pw = #{param2}, name = #{param3}, email = #{param3} WHERE id = #{param1}
+		UPDATE market_member SET pw = #{param2}, name = #{param3}, email = #{param4} WHERE id = #{param1}
 	</update>
 	
 	<select id = "mypage_scrap" resultType="scrap">

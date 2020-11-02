@@ -121,7 +121,7 @@ public class MemberController {
 		}
 		return "redirect:/member/mypage_login";
 	}
-	
+	//마이페이지 탈퇴하기
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
 	public String deleteMember(HttpSession session, Model model) {
 

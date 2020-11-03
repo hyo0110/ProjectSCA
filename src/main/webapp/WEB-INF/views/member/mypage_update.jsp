@@ -114,9 +114,9 @@ height : 100%;
 					<p>이메일 :<input type ="email" name="user_email" value="${member.email}"></p>
 
 					<input type= "submit" value ="확인" />
-					<!-- <input type = "button" onclick="location.href='member/mypage_detail'" value="취소">
-					 취소 버튼을 누르면 그냥 디테일 페이지가 나와야하는데 나오지 않고 있음
-					 -->
+					<button onclick="location.href = 'redirect:/mypage_detail'">취소</button>
+					
+					
 					</form>
 				</div>
 			</div>

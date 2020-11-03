@@ -40,7 +40,7 @@
 	<div class="doc_wrap">
 		<div class="lnb_wrap">
 		<ul class="lnb_items">
-			<li class="lnb_item"><a href="#n">검색</a></li>
+			<li class="lnb_item"><a href="main">검색</a></li>
 			<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
 			<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
 			<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>

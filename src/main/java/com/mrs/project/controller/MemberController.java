@@ -63,7 +63,7 @@ public class MemberController {
 			if(cnt>0) {
 			session.setAttribute("loginid", id);
 			msg = "로그인 성공했습니다.";
-			page = "index";
+			page = "redirect:/main";
 		}
 			mav.addObject("msg",msg);
 		}		

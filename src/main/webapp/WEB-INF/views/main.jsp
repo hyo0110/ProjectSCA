@@ -8,12 +8,59 @@
 <meta charset="UTF-8">
 <title>MRS-main / 로그인시</title>
 <style>
-
+	.lnb_items {
+		width : 560px;
+		height : 40px;
+		display: inline-block;
+		border : 1px solid #3d3d3d;
+		}
+		.lnb_item {
+			width : 24.8%;
+			height : 40px;
+			border-right : 1px solid #3d3d3d;
+			float : left;
+			text-align:center;
+		}
+		.lnb_item:last-child { /* lnb 중에 마지막 요소 */
+			border-right: 0;
+		}
+		.lnb_item a {
+			width : 100%;
+			height : 40px;
+			color : #3d3d3d;
+			text-align:center;
+			line-height : 40px;
+			vertical-align : middle;
+		}
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-<h3> 메인화면입니다 </h3>
+<div class="doc_wrap">
+		<div class="lnb_wrap">
+		<ul class="lnb_items">
+			<li class="lnb_item"><a href="main">검색</a></li>
+			<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
+			<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
+			<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
+		</ul>
+		</div>
+	</div>
+	
+        <c:choose>
+            <c:when test="${sessionScope.loginid eq  null}">
+               <button onclick="location.href='index'">로그인</button>
+            </c:when>
+            <c:otherwise>
+               <button onclick="location.href='logout'">로그아웃</button>
+            </c:otherwise>
+       </c:choose>
+
+<h3>${sessionScope.loginid }님 안녕하세요 메인입니다.</h3>
+<div>
+<div> <a href="what"> 무엇을? </a></div>
+<div> <a href="where"> 어디서? </a></div>
+</div>
 
 </body>
 </html>

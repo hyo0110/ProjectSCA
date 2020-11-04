@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.mrs.project.dto.BoardDTO;
+import com.mrs.project.dto.CommentaryDTO;
 import com.mrs.project.dto.FileDTO;
 
 public interface BoardDAO {
@@ -25,5 +26,19 @@ public interface BoardDAO {
 	int delete(String idx); //게시글 삭제하기
 
 	int bhit(String idx); // 조회수 올리기
+
+	void deleteFile(int idx, String delKey); // 자유게시판 수정시 파일 삭제
+
+	int update(BoardDTO bean); //게시판 수정
+
+	int allCount(String type); // 게시글 총 갯수
+
+	ArrayList<BoardDTO> listCall(int start, int end, String type); //게시글 페이징으로 부르기
+
+	int comAllCount(String idx); //댓글 총 갯수
+
+	ArrayList<CommentaryDTO> comListCall(int start, int end, String idx); //댓글 페이징하기
+	
+	
 
 }

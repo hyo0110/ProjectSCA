@@ -36,6 +36,7 @@ table,th,td{
 <body>
 	<form action="update" method = "post">
 		<input type="hidden" name ="type" value="${info.board_type}">
+		<input type="hidden" name ="idx" value="${info.board_idx}">
 			<table class="board">
 				<tr>
 					<th>작성자</th>
@@ -52,6 +53,7 @@ table,th,td{
 						<input id = "content" type="hidden" name="content" value="" />
 					</td>
 				</tr>
+				<c:if test="${info.board_type=='0'}"> <!-- 자유게시판(0)이면 수정의 파일업로드 기능 존재함 -->
 				<tr>
 					<th>파일첨부</th>
 					<td>
@@ -59,6 +61,7 @@ table,th,td{
 						<div id="files"></div>
 					</td>
 				</tr>
+				</c:if>
 				<tr>
 					<td colspan = "2"><input type = "button" onclick = "save()" value = "저장"/></td>
 				</tr>
@@ -95,7 +98,7 @@ table,th,td{
 			var fileName = name.substring(name.indexOf('"'),name);
 			console.log(fileName);
  			$.ajax({
-				url:'fileDelete',
+				url:'updateFileDelete',
 				type:'get',
 				data:{'fileName':fileName}, 
 				dataType:'json',

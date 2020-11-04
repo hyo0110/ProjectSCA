@@ -44,6 +44,25 @@ public class BoardController {
 		return "board/board_list";
 	}
 	
+	// list.jsp로만 보내는 요청
+	@RequestMapping(value = "/ajaxlist", method = RequestMethod.GET)
+	public String ajaxlist(Model model) {
+
+		return "board/board_list_ajax";
+	}
+	
+	//아작스 사용해서 페이징한 리스트
+	@RequestMapping(value = "/listcall", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> listcall(@RequestParam HashMap<String, String>params) {
+		logger.info("보드 타입 : "+params.get("type"));
+		logger.info("전체파라미터 : "+params);
+		String page = params.get("page");
+		String pagePerCnt = params.get("ppn");	
+		String type = params.get("type");
+		System.out.println(page+"/"+pagePerCnt);
+		return service.pagingList(Integer.parseInt(page), Integer.parseInt(pagePerCnt),type);
+	}
+	
 	// writeForm.jsp로만 보내는 요청 -> type에 따라서 달라짐
 	@RequestMapping(value = "/writeForm", method = RequestMethod.GET)
 	public String writeForm(Model model, HttpSession session, @RequestParam String type) {
@@ -79,6 +98,14 @@ public class BoardController {
 			RedirectAttributes rAttr) {
 		logger.info("삭제할 idx : "+idx+"타입 : "+type);
 		return service.delete(idx,type,rAttr);
+	}
+	
+	//게시판 수정 + 기존파일 삭제했으면 실제 삭제 + 새로올린파일 있으면 실제 저장까지
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public ModelAndView update(@RequestParam HashMap<String, String> params ,HttpSession session) { //문자열로 파라메터를 보내기 때문에 string으로 받는데 보낼때는 object로 해야함(hashamp, list등으로 반환하기 때문에)
+		logger.info("수정요청 요청 글번호 :"+params.get("idx"));	
+		logger.info("params : "+params);
+		return service.update(params,session);
 	}
 	
 	/*-----------------------------------고객센터 관련------------------------------------------------------*/
@@ -121,6 +148,13 @@ public class BoardController {
 		return service.fileDelete(fileName,session);
 	}
 	
+	//업데이트 할 때 자유게시판 안의 파일 삭제
+	@RequestMapping(value = "/updateFileDelete", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> updateFileDelete(@RequestParam String fileName , HttpSession session) {
+		logger.info("fileDelete 요청"+fileName);	
+		return service.updateFileDelete(fileName,session);
+	}
+	
 	//자유게시판의 글쓰기+ 파일업로드 실제 저장
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 		public ModelAndView write(@RequestParam HashMap<String, String> params ,HttpSession session) { //문자열로 파라메터를 보내기 때문에 string으로 받는데 보낼때는 object로 해야함(hashamp, list등으로 반환하기 때문에)
@@ -129,14 +163,7 @@ public class BoardController {
 			return service.write(params,session);
 		}
 	
-	//게시판 검색--------------------------------------------------------------------------------------------------------------------------------------------------------
-	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
-	public ModelAndView write(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
-		logger.info("검색 요청");	
-		logger.info("keyword : "+keyword);
-		return null;
-	}
-
+	// 게시판 수정페이지로 이동
 	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam String idx, @RequestParam String type,HttpSession session) {
 		logger.info("받아온 idx : "+idx+"/글 종류 : "+type);
@@ -146,6 +173,31 @@ public class BoardController {
 		session.setAttribute("delFileList", delFileList);
 		return service.updateForm(idx,type,session);
 	}
+	
 
+	
+	//게시판 검색--------------------------------------------------------------------------------------------------------------------------------------------------------
+	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
+	public ModelAndView write(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
+		logger.info("검색 요청");	
+		logger.info("keyword : "+keyword);
+		return null;
+	}
+
+
+	/*---------------------------------------------------------------댓글 관련-----------------------------------------------------------------------------------------------------------*/
+
+	//댓글 불러오기
+	@RequestMapping(value = "/comlist", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> comlist(@RequestParam HashMap<String, String>params) {
+		logger.info("전체파라미터 : "+params);
+		String page = params.get("page");
+		String pagePerCnt = params.get("ppn");	
+		String idx = params.get("idx");
+		System.out.println(page+"/"+pagePerCnt);
+		return service.comlist(Integer.parseInt(page), Integer.parseInt(pagePerCnt),idx);
+	}
+	
+	
 	
 }

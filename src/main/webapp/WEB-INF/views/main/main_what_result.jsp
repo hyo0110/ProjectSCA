@@ -22,9 +22,10 @@
 var region = "${region}";
 //화면 로딩되면 아작스로 화면 보내기 인건데여..
 //1. ㅇㅇ구 => 
-//#sp_nws1 > div.news_wrap.api_ani_send > div > a 의 title
+//#sp_nws1 > div.news_wrap.api_ani_send > div > a 의 title 가져오고
+// a 링크도 가져와서 클릭시에 이동!
 //url 주소를 여기서 보내줄 수 있게 
-//https://search.naver.com/search.naver?where=news&sm=tab_jum&query=??? 이렇게 될거 같다
+//"https://search.naver.com/search.naver?where=news&sm=tab_jum&query="+region 이렇게 될거 같다
 		
 
 </script>

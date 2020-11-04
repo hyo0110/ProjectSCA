@@ -164,8 +164,7 @@
 			customOverlay.setContent('<div class="area">'+name+'</div>');
 			customOverlay.setMap(null);
 		});
-		// 클릭시!! 헣...
-		
+		// 클릭시!! 헣... 끝이다 끝		
 	    kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
 	        var content = '<div class="info">' + 
 	                    '   <div class="title">' + name + '</div>' +

@@ -3,6 +3,7 @@ package com.mrs.project.controller;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mrs.project.dto.BoardDTO;
 import com.mrs.project.dto.MemberDTO;
 import com.mrs.project.service.MemberService;
 
@@ -109,17 +111,28 @@ public class MemberController {
 		
 		return "member/mypage_login";
 	}
-	//마이페이지 내 정보 상세보기
-	@RequestMapping(value = "/mypage_detail", method = RequestMethod.POST)
-	public String mypage_detail(HttpSession session, Model model, @RequestParam String pw) { 
-		 String id =(String) session.getAttribute("loginid");
-		 System.out.println(id);
-		MemberDTO dto = service.mypage_loginpw(pw, id);
-		if(dto != null) {
-			model.addAttribute("member", dto);
-			return "member/mypage_detail";	
+	
+	//마이페이지 재로그인 화면이동
+	@RequestMapping(value = "/mypage_login", method = RequestMethod.POST)
+	public String mypage_relogin(HttpSession session,@RequestParam String pw) {	
+		String id =(String) session.getAttribute("loginid");
+		int same = service.mypage_loginpw(id,pw);
+		if(same == 1) {
+			return  "redirect:/mypage_detail";
+		}else {
+			return "redirect:/mypage_login";
 		}
-		return "redirect:/member/mypage_login";
+	}
+	
+	//마이페이지 내 정보 상세보기
+	@RequestMapping(value = "/mypage_detail", method = RequestMethod.GET)
+	public String mypage_detail(HttpSession session, Model model) { 
+		 String id =(String) session.getAttribute("loginid");
+		 
+		MemberDTO dto = service.mypage_detail(id);
+		model.addAttribute("member",dto);
+		
+		return "member/mypage_detail";
 	}
 	//마이페이지 탈퇴하기
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
@@ -142,10 +155,11 @@ public class MemberController {
 	}
 	
 	// 내 정보 수정하기
-	@RequestMapping(value = "/updateMember", method = RequestMethod.POST)
+	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
 	public String updateMember(Model model, @RequestParam String user_id,
 			@RequestParam String user_pw, @RequestParam String user_name, @RequestParam String user_email) {		
 		int count = service.updateMember(user_id, user_pw, user_name, user_email);
+		logger.info("~~~~~");
 		String page ="redirect:/mypage_update";
 		if(count>0) {
 			page="redirect:/mypage_login";
@@ -171,10 +185,10 @@ public class MemberController {
 		
 		// 내가쓴글 들어갈때
 		@RequestMapping(value = "/mypage_written", method = RequestMethod.GET)
-		public String mypage_written(HttpSession session, Model model) {
+		public String mypage_written(HttpSession session, Model model, @RequestParam int page) {
 			String id = (String) session.getAttribute("loginid");
-			service.mypage_written(id,model);
-			return "member/mypage_written";
+
+			return service.mypage_written(id, page, model);
 		}		
 
 

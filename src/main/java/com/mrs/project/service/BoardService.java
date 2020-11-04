@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -366,6 +369,29 @@ public class BoardService {
 		json.put("list", dao.comListCall(start,end,idx));		
 
 		return json;
+	}
+
+
+	
+	//게시판 검색---------------------------------------------------------------------------------------------------------------
+	public List<BoardDTO> listSearch(String search_option, String keyword, String type) {
+		logger.info("리스트 나옴?");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("search_option", search_option);
+		map.put("keyword",keyword);
+		map.put("type", type);
+		return dao.listSearch(search_option,keyword,type);
+	}
+
+
+	public int countRecord(String search_option, String keyword, String type) {
+		logger.info("여기도나옴?");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("search_option", search_option);
+		map.put("keyword",keyword);
+		map.put("type", type);
+		return dao.countRecord(search_option,keyword,type);
+
 	}
 
 

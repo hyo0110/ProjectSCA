@@ -17,13 +17,15 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { //꼭 상속�
 		System.out.println("Controller 접근 전");
 		//세션검사
 		HttpSession session = request.getSession();
+		System.out.println(session.getAttribute("loginid"));
+		System.out.println("session 값 있어? : " + session);
 		//세션에 loginId가 없으면 -> /로 보낸다
-		if(session.getAttribute("id") == null){
+		if(session.getAttribute("loginid") == null){
 			System.out.println("로그인 안한 놈..");
-			response.sendRedirect("/index/");
+			response.sendRedirect("/project/index");
+		}else {
+			System.out.println("로그인 한 분");
 		}
-		System.out.println("로그인 한 분");
-
 		return true;
 	}
 

@@ -15,6 +15,33 @@
 		<level value="info" />
 	</logger>
 	
+	<!-- SQL LOGGER --> <!-- sqltiming: 쿼리+걸린시간 => 응답시간을 반환 // additivity false 안하면 같은 로그가 두 번 -->
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="off" />
+		<appender-ref ref="console"/>
+	</logger>
+	<!-- resultset  쿼리실행 + 쿼리 결과값을 보여줌 -->
+	<logger name="jdbc.resultset" additivity="false">
+		<level value="off" />
+		<appender-ref ref="console"/>
+	</logger>
+	<!-- audit 쿼리 실행시 나타낼 수 있는 모든 정보를 알려줌 -->
+	<logger name="jdbc.audit" additivity="false">
+		<level value="off"/>
+		<appender-ref ref="console"/>
+	</logger>
+	<!-- connection 쿼리 실행 전 후 커넥션 관련 내용을 출력 -->
+	<logger name="jdbc.connection" additivity="false">
+		<level value="off" />
+		<appender-ref ref="console"/>
+	</logger>
+	
+	<!-- sqlonly 실행되는 sql문 출력 // 위에 sqltiming에서 이미 한 차례 나와서 생략 -->
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="info" />
+		<appender-ref ref="console"/>
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

@@ -15,4 +15,33 @@
 	<select id="dbchk" resultType="Integer">
 		SELECT COUNT(id) FROM market_member WHERE id=#{param1}
 	</select>
+	
+	<select id="checkPassword" resultType="member" parameterType="map">
+		SELECT id, name, email FROM market_member WHERE id =#{id} and pw=#{pw}
+	</select>
+	
+	<delete id="deleteMember">
+		DELETE FROM market_member WHERE id = #{param1}
+	</delete>
+	
+	<select id = "updatepage" resultType="member">
+		SELECT id, name, email FROM market_member WHERE id = #{param1}
+	</select>
+	
+	<update id = "updateMember">
+		UPDATE market_member SET pw = #{param2}, name = #{param3}, email = #{param4} WHERE id = #{param1}
+	</update>
+	
+	<select id = "mypage_scrap" resultType="scrap">
+		SELECT * FROM market_scrapped_search WHERE id = #{param1}
+	</select>
+	
+	<delete id = "scrap_delete">
+		DELETE FROM market_scrapped_search WHERE scrap_idx = #{param1}
+	</delete>
+	
+	<select id = "mypage_written" resultType="board">
+		SELECT * FROM market_board WHERE id = #{param3}
+	</select>
+	
 </mapper>

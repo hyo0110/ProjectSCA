@@ -21,14 +21,11 @@
 			}
 		</style>
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
 		<button onclick="location.href='typelist?type=0'">자유게시판</button>
 		<button onclick="location.href='typelist?type=1'">고객센터</button>
+		 <!-- ${countRecord}개의 게시물이 있습니다.    -->             
 		<table>
 			<thead>
 				<tr>
@@ -51,10 +48,9 @@
 					<td>${bbs.bHit}</td>
 					</tr>
 				</c:forEach>
-			</tbody> 
-			
+			</tbody>
 		</table>
-		<form action="opSearch" method="GET">
+		<form action="opSearch" method="POST">
 			<select name="search_option">
 				<option value="all" <c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
 				<option value="title"<c:if test="${search_option == 'title'}"></c:if>>제목</option>
@@ -62,13 +58,11 @@
 			</select>
 			<input type="text" name="keyword" value="${keyword}"/>
 			<input type="submit" value="검색"/>
-			<input type="hidden" name="type" value="${type}"/>
 		</form>
 		<button onclick="location.href='writeForm?type=${type}'">글쓰기</button>
 		</body>
 	<script>
-		
-		
+	
 		var msg = "${msg}";
 		if(msg !=""){
 			alert(msg);

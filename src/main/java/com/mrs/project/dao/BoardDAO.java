@@ -2,6 +2,10 @@ package com.mrs.project.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mrs.project.dto.BoardDTO;
 import com.mrs.project.dto.CommentaryDTO;
@@ -39,6 +43,9 @@ public interface BoardDAO {
 
 	ArrayList<CommentaryDTO> comListCall(int start, int end, String idx); //댓글 페이징하기
 	
-	
+	List<BoardDTO> listSearch(@Param("search_option") String search_option, @Param("keyword") String keyword, @Param("type") String type);//게시판 검색
+
+	int countRecord(@Param("search_option") String search_option, @Param("keyword") String keyword, @Param("type") String type);//게시판 레코드 갯수
+
 
 }

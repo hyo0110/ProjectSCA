@@ -97,10 +97,10 @@
 				 content += "<input type='hidden' name ='com_idx' value="+item.com_idx+">";
 				 content += "<input type='hidden' name ='board_idx' value="+item.board_idx+">";
 				 content += "<th>"+item.id+"</th>";
-				 content += "<td>"+item.com_content+"<input type='text' name ='idx' value="+item.com_content+"></td>";
+				 content += "<td>"+item.com_content+"</td>";
 				 var date = new Date(item.com_reg_date);
 				 content += "<td>"+date.toLocaleDateString("ko-KR")+"</td>";
-				 content += "<td><input type='button' value='수정' ></td>";
+				 content += "<td><input type='button' value='삭제' id='' ></td>";
 				 content += "</tr>";
 			});
 			$("#comList").empty(); 

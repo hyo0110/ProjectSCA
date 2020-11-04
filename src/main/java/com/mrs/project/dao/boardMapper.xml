@@ -3,6 +3,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mrs.project.dao.BoardDAO">
 
+<!-- 
 	<select id="flist" resultType="board">
 		SELECT * FROM market_board WHERE board_type= #{param1} ORDER BY board_idx DESC
 	</select>
@@ -10,7 +11,8 @@
 	<select id="clist" resultType="board">
 		SELECT * FROM market_board WHERE board_type= #{parma1} ORDER BY board_idx DESC
 	</select>
-	
+ -->
+ 	
 	<insert id="cwrite" parameterType="HashMap" >
 		INSERT INTO MARKET_BOARD (board_idx, board_type, ID, SUBJECT, CONTENT, bHit, private_bbs, bchk) 
 		VALUES(mb_idx.nextval, #{type}, #{id},#{subject},#{content},0,#{privateHidden},0)
@@ -97,32 +99,33 @@
 	    ,com_idx,board_idx,id,com_content,com_reg_date FROM market_commentary WHERE board_idx=#{param3}) WHERE rnum BETWEEN #{param1} AND #{param2}
 		</select>
 
-	<select id="listSearch" resultType="board" >
-		SELECT * FROM market_board 
-		<include refid="search"></include>
-		AND board_type=#{param3}
-		ORDER BY board_idx DESC
-	</select>
-	
-	<select id="countRecord" resultType="int">
-		SELECT COUNT(*) FROM market_board
-		<include refid="search"></include>
-		AND board_type=#{param3}
-	</select>
-	
-	<sql id="search">
-		<choose>
-			<when test="search_option == 'all'">
-				WHERE SUBJECT like '%'||#{keyword}||'%'
-				OR CONTENT like '%'||#{keyword}||'%'
-			</when>
-			<when test="search_option == 'title'">
-				WHERE SUBJECT like '%'||#{keyword}||'%'
-			</when>
-			<otherwise>
-				WHERE CONTENT like '%'||#{keyword}||'%'
-			</otherwise>
-		</choose>
+	   <select id="listSearch" resultType="board" >
+      SELECT * FROM market_board 
+      <include refid="search"></include>
+      AND board_type=#{param3}
+      ORDER BY board_idx DESC
+   </select>
+   
+   <select id="countRecord" resultType="int">
+      SELECT COUNT(*) FROM market_board
+      <include refid="search"></include>
+      AND board_type=#{param3}
+   </select>
+   
+   <sql id="search">
+      <choose>
+         <when test="search_option == 'all'">
+            WHERE SUBJECT like '%'||#{keyword}||'%'
+            OR CONTENT like '%'||#{keyword}||'%'
+         </when>
+         <when test="search_option == 'title'">
+            WHERE SUBJECT like '%'||#{keyword}||'%'
+         </when>
+         <otherwise>
+            WHERE CONTENT like '%'||#{keyword}||'%'
+         </otherwise>
+      </choose>
+
 	</sql>
 
 	

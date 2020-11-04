@@ -38,23 +38,6 @@ public class BoardService {
 	private String fullpath = null; // 경로를 담는 변수 
 	
 	/*-----------------------------------공통-----------------------------------------------------------*/
-	//글 리스트 불러오기 요청
-	public void list(Model model, String type) {
-		logger.info("리스트 요청 서비스");
-		ArrayList<BoardDTO> list = null;
-
-		if(type.equals("1")) {
-			System.out.println("1되나?");
-			list= dao.clist(type);
-		}else {
-			System.out.println("0되나?");
-			list = dao.flist(type);
-		}
-
-		logger.info("리스트 갯수 : "+list.size());
-		model.addAttribute("list", list);
-		model.addAttribute("type",type);
-	}
 
 	
 	//게시판 상세보기(글 불러오기 + 사진불러오기)
@@ -333,6 +316,7 @@ public class BoardService {
 			
 		}
 		session.removeAttribute("fileList");
+		session.removeAttribute("delFileList");
 		
 		mav.setViewName(page);
 		mav.addObject("type", bean.getBoard_type());
@@ -373,27 +357,26 @@ public class BoardService {
 
 
 	
-	//게시판 검색---------------------------------------------------------------------------------------------------------------
-	public List<BoardDTO> listSearch(String search_option, String keyword, String type) {
-		logger.info("리스트 나옴?");
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("search_option", search_option);
-		map.put("keyword",keyword);
-		map.put("type", type);
-		return dao.listSearch(search_option,keyword,type);
-	}
+	   //게시판 검색---------------------------------------------------------------------------------------------------------------
+	   public List<BoardDTO> listSearch(String search_option, String keyword, String type) {
+	      logger.info("리스트 나옴?");
+	      Map<String, String> map = new HashMap<String, String>();
+	      map.put("search_option", search_option);
+	      map.put("keyword",keyword);
+	      map.put("type", type);
+	      return dao.listSearch(search_option,keyword,type);
+	   }
 
 
-	public int countRecord(String search_option, String keyword, String type) {
-		logger.info("여기도나옴?");
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("search_option", search_option);
-		map.put("keyword",keyword);
-		map.put("type", type);
-		return dao.countRecord(search_option,keyword,type);
+	   public int countRecord(String search_option, String keyword, String type) {
+	      logger.info("여기도나옴?");
+	      Map<String, String> map = new HashMap<String, String>();
+	      map.put("search_option", search_option);
+	      map.put("keyword",keyword);
+	      map.put("type", type);
+	      return dao.countRecord(search_option,keyword,type);
 
-	}
-
+	   }
 
 	
 	

@@ -13,9 +13,9 @@ import com.mrs.project.dto.FileDTO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardDTO> clist(String type); //고객센터 리스트 불러오기
+	//ArrayList<BoardDTO> clist(String type); //고객센터 리스트 불러오기
 
-	ArrayList<BoardDTO> flist(String type); // 자유게시판 리스트 불러오기
+	//ArrayList<BoardDTO> flist(String type); // 자유게시판 리스트 불러오기
 
 	int cwrite(HashMap<String, String> params); //고객센터 글쓰기
 

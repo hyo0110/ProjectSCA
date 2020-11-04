@@ -31,28 +31,21 @@ public class BoardController {
 	@Autowired BoardService service;
 
 	/*-----------------------------------공통-----------------------------------------------------------*/
-	// list.jsp로만 보내는 요청
-	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) {
-
-		return "board/board_list";
-	}
 	
 	// list.jsp에서 고객센터 또는 자유게시판 버튼에 따라서 목록보기를 부르는 요청(글 리스트불러오기)
 	// type -> 0(자유) / 1(고객)
 	@RequestMapping(value = "/typelist", method = RequestMethod.GET)
-	public String list(Model model, @RequestParam String type) {
+	public ModelAndView list(Model model, @RequestParam String type) {
 		logger.info("보드 타입 : "+type);
-		service.list(model,type);
-		return "board/board_list";
+		/*
+		 * model.addAttribute("list",service.list(model,type));
+		 */
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("type",type);
+		mav.setViewName("/board/board_list");
+		return mav;
 	}
 	
-	// list.jsp로만 보내는 요청
-	@RequestMapping(value = "/ajaxlist", method = RequestMethod.GET)
-	public String ajaxlist(Model model) {
-
-		return "board/board_list_ajax";
-	}
 	
 	//아작스 사용해서 페이징한 리스트
 	@RequestMapping(value = "/listcall", method = RequestMethod.GET)
@@ -189,28 +182,29 @@ public class BoardController {
 	}
 	*/
 	
-	@RequestMapping(value = "/opSearch", method = RequestMethod.GET)
-	public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
-		logger.info("검색 요청");	
-		logger.info("option: "+search_option);
-		logger.info("keyword : "+keyword);
-		logger.info("type : "+type);
-		List<BoardDTO> list = service.listSearch(search_option,keyword,type);
-		int count = service.countRecord(search_option,keyword,type);
-		ModelAndView mav = new ModelAndView();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		map.put("count", count);
-		map.put("search_option", search_option);
-		map.put("keyword",keyword);
-		map.put("type", type);
-		mav.addObject("map",map);
-		mav.addObject("list", list);
-		mav.addObject("count",count);
-		mav.setViewName("board/board_resultlist"); 
-		logger.info("listcnt:"+list.size());
-		return mav;
-	}
+	  @RequestMapping(value = "/opSearch", method = RequestMethod.GET)
+	   public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
+	      System.out.println("여기 오긴오니????");
+	      logger.info("검색 요청");   
+	      logger.info("option: "+search_option);
+	      logger.info("keyword : "+keyword);
+	      logger.info("type : "+type);
+	      List<BoardDTO> list = service.listSearch(search_option,keyword,type);
+	      int count = service.countRecord(search_option,keyword,type);
+	      ModelAndView mav = new ModelAndView();
+	      Map<String, Object> map = new HashMap<String, Object>();
+	      map.put("list", list);
+	      map.put("count", count);
+	      map.put("search_option", search_option);
+	      map.put("keyword",keyword);
+	      map.put("type", type);
+	      mav.addObject("map",map);
+	      mav.addObject("list", list);
+	      mav.addObject("count",count);
+	      mav.setViewName("board/board_resultlist"); 
+	      logger.info("listcnt:"+list.size());
+	      return mav;
+	   }
 
 
 	/*---------------------------------------------------------------댓글 관련-----------------------------------------------------------------------------------------------------------*/

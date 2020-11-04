@@ -2,6 +2,7 @@ package com.mrs.project.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mrs.project.dao.MemberDAO;
 import com.mrs.project.dto.BoardDTO;
@@ -55,11 +55,10 @@ public class MemberService {
 		return map;
 	}
 
-	public MemberDTO mypage_loginpw(String pw, String id) {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		map.put("pw", pw);
-		return dao.checkPassword(map);
+	public int mypage_loginpw(String id, String pw) {
+		int result = dao.mypage_loginpw(id, pw);
+		logger.info(""+result);
+		return result;
 	}
 
 	public void deleteMember(String id) {
@@ -90,9 +89,40 @@ public class MemberService {
 		dao.scrap_delete(idx);
 	}
 
-	public void mypage_written(String id, Model model) {
-		ArrayList<BoardDTO> list = dao.mypage_written(id);
+	public String mypage_written(String id, int page, Model model) {
+		int perPage = 5; // 한화면에서 보여줄 갯수
+		int start  = 0;
+		int end = 0;
+		if(page >= 0 && page <= 1) {
+			start = 1; 
+			end = 5;
+		}else { // 
+			start = (page-1) * perPage;
+			end = start + perPage;
+		}
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("id", id);
+		map.put("start", start);
+		map.put("end", end);
+		
+		ArrayList<BoardDTO> list = dao.mypage_written(map);
+		int total = dao.getTotalCnt(id);
+		int allPage = total / perPage;
+		if(total % perPage > 0) { // 한페이지를 더해주고
+			allPage += 1;
+		}
 		model.addAttribute("list", list);
+		model.addAttribute("totalPage", allPage);
+		model.addAttribute("curPage", page);
+		
+		return "member/mypage_written";
+	}
+
+	public MemberDTO mypage_detail(String id) {
+		MemberDTO dto = dao.mypage_detail(id);
+		
+		return dto;
 		
 	}
 

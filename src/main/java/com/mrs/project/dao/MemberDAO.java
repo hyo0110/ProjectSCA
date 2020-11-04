@@ -2,6 +2,7 @@ package com.mrs.project.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +18,6 @@ public interface MemberDAO {
 
 	int join(HashMap<String, Object> params);
 
-	MemberDTO checkPassword(HashMap<String, Object> params);
 
 	void deleteMember(String id);
 
@@ -29,6 +29,12 @@ public interface MemberDAO {
 
 	void scrap_delete(String idx);
 
-	ArrayList<BoardDTO> mypage_written(String id);
+	ArrayList<BoardDTO> mypage_written(HashMap<String, Object> map);
+
+	MemberDTO mypage_detail(String id);
+
+	int mypage_loginpw(String id, String pw);
+	
+	int getTotalCnt(String id); 
 
 }

@@ -109,7 +109,7 @@ height : 100%;
 			</div>
 			<div class="re_login_wrap">
 				<div class="re_login">
-					<form action="mypage_detail" method="POST">
+					<form action="mypage_login" method="POST">
 						<div>
 							<label for="user_id">아이디<input type="text" id="user_id" name="id" value="${loginid}"  disabled /></label>
 							<label for="user_pw">패스워드<input type="password" id="user_pw" name="pw"   /></label>

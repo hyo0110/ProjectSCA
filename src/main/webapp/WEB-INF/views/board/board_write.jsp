@@ -41,7 +41,7 @@
 			<table class="board">
 				<tr>
 					<th>작성자</th>
-					<td><input type = "text" name = "id" value="test"/></td>
+					<td><input type = "text" name = "id" value="join"/></td>
 				</tr>
 				<tr>
 					<th>제목</th>
@@ -72,7 +72,6 @@
 			$("#editable input[type='button']").remove();
 			$("#content").val($("#editable").html()); 
 			$("form").submit(); 
-			
 		}
 	
 	

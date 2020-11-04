@@ -46,7 +46,7 @@
 				-->
 				<th>작성자</th>
 				<td>
-				<input type = "text" name = "id" value="test"/>
+				<input type = "text" name = "id" value="join"/>
 				<input type="checkbox" name="privatecheck" id="privatecheck"/>비밀글	
 				<input type="hidden" name="privateHidden" id="privateHidden"/>
 				</td>

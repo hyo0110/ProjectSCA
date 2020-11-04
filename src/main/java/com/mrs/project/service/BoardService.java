@@ -60,6 +60,8 @@ public class BoardService {
 	//게시판 상세보기(글 불러오기 + 사진불러오기)
 	public ModelAndView detail(String idx, String type) {
 		ModelAndView mav = new ModelAndView();
+		int success = dao.bhit(idx); //조회수
+		logger.info("조회수 올리기 : "+success);
 		BoardDTO dto = dao.detail(idx);
 		ArrayList<FileDTO> fileList = dao.fileList(idx);
 		logger.info("첨부된 파일 : " + fileList.size());
@@ -82,7 +84,38 @@ public class BoardService {
 		return page;
 	}	
 	
-	
+	public HashMap<String, Object> pagingList(int page, int pagePerCnt, String type) {
+		
+		//리스트/현재페이지/최대 만들수 있는 페이지수
+				HashMap<String, Object> json = new HashMap<String, Object>();
+				
+				logger.info("현재 페이지 : {}",page);
+				logger.info("페이지당 보여줄 수  : {}",pagePerCnt);	
+				logger.info("요청한 게시판 종류 : {}",type);
+
+				int allCnt = dao.allCount(type);//전체 게시물 수
+				logger.info("총페이지 갯수 : "+allCnt);
+				//만들 수 있는 최대 페이지
+				//총갯수:21, 페이지당 보여줄 수:5 이때 만들 페이지는???
+				int range = allCnt%pagePerCnt>0?
+						Math.round(allCnt/pagePerCnt)+1
+						:Math.round(allCnt/pagePerCnt);
+				logger.info("만들 수 있는 페이지:"+range);
+					
+				if(page>range) {
+					page = range;
+				}
+				
+				int end = page * pagePerCnt;
+				int start = end - pagePerCnt+1;
+						
+				json.put("currPage",page);
+				json.put("range", range);
+				json.put("type", type);
+				json.put("list", dao.listCall(start,end,type));		
+
+				return json;
+	}
 	/*-----------------------------------고객센터 관련------------------------------------------------------*/
 	//고개센터 글쓰기
 	public ModelAndView cwrite(HashMap<String, String> params, HttpSession session) {
@@ -133,8 +166,9 @@ public class BoardService {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		int success = 0;
 		
-		//1. session 에서 fileList 가져오기
+		//1. session 에서 fileList와 delFileList 가져오기
 		HashMap<String, String> fileList = (HashMap<String, String>) session.getAttribute("fileList"); 
+		HashMap<String, String> delFileList = (HashMap<String, String>) session.getAttribute("delFileList");
 		
 		//2. 실제 파일 삭제 하기
 		String delFileName = root+"upload/"+fileName;
@@ -181,6 +215,7 @@ public class BoardService {
 			int size = fileList.size();
 			logger.info("저장할 파일 수 : " + size);
 			int idx = bean.getBoard_idx();
+			logger.info("idx : "+idx);
 			if(size>0) { //업로드한 파일이 있다면 
 				logger.info(idx+"번 게시물에 소속된 파일 등록");
 				for(String key : fileList.keySet()) { 
@@ -206,19 +241,136 @@ public class BoardService {
 	}
 
 
-	/*
-	public ModelAndView listAll(String search_option, String keyword) {
-		List<BoardDTO> list = dao.listAll(search_option, keyword);
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
-		map.put("search_option", search_option);
-		map.put("keyword",keyword);
+	//업데이트 폼으로 이동
+	public ModelAndView updateForm(String idx, String type, HttpSession session) {
+			ModelAndView mav = new ModelAndView();
+			BoardDTO dto = dao.detail(idx);
+			mav.addObject("info",dto);
+			mav.setViewName("board/board_update");
+			return mav;
+	}
+
+
+	//업데이트 할 때 기존 파일 삭제하기 
+	public HashMap<String, Object> updateFileDelete(String fileName, HttpSession session) {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		int success = 0;
+		
+		//1. session 에서 delFileList 가져오기
+		HashMap<String, String> delFileList = (HashMap<String, String>) session.getAttribute("delFileList");
+		
+		//2. 실제 파일 삭제 하기
+		String delFileName = root+"upload/"+fileName;
+		logger.info("지울 파일 경로 : " + delFileName);
+		File file = new File(delFileName);
+		if(file.exists()) { //파일이 존재할 경우
+			if(file.delete()) { //삭제 처리 후 성공하면
+				success = 1; 
+			}else {
+				logger.info("이미 삭제된 상황"); 
+				success = 1; 
+			}
+		}
+		
+		//3. fileList에서 삭제한 파일명 넣기
+		delFileList.put(fileName, fileName);
+		logger.info(delFileList.get(fileName));
+		logger.info("업로드 한 파일 갯수 :" + delFileList.size());
+		
+		//4. session에 fileList 넣기
+		session.setAttribute("delFileList", delFileList);
+		
+		result.put("success", success);
+		return result;
+	}
+
+
+	//게시판 수정 + 기존파일 삭제했으면 실제 삭제 + 새로올린파일 있으면 실제 저장까지
+	@Transactional
+	public ModelAndView update(HashMap<String, String> params, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("map",map);
-		mav.setViewName("board/board_list");
+		String page = "redirect:/updateForm";
+		BoardDTO bean = new BoardDTO(); 
+		
+		bean.setSubject(params.get("subject"));
+		bean.setContent(params.get("content"));
+		bean.setId(params.get("id"));
+		bean.setBoard_type(params.get("type"));
+		bean.setBoard_idx(Integer.parseInt(params.get("idx")));
+		System.out.println("idx 세팅 : "+bean.getBoard_idx());
+		
+		HashMap<String, Object> fileList = (HashMap<String, Object>) session.getAttribute("fileList");
+		HashMap<String, Object> delFileList = (HashMap<String, Object>) session.getAttribute("delFileList");
+		
+		if(dao.update(bean)==1) { //글 수정 성공시
+			int size = fileList.size();
+			logger.info("저장할 파일 수 : " + size);
+			int delSize = delFileList.size();
+			logger.info("삭제할 파일 수 : "+delSize);
+			int idx = bean.getBoard_idx();
+			logger.info("idx : "+idx);
+			if(size>0) { //업로드한 파일이 있다면 
+				logger.info(idx+"번 게시물에 소속된 파일 등록");
+				for(String key : fileList.keySet()) { 
+					//idx, oriFileName, newFileName
+					dao.writeFile(idx, (String)fileList.get(key),key);
+				}
+			}
+			if(delSize>0) {
+				for(String delKey : delFileList.keySet()) {
+					dao.deleteFile(idx,delKey);
+					logger.info("성공 :" + delKey);
+				}
+			}
+			page="redirect:/detail?idx="+idx+"&type="+bean.getBoard_type()+"&pri="+bean.getPrivate_bbs(); //등록된 상세 페이지로 이동
+		}else {
+			//세션의 fileList에 저장된 모든 파일을 삭제
+			for(String fileName : fileList.keySet()) { 
+				File file = new File(root+"upload/"+fileName);
+				 boolean success= file.delete();
+				 logger.info(fileName+"삭제결과"+success);
+			}
+			
+		}
+		session.removeAttribute("fileList");
+		
+		mav.setViewName(page);
+		mav.addObject("type", bean.getBoard_type());
 		return mav;
 	}
-	*/
+
+
+	/*---------------------------------------------------------------댓글 관련-----------------------------------------------------------------------------------------------------------*/
+
+	public HashMap<String, Object> comlist(int page, int pagePerCnt, String idx) {
+
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		
+		logger.info("현재 페이지 : {}",page);
+		logger.info("페이지당 보여줄 수  : {}",pagePerCnt);	
+		logger.info("해당 글  : {}",idx);	
+
+		int allCnt = dao.comAllCount(idx);//전체 게시물 수
+		logger.info("총페이지 갯수 : "+allCnt);
+		
+		int range = allCnt%pagePerCnt>0?
+				Math.round(allCnt/pagePerCnt)+1
+				:Math.round(allCnt/pagePerCnt);
+					
+		if(page>range) {
+			page = range;
+		}
+		
+		int end = page * pagePerCnt;
+		int start = end - pagePerCnt+1;
+				
+		json.put("currPage",page);
+		json.put("range", range);
+		json.put("list", dao.comListCall(start,end,idx));		
+
+		return json;
+	}
+
 
 	
 	//게시판 검색---------------------------------------------------------------------------------------------------------------
@@ -239,6 +391,7 @@ public class BoardService {
 		map.put("keyword",keyword);
 		map.put("type", type);
 		return dao.countRecord(search_option,keyword,type);
+
 	}
 
 

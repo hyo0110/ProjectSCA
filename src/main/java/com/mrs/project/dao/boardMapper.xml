@@ -31,7 +31,7 @@
 		keyProperty="board_idx"
 		keyColumn="board_idx"
 		id ="write">
-		INSERT INTO MARKET_BOARD(board_idx, board_type, ID, SUBJECT, CONTENT, bHit, private_bbs, bchk)
+		INSERT INTO MARKET_BOARD(board_idx, board_type, id, subject, content, bHit, private_bbs, bchk)
 		VALUES(mb_idx.nextval, #{board_type}, #{id},#{subject},#{content},0,0,0)
 	</insert>
 	
@@ -39,6 +39,10 @@
 		INSERT INTO market_photo (photo_idx, board_idx, ori_file_name, new_file_name)
 		VALUES(photo_seq.NEXTVAL, #{param1},#{param2},#{param3})
 	</insert>
+	
+	<update id="bhit">
+		UPDATE MARKET_BOARD SET bHit = bHit+1 WHERE board_idx = #{param1} 
+	</update>
 	
 	<select id="detail" resultType="board">
 		SELECT * FROM MARKET_BOARD WHERE board_idx = #{param1}
@@ -52,6 +56,47 @@
 		delete from market_board where board_idx = #{param1} 
 	</delete>
 	
+	<update 		
+		parameterType="board"
+		id ="update">
+		UPDATE market_board
+		<set>
+			<if test="!subject.equals('')">subject=#{subject},</if>
+			<if test="!content.equals('')">content=#{content}</if>
+		</set>
+		WHERE board_idx = #{board_idx}
+	</update>
+	
+	<delete id="deleteFile">
+		delete from market_photo where board_idx = #{param1} and  NEW_FILE_NAME = #{param2}
+	</delete>
+	
+	
+	
+	<!-- /////////////////////페이징/////////////////////////////// -->
+		<!-- 리스트 불러오기 -->
+	<select id="listCall" resultType="board">
+		SELECT rnum,board_idx,board_type,id,subject,content,bHit,reg_date FROM (SELECT ROW_NUMBER() OVER(ORDER BY board_idx DESC) AS rnum
+	    ,board_idx,board_type,id,subject,content,bHit,reg_date FROM market_board WHERE board_type=#{param3}) WHERE rnum BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<!-- 전체  게시물 수 -->
+	<select id="allCount" resultType="Integer">
+		SELECT COUNT(*) FROM MARKET_BOARD where board_type = #{param1}
+	</select>
+	
+	
+ <!-- //////////////////////////////////////////////////댓글관련////////////////////////////////////////////////////////////////////////////////////// -->
+	<!-- 전체  댓글 수 -->
+	<select id="comAllCount" resultType="Integer">
+		SELECT COUNT(*) FROM market_commentary WHERE board_idx = #{param1}
+	</select>
+	
+	<select id="comListCall" resultType="commentary">
+		SELECT rnum,com_idx,board_idx,id,com_content,com_reg_date FROM (SELECT ROW_NUMBER() OVER(ORDER BY com_idx DESC) AS rnum
+	    ,com_idx,board_idx,id,com_content,com_reg_date FROM market_commentary WHERE board_idx=#{param3}) WHERE rnum BETWEEN #{param1} AND #{param2}
+		</select>
+
 	<select id="listSearch" resultType="board" >
 		SELECT * FROM market_board 
 		<include refid="search"></include>
@@ -79,5 +124,6 @@
 			</otherwise>
 		</choose>
 	</sql>
+
 	
 </mapper>

@@ -185,10 +185,10 @@ public class BoardController {
 	  @RequestMapping(value = "/opSearch", method = RequestMethod.GET)
 	   public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
 	      System.out.println("여기 오긴오니????");
-	      logger.info("검색 요청");   
-	      logger.info("option: "+search_option);
-	      logger.info("keyword : "+keyword);
-	      logger.info("type : "+type);
+	      //logger.info("검색 요청");   
+	     // logger.info("option: "+search_option);
+	     // logger.info("keyword : "+keyword);
+	      //logger.info("type : "+type);
 	      List<BoardDTO> list = service.listSearch(search_option,keyword,type);
 	      int count = service.countRecord(search_option,keyword,type);
 	      ModelAndView mav = new ModelAndView();
@@ -198,13 +198,30 @@ public class BoardController {
 	      map.put("search_option", search_option);
 	      map.put("keyword",keyword);
 	      map.put("type", type);
+	      mav.addObject("keyword",keyword);
+	      mav.addObject("search_option", search_option);
 	      mav.addObject("map",map);
 	      mav.addObject("list", list);
 	      mav.addObject("count",count);
+	      mav.addObject("type",type);
 	      mav.setViewName("board/board_resultlist"); 
-	      logger.info("listcnt:"+list.size());
+	     // logger.info("listcnt:"+list.size());
 	      return mav;
 	   }
+	  
+		@RequestMapping(value = "/resultpaging", method = RequestMethod.GET)
+		public @ResponseBody HashMap<String, Object> resultpaging(@RequestParam HashMap<String, String>params) {
+			//logger.info("보드 타입 : "+params.get("type"));
+			//logger.info("전체파라미터 : "+params);
+			String page = params.get("page");
+			String pagePerCnt =  params.get("ppn");	
+			String type =  params.get("type");
+			String keyword = params.get("keyword");
+			String search_option = params.get("search_option");
+			
+			//System.out.println(page+"/"+pagePerCnt);
+			return service.resultpaging(Integer.parseInt(page), Integer.parseInt(pagePerCnt),type, search_option,keyword,params);
+		}
 
 
 	/*---------------------------------------------------------------댓글 관련-----------------------------------------------------------------------------------------------------------*/

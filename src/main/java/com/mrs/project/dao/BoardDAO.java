@@ -47,5 +47,7 @@ public interface BoardDAO {
 
 	int countRecord(@Param("search_option") String search_option, @Param("keyword") String keyword, @Param("type") String type);//게시판 레코드 갯수
 
+	List<BoardDTO> resultpaging(int start, int end, String type, @Param("keyword") String keyword,@Param("search_option") String search_option);//게시판 검색 페이징
+
 
 }

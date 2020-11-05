@@ -31,12 +31,24 @@ table{
 		border-collapse: collapsed;
 		padding: 5px;
 	}
+	
+	.page-link{
+		position : relative;
+		right : 5px;
+		top : 120px;
+
+	}
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
+<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>	
 </head>
 <body>
 
 <a href="admin"><div>게시글 관리</div></a>
+<a href="admin_faqboard"><div>문의글 관리</div></a>
 <table>
 		<tr>
 			<th>아이디</th>
@@ -55,6 +67,37 @@ table{
 		</tr>	
 		</c:forEach>	
 	</table>
+	<div class="text-center">
+		    	<ul class="pagination">
+		    			<li class="page-item">
+		    				<a class="page-link" href="./admin_member?page=1"><span>처음</span></a>
+		    						<a id="prevPage" class="page-link" href="./admin_member?page=${currPage-1}" aria-label="Previous">
+		    						<span aria-hidden="true">&laquo;</span>
+		    						<span class="sr-only">Previous</span>		
+		    				</a>
+		    			</li>
+		    			<li>    			    			
+		    			<c:if test = "${currPage>1}}" >
+		    				<a class="page-link" href="./admin_member?page=${currPage-2}"><span>${currPage-2}</span></a>
+		    				<a class="page-link" href="./admin_member?page=${currPage-1}"><span>${currPag-1}</span></a>
+		    			</c:if>	
+		    				<a class="page-link" href="./admin_member?page=${currPage}"><span>${currPage}</span></a>
+		    				<a class="page-link" href="./admin_member?page=${currPage+1}"><span>${currPage+1}</span></a>
+		    				<a class="page-link" href="./admin_member?page=${currPage+2}"><span>${currPage+2}</span></a>
+		    				<a class="page-link" href="./admin_member?page=${currPage+3}"><span>${currPage+3}</span></a>
+		    				<a class="page-link" href="./admin_member?page=${currPage+4}"><span>${currPage+4}</span></a>
+		    			</li>	
+		    			<li class="page-item">
+		    				<a id="nextPage" class="page-link" href="./admin_member?page=${currPage+1}" aria-label="Next">
+		    					<span aria-hidden="true">&raquo;</span>
+	                    		<span class="sr-only">Next</span>
+		    				</a>
+		    				<a class="page-link" href="./admin_member?page=${end}"><span>끝</span></a>		 
+		    			</li>
+		    		</ul>
+		    	</div>
+		    </div>
+	    </div>  
 </body>
 <script>
  

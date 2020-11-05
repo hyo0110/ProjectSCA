@@ -37,9 +37,6 @@ public class BoardController {
 	@RequestMapping(value = "/typelist", method = RequestMethod.GET)
 	public ModelAndView list(Model model, @RequestParam String type) {
 		logger.info("보드 타입 : "+type);
-		/*
-		 * model.addAttribute("list",service.list(model,type));
-		 */
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("type",type);
 		mav.setViewName("/board/board_list");
@@ -78,13 +75,10 @@ public class BoardController {
 	
 	//상세보기 + 업로드한 파일있으면 같이 보이기
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri) { 
+	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri,HttpSession session,RedirectAttributes rAttr) { 
 		logger.info("상세보기 요청"+idx+"/타입:"+type+"/비밀글여부:"+pri);
 		ModelAndView mav = null;
-	/*	if(pri.equals("1")) { //비밀글이면 해당 회원만 볼 수 있게 하는 로직 / 로그인 기능 완료후에 할 예정
-			
-		}*/
-		mav = service.detail(idx,type);
+		mav = service.detail(idx,type,pri,session,rAttr);
 		return mav;
 	}
 	
@@ -185,10 +179,10 @@ public class BoardController {
 	  @RequestMapping(value = "/opSearch", method = RequestMethod.GET)
 	   public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
 	      System.out.println("여기 오긴오니????");
-	      logger.info("검색 요청");   
-	      logger.info("option: "+search_option);
-	      logger.info("keyword : "+keyword);
-	      logger.info("type : "+type);
+	      //logger.info("검색 요청");   
+	     // logger.info("option: "+search_option);
+	     // logger.info("keyword : "+keyword);
+	      //logger.info("type : "+type);
 	      List<BoardDTO> list = service.listSearch(search_option,keyword,type);
 	      int count = service.countRecord(search_option,keyword,type);
 	      ModelAndView mav = new ModelAndView();
@@ -198,13 +192,30 @@ public class BoardController {
 	      map.put("search_option", search_option);
 	      map.put("keyword",keyword);
 	      map.put("type", type);
+	      mav.addObject("keyword",keyword);
+	      mav.addObject("search_option", search_option);
 	      mav.addObject("map",map);
 	      mav.addObject("list", list);
 	      mav.addObject("count",count);
+	      mav.addObject("type",type);
 	      mav.setViewName("board/board_resultlist"); 
-	      logger.info("listcnt:"+list.size());
+	     // logger.info("listcnt:"+list.size());
 	      return mav;
 	   }
+	  
+		@RequestMapping(value = "/resultpaging", method = RequestMethod.GET)
+		public @ResponseBody HashMap<String, Object> resultpaging(@RequestParam HashMap<String, String>params) {
+			//logger.info("보드 타입 : "+params.get("type"));
+			//logger.info("전체파라미터 : "+params);
+			String page = params.get("page");
+			String pagePerCnt =  params.get("ppn");	
+			String type =  params.get("type");
+			String keyword = params.get("keyword");
+			String search_option = params.get("search_option");
+			
+			//System.out.println(page+"/"+pagePerCnt);
+			return service.resultpaging(Integer.parseInt(page), Integer.parseInt(pagePerCnt),type, search_option,keyword,params);
+		}
 
 
 	/*---------------------------------------------------------------댓글 관련-----------------------------------------------------------------------------------------------------------*/
@@ -220,6 +231,19 @@ public class BoardController {
 		return service.comlist(Integer.parseInt(page), Integer.parseInt(pagePerCnt),idx);
 	}
 	
+	//댓글 삭제
+	@RequestMapping(value = "/delCom", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> delCom(@RequestParam HashMap<String, String>params) {
+		logger.info("전체파라미터 : "+params);
+		return service.delCom(params);
+	}
+	
+	//댓글 등록
+	@RequestMapping(value = "/insertCom", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> insertCom(@RequestParam HashMap<String, String>params) {
+		logger.info("전체파라미터 : "+params);
+		return service.insertCom(params);
+	}
 	
 	
 }

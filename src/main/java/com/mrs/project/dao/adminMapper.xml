@@ -30,7 +30,7 @@
     			,id,pw,name,email FROM market_member) WHERE rnum BETWEEN #{param1} AND #{param2}
 	</select>
 	
-	<select id="totalmemberist" resultType="Integer"> <!-- 문의 리스트 토탈카운트 갯수 -->
+	<select id="totalmemberist" resultType="Integer"> <!-- 멤법 리스트 -->
 		SELECT count(*) as totalCount FROM market_member
 	</select>
 	

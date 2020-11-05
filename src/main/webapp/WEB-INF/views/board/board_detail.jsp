@@ -45,9 +45,17 @@
 			</td>
 			</tr>
 		</table>
-		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
-		<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
-		<a href="./typelist?type=${info.board_type}">목록보기</a>
+		  <c:choose>
+            <c:when test="!${sessionScope.loginid eq  admin}">
+                <a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
+				<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
+				<a href="./typelist?type=${info.board_type}">목록보기</a>
+            </c:when>
+            <c:otherwise>       	
+               	<a href="./admin?id=${info.board_idx}&type=${info.board_type}">목록보기</a>
+            </c:otherwise>
+       </c:choose>
+	
 	</body>
 	<script>
 	

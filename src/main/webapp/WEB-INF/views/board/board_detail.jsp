@@ -66,9 +66,10 @@
 			</tr>
 		</table>
 
-		 
+		 <c:if test="${sessionScope.loginid eq info.id}">
 		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
 		<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
+		</c:if>
 		<a href="./typelist?type=${info.board_type}">목록보기</a>
 	</body>
 	<script>

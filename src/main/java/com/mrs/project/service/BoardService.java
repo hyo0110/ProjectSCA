@@ -456,18 +456,11 @@ public class BoardService {
 			String keyword, HashMap<String, String> params) {
 		HashMap<String, Object> json = new HashMap<String, Object>();
 		
-		//logger.info("현재 페이지 : {}",page);
-		//logger.info("페이지당 보여줄 수  : {}",pagePerCnt);	
-		//logger.info("요청한 게시판 종류 : {}",type);
-		//System.out.println(search_option +  " / " + keyword + " / " + type);
 		int allCnt = dao.countRecord(search_option,keyword,type);//검색결과의 갯수...
-		//logger.info("총페이지 갯수 : "+allCnt);
-		//만들 수 있는 최대 페이지
-		//총갯수:21, 페이지당 보여줄 수:5 이때 만들 페이지는???
+		
 		int range = allCnt%pagePerCnt>0?
 				Math.round(allCnt/pagePerCnt)+1
 				:Math.round(allCnt/pagePerCnt);
-		//logger.info("만들 수 있는 페이지:"+range);
 			
 		if(page>range) {
 			page = range;

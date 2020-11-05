@@ -132,16 +132,15 @@
 						</tr>
 						</c:forEach>
 						</table>
+						
 						<ul>
-			
+						<c:if test="${curPage > 1}"><div><a href="mypage_written?page=${curPage-1}">이전</a></div></c:if>
 						<c:forEach var="i" begin="1" end="${totalPage}">
-							<li 
-								class="pageitem"
-								<c:out value="${curPage == i ? 'style=background:red;' : ''}"/>><!-- li -->
-								<a href="mypage_written?page=${i}">${i}</a>	
-							</li>
+							<li class="pageitem"<c:out value="${curPage == i ? 'style=background:red;' : ''}"/>><a href="mypage_written?page=${i}">${i}</a>	</li>
 						</c:forEach>
+						<c:if test="${curPage ne totalPage}"><div><a href="mypage_written?page=${curPage+1}">다음</a></div></c:if>
 						</ul>
+						
 				</div>
 			</div>
 	

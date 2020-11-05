@@ -15,7 +15,20 @@ public class BoardDTO {
 	private Date reg_date;
 	private String private_bbs;
 	private String bchk;
-	
+	private String board_name;
+	private MarketBoardType market_board_type;
+	public MarketBoardType getMarket_board_type() {
+		return market_board_type;
+	}
+	public void setMarket_board_type(MarketBoardType market_board_type) {
+		this.market_board_type = market_board_type;
+	}
+	public String getBoard_name() {
+		return board_name;
+	}
+	public void setBoard_name(String board_name) {
+		this.board_name = board_name;
+	}
 	public int getBoard_idx() {
 		return board_idx;
 	}

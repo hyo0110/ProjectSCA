@@ -33,6 +33,7 @@
 		
 		function fileView(elem){
 			var check = elem.value;
+			//console.log(elem.value.split("\\"));
 			//console.log(elem.value.split("\\")[2]); //IMG_0012.JPG
 			var exp = check.substring(check.lastIndexOf('.')+1,check.length);
 			console.log(exp);

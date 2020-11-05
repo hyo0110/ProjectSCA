@@ -8,13 +8,14 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.mrs.project.dto.BoardDTO;
+import com.mrs.project.dto.CommentaryDTO;
 import com.mrs.project.dto.FileDTO;
 
 public interface BoardDAO {
 
-	ArrayList<BoardDTO> clist(String type); //고객센터 리스트 불러오기
+	//ArrayList<BoardDTO> clist(String type); //고객센터 리스트 불러오기
 
-	ArrayList<BoardDTO> flist(String type); // 자유게시판 리스트 불러오기
+	//ArrayList<BoardDTO> flist(String type); // 자유게시판 리스트 불러오기
 
 	int cwrite(HashMap<String, String> params); //고객센터 글쓰기
 
@@ -28,8 +29,23 @@ public interface BoardDAO {
 
 	int delete(String idx); //게시글 삭제하기
 
+	int bhit(String idx); // 조회수 올리기
+
+	void deleteFile(int idx, String delKey); // 자유게시판 수정시 파일 삭제
+
+	int update(BoardDTO bean); //게시판 수정
+
+	int allCount(String type); // 게시글 총 갯수
+
+	ArrayList<BoardDTO> listCall(int start, int end, String type); //게시글 페이징으로 부르기
+
+	int comAllCount(String idx); //댓글 총 갯수
+
+	ArrayList<CommentaryDTO> comListCall(int start, int end, String idx); //댓글 페이징하기
+	
 	List<BoardDTO> listSearch(@Param("search_option") String search_option, @Param("keyword") String keyword, @Param("type") String type);//게시판 검색
 
 	int countRecord(@Param("search_option") String search_option, @Param("keyword") String keyword, @Param("type") String type);//게시판 레코드 갯수
+
 
 }

@@ -59,7 +59,7 @@ public class AdminController {
 			}		
 		return mav;
 	}	
-			
+	//관리자 게시글 삭제
 	@RequestMapping(value = "/admindel", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> admindel(@RequestParam String board_idx) {
 		logger.info(board_idx+"삭제 idx값");
@@ -75,7 +75,7 @@ public class AdminController {
 		map.put("del_cnt", del_cnt);
 		return map;
 	}
-	
+
 	@RequestMapping(value = "/admin_faqboard", method = RequestMethod.GET)
 	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session) {
 		logger.info("여기오나요?");

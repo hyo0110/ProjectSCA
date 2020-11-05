@@ -42,19 +42,15 @@
 
 
 </style>
-
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script> 
-<script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
+		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>	
 </head>
 <body>
 	
-	<div><a href="admin_member"> 멤버탈퇴</a></div>
-		
 	<a href="admin_member"><div>회원관리</div></a>
-	<a href="admin_faqboard"><div>문의글관리</div></a>
+	<a href="admin"><div>게시글관리</div></a>
 	<table>
 		<tr>
 			<th>글번호</th>
@@ -67,7 +63,7 @@
 		<c:forEach items="${adminlist}" var="market_board">
 		<tr>
 			<td>${market_board.board_idx}</td>
-			<td><a href="detail?idx=${market_board.board_idx}&type=${type}&pri=${market_board.private_bbs}">${market_board.subject}</a></td>
+			<td><a href="detail?idx=${bbs.board_idx}&type=${type}&pri=${bbs.private_bbs}">${market_board.subject}</a></td>
 			<td>${market_board.id}</td>
 			<td>${market_board.reg_date}</td>
 			<td>${market_board.bHit}</td>
@@ -82,29 +78,29 @@
 	<div class="text-center">
 		    	<ul class="pagination">
 		    			<li class="page-item">
-		    				<a class="page-link" href="./admin?page=1"><span>처음</span></a>
-		    						<a id="prevPage" class="page-link" href="./admin?page=${currPage-1}" aria-label="Previous">
+		    				<a class="page-link" href="./admin_faqboard?page=1"><span>처음</span></a>
+		    						<a id="prevPage" class="page-link" href="./admin_faqboard?page=${currPage-1}" aria-label="Previous">
 		    						<span aria-hidden="true">&laquo;</span>
 		    						<span class="sr-only">Previous</span>		
 		    				</a>
 		    			</li>
 		    			<li>    			    			
 		    			<c:if test = "${currPage>1}}" >
-		    				<a class="page-link" href="./admin?page=${currPage-2}"><span>${currPage-2}</span></a>
-		    				<a class="page-link" href="./admin?page=${currPage-1}"><span>${currPag-1}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage-2}"><span>${currPage-2}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage-1}"><span>${currPag-1}</span></a>
 		    			</c:if>	
-		    				<a class="page-link" href="./admin?page=${currPage}"><span>${currPage}</span></a>
-		    				<a class="page-link" href="./admin?page=${currPage+1}"><span>${currPage+1}</span></a>
-		    				<a class="page-link" href="./admin?page=${currPage+2}"><span>${currPage+2}</span></a>
-		    				<a class="page-link" href="./admin?page=${currPage+3}"><span>${currPage+3}</span></a>
-		    				<a class="page-link" href="./admin?page=${currPage+4}"><span>${currPage+4}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage}"><span>${currPage}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage+1}"><span>${currPage+1}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage+2}"><span>${currPage+2}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage+3}"><span>${currPage+3}</span></a>
+		    				<a class="page-link" href="./admin_faqboard?page=${currPage+4}"><span>${currPage+4}</span></a>
 		    			</li>	
 		    			<li class="page-item">
-		    				<a id="nextPage" class="page-link" href="./admin?page=${currPage+1}" aria-label="Next">
+		    				<a id="nextPage" class="page-link" href="./admin_faqboard?page=${currPage+1}" aria-label="Next">
 		    					<span aria-hidden="true">&raquo;</span>
 	                    		<span class="sr-only">Next</span>
 		    				</a>
-		    				<a class="page-link" href="./admin?page=${end}"><span>끝</span></a>		 
+		    				<a class="page-link" href="./admin_faqboard?page=${end}"><span>끝</span></a>		 
 		    			</li>
 		    		</ul>
 		    	</div>

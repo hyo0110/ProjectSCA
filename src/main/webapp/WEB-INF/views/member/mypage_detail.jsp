@@ -101,7 +101,7 @@ height : 100%;
 				<ul class="snb_items">
 					<li class="snb_item"><a href="#n">회원정보</a></li>
 					<li class="snb_item"><a href="#n">스크랩</a></li>
-					<li class="snb_item"><a href="#n">글목록</a></li>
+					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
 				</ul>
 			</div>
 			<div class="detail_wrap">

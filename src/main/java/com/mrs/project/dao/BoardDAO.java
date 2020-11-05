@@ -55,6 +55,8 @@ public interface BoardDAO {
 
 	boolean updateBchk(String idx); // 댓글확인 업로드
 
+	List<BoardDTO> resultpaging(int start, int end, String type, @Param("keyword") String keyword,@Param("search_option") String search_option);//게시판 검색 페이징
+
 
 
 }

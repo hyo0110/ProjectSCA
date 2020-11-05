@@ -40,8 +40,13 @@
 		<input type="hidden" name ="type" value="${type}">
 			<table class="board">
 				<tr>
+					<c:if test="${sessionScope.loginid ne ''}">
 					<th>작성자</th>
-					<td><input type = "text" name = "id" value="join"/></td>
+					<td>
+					${sessionScope.loginid}
+					<input type=hidden name=id value="${sessionScope.loginid}">
+				</td>
+				</c:if>
 				</tr>
 				<tr>
 					<th>제목</th>

@@ -34,22 +34,15 @@
 		<input type="hidden" name ="type" value="${type}">
 			<table>
 				<tr>
-				<!-- 로그인 기능과 연동했을 때 세션값으로 작성자를 지정하려고 합니다. 지우지 마세요!
-				<c:if test="${sessionScope.loginId != null}">
+				<c:if test="${sessionScope.loginid ne ''}">
 					<th>작성자</th>
 					<td>
-					${sessionScope.loginId}
-					<input type = "hidden" name = "id" value="${sessionScope.loginId}"/>
-					<div><input type="checkbox" name="private" value="1"/>비밀글	</div>
-					</td>
-				</c:if>
-				-->
-				<th>작성자</th>
-				<td>
-				<input type = "text" name = "id" value="join"/>
-				<input type="checkbox" name="privatecheck" id="privatecheck"/>비밀글	
-				<input type="hidden" name="privateHidden" id="privateHidden"/>
+					${sessionScope.loginid}
+					<input type=hidden name=id value="${sessionScope.loginid}">
+					<input type="checkbox" name="privatecheck" id="privatecheck"/>비밀글	
+					<input type="hidden" name="privateHidden" id="privateHidden"/>
 				</td>
+				</c:if>
 				</tr>
 				<tr>
 					<th>제목</th>

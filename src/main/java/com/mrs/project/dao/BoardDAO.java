@@ -47,5 +47,14 @@ public interface BoardDAO {
 
 	int countRecord(@Param("search_option") String search_option, @Param("keyword") String keyword, @Param("type") String type);//게시판 레코드 갯수
 
+	boolean delCom(HashMap<String, String> params); // 댓글 삭제
+
+	boolean insertCom(HashMap<String, String> params); //댓글등록
+
+	String whoId(String idx); //글쓴이 누군지 확인하는 얘
+
+	boolean updateBchk(String idx); // 댓글확인 업로드
+
+
 
 }

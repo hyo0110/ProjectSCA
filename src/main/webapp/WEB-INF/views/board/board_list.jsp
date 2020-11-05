@@ -195,12 +195,28 @@
 		function listPrint(list){ 
 			console.log(list); //5개만 배열로 찍힘
 			var content ="";
-			
+			var bchk = "";
+			var private_bbs = "";
 			list.forEach(function(item){
 				 content += "<tr>";
 				 content += "<td>"+item.board_idx+"</td>";
-				 content += "<td><a href='detail?idx="+item.board_idx+"&type="+item.board_type+"&pri="+item.private_bbs+"'>"+item.subject+"</a></td>"; 
-				 
+				 console.log("확인여부 : "+item.board_type);
+				 if(item.board_type == 1){ // 고객센터일때
+					 if(item.bchk == 0){ // 댓글확인여부 Y랑 N 띄우기
+						 bchk = "N";
+					 }else{
+						 bchk ="Y";
+					 }
+				 	if(item.private_bbs == 1){ //비밀글 여부
+				 		private_bbs = "비밀글";
+				 		 content += "<td>("+private_bbs+")<a href='detail?idx="+item.board_idx+"&type="+item.board_type+"&pri="+item.private_bbs+"'>"+item.subject+"</a>("+bchk+")</td>"; 
+				 	}else{
+				 		 content += "<td><a href='detail?idx="+item.board_idx+"&type="+item.board_type+"&pri="+item.private_bbs+"'>"+item.subject+"</a>("+bchk+")</td>"; 
+				 	}
+				 }else{
+					 content += "<td><a href='detail?idx="+item.board_idx+"&type="+item.board_type+"&pri="+item.private_bbs+"'>"+item.subject+"</a></td>"; 
+				 }
+					 
 				 //content += "<td>"+item.reg_date+"</td>"; // miliseconds 단위로 표시가 됨
 				content += "<td>"+item.id+"</td>";
 				 var date = new Date(item.reg_date);

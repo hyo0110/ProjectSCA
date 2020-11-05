@@ -37,9 +37,6 @@ public class BoardController {
 	@RequestMapping(value = "/typelist", method = RequestMethod.GET)
 	public ModelAndView list(Model model, @RequestParam String type) {
 		logger.info("보드 타입 : "+type);
-		/*
-		 * model.addAttribute("list",service.list(model,type));
-		 */
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("type",type);
 		mav.setViewName("/board/board_list");
@@ -78,13 +75,10 @@ public class BoardController {
 	
 	//상세보기 + 업로드한 파일있으면 같이 보이기
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri) { 
+	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri,HttpSession session,RedirectAttributes rAttr) { 
 		logger.info("상세보기 요청"+idx+"/타입:"+type+"/비밀글여부:"+pri);
 		ModelAndView mav = null;
-	/*	if(pri.equals("1")) { //비밀글이면 해당 회원만 볼 수 있게 하는 로직 / 로그인 기능 완료후에 할 예정
-			
-		}*/
-		mav = service.detail(idx,type);
+		mav = service.detail(idx,type,pri,session,rAttr);
 		return mav;
 	}
 	
@@ -201,6 +195,7 @@ public class BoardController {
 	      mav.addObject("map",map);
 	      mav.addObject("list", list);
 	      mav.addObject("count",count);
+	      mav.addObject("type",type);
 	      mav.setViewName("board/board_resultlist"); 
 	      logger.info("listcnt:"+list.size());
 	      return mav;
@@ -220,6 +215,19 @@ public class BoardController {
 		return service.comlist(Integer.parseInt(page), Integer.parseInt(pagePerCnt),idx);
 	}
 	
+	//댓글 삭제
+	@RequestMapping(value = "/delCom", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> delCom(@RequestParam HashMap<String, String>params) {
+		logger.info("전체파라미터 : "+params);
+		return service.delCom(params);
+	}
+	
+	//댓글 등록
+	@RequestMapping(value = "/insertCom", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> insertCom(@RequestParam HashMap<String, String>params) {
+		logger.info("전체파라미터 : "+params);
+		return service.insertCom(params);
+	}
 	
 	
 }

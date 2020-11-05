@@ -36,21 +36,64 @@ public class BoardService {
 	
 	@Value("#{config['Globals.root']}")String root;
 	private String fullpath = null; // 경로를 담는 변수 
+	@Value("#{config['manager.id']}") String adminId; // 관리자 아이디
 	
 	/*-----------------------------------공통-----------------------------------------------------------*/
 
 	
 	//게시판 상세보기(글 불러오기 + 사진불러오기)
-	public ModelAndView detail(String idx, String type) {
+	@Transactional
+	public ModelAndView detail(String idx, String type, String pri, HttpSession session, RedirectAttributes rAttr) {
+		
 		ModelAndView mav = new ModelAndView();
-		int success = dao.bhit(idx); //조회수
-		logger.info("조회수 올리기 : "+success);
-		BoardDTO dto = dao.detail(idx);
-		ArrayList<FileDTO> fileList = dao.fileList(idx);
-		logger.info("첨부된 파일 : " + fileList.size());
-		mav.addObject("fileList",fileList);
-		mav.addObject("info",dto);
-		mav.setViewName("board/board_detail");
+		String page = "redirect:/typelist?type="+type;
+		
+		String loginId = (String) session.getAttribute("loginid");
+		logger.info("현재 로그인된 아이디 : "+loginId); //세션 아이디 체크
+		
+		String board_id = dao.whoId(idx); // 글쓴 사람 누군지 확인
+		
+		if(type.equals("1")&& pri.equals("1")) { // 게시판이 고객센터이면서 비밀글일때
+				if(loginId.equals(board_id) || loginId.equals("admin")) { //세션아이디랑 글쓴이랑 같으면
+					logger.info("관리자나 글쓴이 들어오기");
+					
+					if(loginId.equals(board_id)) {
+					
+						int comCnt = dao.comAllCount(idx); //댓글 달림 여부 체크 (카운트갯수)
+						
+						if(comCnt > 0) { // 댓글 확인 여부 체크
+							boolean update = dao.updateBchk(idx);
+							logger.info("댓글확인 체크 여부 : "+ update);
+						}
+					}
+						int success = dao.bhit(idx); //조회수 올리기
+						logger.info("조회수 올리기 : "+success);
+						
+						BoardDTO dto = dao.detail(idx); //내용 불러오기
+						ArrayList<FileDTO> fileList = dao.fileList(idx); //사진리스트 넣기
+						logger.info("첨부된 파일 : " + fileList.size());
+						
+						mav.addObject("fileList",fileList);
+						mav.addObject("info",dto);
+						page = "board/board_detail";
+					
+				} else {
+					page = "redirect:/typelist?type="+type;
+				}
+				
+		}else {
+				int success = dao.bhit(idx); //조회수
+				logger.info("조회수 올리기 : "+success);
+				BoardDTO dto = dao.detail(idx);
+				ArrayList<FileDTO> fileList = dao.fileList(idx);
+				logger.info("첨부된 파일 : " + fileList.size());
+				mav.addObject("fileList",fileList);
+				mav.addObject("info",dto);
+				page = "board/board_detail";
+			}
+
+		rAttr.addFlashAttribute("msg", "비밀글 작성자가 아닙니다.");
+		mav.setViewName(page);
 		return mav;
 	}
 	
@@ -67,6 +110,7 @@ public class BoardService {
 		return page;
 	}	
 	
+	//리스트 부르기 페이징
 	public HashMap<String, Object> pagingList(int page, int pagePerCnt, String type) {
 		
 		//리스트/현재페이지/최대 만들수 있는 페이지수
@@ -355,7 +399,36 @@ public class BoardService {
 		return json;
 	}
 
-
+	//댓글삭제
+	public HashMap<String, Object> delCom(HashMap<String, String> params) {
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		
+		String msg = "댓글삭제 실패";
+		if(dao.delCom(params)) {
+			msg = "댓글 삭제 성공";
+			logger.info("삭제됏니?");
+		}
+		
+		json.put("msg", msg);
+		
+		return json;
+	}
+	
+	//댓글등록
+	public HashMap<String, Object> insertCom(HashMap<String, String> params) {
+		
+		HashMap<String, Object> json = new HashMap<String, Object>();
+		
+		String msg = "댓글등록 실패";
+		if(dao.insertCom(params)) {
+			msg = "댓글 등록 성공";
+			logger.info("등록됏니?");
+		}
+		
+		json.put("msg", msg);
+		
+		return json;
+	}
 	
 	   //게시판 검색---------------------------------------------------------------------------------------------------------------
 	   public List<BoardDTO> listSearch(String search_option, String keyword, String type) {
@@ -377,6 +450,10 @@ public class BoardService {
 	      return dao.countRecord(search_option,keyword,type);
 
 	   }
+
+
+
+
 
 	
 	

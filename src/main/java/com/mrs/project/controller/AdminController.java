@@ -75,14 +75,30 @@ public class AdminController {
 		map.put("del_cnt", del_cnt);
 		return map;
 	}
-	
-	// 관리자 회원 목록 불러오기
+
+	@RequestMapping(value = "/admin_faqboard", method = RequestMethod.GET)
+	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session) {
+		logger.info("여기오나요?");
+		String msg;
+		ModelAndView mav = new ModelAndView();	
+		if(managerid!=null) {
+			mav = service.adminfaqlist(params);
+			mav.setViewName("admin/admin_faqboard");
+			logger.info("회원리스트를 잘 불러오는가요?"+mav);
+		}			else {
+			if(!managerid.equals("admin")) {
+				msg = "접근할 수 없습니다.";
+			}
+		}
+		return mav;
+	}
+		
 	@RequestMapping(value = "/admin_member", method = RequestMethod.GET)
-	public ModelAndView admin_member(Model model) {
+	public ModelAndView admin_member(Model model,@RequestParam Map<String, String> params) {
 		logger.info("여기오나요?");
 		ModelAndView mav = new ModelAndView();	
 		if(managerid!=null) {
-			mav = service.admemberlist();
+			mav = service.admemberlist(params);
 			mav.setViewName("admin/admin_member");
 			logger.info("회원리스트를 잘 불러오는가요?"+mav);
 		}			

@@ -43,6 +43,33 @@
 			th{
 			border-bottom: 1px solid 5px;
 			}
+					.lnb_items {
+			width : 560px;
+			height : 40px;
+			display: inline-block;
+			border : 1px solid #3d3d3d;
+		}
+		
+		.lnb_item {
+			width : 24.8%;
+			height : 40px;
+			border-right : 1px solid #3d3d3d;
+			float : left;
+			text-align:center;
+		}
+		.lnb_item:last-child { /* lnb 중에 마지막 요소 */
+			border-right: 0;
+		}
+		.lnb_item a {
+			width : 100%;
+			height : 40px;
+			color : #3d3d3d;
+			text-align:center;
+			line-height : 40px;
+			vertical-align : middle;
+		}
+			
+			
 		</style>
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +78,9 @@
 		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
-	<div class="doc_wrap">
+
+     <div class="doc_wrap">
+
 		<div class="lnb_wrap">
 		<ul class="lnb_items">
 			<li class="lnb_item"><a href="main">검색</a></li>
@@ -61,8 +90,17 @@
 		</ul>
 		</div>
 	</div>
-		<!-- <button onclick="location.href='typelist?type=0'">자유게시판</button>
-		<button onclick="location.href='typelist?type=1'">고객센터</button> -->
+
+	
+        <c:choose>
+            <c:when test="${sessionScope.loginid eq  null}">
+               <button onclick="location.href='index'">로그인</button>
+            </c:when>
+            <c:otherwise>
+               <button onclick="location.href='logout'">로그아웃</button>
+            </c:otherwise>
+       </c:choose>
+       
 		<p>${count}개의 글이 있습니다. </p>
 		<table>
 			<thead>

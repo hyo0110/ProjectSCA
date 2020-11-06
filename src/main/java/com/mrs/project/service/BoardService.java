@@ -110,6 +110,7 @@ public class BoardService {
 		return page;
 	}	
 	
+	
 	//리스트 부르기 페이징
 	public HashMap<String, Object> pagingList(int page, int pagePerCnt, String type) {
 		

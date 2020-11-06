@@ -37,7 +37,7 @@
 </head>
 <body>
 <c:import url="navi.jsp"></c:import>
-<div class="doc_wrap">
+<div class="doc_wrap"> 
 		<div class="lnb_wrap">
 		<ul class="lnb_items">
 			<li class="lnb_item"><a href="main">검색</a></li>

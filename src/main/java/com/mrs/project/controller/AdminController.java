@@ -43,7 +43,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView index(Model model,HttpSession session,@RequestParam Map<String, String> params) {
 		logger.info("관리자모드 진입");
-	
+		logger.info("params"+params);
 		ModelAndView mav = new ModelAndView();	
 			System.out.println(managerid+"어드민값");
 			String msg;

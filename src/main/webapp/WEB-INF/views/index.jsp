@@ -36,7 +36,8 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-
+<c:import url="navi.jsp"></c:import>
+<!-- 
 	<div class="doc_wrap">
 		<div class="lnb_wrap">
 		<ul class="lnb_items">
@@ -47,15 +48,8 @@
 		</ul>
 		</div>
 	</div>
-	
-        <c:choose>
-            <c:when test="${sessionScope.loginid eq  null}">
-               <button onclick="location.href='index'">로그인</button>
-            </c:when>
-            <c:otherwise>
-               <button onclick="location.href='logout'">로그아웃</button>
-            </c:otherwise>
-       </c:choose>
+	 -->
+
 
 <h3>${sessionScope.loginid }</h3>
 

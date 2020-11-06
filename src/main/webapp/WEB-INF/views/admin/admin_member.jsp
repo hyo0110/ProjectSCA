@@ -71,28 +71,25 @@ table{
 		    	<ul class="pagination">
 		    			<li class="page-item">
 		    				<a class="page-link" href="./admin_member?page=1"><span>처음</span></a>
+		    				<c:if test="${currPage>0}}">
 		    						<a id="prevPage" class="page-link" href="./admin_member?page=${currPage-1}" aria-label="Previous">
 		    						<span aria-hidden="true">&laquo;</span>
 		    						<span class="sr-only">Previous</span>		
+		    				</c:if>
 		    				</a>
 		    			</li>
-		    			<li>    			    			
-		    			<c:if test = "${currPage>1}}" >
-		    				<a class="page-link" href="./admin_member?page=${currPage-2}"><span>${currPage-2}</span></a>
-		    				<a class="page-link" href="./admin_member?page=${currPage-1}"><span>${currPag-1}</span></a>
-		    			</c:if>	
-		    				<a class="page-link" href="./admin_member?page=${currPage}"><span>${currPage}</span></a>
-		    				<a class="page-link" href="./admin_member?page=${currPage+1}"><span>${currPage+1}</span></a>
-		    				<a class="page-link" href="./admin_member?page=${currPage+2}"><span>${currPage+2}</span></a>
-		    				<a class="page-link" href="./admin_member?page=${currPage+3}"><span>${currPage+3}</span></a>
-		    				<a class="page-link" href="./admin_member?page=${currPage+4}"><span>${currPage+4}</span></a>
-		    			</li>	
+						<li class="page-link">
+		    	       	<c:forEach var="i" begin="${1}" end="${endPage}">		                     
+			                        <c:out value="${curPage == i ? 'style=background:red;' : ''}"/>
+			                        <a href="./admin_member?page=${i}">${i}</a>   		                 	
+			            </c:forEach>
+			            </li>
 		    			<li class="page-item">
 		    				<a id="nextPage" class="page-link" href="./admin_member?page=${currPage+1}" aria-label="Next">
 		    					<span aria-hidden="true">&raquo;</span>
 	                    		<span class="sr-only">Next</span>
 		    				</a>
-		    				<a class="page-link" href="./admin_member?page=${end}"><span>끝</span></a>		 
+		    				<a class="page-link" href="./admin_member?page=${range}"><span>끝</span></a>		 
 		    			</li>
 		    		</ul>
 		    	</div>
@@ -121,7 +118,8 @@ table{
 		}	
 	}
  	
- 	
+ 	var endPage = ${endPage};
+ 	console.log(endPage);	
  
 
 </script>

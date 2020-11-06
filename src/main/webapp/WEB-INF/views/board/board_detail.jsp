@@ -65,13 +65,37 @@
 			</td>
 			</tr>
 		</table>
+<%-- 지우지마세요 admin에서 목록가기 만드는건데 아직 생각중이라서 코드 일부러 남깁니다. 		  
+	<c:choose>
+            <c:when test="!${sessionScope.loginid eq  admin}">
+                <a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
+				<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
+				<a href="./typelist?type=${info.board_type}">목록보기</a>
+            </c:when>
+            <c:otherwise>       	
+               	<a href="./admin?id=${info.board_idx}&type=${info.board_type}">목록보기</a>
+            </c:otherwise>
+       </c:choose> --%>
 
-		 <c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
+		<c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
 		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
 		<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
 		</c:if>
-		<a href="./typelist?type=${info.board_type}">목록보기</a>
+		<c:choose>
+		<c:when test="${sessionScope.loginid eq 'admin'}">
+			<c:if test="${info.board_type eq '0'}">
+				<a href="./admin?page=1">목록보기</a>
+			</c:if>
+			<c:if test="${info.board_type eq '1'}">
+				<a href="./admin_faqboard?page=1">목록보기</a>
+			</c:if>
+		</c:when>
+		<c:otherwise>
+			<a href="./typelist?type=${info.board_type}">목록보기</a>
+		</c:otherwise>
+		</c:choose>
 	</body>
+	
 	<script>
 	
 		listCall(1);

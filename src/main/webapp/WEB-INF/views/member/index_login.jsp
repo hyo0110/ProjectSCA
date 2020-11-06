@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>로그인화면</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 .col{
                 width: 500px;
                 height: 700px;
@@ -16,10 +17,13 @@
                 top: 50%;
                 transform: translate(-50%,-50%);
                 text-align: center;
+                font-family: 'Open Sans', sans-serif;
             }
-    h1{
+    p{
         margin-top: 50px;
         margin-bottom: 70px;
+        font-size: 70px;
+        font-weight: bold;
     } 
     
     input{
@@ -40,7 +44,7 @@
     .btn{
             background-color:#0064FF;
             color:white;
-            padding:13px 150px;
+            padding:13px 130px;
             color:#fff;
             font-size:17px;
             border-radius:25px;
@@ -63,7 +67,7 @@
 <body>
 	
         <div class="col">
-            <h1 class="display-4 text-dark font-weight-bold">Welcome 만약 로고가잇다면 로고를 넣는것이 좋을지도</h1>
+            <p class="display-4 text-dark font-weight-bold">Welcome</p>
 
             <form action="login" method="POST" class="form">
                 <div>

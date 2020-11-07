@@ -78,7 +78,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div> --%>
-			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%;">
+			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
 				  <table class="table table-hover">
 					<thead style="background-color: #0064FF; color: white;">
 						<tr>

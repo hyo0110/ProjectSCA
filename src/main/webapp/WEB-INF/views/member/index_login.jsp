@@ -8,33 +8,83 @@
 <meta charset="UTF-8">
 <title>로그인화면</title>
 <style>
-	table,th,td{
-					border:1px solid black;
-					border-collapse: collapse;
-					padding: 5px 10px;
-				}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+.col{
+                width: 500px;
+                height: 700px;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                text-align: center;
+                font-family: 'Open Sans', sans-serif;
+            }
+    p{
+        margin-top: 50px;
+        margin-bottom: 70px;
+        font-size: 70px;
+        font-weight: bold;
+    } 
+    
+    input{
+        margin-top: 30px;
+        width: 270px;
+        height: 40px;
+        border:0px;
+        border-bottom:1px solid lightgray;
+        margin-bottom:15px;
+        padding: 8px 5px;
+        font-size: 18px;
+    }
+    
+    .btnbox{
+        text-align: center;
+    }
+    
+    .btn{
+            background-color:#0064FF;
+            color:white;
+            padding:13px 130px;
+            color:#fff;
+            font-size:17px;
+            border-radius:25px;
+            border: none;
+            cursor: pointer;
+            }
+            
+    button:hover {
+          opacity: 0.8;
+        }        
+            
+    #loginbtn       {
+        margin-top: 70px;
+        margin-bottom: 30px;
+    } 
+
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-	<form action="login" method=POST >
-		<table>
-			<tr>
-				<th>ID</th>
-				<td><input type="text" name="id"/></td>
-			</tr>
-			<tr>
-				<th>PW</th>
-				<td><input type="password" name="pw"/></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<input type="submit" value="login"/>
-					<input type="button" value="회원가입" onclick="location.href='joinForm'"/>
-				</td>
-			</tr>
-		</table>
-	</form>	
+	
+        <div class="col">
+            <p class="display-4 text-dark font-weight-bold">Welcome</p>
+
+            <form action="login" method="POST" class="form">
+                <div>
+                    <div>
+                        <div><input type="text" name="id" placeholder="ID"/></div>
+                    </div>
+                    <div>
+                        <div><input type="password" name="pw" placeholder="Password"/></div>
+                    </div>
+                    <div class="btnbox">
+                            <button type="submit" value="Login" class="btn" id="loginbtn">Login</button>
+                            <button type="button" value="Sign in" onclick="location.href='joinForm'" class="btn">Sign in</button>
+                    </div>
+                </div>
+            </form> 
+        </div>
+
 </body>
 <script>
 	var msg = "${msg}";

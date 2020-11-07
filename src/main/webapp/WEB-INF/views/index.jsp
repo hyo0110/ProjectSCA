@@ -36,20 +36,8 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-<c:import url="navi.jsp"></c:import>
-<!-- 
-	<div class="doc_wrap">
-		<div class="lnb_wrap">
-		<ul class="lnb_items">
-			<li class="lnb_item"><a href="main">검색</a></li>
-			<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
-			<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
-			<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
-		</ul>
-		</div>
-	</div>
-	 -->
-
+	<c:import url="navi.jsp"></c:import>
+	
 
 <h3>${sessionScope.loginid }</h3>
 

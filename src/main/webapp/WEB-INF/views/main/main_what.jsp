@@ -132,7 +132,7 @@
 			strokeColor : '#004c80',
 			strokeOpacity : 0.8,
 			fillColor : '#fff',
-			fillOpacity : 0.7			
+			fillOpacity : 0.7	
 		});
 		//console.log("폴리곤이요: ", polygon);
 		polygons.push(polygon);
@@ -166,7 +166,8 @@
 		});
 		// 클릭시!! 헣... 끝이다 끝		
 	    kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
-	        var content = '<div class="info">' + 
+	        /* 이거 의견 물어봐서 마우스 오버 할 때 나오게 할 지 얘기해보기.
+	    	var content = '<div class="info">' + 
 	                    '   <div class="title">' + name + '</div>' +
 	                    '   <div class="size">총 면적 : 약 ' + Math.floor(polygon.getArea()) + ' m<sup>2</sup></area>' +
 	                    '</div>';
@@ -174,7 +175,8 @@
 	        infowindow.setContent(content); 
 	        infowindow.setPosition(mouseEvent.latLng); 
 	        infowindow.setMap(map);
-			console.log(name);
+			*/
+	        console.log(name);
 	        location.href="whatresult?region="+name;
 	        
 	    });

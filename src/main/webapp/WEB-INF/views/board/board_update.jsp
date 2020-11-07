@@ -34,6 +34,7 @@ table,th,td{
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
+		<c:import url="../navi.jsp"></c:import> 
 	<form action="update" method = "post">
 		<input type="hidden" name ="type" value="${info.board_type}">
 		<input type="hidden" name ="idx" value="${info.board_idx}">

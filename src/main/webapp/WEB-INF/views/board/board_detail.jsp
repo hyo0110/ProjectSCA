@@ -29,6 +29,7 @@
 		/resources라는 요청이 오면 실행이됨 / 이미지, css, js파일 과 관련됨 / resources 폴더에 js 폴더에 jquery.twbsPagination.js를 찾아라 -->  
 	</head>
 	<body>
+	<c:import url="../navi.jsp"></c:import> 
 		<table>
 			<thead>
 				<tr><th>번호</th><td>${info.board_idx}</td></tr>

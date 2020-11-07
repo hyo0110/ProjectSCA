@@ -78,7 +78,7 @@
 		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
-
+	<c:import url="../navi.jsp"></c:import> 
      <div class="doc_wrap">
 
 		<div class="lnb_wrap">

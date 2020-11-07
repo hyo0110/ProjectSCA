@@ -7,138 +7,128 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
+<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>
+
 <style>
-
-/* table{
-			width:100%;
+/* 
+		.lnb_items {
+			width: -webkit-fill-available;
+			height: 40px;
+			display: inline-block;
+			border: 1px solid #3d3d3d;
 		}
 		
-		table,th,td{
-			border: 1px solid black;
-			padding: 10px;
-			border-collapse: collapse;
-			margin: 5px;
+		.lnb_item {
+			width: 24.8%;
+			height: 40px;
+			border-right: 1px solid #3d3d3d;
+			float: left;
+			text-align: center;
 		}
 		
-		th{
-			border-bottom: 1px solid 5px;
+		.lnb_item:last-child { /* lnb 중에 마지막 요소 */
+			border-right: 0;
+		}
+		
+		.lnb_item a {
+			width: 100%;
+			height: 40px;
+			color: #3d3d3d;
+			text-align: center;
+			line-height: 40px;
+			vertical-align: middle;
 		} */
-.lnb_items {
-	width: -webkit-fill-available;
-	height: 40px;
-	display: inline-block;
-	border: 1px solid #3d3d3d;
-}
+		
+		/* .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+		    padding: 8px;
+		    line-height: 1.42857143;
+		    vertical-align: top;
+		    border-top: 1px solid blue;
+		} */
+		
+		#writebutton{
+			background-color: #0064FF;
+			color: white;
+		}
 
-.lnb_item {
-	width: 24.8%;
-	height: 40px;
-	border-right: 1px solid #3d3d3d;
-	float: left;
-	text-align: center;
-}
-
-.lnb_item:last-child { /* lnb 중에 마지막 요소 */
-	border-right: 0;
-}
-
-.lnb_item a {
-	width: 100%;
-	height: 40px;
-	color: #3d3d3d;
-	text-align: center;
-	line-height: 40px;
-	vertical-align: middle;
-}
 </style>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="resources/js/jquery.twbsPagination.js"
-	type="text/javascript"></script>
-<!--resources/js/jquery.twbsPagination.js -> servlet-context에 내용이 있음 /webapp에 있는 resources로 연결, 
-		/resources라는 요청이 오면 실행이됨 / 이미지, css, js파일 과 관련됨 / resources 폴더에 js 폴더에 jquery.twbsPagination.js를 찾아라 -->
 
 </head>
 <body>
-	<div class="doc_wrap">
-		<div class="lnb_wrap">
-			<ul class="lnb_items">
-				<li class="lnb_item"><a href="main">검색</a></li>
-				<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
-				<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
-				<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
-			</ul>
-		</div>
-	</div>
-	<div style="position: relative;">
-		<c:choose>
-			<c:when test="${sessionScope.loginid eq  null}">
-				<button onclick="location.href='index'">로그인</button>
-			</c:when>
-			<c:otherwise>
-				<button onclick="location.href='logout'">로그아웃</button>
-			</c:otherwise>
-		</c:choose>
-	</div>
-	<div class="col-md-6"
-		style="position: relative; width: 95%; left: 2%; margin-top: 3%;">
-		<table class="table">
-			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-					<th>조회수</th>
-				</tr>
-			</thead>
-			<tbody id="boardList">
-				<!--  리스트 출력 -->
-			</tbody>
-			<tr>
-				<td colspan="4" style="text-align: center;">
-					<form action="opSearch" method="GET">
-						<select name="search_option">
-							<option value="all"
-								<c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
-							<option value="title"
-								<c:if test="${search_option == 'title'}"></c:if>>제목</option>
-							<option value="content"
-								<c:if test="${search_option == 'content'}"></c:if>>내용</option>
-						</select> <input type="text" name="keyword" value="${keyword}" /> <input
-							type="submit" value="검색" /> <input type="hidden" name="type"
-							value="${type}" />
-					</form>
-				</td>
-				<td style="text-align: right;">
-					<button onclick="location.href='writeForm?type=${type}'">글쓰기</button>
-				</td>
-			</tr>
-			<tr>
-				<td id="paging" colspan="5" style="text-align: center;">
-					<div class="container">
-						<!-- class의 이름은 api로 지정되어 있음 -->
-						<nav arial-label="Page navigation" style="text-align: center">
-							<ul class="pagination" id="pagination"></ul>
-						</nav>
-					</div>
-				</td>
-			</tr>
-		</table>
-	</div>
+		<c:import url="../navi.jsp"></c:import> 
+		<%-- <div class="doc_wrap">
+				<div class="lnb_wrap">
+					<ul class="lnb_items">
+						<li class="lnb_item"><a href="main">검색</a></li>
+						<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
+						<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
+						<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
+					</ul>
+				</div>
+			</div>  
+			<div style="position: relative;">
+				<c:choose>
+					<c:when test="${sessionScope.loginid eq  null}">
+						<button onclick="location.href='index'">로그인</button>
+					</c:when>
+					<c:otherwise>
+						<button onclick="location.href='logout'">로그아웃</button>
+					</c:otherwise>
+				</c:choose>
+			</div> --%>
+			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%;">
+				  <table class="table table-hover">
+					<thead style="background-color: #0064FF; color: white;">
+						<tr>
+							<th style="width: 5%;">글번호</th>
+							<th style="width: 45%;">제목</th>
+							<th style="width: 10%;">작성자</th>
+							<th style="width: 15%;">작성일</th>
+							<th style="width: 5%;">조회수</th>
+						</tr>
+					</thead>
+					<tbody id="boardList">
+						<!--  리스트 출력 -->
+					</tbody>
+					<tr>
+						<td colspan="4" style="text-align: center;">
+							<form action="opSearch" method="GET">
+								<select name="search_option">
+									<option value="all"
+										<c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
+									<option value="title"
+										<c:if test="${search_option == 'title'}"></c:if>>제목</option>
+									<option value="content"
+										<c:if test="${search_option == 'content'}"></c:if>>내용</option>
+								</select> <input type="text" name="keyword" value="${keyword}" /> <input
+									type="submit" value="검색" /> <input type="hidden" name="type"
+									value="${type}" />
+							</form>
+						</td>
+						<td style="text-align: right;">
+							<button onclick="location.href='writeForm?type=${type}'" id="writebutton">글쓰기</button>
+						</td>
+					</tr>
+					<tr>
+						<td id="paging" colspan="5" style="text-align: center;">
+							<div class="container"   style="position: absolute; left: 37%;">
+								<nav arial-label="Page navigation" style="text-align: center">
+									<ul class="pagination" id="pagination"></ul>
+								</nav>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
 
 </body>
 <script>
 	var type = "${type}";
 
 	$(document).ready(function ajaxcall(type) {
-		console.log(type);
-		//console.log(d.value);						
+		//console.log(type);			
 		if (type == '0') {
 			$("#boardList").empty();
 			listCall(1);
@@ -150,7 +140,7 @@
 	});
 
 	function listCall(page) {
-		var ppn = 5;
+		var ppn = 10;
 
 		$.ajax({
 			url : "listcall",

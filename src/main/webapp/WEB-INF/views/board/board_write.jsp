@@ -35,6 +35,7 @@
 		</style>
 	</head>
 	<body>
+			<c:import url="../navi.jsp"></c:import> 
 	<!--  get은 500자로 제한되어있음 -->
 		<form action="write" method = "post">
 		<input type="hidden" name ="type" value="${type}">

@@ -12,6 +12,7 @@
 <script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>
 
 <style>
+
 /* 
 		.lnb_items {
 			width: -webkit-fill-available;
@@ -28,7 +29,7 @@
 			text-align: center;
 		}
 		
-		.lnb_item:last-child { /* lnb 중에 마지막 요소 */
+		.lnb_item:last-child { lnb 중에 마지막 요소
 			border-right: 0;
 		}
 		
@@ -39,7 +40,8 @@
 			text-align: center;
 			line-height: 40px;
 			vertical-align: middle;
-		} */
+		} 
+		*/
 		
 		/* .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
 		    padding: 8px;

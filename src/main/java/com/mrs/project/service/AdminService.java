@@ -29,13 +29,14 @@ public class AdminService {
 		}
 			
 		int totCount = dao.totlist(); // 총 글 갯수카운트
-		int listCount = 5; //한 페이지에 보여주는 페이지 수 
-		int Countpage = 5; //페이지를 5개씩 카운트 한다.
+		int listCount = 10; //한 페이지에 보여주는 리스트의 수 
+		int Countpage = 10; //페이지를 5개씩 카운트 한다.
 		int totPage = totCount/listCount; //총 페이지 갯수	
-		int start = ((page - 1) / 1	) * 5 + 1;
+		int start = ((page - 1) / 1	) * 10 + 1;
 		int end = start + Countpage - 1;
 		logger.info("총카운트"+totCount);
 		logger.info("listCount"+listCount);
+		int papa = totPage;
 		if(totCount % listCount >0) {
 			totPage ++;
 		} //페이지 증가 5개씩 쪼개서
@@ -47,6 +48,8 @@ public class AdminService {
 		if(totPage<page) {
 			page = totPage; //
 		}
+		
+		
 		
 		ArrayList<BoardDTO> list = dao.list(start,end);
 		logger.info("list"+list.size());
@@ -87,10 +90,10 @@ public class AdminService {
 		}
 		
 		int totCount = dao.totalmemberist(); // 총 글 갯수카운트
-		int listCount = 5; //한 페이지에 보여주는 페이지 수 
-		int Countpage = 5; //페이지를 5개씩 카운트 한다.
+		int listCount = 10; //한 페이지에 보여주는 페이지 수 
+		int Countpage = 10; //페이지를 5개씩 카운트 한다.
 		int totPage = totCount/listCount; //총 페이지 갯수	
-		int start = ((page - 1) / 1) * 5 + 1;
+		int start = ((page - 1) / 1) * 10 + 1;
 		int end = start + Countpage - 1;
 		
 		int range = totCount%Countpage>0?
@@ -148,10 +151,10 @@ public class AdminService {
 		}
 		
 		int totCount = dao.totalist(); // 총 글 갯수카운트
-		int listCount = 5; //한 페이지에 보여주는 페이지 수 
-		int Countpage = 5; //페이지를 5개씩 카운트 한다.
+		int listCount = 10; //한 페이지에 보여주는 페이지 수 
+		int Countpage = 10; //페이지를 5개씩 카운트 한다.
 		int totPage = totCount/listCount; //총 페이지 갯수	
-		int start = ((page - 1) / 1) * 5 + 1;
+		int start = ((page - 1) / 1) * 10 + 1;
 		int end = start + Countpage - 1;
 		
 		int range = totCount%Countpage>0?

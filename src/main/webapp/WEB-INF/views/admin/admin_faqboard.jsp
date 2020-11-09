@@ -48,7 +48,7 @@
 		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>	
 </head>
 <body>
-	
+<c:import url="../navi.jsp"></c:import>	
 	<a href="admin_member"><div>회원관리</div></a>
 	<a href="admin"><div>게시글관리</div></a>
 	<table>

@@ -6,12 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>
+
 
 <style>
 
+<<<<<<< HEAD
 /* 
 		.lnb_items {
 			width: -webkit-fill-available;
@@ -49,6 +48,8 @@
 		    border-top: 1px solid blue;
 		} */
 		
+=======
+>>>>>>> 2cd72de2712c33892f36a88584f69b1e226a3490
 		#writebutton{
 			background-color: #0064FF;
 			color: white;
@@ -56,11 +57,22 @@
 
 </style>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
+<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 </head>
 <body>
 		<c:import url="../navi.jsp"></c:import> 
+<<<<<<< HEAD
 		
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
+=======
+
+			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
+>>>>>>> 2cd72de2712c33892f36a88584f69b1e226a3490
 				  <table class="table table-hover">
 					<thead style="background-color: #0064FF; color: white;">
 						<tr>

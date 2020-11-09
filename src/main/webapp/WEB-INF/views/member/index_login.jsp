@@ -79,7 +79,7 @@
                     </div>
                     <div class="btnbox">
                             <button type="submit" value="Login" class="btn" id="loginbtn">Login</button>
-                            <button type="button" value="Sign in" onclick="location.href='joinForm'" class="btn">Sign in</button>
+                            <button type="button" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
                     </div>
                 </div>
             </form> 

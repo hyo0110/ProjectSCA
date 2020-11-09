@@ -44,8 +44,12 @@
 	</delete>
 	
 	<select id = "mypage_written" parameterType="HashMap" resultType="board">
-		SELECT a.rnum, a.id,  a.subject, a.reg_date, b.board_name FROM (SELECT ROW_NUMBER() OVER(ORDER BY reg_date DESC) AS rnum
-	    , id, subject, reg_date, board_type FROM market_board  WHERE id=#{id} ) a, market_board_type b  WHERE a.board_type = b.board_type AND a.rnum BETWEEN #{start} AND #{end}
+		SELECT a.rnum, a.id, a.board_idx, a.board_type, a.private_bbs, a.bchk, a.subject, a.reg_date, b.board_name 
+		FROM (SELECT ROW_NUMBER() OVER(ORDER BY reg_date DESC) AS rnum,
+	   		id, board_idx, board_type, private_bbs, bchk, subject, reg_date
+	    	 FROM market_board  
+	    	 WHERE id=#{id} ) a, market_board_type b  
+	    WHERE a.board_type = b.board_type AND a.rnum BETWEEN #{start} AND #{end}
 	</select>
 	
 	<select id = "getTotalCnt"  resultType="int">
@@ -59,6 +63,10 @@
 
 	<resultMap type="board" id="board">
 		<result column="id" property="id"/>
+		<result column="board_idx" property="board_idx"/>
+		<result column="board_type" property="board_type"/>
+		<result column="private_bbs" property="private_bbs"/>
+		<result column="bchk" property="bchk"/>
 		<result column="subject" property="subject"/>
 		<result column="reg_date" property="reg_date"/>
 		<collection property="board_name" resultMap="market_board_Type"/>

@@ -7,13 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>무엇을 검색 화면(지도)</title>
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+<script src = "https://code.jquery.com/jquery-3.5.1.min.js" > </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a200ee40df01a7833da263a65fbf093"></script>
 
  <style>
+ 
 	#map_location{
 		margin: 3%;
 	}
+	
 	.area {
 	    position: absolute;
 	    background: #fff;
@@ -24,7 +26,7 @@
 	    left: 15px;
 	    padding:2px;
 	}
-
+	
 </style>
 
 </head>
@@ -32,7 +34,7 @@
 <c:import url="../navi.jsp"></c:import>
 
 	<div id="map_location">
-	<strong> <h5> 어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>
+	<strong> <h5>어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>
 		<div id="map" style="width:95%;height:500px;"></div>
 	</div>
 	
@@ -53,11 +55,9 @@
 		var data = geojson.features;
 		var coordinates = []; // 좌표 저장할 배열
 		var name = '';          // 행정 구 이름
-		
 		$.each(data, function(index, val){
 			coordinates = val.geometry.coordinates;
 			name = val.properties.SIG_KOR_NM;
-			
 			displayArea(coordinates, name);
 			});		
 	});

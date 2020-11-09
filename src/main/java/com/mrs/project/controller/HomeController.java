@@ -21,4 +21,10 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping(value = "/nav", method = RequestMethod.GET)
+	public String nav(Model model) {
+		logger.info("네비바 요청");
+		
+		return "navi";
+	}
 }

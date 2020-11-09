@@ -13,9 +13,10 @@
 	<mvc:interceptor>
 		<!-- 가로챌 요청(list) -->
 		<mvc:mapping path="/typelist*"/>
-		<!-- 가로챌 요청(detail로 시작되는 요청) -->
 		<mvc:mapping path="/detail*"/>
-		<!-- 이동시킬 클래스 지정 -->
+		<mvc:mapping path="/admin*"/>		
+		<mvc:mapping path="/mypage*"/>
+			<!-- 이동시킬 클래스 지정 -->
 		<bean class="com.mrs.project.service.LoginInterceptor"></bean>
 	</mvc:interceptor>
 </mvc:interceptors>

@@ -33,30 +33,13 @@
 		vertical-align : middle;
 	}
 </style>
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+
+
+
+
 </head>
 <body>
-
-	<div class="doc_wrap">
-		<div class="lnb_wrap">
-		<ul class="lnb_items">
-			<li class="lnb_item"><a href="main">검색</a></li>
-			<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
-			<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
-			<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
-		</ul>
-		</div>
-	</div>
-	
-        <c:choose>
-            <c:when test="${sessionScope.loginid eq  null}">
-               <button onclick="location.href='index'">로그인</button>
-            </c:when>
-            <c:otherwise>
-               <button onclick="location.href='logout'">로그아웃</button>
-            </c:otherwise>
-       </c:choose>
-
+	<c:import url="./navi.jsp"></c:import>
 <h3>${sessionScope.loginid }</h3>
 
 

@@ -57,6 +57,7 @@ th, td {
 </head>
 <body>
 
+<c:import url="../navi.jsp"></c:import>		
 	<a href="admin_member"><div>회원관리</div></a>
 	<a href="admin_faqboard"><div>문의글관리</div></a>
 	<table>
@@ -72,7 +73,7 @@ th, td {
 			<tr>
 				<td>${market_board.board_idx}</td>
 				<td><a
-					href="detail?idx=${market_board.board_idx}&type=${type}&pri=${market_board.private_bbs}">${market_board.subject}</a></td>
+					href="detail?idx=${market_board.board_idx}&type=${type}&pri=${market_board.private_bbs}&adminpage=${currPage}">${market_board.subject}</a></td>
 				<!--  -->
 				<td>${market_board.id}</td>
 				<td>${market_board.reg_date}</td>

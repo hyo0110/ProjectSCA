@@ -30,6 +30,7 @@
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	</head>
 	<body>
+		<c:import url="../navi.jsp"></c:import> 
 		<form action="cwrite" method = "post">
 		<input type="hidden" name ="type" value="${type}">
 			<table>

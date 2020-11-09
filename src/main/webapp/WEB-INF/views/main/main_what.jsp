@@ -12,8 +12,17 @@
 
  <style>
 	#map_location{
-		left: 35%;
-		margin: 5%;
+		margin: 3%;
+	}
+	.area {
+	    position: absolute;
+	    background: #fff;
+	    border: 1px solid #888;
+	    border-radius: 3px;
+	    font-size: 12px;
+	    top: -5px;
+	    left: 15px;
+	    padding:2px;
 	}
 
 </style>
@@ -23,6 +32,7 @@
 <c:import url="../navi.jsp"></c:import>
 
 	<div id="map_location">
+	<strong> <h5> 어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>
 		<div id="map" style="width:95%;height:500px;"></div>
 	</div>
 	

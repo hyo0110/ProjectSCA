@@ -31,12 +31,14 @@
 	<body>
 	<c:import url="../navi.jsp"></c:import> 
 		<table>
-			<thead>
 				<tr><th>번호</th><td>${info.board_idx}</td></tr>
 				<tr><th>작성자</th><td>${info.id}</td></tr>
 				<tr><th>제목</th><td>${info.subject}</td></tr>
 				<tr><th>내용</th><td>${info.content}</td></tr>
-			</thead>
+			</table>
+			<br/>
+			
+			<table>
 			<tbody id="comList">
 				<!-- 댓글 리스트 출력 -->
 			</tbody>
@@ -55,7 +57,8 @@
 					</div>
 				</c:when> 
 	          </c:choose>
-		
+	          
+	         <c:if test="!${comCnt == 0}">
 			<tr>
 			<td id="paging" colspan="5" style="text-align: center;">
 				<div class="container"> <!-- class의 이름은 api로 지정되어 있음 -->
@@ -65,18 +68,8 @@
 				</div>
 			</td>
 			</tr>
-		</table>
-<%-- 지우지마세요 admin에서 목록가기 만드는건데 아직 생각중이라서 코드 일부러 남깁니다. 		  
-	<c:choose>
-            <c:when test="!${sessionScope.loginid eq  admin}">
-                <a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
-				<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
-				<a href="./typelist?type=${info.board_type}">목록보기</a>
-            </c:when>
-            <c:otherwise>       	
-               	<a href="./admin?id=${info.board_idx}&type=${info.board_type}">목록보기</a>
-            </c:otherwise>
-       </c:choose> --%>
+			</c:if> 
+		</table>	
 
 		<c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
 		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
@@ -115,7 +108,6 @@
 				}, 
 				dataType :'json',
 				success:function(data){
-					
 					listPrint(data.list);//게시물 그리기
 					//플러그인 사용
 					$("#pagination").twbsPagination({
@@ -135,6 +127,7 @@
 		}
 		
 		var loginId = "${sessionScope.loginid }";
+		
 		function listPrint(list){ 
 			//console.log(list); 
 			var content ="";

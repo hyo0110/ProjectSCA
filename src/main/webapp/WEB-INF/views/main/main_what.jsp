@@ -60,7 +60,8 @@
 
 </head>
 <body>
-	<div class="doc_wrap">
+<c:import url="../navi.jsp"></c:import>
+<%-- 	<div class="doc_wrap">
 			<div class="lnb_wrap">
 			<ul class="lnb_items">
 				<li class="lnb_item"><a href="main">검색</a></li>
@@ -78,7 +79,7 @@
 	            <c:otherwise>
 	               <button onclick="location.href='logout'">로그아웃</button>
 	            </c:otherwise>
-	       </c:choose>
+	       </c:choose> --%>
 	<br>
 	<div id="map" style="width:80%;height:500px;"></div>
 

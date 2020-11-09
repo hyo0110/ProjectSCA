@@ -20,11 +20,11 @@
 			}
 			
 		</style>
-		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<!-- <script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>  -->
 		<!--resources/js/jquery.twbsPagination.js -> servlet-context에 내용이 있음 /webapp에 있는 resources로 연결, 
 		/resources라는 요청이 오면 실행이됨 / 이미지, css, js파일 과 관련됨 / resources 폴더에 js 폴더에 jquery.twbsPagination.js를 찾아라 -->  
 	</head>

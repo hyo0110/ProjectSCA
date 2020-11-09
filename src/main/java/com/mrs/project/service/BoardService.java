@@ -43,7 +43,7 @@ public class BoardService {
 	
 	//게시판 상세보기(글 불러오기 + 사진불러오기)
 	@Transactional
-	public ModelAndView detail(String idx, String type, String pri, HttpSession session, RedirectAttributes rAttr, String adminpage) {
+	public ModelAndView detail(String idx, String type, String pri, HttpSession session, RedirectAttributes rAttr) {
 		
 		ModelAndView mav = new ModelAndView();
 		String page = "redirect:/typelist?type="+type;
@@ -96,7 +96,6 @@ public class BoardService {
 		rAttr.addFlashAttribute("msg", "비밀글 작성자가 아닙니다.");
 		mav.setViewName(page);
 		mav.addObject("comCnt", comCnt);
-		mav.addObject("adminpage", adminpage);
 		return mav;
 	}
 	

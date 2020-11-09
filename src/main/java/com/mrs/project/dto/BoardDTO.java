@@ -17,6 +17,14 @@ public class BoardDTO {
 	private String bchk;
 	private String board_name;
 	private MarketBoardType market_board_type;
+	private int com_total;
+	
+	public int getCom_total() {
+		return com_total;
+	}
+	public void setCom_total(int com_total) {
+		this.com_total = com_total;
+	}
 	public MarketBoardType getMarket_board_type() {
 		return market_board_type;
 	}

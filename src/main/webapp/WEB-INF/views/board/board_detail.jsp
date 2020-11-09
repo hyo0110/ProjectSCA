@@ -28,6 +28,8 @@
 	</head>
 	<body>
 	<c:import url="../navi.jsp"></c:import> 
+	
+		
 		<table>
 				<tr><th>번호</th><td>${info.board_idx}</td></tr>
 				<tr><th>작성자</th><td>${info.id}</td></tr>

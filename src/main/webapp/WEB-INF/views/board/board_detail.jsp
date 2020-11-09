@@ -76,7 +76,7 @@
 		<c:choose>
 		<c:when test="${sessionScope.loginid eq 'admin'}">
 			<c:if test="${info.board_type eq '0'}">
-				<a href="./admin?page=1">목록보기</a>
+				<a href="./admin?page=${adminpage}">목록보기</a>
 			</c:if>
 			<c:if test="${info.board_type eq '1'}">
 				<a href="./admin_faqboard?page=1">목록보기</a>

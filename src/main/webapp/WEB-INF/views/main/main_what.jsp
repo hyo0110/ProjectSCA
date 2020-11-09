@@ -11,49 +11,9 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a200ee40df01a7833da263a65fbf093"></script>
 
  <style>
-	 .lnb_items {
-		width : 560px;
-		height : 40px;
-		display: inline-block;
-		border : 1px solid #3d3d3d;
-		}
-	
-		.lnb_item {
-			width : 24.8%;
-			height : 40px;
-			border-right : 1px solid #3d3d3d;
-			float : left;
-			text-align:center;
-		}
-		.lnb_item:last-child { /* lnb 중에 마지막 요소 */
-			border-right: 0;
-		}
-		.lnb_item a {
-			width : 100%;
-			height : 40px;
-			color : #3d3d3d;
-			text-align:center;
-			line-height : 40px;
-			vertical-align : middle;
-		}
-
-	 .area {
-	    position: absolute;
-	    background: #fff;
-	    border: 1px solid #888;
-	    border-radius: 3px;
-	    font-size: 12px;
-	    top: -5px;
-	    left: 15px;
-	    padding:2px;
-	}
-	
-	.info {
-	    font-size: 12px;
-	    padding: 5px;
-	}
-	.info .title {
-	    font-weight: bold;
+	#map_location{
+		left: 35%;
+		margin: 5%;
 	}
 
 </style>
@@ -61,28 +21,11 @@
 </head>
 <body>
 <c:import url="../navi.jsp"></c:import>
-<%-- 	<div class="doc_wrap">
-			<div class="lnb_wrap">
-			<ul class="lnb_items">
-				<li class="lnb_item"><a href="main">검색</a></li>
-				<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
-				<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
-				<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
-			</ul>
-			</div>
-		</div>
-		
-	        <c:choose>
-	            <c:when test="${sessionScope.loginid eq  null}">
-	               <button onclick="location.href='index'">로그인</button>
-	            </c:when>
-	            <c:otherwise>
-	               <button onclick="location.href='logout'">로그아웃</button>
-	            </c:otherwise>
-	       </c:choose> --%>
-	<br>
-	<div id="map" style="width:80%;height:500px;"></div>
 
+	<div id="map_location">
+		<div id="map" style="width:95%;height:500px;"></div>
+	</div>
+	
 </body>
 
 <script>
@@ -114,7 +57,7 @@
 	
 	// 행정구역 폴리곤
 	function displayArea(coordinates, name){	
-		console.log(name);
+		//console.log(name);
 		//console.log(coordinates);
 		//console.log(coordinates[0][0][0][0]);
 		//console.log(coordinates[0][0][0][1]);

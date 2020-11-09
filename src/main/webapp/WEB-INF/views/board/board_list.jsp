@@ -9,70 +9,22 @@
 
 
 <style>
-
-<<<<<<< HEAD
-/* 
-		.lnb_items {
-			width: -webkit-fill-available;
-			height: 40px;
-			display: inline-block;
-			border: 1px solid #3d3d3d;
-		}
-		
-		.lnb_item {
-			width: 24.8%;
-			height: 40px;
-			border-right: 1px solid #3d3d3d;
-			float: left;
-			text-align: center;
-		}
-		
-		.lnb_item:last-child { lnb 중에 마지막 요소
-			border-right: 0;
-		}
-		
-		.lnb_item a {
-			width: 100%;
-			height: 40px;
-			color: #3d3d3d;
-			text-align: center;
-			line-height: 40px;
-			vertical-align: middle;
-		} 
-		
-		
-		 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-		    padding: 8px;
-		    line-height: 1.42857143;
-		    vertical-align: top;
-		    border-top: 1px solid blue;
-		} */
-		
-=======
->>>>>>> 2cd72de2712c33892f36a88584f69b1e226a3490
 		#writebutton{
 			background-color: #0064FF;
 			color: white;
 		}
 
 </style>
-
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
+	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 </head>
 <body>
 		<c:import url="../navi.jsp"></c:import> 
-<<<<<<< HEAD
-		
-		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
-=======
-
 			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
->>>>>>> 2cd72de2712c33892f36a88584f69b1e226a3490
 				  <table class="table table-hover">
 					<thead style="background-color: #0064FF; color: white;">
 						<tr>
@@ -96,9 +48,10 @@
 										<c:if test="${search_option == 'title'}"></c:if>>제목</option>
 									<option value="content"
 										<c:if test="${search_option == 'content'}"></c:if>>내용</option>
-								</select> <input type="text" name="keyword" value="${keyword}" /> <input
-									type="submit" value="검색" /> <input type="hidden" name="type"
-									value="${type}" />
+								</select> 
+								<input type="text" name="keyword" value="${keyword}" />
+								<input 	type="submit" value="검색" />
+								<input type="hidden" name="type" value="${type}" />
 							</form>
 						</td>
 						<td style="text-align: right;">

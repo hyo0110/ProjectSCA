@@ -47,6 +47,7 @@ public class BoardService {
 		
 		ModelAndView mav = new ModelAndView();
 		String page = "redirect:/typelist?type="+type;
+		int comCnt = 0;
 		
 		String loginId = (String) session.getAttribute("loginid");
 		logger.info("현재 로그인된 아이디 : "+loginId); //세션 아이디 체크
@@ -59,7 +60,7 @@ public class BoardService {
 					
 					if(loginId.equals(board_id)) {
 					
-						int comCnt = dao.comAllCount(idx); //댓글 달림 여부 체크 (카운트갯수)
+						comCnt = dao.comAllCount(idx); //댓글 달림 여부 체크 (카운트갯수)
 						
 						if(comCnt > 0) { // 댓글 확인 여부 체크
 							boolean update = dao.updateBchk(idx);
@@ -94,6 +95,7 @@ public class BoardService {
 
 		rAttr.addFlashAttribute("msg", "비밀글 작성자가 아닙니다.");
 		mav.setViewName(page);
+		mav.addObject("comCnt", comCnt);
 		return mav;
 	}
 	
@@ -395,7 +397,7 @@ public class BoardService {
 				
 		json.put("currPage",page);
 		json.put("range", range);
-		json.put("list", dao.comListCall(start,end,idx));		
+		json.put("list", dao.comListCall(start,end,idx));
 
 		return json;
 	}

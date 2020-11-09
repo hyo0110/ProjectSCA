@@ -7,49 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>
+
 
 <style>
 
-/* 
-		.lnb_items {
-			width: -webkit-fill-available;
-			height: 40px;
-			display: inline-block;
-			border: 1px solid #3d3d3d;
-		}
-		
-		.lnb_item {
-			width: 24.8%;
-			height: 40px;
-			border-right: 1px solid #3d3d3d;
-			float: left;
-			text-align: center;
-		}
-		
-		.lnb_item:last-child { lnb 중에 마지막 요소
-			border-right: 0;
-		}
-		
-		.lnb_item a {
-			width: 100%;
-			height: 40px;
-			color: #3d3d3d;
-			text-align: center;
-			line-height: 40px;
-			vertical-align: middle;
-		} 
-		*/
-		
-		/* .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-		    padding: 8px;
-		    line-height: 1.42857143;
-		    vertical-align: top;
-		    border-top: 1px solid blue;
-		} */
-		
 		#writebutton{
 			background-color: #0064FF;
 			color: white;
@@ -57,29 +18,15 @@
 
 </style>
 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 <body>
 		<c:import url="../navi.jsp"></c:import> 
-		<%-- <div class="doc_wrap">
-				<div class="lnb_wrap">
-					<ul class="lnb_items">
-						<li class="lnb_item"><a href="main">검색</a></li>
-						<li class="lnb_item"><a href="mypage_login">마이페이지</a></li>
-						<li class="lnb_item"><a href="typelist?type=0">게시판</a></li>
-						<li class="lnb_item"><a href="typelist?type=1">고객센터</a></li>
-					</ul>
-				</div>
-			</div>  
-			<div style="position: relative;">
-				<c:choose>
-					<c:when test="${sessionScope.loginid eq  null}">
-						<button onclick="location.href='index'">로그인</button>
-					</c:when>
-					<c:otherwise>
-						<button onclick="location.href='logout'">로그아웃</button>
-					</c:otherwise>
-				</c:choose>
-			</div> --%>
+
 			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
 				  <table class="table table-hover">
 					<thead style="background-color: #0064FF; color: white;">

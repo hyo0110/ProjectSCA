@@ -126,14 +126,14 @@
 	}
 
 	function listPrint(list) {
-		console.log(list); //5개만 배열로 찍힘
+		//console.log(list); //5개만 배열로 찍힘
 		var content = "";
 		var bchk = "";
 		var private_bbs = "";
+
 		list.forEach(function(item) {
 			content += "<tr>";
 			content += "<td>" + item.board_idx + "</td>";
-			console.log("확인여부 : " + item.board_type);
 			if (item.board_type == 1) { // 고객센터일때
 				if (item.bchk == 0) { // 댓글확인여부 Y랑 N 띄우기
 					bchk = "N";
@@ -155,14 +155,12 @@
 			} else {
 				content += "<td><a href='detail?idx=" + item.board_idx
 						+ "&type=" + item.board_type + "&pri="
-						+ item.private_bbs + "'>" + item.subject + "</a></td>";
+						+ item.private_bbs + "'>" + item.subject + "</a> ["+item.com_total+"]</td>";
 			}
 
-			//content += "<td>"+item.reg_date+"</td>"; // miliseconds 단위로 표시가 됨
 			content += "<td>" + item.id + "</td>";
 			var date = new Date(item.reg_date);
 			content += "<td>" + date.toLocaleDateString("ko-KR") + "</td>";
-			//console.log(date.toLocaleDateString("ko-KR")); //toLocalDateString : 해당지역의 날짜를 string(ko-KR)으로 바꿔랏!
 			content += "<td>" + item.bHit + "</td>";
 			content += "</tr>";
 		});

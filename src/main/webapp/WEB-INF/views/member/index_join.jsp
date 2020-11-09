@@ -110,7 +110,11 @@
 					if(data.dbchk>0){
 						document.getElementById('idchk').innerHTML='아이디가 존재합니다. 다른 아이디를 입력해주세요.'
 		                document.getElementById('idchk').style.color='red';
-					}else{
+					}else if(id==""){
+						document.getElementById('idchk').innerHTML='아이디를 입력해주세요.'
+			            document.getElementById('idchk').style.color='red';
+					}
+					else{
 						document.getElementById('idchk').innerHTML='사용가능한 아이디 입니다.'
 						document.getElementById('idchk').style.color='blue';
 						overid = true;
@@ -141,19 +145,12 @@
 		}	
 	}
 	
-	/* null값, 아이디 중복일경우, 비밀번호 다를경우 가입하기 안되게 하고싶다 진짜*/
-	
 	function joinchk(){
 
 		if($("input[name='user_id']")!=""){
-			//console.log("아이디확인");
 			if(($("input[name='user_pw']").val()!="") && ($("input[name='user_pw2']").val()!="") && ($("input[name='user_pw']").val()==$("input[name='user_pw2']").val())){
-				//console.log("비번확인");
 				if($("input[name='user_name']").val()!=""){
-					//console.log("이름확인");
-					if($("input[name='user_email']").val()!=""){
-						//console.log("이메일확인");
-						//console.log("회원가입됨");
+					if($("input[name='user_email']").val()!="")
 						return true;
 						}
 					}
@@ -163,26 +160,6 @@
 		alert("누락된 곳이 없는지 확인해주세요.");
 		return false;
 		}
-	
-		
-	/*
-	if(idchk==true && pwchk==true){
-		if($("input[name='user_id']")!=""){
-			console.log("아이디확인"); //여기까지 된다
-		}else if(($("input[name='user_pw']").val()!="") && ($("input[name='user_pw2']").val()!="") && ($("input[name='user_pw']").val()==$("input[name='user_pw2']").val())){	
-			console.log("비번확인");
-		}else if($("input[name='user_name']").val()!=""){	
-			console.log("이름확인");
-		}else if($("input[name='user_email']").val()!=""){
-			console.log("이메일확인");
-		}else{
-			console.log("회원가입됨");
-			return true;
-		}
-		console.log("안돼");
-		alert("누락값이 없는지 확인해주세요.");
-		return false;
-	*/
 	
 
 </script>

@@ -66,22 +66,24 @@
 				</div>
 			</td>
 			</tr>
-			</c:if> 
+			</c:if>
+			
 		</table>	
 
 		<c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
-		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
-		<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
+			<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
+			<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
 		</c:if>
-		<c:choose>
-		<c:when test="${sessionScope.loginid eq 'admin'}">
-			<c:if test="${info.board_type eq '0'}">
-				<a href="./admin?page=${adminpage}">목록보기</a>
-			</c:if>
-			<c:if test="${info.board_type eq '1'}">
-				<a href="./admin_faqboard?page=1">목록보기</a>
-			</c:if>
-		</c:when>
+		
+		<c:choose>		
+			<c:when test="${sessionScope.loginid eq 'admin'}">
+				<c:if test="${info.board_type eq '0'}">
+					<a href="./admin?page=${adminpage}">목록보기</a>
+				</c:if>
+				<c:if test="${info.board_type eq '1'}">
+					<a href="./admin_faqboard?page=1">목록보기</a>
+				</c:if>
+			</c:when>
 		<c:otherwise>
 			<a href="./typelist?type=${info.board_type}">목록보기</a>
 		</c:otherwise>
@@ -90,8 +92,7 @@
 	
 	<script>
 	
-		listCall(1);
-		
+		listCall(1);		
 		
 		function listCall(page){
 			var ppn = 5;

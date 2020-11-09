@@ -22,30 +22,6 @@
 		padding : 0;
 		margin : 0;
 	}
-	.lnb_items {
-		width : 560px;
-		height : 40px;
-		display: inline-block;
-		border : 1px solid #3d3d3d;
-	}
-	.lnb_item {
-		width : 24.8%;
-		height : 40px;
-		border-right : 1px solid #3d3d3d;
-		float : left;
-		text-align:center;
-	}
-	.lnb_item:last-child { /* lnb 중에 마지막 요소 */
-		border-right: 0;
-	}
-	.lnb_item a {
-		width : 100%;
-		height : 40px;
-		color : #3d3d3d;
-		text-align:center;
-		line-height : 40px;
-		vertical-align : middle;
-	}
 	.container {
 		display : inline-block;
 	}
@@ -62,59 +38,46 @@
 		border-bottom : 1px solid #3d3d3d;
 		text-align : center;
 	}
-		.snb_item a {
-			width : 140px;
-			height: 40px;
-			color : #3d3d3d;
-			line-height : 40px;
-			vertical-align : middle;
-		}
-		.snb_item:last-child {
-			border-bottom : 0;
-		}
-		.board_wrap {
-			float:left;
-			width : 420px;
-			height : 120px;
-		}
-		.boardbox {
-			width : 100%;
-			height : 100%;
-			border : 1px solid #3d3d3d;
-			background-color : #ededed;
-		}
-		table,th,td{
-			border: 1px solid black;
-			border-collapse: collapse;
-			padding: 10px 10px;
-		}
-		.pageitem {
-			float: left;
-		}
-		.active {
-			padding : 5px 5px;
-			background: yellow;
-		}
+	.snb_item a {
+		width : 140px;
+		height: 40px;
+		color : #3d3d3d;
+		line-height : 40px;
+		vertical-align : middle;
+	}
+	.snb_item:last-child {
+		border-bottom : 0;
+	}
+	.board_wrap {
+		float:left;
+		width : 420px;
+		height : 120px;
+	}
+	.boardbox {
+		width : 100%;
+		height : 100%;
+		border : 1px solid #3d3d3d;
+		background-color : #ededed;
+	}
+	table,th,td{
+		border: 1px solid black;
+		border-collapse: collapse;
+		padding: 10px 10px;
+	}
+	.pageitem {
+		float: left;
+	}
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
+
 <c:import url="../navi.jsp"></c:import>
-	<div class="doc_wrap">
-		<!-- <div class="lnb_wrap">
-		<ul class="lnb_items">
-			<li class="lnb_item"><a href="#n">검색</a></li>
-			<li class="lnb_item"><a href="#n">마이페이지</a></li>
-			<li class="lnb_item"><a href="#n">게시판</a></li>
-			<li class="lnb_item"><a href="#n">고객센터</a></li>
-		</ul>
-		</div> -->
-		<div class="container">
 			<div class="snb_wrap">
 				<ul class="snb_items">
-					<li class="snb_item"><a href="#n">회원정보</a></li>
-					<li class="snb_item"><a href="#n">스크랩</a></li>
-					<li class="snb_item"><a href="#n">글목록</a></li>
+					<li class="snb_item"><a href="mypage_login">회원정보</a></li>
+					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
+					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
 				</ul>
 			</div>
 			<div class="board_wrap">
@@ -128,7 +91,8 @@
 						<c:forEach items = "${list}" var = "board">
 						<tr>
 							<td>${board.board_name}</td>
-							<td><a href="board_detail?idx=${board.board_idx}">${board.subject}</a></td>
+							<td><a href="detail?idx=${board.board_idx}&type=${board.board_type}&pri=${board.private_bbs}">${board.subject}</a>(${board.bchk == '1' ? 'Y' : 
+							'N'})</td>
 							<td>${board.reg_date}</td>
 						</tr>
 						</c:forEach>

@@ -50,7 +50,7 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-		
+<c:import url="../navi.jsp"></c:import>		
 	<a href="admin_member"><div>회원관리</div></a>
 	<a href="admin_faqboard"><div>문의글관리</div></a>
 	<table>

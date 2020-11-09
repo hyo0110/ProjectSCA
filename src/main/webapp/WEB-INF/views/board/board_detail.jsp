@@ -24,8 +24,7 @@
 		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
-
+		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>  
 	</head>
 	<body>
 	<c:import url="../navi.jsp"></c:import> 
@@ -67,32 +66,35 @@
 				</div>
 			</td>
 			</tr>
-			</c:if> 
+			</c:if>
+			
 		</table>	
 
 		<c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
-		<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
-		<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
-		</c:if>
+			<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
+			<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
+		</c:if>		
+
 		<c:choose>
 		<c:when test="${sessionScope.loginid eq 'admin'}">
 			<c:if test="${info.board_type eq '0'}">
-				<a href="./admin?page=${adminpage}">목록보기</a>
+				<a href="./admin?page=1">처음으로</a>
 			</c:if>
 			<c:if test="${info.board_type eq '1'}">
-				<a href="./admin_faqboard?page=${adminfaqpage}">목록보기</a>
+				<a href="./admin_faqboard?page=1">처음으로</a>
 			</c:if>
 		</c:when>
-		<c:otherwise>
-			<a href="./typelist?type=${info.board_type}">목록보기</a>
-		</c:otherwise>
+		
+		<c:when test ="${sessionScope.loginid ne 'admin'}">
+			<a href="./typelist?type=${info.board_type}">처음으로</a>
+		</c:when>
+		
 		</c:choose>
 	</body>
 	
 	<script>
 	
-		listCall(1);
-		
+		listCall(1);		
 		
 		function listCall(page){
 			var ppn = 5;

@@ -8,39 +8,53 @@
 <meta charset="UTF-8">
 <title>MRS</title>
 <style>
-	.lnb_items {
-	width : 560px;
-	height : 40px;
-	display: inline-block;
-	border : 1px solid #3d3d3d;
+
+	.service_name{
+	    width: 100%;
+	    height: 300px;
+	    background-color: #3985F5;
+	    color: white;
+	    font-size: 50px;
+	    text-align: center;
+		line-height:300px;
 	}
-	.lnb_item {
-		width : 24.8%;
-		height : 40px;
-		border-right : 1px solid #3d3d3d;
-		float : left;
-		text-align:center;
+	
+	.explain{
+	    text-align: center;
+		margin-top: 20px;
 	}
-	.lnb_item:last-child { /* lnb 중에 마지막 요소 */
-		border-right: 0;
+	
+	.ex_img{
+	    width: 100%;
+	    height: 700px;
+	    outline: 1px solid orange;
 	}
-	.lnb_item a {
-		width : 100%;
-		height : 40px;
-		color : #3d3d3d;
-		text-align:center;
-		line-height : 40px;
-		vertical-align : middle;
+	
+	p{
+	    font-size: 20px;
 	}
 </style>
-
-
-
-
 </head>
 <body>
+
 	<c:import url="./navi.jsp"></c:import>
-<h3>${sessionScope.loginid }</h3>
+	<h3>${sessionScope.loginid }</h3>
+
+	<div class="service_name">SCA Service</div>
+	<div class="explain">
+	    <h1>SCA(Seoul Commerce Analysis) Service</h1>
+	    <p>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	        어쩌구 저쩌구 여기에 설명쓰기<br>
+	    </p>
+	    <div class="ex_img"></div>
+	</div>
+
 
 
 </body>

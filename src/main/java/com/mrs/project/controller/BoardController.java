@@ -41,8 +41,7 @@ public class BoardController {
 		mav.addObject("type",type);
 		mav.setViewName("/board/board_list");
 		return mav;
-	}
-	
+	}	
 	
 	//아작스 사용해서 페이징한 리스트
 	@RequestMapping(value = "/listcall", method = RequestMethod.GET)

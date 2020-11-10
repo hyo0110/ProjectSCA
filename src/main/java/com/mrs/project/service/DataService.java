@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.RList;
 import org.rosuda.REngine.Rserve.RConnection;
-import org.rosuda.REngine.Rserve.RserveException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,25 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mrs.project.dao.DataDAO;
+import com.mrs.project.dto.DataDTO;
 
 @Service
 public class DataService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	@Autowired
-	DataDAO dao;
 
-	// 해당 구 관련 뉴스 기사 5개 불러오기
+	@Autowired DataDAO dao;
+	
+	// 해당 구 베스트 정보+망고플레이트 불러오기
+	public DataDTO what_result(String region) {
+		DataDTO data = new DataDTO();
+		data = dao.what_result(region);
+
+		return data;
+	}
+	
+	
+	
+	//해당 구 관련 뉴스 기사 5개 불러오기
 	public HashMap<String, Object> newslist(String region) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		String url = "https://search.naver.com/search.naver?where=news&sm=tab_jum&query=" + region;
@@ -304,7 +314,6 @@ public class DataService {
 			mav.addObject("msg", "조건을 선택해주세요");
 			mav.setViewName("main/main_where_result");
 		}
-		
 		return mav;
 	}
 

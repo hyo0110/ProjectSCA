@@ -68,7 +68,7 @@ table,th,td{
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-<c:import url="../navi.jsp"></c:import>
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 			<div class="snb_wrap">
 				<ul class="snb_items">

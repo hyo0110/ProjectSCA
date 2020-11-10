@@ -26,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mrs.project.dao.BoardDAO;
 import com.mrs.project.dto.BoardDTO;
+import com.mrs.project.dto.CommentaryDTO;
 import com.mrs.project.dto.FileDTO;
 
 
@@ -138,14 +139,24 @@ public class BoardService {
 				
 				int end = page * pagePerCnt;
 				int start = end - pagePerCnt+1;
-						
+				
+				ArrayList<BoardDTO> list= dao.listCall(start,end,type);
+				
+				for(BoardDTO dto : list) {
+					String idx = Integer.toString(dto.getBoard_idx());
+					int com = dao.comAllCount(idx);
+					dto.setCom_total(com);
+				}
+				
 				json.put("currPage",page);
 				json.put("range", range);
 				json.put("type", type);
-				json.put("list", dao.listCall(start,end,type));		
+				json.put("list", list);
+
 
 				return json;
 	}
+	
 	/*-----------------------------------고객센터 관련------------------------------------------------------*/
 	//고개센터 글쓰기
 	public ModelAndView cwrite(HashMap<String, String> params, HttpSession session) {
@@ -381,8 +392,8 @@ public class BoardService {
 		logger.info("페이지당 보여줄 수  : {}",pagePerCnt);	
 		logger.info("해당 글  : {}",idx);	
 
-		int allCnt = dao.comAllCount(idx);//전체 게시물 수
-		logger.info("총페이지 갯수 : "+allCnt);
+		int allCnt = dao.comAllCount(idx);
+		logger.info("총댓글 갯수 : "+allCnt);
 		
 		int range = allCnt%pagePerCnt>0?
 				Math.round(allCnt/pagePerCnt)+1
@@ -394,11 +405,11 @@ public class BoardService {
 		
 		int end = page * pagePerCnt;
 		int start = end - pagePerCnt+1;
-				
+		json.put("allCnt", allCnt);
 		json.put("currPage",page);
 		json.put("range", range);
 		json.put("list", dao.comListCall(start,end,idx));
-
+		
 		return json;
 	}
 

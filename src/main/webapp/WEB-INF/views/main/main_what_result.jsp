@@ -42,9 +42,11 @@
 		<div id="result_section">
 			<h3>${data.region}는... </h3>
 					  ${data.best_day} , ${data.best_time}에 ${data.best_age} 유동인구가 가장 많습니다.
-					이 곳의 음식점/카페 수는 ${data.mk_total }개 입니다.
-	
-		
+					이 곳의 음식점/카페 수는 ${data.mk_total }개 입니다. <br>
+					
+			<iframe id ="favorite" width="560" height="315" src="" 
+			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+			</iframe>
 		</div>
 </body>
 
@@ -77,7 +79,15 @@
 					console.log(e)
 				}
 		});
+		//워드 클라우드 불러오기
+		var favorite = "${data.mk_fav}";	
+		var cloud_src = "resources/wordcloud/"+favorite;
+		$("#favorite").attr('src',cloud_src);
 		});
+	
+
+	
+
 
 </script>
 </html>

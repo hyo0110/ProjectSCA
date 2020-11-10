@@ -58,16 +58,13 @@
 							<button onclick="location.href='writeForm?type=${type}'" id="writebutton">글쓰기</button>
 						</td>
 					</tr>
-					<tr>
-						<td id="paging" colspan="5" style="text-align: center;">
-							<div class="container"   style="position: absolute; left: 37%;">
-								<nav arial-label="Page navigation" style="text-align: center">
-									<ul class="pagination" id="pagination"></ul>
-								</nav>
-							</div>
-						</td>
-					</tr>
+
 				</table>
+			</div>
+			<div class="container"   style="position: absolute; left: 35%;">
+				<nav arial-label="Page navigation" style="text-align: center">
+					<ul class="pagination" id="pagination"></ul>
+				</nav>
 			</div>
 
 </body>
@@ -111,7 +108,7 @@
 					visiblePages : 5, //보여줄 페이지 수 
 					onPageClick : function(event, page, type) { //event : 해당 이벤트 객체 / page : 내가 몇 페이지 클릭 했는지
 						//console.log(event);
-						listCall(page, type);
+						listCall(page);
 					}
 				});
 			},
@@ -142,12 +139,12 @@
 					content += "<td>(" + private_bbs + ")<a href='detail?idx="
 							+ item.board_idx + "&type=" + item.board_type
 							+ "&pri=" + item.private_bbs + "'>" + item.subject
-							+ "</a>(" + bchk + ")</td>";
+							+ "</a> [" + bchk + "]</td>";
 				} else {
 					content += "<td><a href='detail?idx=" + item.board_idx
 							+ "&type=" + item.board_type + "&pri="
-							+ item.private_bbs + "'>" + item.subject + "</a>("
-							+ bchk + ")</td>";
+							+ item.private_bbs + "'>" + item.subject + "</a> ["
+							+ bchk + "]</td>";
 				}
 			} else {
 				content += "<td><a href='detail?idx=" + item.board_idx

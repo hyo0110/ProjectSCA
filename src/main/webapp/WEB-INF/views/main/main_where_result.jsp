@@ -12,5 +12,7 @@
 </head>
 <body>
 <c:import url="../navi.jsp"></c:import>
+
+${msg}
 </body>
 </html>

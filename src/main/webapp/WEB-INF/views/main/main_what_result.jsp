@@ -47,6 +47,11 @@
 			<iframe id ="favorite" width="560" height="315" src="" 
 			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 			</iframe>
+			
+			<iframe id ="onbiz" width="560" height="315" src="" 
+			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+			</iframe>
+			
 		</div>
 </body>
 
@@ -83,9 +88,15 @@
 		var favorite = "${data.mk_fav}";	
 		var cloud_src = "resources/wordcloud/"+favorite;
 		$("#favorite").attr('src',cloud_src);
+		
 		});
 	
-
+	
+	//워드 클라우드 불러오기
+	var onbiz = "${data.data_code}";	
+	var onbiz_src = "https://banana2990.github.io/onbusiness/"+onbiz+".html";
+	$("#onbiz").attr('src',onbiz_src);
+	
 	
 
 

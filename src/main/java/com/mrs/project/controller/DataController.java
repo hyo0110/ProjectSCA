@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mrs.project.dto.DataDTO;
 import com.mrs.project.service.DataService;
 
 
@@ -41,8 +42,10 @@ public class DataController {
 	@RequestMapping(value = "/whatresult", method = RequestMethod.GET)
 	public ModelAndView whatresult(Model model, @RequestParam String region) {
 		logger.info("무엇을 결과 "+region);
+		DataDTO data = service.what_result(region);
 		ModelAndView mav = new ModelAndView();			
 		mav.addObject("region", region);
+		mav.addObject("data", data);
 		mav.setViewName("main/main_what_result");		
 		return mav;
 	}
@@ -53,7 +56,7 @@ public class DataController {
 		logger.info("뉴스리스트: "+ param.get("region"));
 		String region = param.get("region");		
 		return service.newslist(region);
-	}	
+	}
 	//--------------------------------------- 어디에서 --------------------------------------------------
 	//어디로 들어가기
 	@RequestMapping(value = "/where", method = RequestMethod.GET)

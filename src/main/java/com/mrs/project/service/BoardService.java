@@ -145,9 +145,7 @@ public class BoardService {
 				for(BoardDTO dto : list) {
 					String idx = Integer.toString(dto.getBoard_idx());
 					int com = dao.comAllCount(idx);
-					logger.info("각 게시글에 대한 갯수 : "+com);
 					dto.setCom_total(com);
-					logger.info("???"+dto.getCom_total());
 				}
 				
 				json.put("currPage",page);
@@ -158,6 +156,7 @@ public class BoardService {
 
 				return json;
 	}
+	
 	/*-----------------------------------고객센터 관련------------------------------------------------------*/
 	//고개센터 글쓰기
 	public ModelAndView cwrite(HashMap<String, String> params, HttpSession session) {
@@ -394,7 +393,7 @@ public class BoardService {
 		logger.info("해당 글  : {}",idx);	
 
 		int allCnt = dao.comAllCount(idx);
-		logger.info("총페이지 갯수 : "+allCnt);
+		logger.info("총댓글 갯수 : "+allCnt);
 		
 		int range = allCnt%pagePerCnt>0?
 				Math.round(allCnt/pagePerCnt)+1
@@ -406,11 +405,11 @@ public class BoardService {
 		
 		int end = page * pagePerCnt;
 		int start = end - pagePerCnt+1;
-				
+		json.put("allCnt", allCnt);
 		json.put("currPage",page);
 		json.put("range", range);
 		json.put("list", dao.comListCall(start,end,idx));
-
+		
 		return json;
 	}
 

@@ -13,7 +13,6 @@ public class CommentaryDTO {
 	private String com_content;
 	private Date com_reg_date;
 
-	
 	public int getCom_idx() {
 		return com_idx;
 	}

@@ -5,32 +5,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>무엇을 결과 화면</title>
-<style>
-		
-		#result_section{
-			margin: 3%;
-		}
-		
-		#news_section{
-			border : 1px solid darkblue;
-			width: 400px;
-			top: 45%;
-			right: 4%;
-			position: absolute;
-			padding: 15px 5px;
-		}
-		
-		.news_item{
-			display: block;
-			text-overflow: ellipsis;
-			overflow: hidden;
-			white-space: nowrap;
-		}
-
-</style>
-<script src = "https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"> </script>
+	<meta charset="UTF-8">
+	<title>무엇을 결과 화면</title>
+	<style>
+			
+			#result_section{
+				margin: 3%;
+			}
+			
+			#news_section{
+				border : 1px solid darkblue;
+				width: 400px;
+				top: 15%;
+				right: 4%;
+				position: absolute;
+				padding: 15px 5px;
+			}
+			
+			.news_item{
+				display: block;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+	
+	</style>
+	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 	<c:import url="../navi.jsp"></c:import>
@@ -46,13 +46,44 @@
 					
 			<iframe id ="favorite" width="560" height="315" src="" 
 			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-			</iframe>
-			
-			<iframe id ="onbiz" width="560" height="315" src="" 
-			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-			</iframe>
-			
+			</iframe>			
+		<!-- 더보기 버튼 만들어야함 -->
+		
+			<div id="more_info_section">
+				  <label for="more_info">
+					    반기 선택
+				  </label>
+					  <select id="more_info" name="more_info" >
+					    <option value=""> --- 선택하세요 --- </option>
+					    <optgroup label="2020">
+					      <option value="202001"> 2020 상반기</option>
+					    </optgroup>
+					    <optgroup label="2019">
+					      <option value="201902"> 2019 하반기</option>
+					      <option value="201901"> 2019 상반기</option>
+					    </optgroup>
+					    <optgroup label="2018">
+					      <option value="201802"> 2018 하반기</option>
+					      <option value="201801"> 2018 상반기</option>
+					    </optgroup>
+					    <optgroup label="2017">
+					      <option value="201702"> 2017 하반기</option>
+					    </optgroup>    
+					  </select>
+
+					<div id="info_section" >
+						<div id="status">
+						</div>
+					<!-- 영업종류 현황 부분 -->
+						<iframe id ="openbiz" width="560" height="315" src="" 
+						frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+						</iframe>
+					</div>
+					
+			</div>
 		</div>
+		
+		
 </body>
 
 <script>
@@ -92,12 +123,41 @@
 		});
 	
 	
-	//워드 클라우드 불러오기
-	var onbiz = "${data.data_code}";	
-	var onbiz_src = "https://banana2990.github.io/onbusiness/"+onbiz+".html";
-	$("#onbiz").attr('src',onbiz_src);
+	// 반기별 정보(상태, 유동인구, 업종분포표) 불러오기	
+	// 콤보박스에서 선택을 한다 -> ajax로 선택한 값을 보낸다 -> 보낸 값을 받아서 div에 표시한다
 	
-	
+	var reg_date ="";
+	var openbiz = "";	
+	var openbiz_src = "";
+
+	$('select[name="more_info"]').change(function(){
+		reg_date = $('select[name="more_info"]').val();
+		console.log(reg_date);
+		console.log('헿');
+		$.ajax({
+			url: "openbiz",
+			type:'get',
+			data:{
+				"region": region,
+				"reg_date": reg_date
+			}, 
+			dataType :'json',
+			success: function(data){
+				//console.log(data.status.data_code);
+				//상권상태
+				$("#status").html("<h3>"+data.status.region+data.status.mk_status+"</h3>");
+				//업종분포표
+				openbiz = data.status.data_code;
+				openbiz_src = "https://banana2990.github.io/onbusiness/"+openbiz+".html";
+				console.log(openbiz_src);
+				$("#openbiz").attr('src',openbiz_src);	
+				console.log("확인요");				
+			},
+			error: function(e){
+				console.log("에러요");
+			}
+		});
+	});
 
 
 </script>

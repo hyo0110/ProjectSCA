@@ -35,20 +35,15 @@
 		</style>
 	</head>
 	<body>
-			<c:import url="../navi.jsp"></c:import> 
-	<!--  get은 500자로 제한되어있음 -->
+	<c:import url="../navi.jsp"></c:import> 
+
 		<form action="write" method = "post">
 		<input type="hidden" name ="type" value="${type}">
-			<table class="board">
-				<tr>
-					<c:if test="${sessionScope.loginid ne ''}">
-					<th>작성자</th>
-					<td>
-					${sessionScope.loginid}
+		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
+			<table class="table table-hover">
+				<c:if test="${sessionScope.loginid ne ''}">
 					<input type=hidden name=id value="${sessionScope.loginid}">
-				</td>
 				</c:if>
-				</tr>
 				<tr>
 					<th>제목</th>
 					<td><input type = "text" name = "subject"/></td>
@@ -68,9 +63,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan = "2"><input type = "button" onclick = "save()" value = "저장"/></td>
+					<td colspan = "2">
+					<input type = "button" onclick = "save()" value = "저장"/>
+					<input type="button" value="뒤로가기" onclick="goback()">
+					</td>
 				</tr>
 			</table>
+			</div>
 		</form>
 	</body>
 	<script>
@@ -106,6 +105,10 @@
 					
 				}
 			});
+		}
+		
+		function goback() { //뒤로가기 버튼
+			window.history.back();
 		}
 	</script>
 </html>

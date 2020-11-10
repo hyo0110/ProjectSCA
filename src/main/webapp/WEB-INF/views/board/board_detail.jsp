@@ -20,58 +20,62 @@
 			}
 			
 		</style>
-		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
-		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>  
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
+	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
 	<c:import url="../navi.jsp"></c:import> 
 	
-		
-		<table>
-				<tr><th>번호</th><td>${info.board_idx}</td></tr>
-				<tr><th>작성자</th><td>${info.id}</td></tr>
-				<tr><th>제목</th><td>${info.subject}</td></tr>
-				<tr><th>내용</th><td>${info.content}</td></tr>
+		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: 3%; font-size: 15px;">
+			<table  class="table table-hover">
+				<tr  style="background-color: #0064FF; color: white;">
+				<th>작성일</th><td>${info.reg_date}</td>
+				<th>작성자</th><td>${info.id}</td>
+				<th>조회수</th><td>${info.bHit}</td>
+				</tr>
+				<tr><th>제목</th><td colspan = "5">${info.subject}</td></tr>
+				<tr><th>내용</th><td colspan = "5">${info.content}</td></tr>
 			</table>
+		 </div> 
+			
 			<br/>
 			
-			<table>
+		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: -1%; font-size: 15px;">
+			<table  class="table table-hover">
 			<tbody id="comList">
 				<!-- 댓글 리스트 출력 -->
 			</tbody>
-			
-			<c:choose>
+			<tr id="pa">
+				<td id="paging" colspan="2"style="text-align: center;height: 63px;">
+					<div class="container"   style="position: absolute; left: 40%;">
+						<nav arial-label="Page navigation" style="text-align: center">
+							<ul class="pagination" id="pagination"></ul>
+						</nav>
+					</div>
+				</td>
+			</tr>
+		</table>	
+	</div>
+				<c:choose>
 	            <c:when test="${info.board_type eq '1'}"> <!-- 고객센터일때 어드민만 작성가능 -->
 	            	<c:if test="${sessionScope.loginid eq 'admin'}">
-			            <div id="cominput">
-							댓글 : <input type="text" value="" id="content" >  <input type="button" value="작성" onclick = insert()>	
+			            <div id="cominput" style="position: relative;left: 10%; margin-top: 3%;">
+							댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert()>	
 						</div>
 					</c:if>
 	            </c:when>
 	             <c:when test="${info.board_type eq '0'}"> <!-- 자유게시판일때 --> 
-		            <div id="cominput">
-						댓글 : <input type="text" value="" id="content" >  <input type="button" value="작성" onclick = insert()>	
+		            <div id="cominput" style="position: relative;left: 5%; margin-top: 3%;">
+						댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert()>
 					</div>
 				</c:when> 
-	          </c:choose>
-	          
-	         <c:if test="!${comCnt == 0}">
-			<tr>
-			<td id="paging" colspan="5" style="text-align: center;">
-				<div class="container"> <!-- class의 이름은 api로 지정되어 있음 -->
-					<nav arial-label="Page navigation" style="text-align:center">
-						<ul class="pagination" id="pagination"></ul>
-					</nav>
-				</div>
-			</td>
-			</tr>
-			</c:if>
-			
-		</table>	
-
+	          </c:choose>  
+	          <br/>
 		<c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
 			<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
 			<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
@@ -111,19 +115,28 @@
 				}, 
 				dataType :'json',
 				success:function(data){
-					listPrint(data.list);//게시물 그리기
-					//플러그인 사용
-					$("#pagination").twbsPagination({
-						startPage:data.currPage, //시작페이지
-						totalPages:data.range, //만들 수 있는 총 페이지 수
-						visiblePages: 5, //보여줄 페이지 수 
-						onPageClick:function(event,page){ //event : 해당 이벤트 객체 / page : 내가 몇 페이지 클릭 했는지
-							listCall(page);
-						}
-					});
+
+					if(data.allCnt !=0){
+						listPrint(data.list);//게시물 그리기
+						//플러그인 사용
+						$("#pagination").twbsPagination({
+							startPage:data.currPage, //시작페이지
+							totalPages:data.range, //만들 수 있는 총 페이지 수
+							visiblePages: 5, //보여줄 페이지 수 
+							onPageClick:function(event,page){ //event : 해당 이벤트 객체 / page : 내가 몇 페이지 클릭 했는지
+								listCall(page);
+							}
+						});
+					}else{
+						console.log(data.allCnt);
+						$("#pa").remove();
+						var content ="<th>등록된 댓글이 없습니다.</th>";
+						$("#comList").append(content);
+					}
 				},
 				error:function(e){
 					console.log(e);
+					console.log("실패");
 				}
 				
 			});
@@ -136,21 +149,20 @@
 			var content ="";
 			
 			list.forEach(function(item){
-				 content += "<tr>";
-				 content += "<input type='hidden' name ='com_idx' value="+item.com_idx+">";
-				 content += "<input type='hidden' name ='board_idx' value="+item.board_idx+">";
-				 content += "<th>"+item.id+"</th>";
-				 content += "<td>"+item.com_content+"</td>";
-				 var date = new Date(item.com_reg_date);
-				 content += "<td>"+date.toLocaleDateString("ko-KR")+"</td>";
-				 if(item.id == loginId){
-				 	content += "<td><input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this)></td>";
-				 } else{
+					 content += "<tr>";
+					 content += "<input type='hidden' name ='com_idx' value="+item.com_idx+">";
+					 content += "<input type='hidden' name ='board_idx' value="+item.board_idx+">";
+					 content += "<th style='width: 25px; border-color:black;'>"+item.id+"</th>";
+					 var date = new Date(item.com_reg_date);
+					 content += "<td style='border-color:black;'>"+item.com_content;
+					 content += "    "+date.toLocaleDateString("ko-KR");
+					 if(item.id == loginId){
+					 	content += " &nbsp &nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute;'></td>";
+					 } else{
+						 content += "</td>";
+						  
+					 }
 					 content += "</tr>";
-					  
-				 }
-				 content += "</tr>";
-				 //console.log(content);
 			});
 			$("#comList").empty(); 
 			$("#comList").append(content);

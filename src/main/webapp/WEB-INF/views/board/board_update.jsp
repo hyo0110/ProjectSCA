@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>게시글 수정하기</title>
 <style>
-table,th,td{
+/* table,th,td{
 				border: 1px solid black;
 				border-collapse: collapse;
 				padding: 10px 10px;
@@ -16,7 +16,7 @@ table,th,td{
 			
 			table.board{
 				width:100%;
-			}
+			} */
 			
 			input[type='text']{
 				width: 100%;
@@ -35,17 +35,18 @@ table,th,td{
 </head>
 <body>
 		<c:import url="../navi.jsp"></c:import> 
+		
 	<form action="update" method = "post">
 		<input type="hidden" name ="type" value="${info.board_type}">
 		<input type="hidden" name ="idx" value="${info.board_idx}">
-			<table class="board">
-				<tr>
-					<th>작성자</th>
-					<td><input type = "text" name = "id" value="test"/></td>
-				</tr>
+		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: 3%; font-size: 15px;">
+			<table  class="table table-hover">
+				<c:if test="${sessionScope.loginid ne ''}">
+					<input type=hidden name=id value="${sessionScope.loginid}">
+				</c:if>
 				<tr>
 					<th>제목</th>
-					<td><input type = "text" name = "subject" placeholder="${info.subject}"/></td>
+					<td><input type = "text" name = "subject"/></td>
 				</tr>
 				<tr>
 					<th>내용</th> 
@@ -64,19 +65,24 @@ table,th,td{
 				</tr>
 				</c:if>
 				<tr>
-					<td colspan = "2"><input type = "button" onclick = "save()" value = "저장"/></td>
+					<td colspan = "2">
+					<input type = "button" onclick = "save()" value = "저장"/>
+					
+					</td>
 				</tr>
 			</table>
+			</div>
 		</form>
 </body>
 <script>
 
-		//뒤로가기 막기
-		history.pushState(null, null, location.href);
-		window.onpopstate = function () {
-		    history.go(1);
-		};
-
+ 		//뒤로가기 막기
+	     history.pushState(null,'','updateForm');
+		window.onpopstate = function(){
+			history.go(0);
+			alert("저장하기전엔 뒤로 가실 수 없습니다.");
+		}			
+	
 		//삭제버튼 붙이기
 		$(document).ready(function(){
 			$("#editable img").each(function(idx,item){//idx = 갯수 , item = ???

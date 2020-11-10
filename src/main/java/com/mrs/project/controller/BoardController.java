@@ -41,8 +41,7 @@ public class BoardController {
 		mav.addObject("type",type);
 		mav.setViewName("/board/board_list");
 		return mav;
-	}
-	
+	}	
 	
 	//아작스 사용해서 페이징한 리스트
 	@RequestMapping(value = "/listcall", method = RequestMethod.GET)
@@ -75,7 +74,8 @@ public class BoardController {
 	
 	//상세보기 + 업로드한 파일있으면 같이 보이기
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri,HttpSession session,RedirectAttributes rAttr) { 
+	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri,
+			HttpSession session,RedirectAttributes rAttr) { 
 		logger.info("상세보기 요청"+idx+"/타입:"+type+"/비밀글여부:"+pri);
 		ModelAndView mav = null;
 		mav = service.detail(idx,type,pri,session,rAttr);

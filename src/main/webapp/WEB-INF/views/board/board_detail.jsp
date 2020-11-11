@@ -6,18 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 목록</title>
+<title>SCA Service</title>
 		<style>
-			table,th,td{
-				border: 1px solid black;
-				border-collapse: collapse;
-				padding: 10px 10px;
-			}
 			
 			#cominput{
 				position : absolute;
 				bottom: 46%;
 			}
+			
+			#writebutton{
+			background-color: rgb(0, 76, 128);
+			color: white;
+		} 
 			
 		</style>
 
@@ -29,7 +29,7 @@
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
-	<c:import url="../navi.jsp"></c:import> 
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 	
 		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: 3%; font-size: 15px;">
 			<table  class="table table-hover">
@@ -65,13 +65,13 @@
 	            <c:when test="${info.board_type eq '1'}"> <!-- 고객센터일때 어드민만 작성가능 -->
 	            	<c:if test="${sessionScope.loginid eq 'admin'}">
 			            <div id="cominput" style="position: relative;left: 10%; margin-top: 3%;">
-							댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert()>	
+							댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert() id="writebutton">	
 						</div>
 					</c:if>
 	            </c:when>
 	             <c:when test="${info.board_type eq '0'}"> <!-- 자유게시판일때 --> 
 		            <div id="cominput" style="position: relative;left: 5%; margin-top: 3%;">
-						댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert()>
+						댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert() id="writebutton">
 					</div>
 				</c:when> 
 	          </c:choose>  
@@ -155,9 +155,9 @@
 					 content += "<th style='width: 25px; border-color:black;'>"+item.id+"</th>";
 					 var date = new Date(item.com_reg_date);
 					 content += "<td style='border-color:black;'>"+item.com_content;
-					 content += "    "+date.toLocaleDateString("ko-KR");
+					 content += "     ["+date.toLocaleDateString("ko-KR")+"]";
 					 if(item.id == loginId){
-					 	content += " &nbsp &nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute;'></td>";
+					 	content += " &nbsp &nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute; background-color: rgb(0, 76, 128); color: white;'></td>";
 					 } else{
 						 content += "</td>";
 						  

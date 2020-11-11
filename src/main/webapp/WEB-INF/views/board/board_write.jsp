@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>SCA Service</title>
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<style>
 			table,th,td{
@@ -29,13 +29,14 @@
 			height: 500px;
 			border: 1px solid gray;
 			padding 5px;
-			overflow: auto; 
+			overflow: auto;
+			text-overflow: ellipsis;
 			}
 			
 		</style>
 	</head>
 	<body>
-	<c:import url="../navi.jsp"></c:import> 
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 		<form action="write" method = "post">
 		<input type="hidden" name ="type" value="${type}">
@@ -50,7 +51,7 @@
 				</tr>
 				<tr>
 					<th>내용</th> 
-					<td>
+					<td style="width: 80%;">
 						<div id="editable" contenteditable="true"></div> 
 						<input id = "content" type="hidden" name="content" value=""/>
 					</td>

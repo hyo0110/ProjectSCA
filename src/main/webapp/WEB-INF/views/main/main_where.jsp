@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>어디에서 검색 화면</title>
+<title>SCA Service</title>
 <style>
 	#summary{
 		margin: 15px;

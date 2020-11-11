@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-재로그인</title>
+<title>SCA Service</title>
 <style>
 li {
 	list-style: none;

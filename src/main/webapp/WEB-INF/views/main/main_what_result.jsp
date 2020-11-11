@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>무엇을 결과 화면</title>
+	<title>SCA Service</title>
 	<style>
 			
 			#result_section{

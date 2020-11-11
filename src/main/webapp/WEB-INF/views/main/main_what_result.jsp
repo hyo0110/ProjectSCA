@@ -37,9 +37,9 @@
 				float:left;
 				margin: 20px;
 			}
-			#favorite{
+			.include_html{
 				width: 80%;
-			 	height: 500px; 
+			 	height: 400px; 
 			}
 	
 	</style>
@@ -57,7 +57,7 @@
 					  ${data.best_day} , ${data.best_time}에 ${data.best_age} 유동인구가 가장 많습니다.
 					이 곳의 음식점/카페 수는 ${data.mk_total }개 입니다. <br>
 					
-			<iframe id ="favorite" src="" 
+			<iframe id ="favorite" class = "include_html" src="" 
 			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 			</iframe>			
 
@@ -89,7 +89,7 @@
 						<!-- 해당구의 상권상태 부분 -->
 							<div id="status"> </div>
 						<!-- 영업종류 현황 부분 -->
-							<iframe id ="openbiz" width="560" height="315" src="" 
+							<iframe id ="openbiz" class = "include_html" src="" 
 							frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 							</iframe>
 						</div>

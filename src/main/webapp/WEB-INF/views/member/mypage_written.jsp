@@ -54,10 +54,10 @@ a {
 	.board_wrap {
 	float:left;
 	width : 850px;
-	height: 500px;
+	height: 580px;
 	position: absolute;
     left: 50%;
-    top: 38%;
+    top: 42%;
     transform: translate(-50%,-50%);
 	}
 	.boardbox {
@@ -67,10 +67,16 @@ a {
 		background-color : #ededed; */
 	}
 	table,th,td{
-		border: 1px solid lightgray;
+		border-bottom: 1px solid lightgray;
 		border-collapse: collapse;
 		padding: 10px 10px;
 	}
+	
+	table{
+position: absolute;
+left: 5%;
+top: 5%;
+}	
 	.pageitem {
 		float: left;
 	}
@@ -83,9 +89,9 @@ a {
 			<div style="margin-top:50px;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
-						<li class="snb_item"><a href="mypage_login">회원정보</a></li>
-						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_scrap">스크랩</a></li>
-						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
+						<li class="snb_item"><a href="mypage_detail">회원정보</a></li>
+						<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
+						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_written?page=1">글목록</a></li>
 					</ul>
 				</div>
 			</div>
@@ -93,21 +99,31 @@ a {
 				<div class="boardbox">
 					<table>
 						<tr>
-							<th style="width: 150px;">글 유형</th>
-							<th style="width: 550px;">제목</th>
-							<th style="width: 150px;">등록일</th>
+							<th style="width: 120px;">글 유형</th>
+							<th style="width: 510px;">제목</th>
+							<th style="width: 130px;">등록일</th>
 						</tr>
 						<c:forEach items = "${list}" var = "board">
 						<tr>
-							<td>${board.board_name}</td>
-							<td><a href="detail?idx=${board.board_idx}&type=${board.board_type}&pri=${board.private_bbs}">${board.subject}</a>(${board.bchk == '1' ? 'Y' : 
-							'N'})</td>
+							<td>
+							<c:if test="${board.board_name =='freeboard'}">
+								자유게시판
+							</c:if>
+							<c:if test="${board.board_name =='contact'}">
+								고객센터
+							</c:if>
+							</td>
+							<td><a href="detail?idx=${board.board_idx}&type=${board.board_type}&pri=${board.private_bbs}">${board.subject}</a>
+							<c:if test="${board.board_type==1}">
+								(${board.bchk == '1' ? 'Y' : 'N'})
+							</c:if>
+							</td>
 							<td>${board.reg_date}</td>
 						</tr>
 						</c:forEach>
 						</table>
 						
-						<ul>
+						<ul style="top: 536px; position: absolute; left: 420px;">
 						<c:if test="${curPage > 1}"><div><a href="mypage_written?page=${curPage-1}">이전</a></div></c:if>
 						<c:forEach var="i" begin="1" end="${totalPage}">
 							<li class="pageitem"<c:out value="${curPage == i ? 'style=background:red;' : ''}"/>><a href="mypage_written?page=${i}">${i}</a>	</li>

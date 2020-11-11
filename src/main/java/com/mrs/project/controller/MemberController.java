@@ -65,7 +65,7 @@ public class MemberController {
 			if(cnt>0) {
 			session.setAttribute("loginid", id);
 			msg = "로그인 성공했습니다.";
-			page = "redirect:/main";
+			page = "redirect:/";
 		}
 			mav.addObject("msg",msg);
 		}		

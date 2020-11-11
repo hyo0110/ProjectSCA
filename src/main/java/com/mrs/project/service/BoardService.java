@@ -295,24 +295,13 @@ public class BoardService {
 	//업데이트 할 때 기존 파일 삭제하기 
 	public HashMap<String, Object> updateFileDelete(String fileName, HttpSession session) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		int success = 0;
+		int success = 1;
 		
 		//1. session 에서 delFileList 가져오기
 		HashMap<String, String> delFileList = (HashMap<String, String>) session.getAttribute("delFileList");
 		
-		//2. 실제 파일 삭제 하기
-		String delFileName = root+"upload/"+fileName;
-		logger.info("지울 파일 경로 : " + delFileName);
-		File file = new File(delFileName);
-		if(file.exists()) { //파일이 존재할 경우
-			if(file.delete()) { //삭제 처리 후 성공하면
-				success = 1; 
-			}else {
-				logger.info("이미 삭제된 상황"); 
-				success = 1; 
-			}
-		}
-		
+		//2. 실제 파일 삭제 하기 -> 저장할때 하는걸로 바꿈
+
 		//3. fileList에서 삭제한 파일명 넣기
 		delFileList.put(fileName, fileName);
 		logger.info(delFileList.get(fileName));
@@ -361,6 +350,17 @@ public class BoardService {
 				for(String delKey : delFileList.keySet()) {
 					dao.deleteFile(idx,delKey);
 					logger.info("성공 :" + delKey);
+					
+					String delFileName = root+"upload/"+delKey;
+					logger.info("지울 파일 경로 : " + delFileName);
+					File file = new File(delFileName);
+					if(file.exists()) { //파일이 존재할 경우
+						if(file.delete()) { //삭제 처리 후 성공하면
+							logger.info("삭제완료");
+						}else {
+							logger.info("이미 삭제된 상황");  
+						}
+					}
 				}
 			}
 			page="redirect:/detail?idx="+idx+"&type="+bean.getBoard_type()+"&pri="+bean.getPrivate_bbs(); //등록된 상세 페이지로 이동

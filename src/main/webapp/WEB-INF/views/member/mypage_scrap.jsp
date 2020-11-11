@@ -22,6 +22,7 @@ a {
 	padding : 0;
 	margin : 0;
 }
+
 .container {
 	display : inline-block;
 }
@@ -29,19 +30,21 @@ a {
 	float : left;
 }
 .snb_items {
-	border: 1px solid #3d3d3d;
-	width : 140px;
+	/* border: 1px solid #3d3d3d; */
+	width : 250px;
 }
 .snb_item {
-	width : 140px;
+	width : 250px;
 	height: 40px;
-	border-bottom : 1px solid #3d3d3d;
+	/* border-bottom : 1px solid #3d3d3d; */
 	text-align : center;
+	border\-radius: 0px 25px 25px 0px; 
+	/* border: 1px solid lightgray; */
 }
 .snb_item a {
 	width : 140px;
 	height: 40px;
-	color : #3d3d3d;
+	/* color : #3d3d3d; */
 	line-height : 40px;
 	vertical-align : middle;
 }
@@ -50,8 +53,12 @@ a {
 }
 .scrap_wrap {
 	float:left;
-	width : 420px;
-	height : 120px;
+	width : 850px;
+	height: 500px;
+	position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%,-50%);
 }
 .scrapbox {
 width : 100%;
@@ -69,15 +76,16 @@ table,th,td{
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-
-			<div class="snb_wrap">
-				<ul class="snb_items">
-					<li class="snb_item"><a href="mypage_login">회원정보</a></li>
-					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
-					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
-				</ul>
+			<div style="margin-top:50px;">
+				<div class="snb_wrap">
+					<ul class="snb_items">
+						<li class="snb_item"><a href="mypage_login">회원정보</a></li>
+						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_scrap">스크랩</a></li>
+						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="scrap_wrap">
+			<div class="scrap_wrap" style="border-radius:25px; border: 1px solid lightgray;">
 				<div class="scrapbox">
 					<table>
 						<tr>

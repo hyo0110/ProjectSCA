@@ -59,11 +59,20 @@ public class DataController {
 		String region = param.get("region");		
 		return service.newslist(region);
 	}
+	
+	//무엇을 반기별 업종분표 불러오기
+	@RequestMapping(value = "/openbiz", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> openbiz(@RequestParam HashMap<String, String> param) {		
+		logger.info("영업중인 : "+ param.get("region") +", "+ param.get("reg_date"));
+		String region = param.get("region");
+		String reg_date = param.get("reg_date");
+		return service.openbiz(region,reg_date);
+	}
 	//--------------------------------------- 어디에서 --------------------------------------------------
-	//어디로 들어가기
+	//어디에서 들어가기
 	@RequestMapping(value = "/where", method = RequestMethod.GET)
 	public String where(Model model) {
-		logger.info("어디로");
+		logger.info("어디에서");
 		
 		return "main/main_where";
 	}

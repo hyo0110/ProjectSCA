@@ -29,7 +29,6 @@ public class DataService {
 	public DataDTO what_result(String region) {
 		DataDTO data = new DataDTO();
 		data = dao.what_result(region);
-
 		return data;
 	}
 	
@@ -49,12 +48,21 @@ public class DataService {
 		ArrayList<String> title = (ArrayList<String>) element.eachAttr("title");
 		ArrayList<String> link = (ArrayList<String>) element.eachAttr("href");
 		for (int i = 1; i <= 5; i++) {
-			logger.info(i + "번째 뉴스" + title.get(i - 1) + " " + link.get(i - 1));
+			//logger.info(i + "번째 뉴스" + title.get(i - 1) + " " + link.get(i - 1));
 			result.put("title_" + i, title.get(i - 1));
 			result.put("link_" + i, link.get(i - 1));
 		}
 		return result;
 	}
+	// 반기별 업종 불러오기 => 사실 이거로 다 해야하는데... 일단 html 삽입하는 거부터
+	public HashMap<String, Object> openbiz(String region, String reg_date) {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		DataDTO status = dao.status(region,reg_date);
+		//result.put("openbiz",status.getData_code());
+		result.put("status",status);
+		return result;
+	}
+	
 
 	public ModelAndView where_result(HashMap<String, String> param, ModelAndView mav) throws Exception {
 		int age_cnt = Integer.parseInt(param.get("age_cnt")); 
@@ -339,5 +347,9 @@ public class DataService {
 		}
 		return mav;
 	}
+
+
+
+
 
 }

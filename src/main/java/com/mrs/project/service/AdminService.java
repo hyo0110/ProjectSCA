@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.deser.impl.CreatorCandidate.Param;
 import com.mrs.project.dao.AdminDAO;
+import com.mrs.project.dao.BoardDAO;
 import com.mrs.project.dto.BoardDTO;
 import com.mrs.project.dto.MemberDTO;
 
@@ -20,6 +21,7 @@ import com.mrs.project.dto.MemberDTO;
 public class AdminService {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired AdminDAO dao;
+	@Autowired BoardDAO board;
 	
 	public ModelAndView adminlist(@RequestParam Map<String, String> params) {
 		String pageParam = params.get("page");
@@ -34,9 +36,9 @@ public class AdminService {
 		int totPage = totCount/listCount; //총 페이지 갯수	
 		int start = ((page - 1) / 1	) * 10 + 1;
 		int end = start + Countpage - 1;
+		
 		logger.info("총카운트"+totCount);
 		logger.info("listCount"+listCount);
-		int papa = totPage;
 		if(totCount % listCount >0) {
 			totPage ++;
 		} //페이지 증가 5개씩 쪼개서
@@ -52,6 +54,16 @@ public class AdminService {
 		
 		
 		ArrayList<BoardDTO> list = dao.list(start,end);
+		
+		for(BoardDTO dto : list) {
+			String idx = Integer.toString(dto.getBoard_idx());
+			
+			int com = board.comAllCount(idx);
+			logger.info("각 게시글에 대한 갯수 : "+com);
+			dto.setCom_total(com);
+			//logger.info("???"+dto.getCom_total());
+		}
+		
 		logger.info("list"+list.size());
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("listCount",listCount);//페이지당 보여줌
@@ -60,7 +72,6 @@ public class AdminService {
  		mav.addObject("adminlist",list); //리스트 페이지
  		mav.addObject("start",start); //움직이는 페이지 왼쪽
  		mav.addObject("end",end); // 움직이는 페이지
- 		
  		for (int iCount = start; iCount <= end; iCount++) {
 		    if (iCount == page) {
 		    	mav.addObject("iCount",iCount);
@@ -95,6 +106,7 @@ public class AdminService {
 		int totPage = totCount/listCount; //총 페이지 갯수	
 		int start = ((page - 1) / 1) * 10 + 1;
 		int end = start + Countpage - 1;
+
 		
 		int range = totCount%Countpage>0?
 				Math.round(totCount/Countpage)+1
@@ -123,6 +135,7 @@ public class AdminService {
  		mav.addObject("start",start); //움직이는 페이지 왼쪽
  		mav.addObject("end",end); // 움직이는 페이지
  		mav.addObject("range",range);
+ 		mav.addObject("totCount",totCount);
  		for (int iCount = start; iCount <= end; iCount++) {
 		    if (iCount == page) {
 		    	mav.addObject("iCount",iCount);

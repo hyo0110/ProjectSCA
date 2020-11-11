@@ -57,7 +57,6 @@ th, td {
 </head>
 <body>
 
-<c:import url="../navi.jsp"></c:import>		
 	<a href="admin_member"><div>회원관리</div></a>
 	<a href="admin_faqboard"><div>문의글관리</div></a>
 	<table>
@@ -73,7 +72,7 @@ th, td {
 			<tr>
 				<td>${market_board.board_idx}</td>
 				<td><a
-					href="detail?idx=${market_board.board_idx}&type=${type}&pri=${market_board.private_bbs}&adminpage=${currPage}">${market_board.subject}</a>
+					href="detail?idx=${market_board.board_idx}&type=${type}&pri=${market_board.private_bbs}&adminpage=${currPage}">${market_board.subject} [${market_board.com_total}]</a>
 				</td>				
 				<td>${market_board.id}</td>
 				<td>${market_board.reg_date}</td>
@@ -86,32 +85,31 @@ th, td {
 		<tr>
 		</tr>
 	</table>
-
+	
 	<div class="text-center">
 		<ul class="pagination">
 			<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a>
 				<a id="prevPage" class="page-link" href="./admin?page=${currPage-1}"
 				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
 					class="sr-only">Previous</span>
-			</a></li>
-			<li class="page-link"><c:forEach var="i" begin="${1}"
-					end="${endPage}">
-					<a href="./admin?page=${i}">${i}</a>
-				</c:forEach></li>
+			</a>
+			<li class="page-link">
+			<c:forEach var="i" begin="${1}" end="${endPage}">		 	
+				<a href="./admin?page=${i}">${i}</a>
+			</c:forEach>
+			</li>
 			<li class="page-item"><a id="nextPage" class="page-link"
 				href="./admin?page=${currPage+1}" aria-label="Next"> <span
 					aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 			</a> <a class="page-link" href="./admin?page=${endPage}"><span>끝</span></a>
 			</li>
+			
 		</ul>
 	</div>
 	</div>
 	</div>
-
-</body>
-
+	
 <script>
-
 //삭제 버튼
 	function ajaxCall(board_idx){
 		
@@ -140,11 +138,9 @@ th, td {
 	var end = ${end}; //오른쪽
 	var start =${start}; //왼쪽
 	var currPage = ${currPage}; //현재 페이지
-	var endPage = ${end}; //끝페이지
 	var listCount = ${listCount};
 
 	
-
 </script>
 
 

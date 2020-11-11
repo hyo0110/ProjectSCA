@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 li {
 	list-style: none;
 	padding: 0;
@@ -23,13 +24,13 @@ li {
 	margin-left: -455px;
 	border-style: solid;
 	border-width: 1px;
-	border-color: #333 #dee3eb #dee3eb;
+	border-color: lightgray;
 	background-color: #f8f8f8;
 	padding: 20px 40px;
 }
 
 .containerbox {
-
+	font-family: 'Open Sans', sans-serif;
 	position: relative;
 	width: 1920px;
 	height: 900px;
@@ -38,7 +39,7 @@ li {
 .re_login_wrap {
 	margin-top: 50px;
 	margin-left: -455px;
-	outline: 1px solid blue;
+	outline: 1px solid lightgray;
 	height: 335px;
 	position: relative;
 	width: 910px;
@@ -49,6 +50,7 @@ li {
 }
 
 h3 {
+	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	margin: 0;
 }
@@ -56,7 +58,7 @@ h3 {
 body {
 	overflow: hidden;
 	width: 100%;
-	height: 100%;
+	height: 100%;	
 }
 
 .login_title {
@@ -69,17 +71,16 @@ body {
 .login_input {
 	width: -webkit-fill-available;
 	height: 144px;
-
 	padding: 20px;
 }
-
+/* 
 .login_btn {
 	width: -webkit-fill-available;
-	height: 61px;
-
+	height: 80px;
+	width: 120px;
 	padding: 20px;
 }
-
+ */
 label{
 	width: 300px;
 }
@@ -134,7 +135,7 @@ label{
 			
 				</div>
 				<div class="login_btn">
-					<input type="submit" value="로그인" />
+					<button type="submit" style="width: 120px; height: 40px; border: 1px solid #004c80; border-radius: 10px; color: #004c80; background-color: white;">로그인</button>
 				</div>
 			</form>
 		</div>

@@ -76,13 +76,16 @@ input:focus{
         outline: none;
     }
 button{
-			background-color:#0064FF;
-            color:white;
+			/* background-color:#0064FF;
+            color:white; */
             padding:10px 80px;
-            color:#fff;
+            /* color:#fff; */
             font-size:17px;
-            border: none;
-            cursor: pointer;           
+            /* border: none; */
+            cursor: pointer; 
+            border: 1px solid #004c80;             
+            color: #004c80; 
+            background-color: white;          
 }    
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -138,8 +141,8 @@ button{
 					</div>
 					<%-- <p>이메일 :<input type ="email" name="user_email" value="${member.email}"></p> --%>
 					<div style="text-align: center; margin-top: 18px;">
-						<button type= "submit" style="margin-right: 30px;">확인</button>
-						<button type="button" onclick="location.href='mypage_detail'">취소</button>
+						<button type= "submit" style="margin-right: 30px; border-radius: 10px;">확인</button>
+						<button type="button" onclick="location.href='mypage_detail'"style="border-radius: 10px;">취소</button>
 					</div>
 					</form>
 				</div>

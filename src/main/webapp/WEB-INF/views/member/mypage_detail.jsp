@@ -67,13 +67,16 @@ height : 100%;
 /* background-color : #ededed; */
 }
 button{
-			background-color:#0064FF;
-            color:white;
+			/* background-color:#0064FF;
+            color:white; */
             padding:13px 80px;
-            color:#fff;
+            /* color:#fff; */
             font-size:17px;
-            border: none;
-            cursor: pointer;           
+            /* border: none; */
+            cursor: pointer;
+            border: 1px solid #004c80;             
+            color: #004c80; 
+            background-color: white;           
 }
 
 </style>
@@ -106,8 +109,8 @@ button{
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.email}</div>
 					</div>
 					<div style="text-align: center; margin-top: 60px;">
-						<button type="button" onclick="realdelete()" style="margin-right: 30px;">탈퇴</button> <!-- 탈퇴여부 -->
-						<button type="button" onclick="location.href='mypage_update'">수정</button>
+						<button type="button" onclick="realdelete()" style="margin-right: 30px; border-radius: 10px;">탈퇴</button> <!-- 탈퇴여부 -->
+						<button type="button" onclick="location.href='mypage_update'"style="border-radius: 10px;">수정</button>
 					</div>
 				</div>
 			</div> 

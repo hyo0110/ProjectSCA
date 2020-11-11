@@ -23,6 +23,14 @@
 			parent.f_move();
 		}
 	</script> -->
+	<style>
+	.btn{
+		color: #0033CC;
+	}
+		.btn:hover{
+			background-color: #2c81d0;
+		}
+	</style>
   </head>
   <body>
     <!-- Navbar -->
@@ -74,14 +82,14 @@
           
          <c:choose>
             <c:when test="${sessionScope.loginid eq  null}">
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'">로그인</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'" style="border: 1px solid #004c80;">로그인</button>
             &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'">회원가입</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'" style="border: 1px solid #004c80;">회원가입</button>
                
             </c:when>
             <c:otherwise>
             	${sessionScope.loginid}님 &nbsp;
-               <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'">로그아웃</button>
+               <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'" style="border: 1px solid #004c80;">로그아웃</button>
             </c:otherwise>
        </c:choose>
           

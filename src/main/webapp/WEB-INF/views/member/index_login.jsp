@@ -42,14 +42,15 @@
     }
     
     .btn{
-            background-color:#0064FF;
+            background-color:#009fe3;
             color:white;
             padding:13px 130px;
             color:#fff;
             font-size:17px;
-            border-radius:25px;
+            border-radius:20px;
             border: none;
             cursor: pointer;
+            
             }
             
     button:hover {

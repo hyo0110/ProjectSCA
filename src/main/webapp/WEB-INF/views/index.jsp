@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 	.main_top{
 	    width: 100%;
 	    height: 300px;
@@ -67,7 +67,9 @@
 <%-- 	<h3>${sessionScope.loginid }</h3> --%>
 
 	<div class="main_top">
-		<img src="resources/img/main.gif" style="width: 100%;">
+		<img src="resources/img/main.gif" style="width: 100%; position: absolute;">
+		<p style="position: relative; top: 45%; font-family:'Open Sans', sans-serif; font-size: 50px; font-weight: 600; left: 45%; color: white;">예비창업자를 도와</br>더 나은 경제를 만드는</br>서울상권분석입니다.</br>여기 간지나게 해줄사람</p>
+		<!--진짜 세상 구리다 누가 간지나게 해줄사람 없나요  -->
 	</div>
 	<div class="main_box">
 	    <img src="resources/img/service_explain.PNG" width="340px;" class="img1" onclick="location.href='service_explain'">

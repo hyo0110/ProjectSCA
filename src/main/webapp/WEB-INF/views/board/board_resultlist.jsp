@@ -19,11 +19,13 @@
 	</head>
 	<body>
 	<c:import url="../navi.jsp"></c:import> 
-
-		<p>${count}개의 글이 있습니다. </p>
+		
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
 			<table class="table table-hover">
 				<thead style="background-color: #0064FF; color: white;">
+					<tr>
+						<p>${count}개의 글이 있습니다. </p>
+					</tr>
 					<tr>
 						<th style="width: 5%;">글번호</th>
 							<th style="width: 45%;">제목</th>
@@ -72,6 +74,7 @@
 				</tr>
 			  
 		</table>
+		</div>
 		<div class="container"   style="position: absolute; left: 35%;">
 			<nav arial-label="Page navigation" style="text-align: center">
 				<ul class="pagination" id="pagination"></ul>

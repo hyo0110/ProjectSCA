@@ -50,7 +50,7 @@ public class AdminController {
 			
 			if(managerid!=null) {
 				mav = service.adminlist(params);
-				mav.setViewName("admin/admin_board");
+				mav.setViewName("admin/admin_board2");
 				logger.info("리스트를 잘 불러오는가요?"+mav);
 			}else {
 				if(!managerid.equals("admin")) {
@@ -83,7 +83,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();	
 		if(managerid!=null) {
 			mav = service.adminfaqlist(params);
-			mav.setViewName("admin/admin_faqboard");
+			mav.setViewName("admin/admin_faqboard2");
 			logger.info("회원리스트를 잘 불러오는가요?"+mav);
 		}			else {
 			if(!managerid.equals("admin")) {
@@ -99,7 +99,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();	
 		if(managerid!=null) {
 			mav = service.admemberlist(params);
-			mav.setViewName("admin/admin_member");
+			mav.setViewName("admin/admin_member2");
 			logger.info("회원리스트를 잘 불러오는가요?"+mav);
 		}			
 		return mav;

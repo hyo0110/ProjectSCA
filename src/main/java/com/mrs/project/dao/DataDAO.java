@@ -8,4 +8,10 @@ public interface DataDAO {
 
 	DataDTO status(String region, String reg_date);
 
+	DataDTO ppl_age(String region, String reg_date);
+
+	DataDTO ppl_day(String region, String reg_date);
+
+	DataDTO ppl_time(String region, String reg_date);
+
 }

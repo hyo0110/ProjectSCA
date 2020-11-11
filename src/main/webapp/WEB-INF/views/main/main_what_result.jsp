@@ -18,8 +18,9 @@
 				width: 400px;
 				top: 15%;
 				right: 4%;
-				position: absolute;
+				position: fixed;
 				padding: 15px 5px;
+				background-color: white;
 			}
 			
 			.news_item{
@@ -54,9 +55,7 @@
 					  ${data.best_day} , ${data.best_time}에 ${data.best_age} 유동인구가 가장 많습니다.
 					이 곳의 음식점/카페 수는 ${data.mk_total }개 입니다. <br>
 					
-			<iframe id ="favorite" style="display:block; width:80vw; height: 400px" src="" 
-			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-			</iframe>			
+			<iframe id ="favorite" style="display:block; width:80vw; height: 400px" src="" frameborder="0"></iframe>			
 
 		<div id="seemore"> <!-- 더보기버튼 -->
 		    <input type="button" id="seemore_btn" value="더 많은 정보 보기" onclick="seemore()" />
@@ -86,9 +85,7 @@
 						<!-- 해당구의 상권상태 부분 -->
 							<div id="status"> </div>
 						<!-- 영업종류 현황 부분 -->
-							<iframe id ="openbiz" style="display:block; width:80vw; height: 80vh" src="" 
-							frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-							</iframe>
+							<iframe id ="openbiz" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
 						</div>
 						
 					</div>
@@ -125,7 +122,7 @@
 				error: function(e){
 					console.log(e)
 				}
-			});		
+			});
 		});
 	
 	
@@ -160,7 +157,8 @@
 			success: function(data){
 				//console.log(data.status.data_code);
 				//상권상태
-				$("#status").html("<h3>"+data.status.region+data.status.mk_status+"</h3>");
+				$("#status").html("<h3>"+data.status.region+data.status.mk_status+"</h3>"+
+						"<br> 총 유동인구 수는 "+data.status.total_ppl_cnt+"명 입니다");
 				//업종분포표
 				openbiz = data.status.data_code;
 				openbiz_src = "https://banana2990.github.io/onbusiness/"+openbiz+".html";

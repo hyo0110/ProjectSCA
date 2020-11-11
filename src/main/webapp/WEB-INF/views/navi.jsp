@@ -38,8 +38,17 @@
 
           <ul class="navbar-nav mr-auto">
 
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
               <a class="nav-link" href="main">검색<span class="sr-only">(current)</span></a>
+            </li> -->
+			<li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  검색
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="what">무엇을?</a>
+                  <a class="dropdown-item" href="where">어디서?</a>
+                </div>
             </li>
 
             <li class="nav-item dropdown">

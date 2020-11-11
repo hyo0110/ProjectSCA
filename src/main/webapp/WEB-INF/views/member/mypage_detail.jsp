@@ -95,7 +95,7 @@ button{
 			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray;">
 				<div class="detail">
 					<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보</h3>
-					<p style="font-size:15px; text-align: center; margin-bottom: 20px;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 명백한 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.</p>
+					<p style="font-size:15px; text-align: center; margin-bottom: 20px;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며,</br> 회원님의 명백한 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.</p>
 					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
 						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">아이디</div>
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.id}</div>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 목록</title>
+<title>SCA Service</title>
 		<style>
 			
 		</style>
@@ -18,7 +18,7 @@
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
-	<c:import url="../navi.jsp"></c:import> 
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
 			<table class="table table-hover">

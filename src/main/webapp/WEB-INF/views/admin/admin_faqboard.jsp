@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 게시글 관리</title>
+<title>SCA Service</title>
 <style>
 	table{
 		position :relative;

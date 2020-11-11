@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MRS-main / 로그인시</title>
+<title>SCA Service</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 	.mainbox{

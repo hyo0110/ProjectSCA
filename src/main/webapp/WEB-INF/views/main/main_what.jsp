@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>무엇을 검색 화면(지도)</title>
+<title>SCA Service</title>>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js" > </script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0a200ee40df01a7833da263a65fbf093"></script>
 

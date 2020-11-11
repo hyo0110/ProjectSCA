@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-내가쓴글</title>
+<title>SCA Service</title>
 <style>
 ul {
 	padding : 0;

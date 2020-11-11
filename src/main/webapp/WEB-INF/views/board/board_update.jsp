@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 수정하기</title>
+<title>SCA Service</title>
 <style>
 /* table,th,td{
 				border: 1px solid black;
@@ -34,7 +34,7 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-		<c:import url="../navi.jsp"></c:import> 
+		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		
 	<form action="update" method = "post">
 		<input type="hidden" name ="type" value="${info.board_type}">
@@ -50,7 +50,7 @@
 				</tr>
 				<tr>
 					<th>내용</th> 
-					<td>
+					<td style="width: 80%;">
 						<div id="editable" contenteditable="true">${info.content}</div> 
 						<input id = "content" type="hidden" name="content" value="" />
 					</td>

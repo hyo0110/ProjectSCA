@@ -63,14 +63,20 @@ a {
 .scrapbox {
 width : 100%;
 height : 100%;
-	border : 1px solid #3d3d3d;
-	background-color : #ededed;
+	/* border : 1px solid #3d3d3d; */
+	/* background-color : #ededed; */
 }
 table,th,td{
-				border: 1px solid black;
+				border-bottom: 1px solid lightgray;
 				border-collapse: collapse;
 				padding: 10px 10px;
+				
 			}
+table{
+position: absolute;
+left: 5%;
+top: 5%;
+}		
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
@@ -85,13 +91,13 @@ table,th,td{
 					</ul>
 				</div>
 			</div>
-			<div class="scrap_wrap" style="border-radius:25px; border: 1px solid lightgray;">
+			<div class="scrap_wrap" style="border-radius:20px; border: 1px solid lightgray;">
 				<div class="scrapbox">
 					<table>
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>삭제</th>
+							<th style="width: 7%;">번호</th>
+							<th style="width: 60%;">제목</th>
+							<th style="width: 10%; text-align: center;">삭제</th>
 						</tr>
 						<c:forEach items = "${list}" var = "scrap">
 						<tr>

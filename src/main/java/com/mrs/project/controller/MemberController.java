@@ -162,7 +162,7 @@ public class MemberController {
 		logger.info("~~~~~");
 		String page ="redirect:/mypage_update";
 		if(count>0) {
-			page="redirect:/mypage_login";
+			page="redirect:/mypage_detail";
 		}
 		return page;
 	}

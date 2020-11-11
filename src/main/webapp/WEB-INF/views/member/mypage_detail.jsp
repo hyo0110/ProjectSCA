@@ -106,7 +106,7 @@ button{
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.email}</div>
 					</div>
 					<div style="text-align: center; margin-top: 60px;">
-						<button type="button" onclick="location.href='deleteMember'" style="margin-right: 30px;">탈퇴</button> <!-- 탈퇴여부 -->
+						<button type="button" onclick="realdelete()" style="margin-right: 30px;">탈퇴</button> <!-- 탈퇴여부 -->
 						<button type="button" onclick="location.href='mypage_update'">수정</button>
 					</div>
 				</div>
@@ -114,6 +114,14 @@ button{
 		</div>	
 </body>
 <script>
+function realdelete() {
+	var realdelete = confirm("정말로 탈퇴하시겠습니까?");
+	if(realdelete==true){
+		location.href='deleteMember';
+	}else{
+		false;
+	}
+}
 
 </script>
 </html>

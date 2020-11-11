@@ -39,14 +39,14 @@
 				<th>조회수</th><td>${info.bHit}</td>
 				</tr>
 				<tr><th>제목</th><td colspan = "5">${info.subject}</td></tr>
-				<tr><th>내용</th><td colspan = "5">${info.content}</td></tr>
+				<tr style="border-bottom:1px solid black;"><th>내용</th><td colspan = "5" >${info.content}</td></tr>
 			</table>
 		 </div> 
 			
 			<br/>
 			
 		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: -1%; font-size: 15px;">
-			<table  class="table table-hover">
+			<table  class="table table-borderless">
 			<tbody id="comList">
 				<!-- 댓글 리스트 출력 -->
 			</tbody>

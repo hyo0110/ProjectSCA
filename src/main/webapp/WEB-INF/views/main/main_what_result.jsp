@@ -29,6 +29,19 @@
 				white-space: nowrap;
 			}
 	
+			#standard{
+				float:left;
+			}
+		
+			#info_section{			
+				float:left;
+				margin: 20px;
+			}
+			#favorite{
+				width: 80%;
+			 	height: 500px; 
+			}
+	
 	</style>
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
@@ -44,15 +57,15 @@
 					  ${data.best_day} , ${data.best_time}에 ${data.best_age} 유동인구가 가장 많습니다.
 					이 곳의 음식점/카페 수는 ${data.mk_total }개 입니다. <br>
 					
-			<iframe id ="favorite" width="560" height="315" src="" 
+			<iframe id ="favorite" src="" 
 			frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
 			</iframe>			
-		<!-- 더보기 버튼 만들어야함 -->
-		
-			<div id="more_info_section">
-				  <label for="more_info">
-					    반기 선택
-				  </label>
+
+		<div id="seemore"> <!-- 더보기버튼 -->
+		    <input type="button" id="seemore_btn" value="더 많은 정보 보기" onclick="seemore()" />
+		   	<div id="hide_section" style="display: none;"> 				
+				  <div id="standard">
+				  <label for="more_info"> 반기 선택 </label>
 					  <select id="more_info" name="more_info" >
 					    <option value=""> --- 선택하세요 --- </option>
 					    <optgroup label="2020">
@@ -70,16 +83,19 @@
 					      <option value="201702"> 2017 하반기</option>
 					    </optgroup>    
 					  </select>
-
-					<div id="info_section" >
-						<div id="status">
+					  </div>
+					<div id="more_info_section">
+						<div id="info_section" >
+						<!-- 해당구의 상권상태 부분 -->
+							<div id="status"> </div>
+						<!-- 영업종류 현황 부분 -->
+							<iframe id ="openbiz" width="560" height="315" src="" 
+							frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+							</iframe>
 						</div>
-					<!-- 영업종류 현황 부분 -->
-						<iframe id ="openbiz" width="560" height="315" src="" 
-						frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-						</iframe>
+						
 					</div>
-					
+				</div>
 			</div>
 		</div>
 		
@@ -90,48 +106,50 @@
 
 	var region = "${region}";
 	
-	$(document).ready(function(){
-		$.ajax({
-				url: "newslist",
-				type:'get',
-				data:{
-					"region":region
-				}, 
-				dataType :'json',
-				success:function(data){
-					//div ="news_sectoin" 에다 가져온 애들을 넣어야함.
-					//console.log(data);
-					//console.log(data.title_1);
-					//console.log(data.link_1);
-					
-					$("#news_list").append("<li><a href='"+data.link_1+"' class = 'news_item'>"+data.title_1+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_2+"' class = 'news_item'>"+data.title_2+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_3+"' class = 'news_item'>"+data.title_3+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_4+"' class = 'news_item'>"+data.title_4+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_5+"' class = 'news_item'>"+data.title_5+"</a></li>");
-					 
-					},
-				error: function(e){
-					console.log(e)
-				}
-		});
+	$(document).ready(function(){ // 문서가 로딩되면, 바로 뉴스리스트와 망고 플레이트 주소
 		//워드 클라우드 불러오기
 		var favorite = "${data.mk_fav}";	
 		var cloud_src = "resources/wordcloud/"+favorite;
 		$("#favorite").attr('src',cloud_src);
 		
+		$.ajax({
+				url: "newslist",
+				type:'get',
+				data:{"region":region	}, 
+				dataType :'json',
+				success:function(data){
+					//div ="news_sectoin" 에다 가져온 애들을 넣어야함. console.log(data); console.log(data.title_1); console.log(data.link_1);
+					$("#news_list").append("<li><a href='"+data.link_1+"' class = 'news_item'>"+data.title_1+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_2+"' class = 'news_item'>"+data.title_2+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_3+"' class = 'news_item'>"+data.title_3+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_4+"' class = 'news_item'>"+data.title_4+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_5+"' class = 'news_item'>"+data.title_5+"</a></li>");					 
+					},
+				error: function(e){
+					console.log(e)
+				}
+			});		
 		});
 	
 	
-	// 반기별 정보(상태, 유동인구, 업종분포표) 불러오기	
-	// 콤보박스에서 선택을 한다 -> ajax로 선택한 값을 보낸다 -> 보낸 값을 받아서 div에 표시한다
+	function seemore(){
+		if($("#hide_section").attr('style','display="none"')){
+			$("#hide_section").attr('style','display="block"');
+			$("#seemore_btn").attr('type','hidden');
+		}else{
+			$("#hide_section").attr('style','display="none"'); 
+			$("#seemore_btn").val('더보기');
+			}
+	}
 	
+	// 반기별 정보(상태, 유동인구, 업종분포표) 불러오기	
+	// 콤보박스에서 선택을 한다 -> ajax로 선택한 값을 보낸다 -> 보낸 값을 받아서 div에 표시한다	
 	var reg_date ="";
 	var openbiz = "";	
 	var openbiz_src = "";
 
-	$('select[name="more_info"]').change(function(){
-		reg_date = $('select[name="more_info"]').val();
+	$("select[name='more_info']").change(function(){
+		reg_date = $("select[name='more_info']").val();
 		console.log(reg_date);
 		console.log('헿');
 		$.ajax({
@@ -158,6 +176,8 @@
 			}
 		});
 	});
+	
+
 
 
 </script>

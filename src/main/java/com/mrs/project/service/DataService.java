@@ -55,11 +55,24 @@ public class DataService {
 		return result;
 	}
 	// 반기별 업종 불러오기 => 사실 이거로 다 해야하는데... 일단 html 삽입하는 거부터
-	public HashMap<String, Object> openbiz(String region, String reg_date) {
+	public HashMap<String, Object> openbiz(String region, String reg_date) throws Exception {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		DataDTO status = dao.status(region,reg_date);
 		//result.put("openbiz",status.getData_code());
-		result.put("status",status);
+		
+		DataDTO ppl_age = dao.ppl_age(region,reg_date);
+		DataDTO ppl_day = dao.ppl_day(region,reg_date);
+		DataDTO ppl_time = dao.ppl_time(region,reg_date);
+		// R connection 실행 > df 만들기(등록일, 지역구) > 표 만들기 > html로 저장하기 > 주소 넘기기 
+		RConnection conn = new RConnection();
+		
+		String age_html ="" ;
+		String day_html ="" ;
+		String time_html ="" ;
+		result.put("status", status);
+		result.put("age_html", age_html);
+		result.put("day_html", day_html);
+		result.put("time_html", time_html);
 		return result;
 	}
 	

@@ -16,6 +16,7 @@ li {
 	list-style: none;
 	padding : 0;
 	margin : 0;
+	
 }
 a {
 	text-decoration: none;
@@ -73,10 +74,11 @@ a {
 	}
 	
 	table{
-position: absolute;
-left: 5%;
-top: 5%;
-}	
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	
+	}	
 	.pageitem {
 		float: left;
 	}
@@ -126,7 +128,7 @@ top: 5%;
 						<ul style="top: 536px; position: absolute; left: 368px;">
 						<c:if test="${curPage > 1}"><li class="pageitem"><a href="mypage_written?page=${curPage-1}">이전</a></li></c:if>
 						<c:forEach var="i" begin="1" end="${totalPage}">
-							<li class="pageitem"<c:out value="${curPage == i ? 'style=background:red;' : ''}"/>><a href="mypage_written?page=${i}">${i}</a>	</li>
+							<li class="pageitem"<c:out value="${curPage == i ? 'style= font-weight:600;' : ''}"/>><a href="mypage_written?page=${i}">${i}</a>	</li>
 						</c:forEach>
 						<c:if test="${curPage ne totalPage}"><li class="pageitem"><a href="mypage_written?page=${curPage+1}">다음</a></li></c:if>
 						</ul>

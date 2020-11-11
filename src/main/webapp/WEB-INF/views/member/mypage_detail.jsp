@@ -84,7 +84,7 @@ button{
 		<div style="margin-top:50px;">
 			<div class="snb_wrap">
 				<ul class="snb_items">
-					<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_login">회원정보</a></li>
+					<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_detail">회원정보</a></li>
 					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
 					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
 				</ul>
@@ -106,7 +106,7 @@ button{
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.email}</div>
 					</div>
 					<div style="text-align: center; margin-top: 60px;">
-						<button type="button" onclick="location.href='deleteMember'" style="margin-right: 30px;">탈퇴</button> <!-- 탈퇴여부 -->
+						<button type="button" onclick="realdelete()" style="margin-right: 30px;">탈퇴</button> <!-- 탈퇴여부 -->
 						<button type="button" onclick="location.href='mypage_update'">수정</button>
 					</div>
 				</div>
@@ -114,6 +114,14 @@ button{
 		</div>	
 </body>
 <script>
+function realdelete() {
+	var realdelete = confirm("정말로 탈퇴하시겠습니까?");
+	if(realdelete==true){
+		location.href='deleteMember';
+	}else{
+		false;
+	}
+}
 
 </script>
 </html>

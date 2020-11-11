@@ -90,15 +90,15 @@ public class MemberService {
 	}
 
 	public String mypage_written(String id, int page, Model model) {
-		int perPage = 5; // 한화면에서 보여줄 갯수
+		int perPage = 10; // 한화면에서 보여줄 갯수
 		int start  = 0;
 		int end = 0;
 		if(page >= 0 && page <= 1) {
 			start = 1; 
-			end = 5;
+			end = 10;
 		}else { // 
-			start = (page-1) * perPage;
-			end = start + perPage;
+			end = page * perPage;
+			start = end - perPage+1;
 		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		

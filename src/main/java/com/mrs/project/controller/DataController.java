@@ -82,7 +82,8 @@ public class DataController {
 		ModelAndView mav = new ModelAndView();	
 		logger.info("어디로에 대한 결과");
 		System.out.println(param);
-
+		System.out.println(param.get("age_cnt"));
+		System.out.println(param.get("time_cnt"));
 		return service.where_result(param,mav);		
 	}
 	

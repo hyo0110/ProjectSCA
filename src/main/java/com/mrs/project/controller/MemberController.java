@@ -183,7 +183,7 @@ public class MemberController {
 					
 		}
 		
-		// 내가쓴글 들어갈때
+		// 내가 쓴 글 들어갈때
 		@RequestMapping(value = "/mypage_written", method = RequestMethod.GET)
 		public String mypage_written(HttpSession session, Model model, @RequestParam int page) {
 			String id = (String) session.getAttribute("loginid");

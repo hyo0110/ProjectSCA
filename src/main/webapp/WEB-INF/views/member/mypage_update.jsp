@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-회원정보수정</title>
+<title>SCA Service</title>
 <style>
 ul {
 	padding : 0;

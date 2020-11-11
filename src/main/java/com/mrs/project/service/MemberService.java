@@ -97,8 +97,8 @@ public class MemberService {
 			start = 1; 
 			end = 10;
 		}else { // 
-			start = (page-1) * perPage;
-			end = start + perPage;
+			end = page * perPage;
+			start = end - perPage+1;
 		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		

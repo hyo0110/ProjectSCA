@@ -36,7 +36,6 @@ public class BoardController {
 	// type -> 0(자유) / 1(고객)
 	@RequestMapping(value = "/typelist", method = RequestMethod.GET)
 	public ModelAndView list(Model model, @RequestParam String type) {
-		logger.info("보드 타입 : "+type);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("type",type);
 		mav.setViewName("/board/board_list");
@@ -46,12 +45,10 @@ public class BoardController {
 	//아작스 사용해서 페이징한 리스트
 	@RequestMapping(value = "/listcall", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> listcall(@RequestParam HashMap<String, String>params) {
-		logger.info("보드 타입 : "+params.get("type"));
-		logger.info("전체파라미터 : "+params);
+
 		String page = params.get("page");
 		String pagePerCnt = params.get("ppn");	
 		String type = params.get("type");
-		System.out.println(page+"/"+pagePerCnt);
 		return service.pagingList(Integer.parseInt(page), Integer.parseInt(pagePerCnt),type);
 	}
 	
@@ -59,7 +56,6 @@ public class BoardController {
 	@RequestMapping(value = "/writeForm", method = RequestMethod.GET)
 	public String writeForm(Model model, HttpSession session, @RequestParam String type) {
 		String page = null;
-		logger.info("type :"+type);
 		if(type.equals("0")) { //자유게시판의 writeForm
 		HashMap<String, String> fileList = new HashMap<String, String>();
 		session.setAttribute("fileList", fileList);
@@ -76,7 +72,6 @@ public class BoardController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView detail(@RequestParam String idx, @RequestParam String type, @RequestParam String pri,
 			HttpSession session,RedirectAttributes rAttr) { 
-		logger.info("상세보기 요청"+idx+"/타입:"+type+"/비밀글여부:"+pri);
 		ModelAndView mav = null;
 		mav = service.detail(idx,type,pri,session,rAttr);
 		return mav;
@@ -86,15 +81,12 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public String delete(Model model, @RequestParam String idx, @RequestParam String type,
 			RedirectAttributes rAttr) {
-		logger.info("삭제할 idx : "+idx+"타입 : "+type);
 		return service.delete(idx,type,rAttr);
 	}
 	
 	//게시판 수정 + 기존파일 삭제했으면 실제 삭제 + 새로올린파일 있으면 실제 저장까지
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView update(@RequestParam HashMap<String, String> params ,HttpSession session) { //문자열로 파라메터를 보내기 때문에 string으로 받는데 보낼때는 object로 해야함(hashamp, list등으로 반환하기 때문에)
-		logger.info("수정요청 요청 글번호 :"+params.get("idx"));	
-		logger.info("params : "+params);
+	public ModelAndView update(@RequestParam HashMap<String, String> params ,HttpSession session) {
 		return service.update(params,session);
 	}
 	
@@ -102,14 +94,10 @@ public class BoardController {
 	//고객센터의 글쓰기
 	@RequestMapping(value = "/cwrite", method = RequestMethod.POST)
 	public ModelAndView cwrite(@RequestParam HashMap<String, String> params ,HttpSession session) {
-		
-		logger.info("글쓰기 요청");	
-		logger.info("params : "+params);
-		logger.info("비밀글 여부 : "+params.get("privateHidden"));
+
 		if(params.get("privateHidden").equals("")) {
 			System.out.println("들어옴?");
 			params.put("privateHidden", "0");
-			logger.info("비밀글 여부 : "+params.get("privateHidden"));
 		}
 		return service.cwrite(params,session);
 	}
@@ -127,36 +115,34 @@ public class BoardController {
 	//자유게시판 안의 파일 업로드
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public ModelAndView upload(MultipartFile file, HttpSession session) {
-		logger.info("upload 요청");	
 		return service.upload(file,session);
 	}
 	
 	//자유게시판 안의 파일 삭제
 	@RequestMapping(value = "/fileDelete", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> fileDelete(@RequestParam String fileName , HttpSession session) {
-		logger.info("fileDelete 요청"+fileName);	
+
 		return service.fileDelete(fileName,session);
 	}
 	
 	//업데이트 할 때 자유게시판 안의 파일 삭제
 	@RequestMapping(value = "/updateFileDelete", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> updateFileDelete(@RequestParam String fileName , HttpSession session) {
-		logger.info("fileDelete 요청"+fileName);	
+
 		return service.updateFileDelete(fileName,session);
 	}
 	
 	//자유게시판의 글쓰기+ 파일업로드 실제 저장
 	@RequestMapping(value = "/write", method = RequestMethod.POST)
 		public ModelAndView write(@RequestParam HashMap<String, String> params ,HttpSession session) { //문자열로 파라메터를 보내기 때문에 string으로 받는데 보낼때는 object로 해야함(hashamp, list등으로 반환하기 때문에)
-			logger.info("글쓰기 요청");	
-			logger.info("params : "+params);
+
 			return service.write(params,session);
 		}
 	
 	// 게시판 수정페이지로 이동
 	@RequestMapping(value = "/updateForm", method = RequestMethod.GET)
 	public ModelAndView updateForm(@RequestParam String idx, @RequestParam String type,HttpSession session) {
-		logger.info("받아온 idx : "+idx+"/글 종류 : "+type);
+
 		HashMap<String, String> fileList = new HashMap<String, String>();
 		HashMap<String, String> delFileList = new HashMap<String, String>();
 		session.setAttribute("fileList", fileList);
@@ -223,25 +209,23 @@ public class BoardController {
 	//댓글 불러오기
 	@RequestMapping(value = "/comlist", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> comlist(@RequestParam HashMap<String, String>params) {
-		logger.info("전체파라미터 : "+params);
 		String page = params.get("page");
 		String pagePerCnt = params.get("ppn");	
 		String idx = params.get("idx");
-		System.out.println(page+"/"+pagePerCnt);
 		return service.comlist(Integer.parseInt(page), Integer.parseInt(pagePerCnt),idx);
 	}
 	
 	//댓글 삭제
 	@RequestMapping(value = "/delCom", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> delCom(@RequestParam HashMap<String, String>params) {
-		logger.info("전체파라미터 : "+params);
+
 		return service.delCom(params);
 	}
 	
 	//댓글 등록
 	@RequestMapping(value = "/insertCom", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> insertCom(@RequestParam HashMap<String, String>params) {
-		logger.info("전체파라미터 : "+params);
+
 		return service.insertCom(params);
 	}
 	

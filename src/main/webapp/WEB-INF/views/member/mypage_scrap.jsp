@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-스크랩</title>
+<title>SCA Service</title>
 <style>
 ul {
 	padding : 0;
@@ -22,6 +22,7 @@ a {
 	padding : 0;
 	margin : 0;
 }
+
 .container {
 	display : inline-block;
 }
@@ -29,19 +30,21 @@ a {
 	float : left;
 }
 .snb_items {
-	border: 1px solid #3d3d3d;
-	width : 140px;
+	/* border: 1px solid #3d3d3d; */
+	width : 250px;
 }
 .snb_item {
-	width : 140px;
+	width : 250px;
 	height: 40px;
-	border-bottom : 1px solid #3d3d3d;
+	/* border-bottom : 1px solid #3d3d3d; */
 	text-align : center;
+	border\-radius: 0px 25px 25px 0px; 
+	/* border: 1px solid lightgray; */
 }
 .snb_item a {
 	width : 140px;
 	height: 40px;
-	color : #3d3d3d;
+	/* color : #3d3d3d; */
 	line-height : 40px;
 	vertical-align : middle;
 }
@@ -50,40 +53,51 @@ a {
 }
 .scrap_wrap {
 	float:left;
-	width : 420px;
-	height : 120px;
+	width : 850px;
+	height: 500px;
+	position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%,-50%);
 }
 .scrapbox {
 width : 100%;
 height : 100%;
-	border : 1px solid #3d3d3d;
-	background-color : #ededed;
+	/* border : 1px solid #3d3d3d; */
+	/* background-color : #ededed; */
 }
 table,th,td{
-				border: 1px solid black;
+				border-bottom: 1px solid lightgray;
 				border-collapse: collapse;
 				padding: 10px 10px;
+				
 			}
+table{
+position: absolute;
+left: 6%;
+top: 5%;
+}		
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-<c:import url="../navi.jsp"></c:import>
-
-			<div class="snb_wrap">
-				<ul class="snb_items">
-					<li class="snb_item"><a href="mypage_login">회원정보</a></li>
-					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
-					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
-				</ul>
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+			<div style="margin-top:50px;">
+				<div class="snb_wrap">
+					<ul class="snb_items">
+						<li class="snb_item"><a href="mypage_detail">회원정보</a></li>
+						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_scrap">스크랩</a></li>
+						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="scrap_wrap">
+			<div class="scrap_wrap" style="border-radius:20px; border: 1px solid lightgray;">
 				<div class="scrapbox">
 					<table>
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>삭제</th>
+							<th style="width: 7%;">번호</th>
+							<th style="width: 60%;">제목</th>
+							<th style="width: 10%; text-align: center;">삭제</th>
 						</tr>
 						<c:forEach items = "${list}" var = "scrap">
 						<tr>

@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 수정하기</title>
+<title>SCA Service</title>
 <style>
-table,th,td{
+/* table,th,td{
 				border: 1px solid black;
 				border-collapse: collapse;
 				padding: 10px 10px;
@@ -16,7 +16,7 @@ table,th,td{
 			
 			table.board{
 				width:100%;
-			}
+			} */
 			
 			input[type='text']{
 				width: 100%;
@@ -34,22 +34,23 @@ table,th,td{
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-		<c:import url="../navi.jsp"></c:import> 
+		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+		
 	<form action="update" method = "post">
 		<input type="hidden" name ="type" value="${info.board_type}">
 		<input type="hidden" name ="idx" value="${info.board_idx}">
-			<table class="board">
-				<tr>
-					<th>작성자</th>
-					<td><input type = "text" name = "id" value="test"/></td>
-				</tr>
+		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: 3%; font-size: 15px;">
+			<table  class="table table-hover">
+				<c:if test="${sessionScope.loginid ne ''}">
+					<input type=hidden name=id value="${sessionScope.loginid}">
+				</c:if>
 				<tr>
 					<th>제목</th>
-					<td><input type = "text" name = "subject" placeholder="${info.subject}"/></td>
+					<td><input type = "text" name = "subject"/></td>
 				</tr>
 				<tr>
 					<th>내용</th> 
-					<td>
+					<td style="width: 80%;">
 						<div id="editable" contenteditable="true">${info.content}</div> 
 						<input id = "content" type="hidden" name="content" value="" />
 					</td>
@@ -64,24 +65,32 @@ table,th,td{
 				</tr>
 				</c:if>
 				<tr>
-					<td colspan = "2"><input type = "button" onclick = "save()" value = "저장"/></td>
+					<td colspan = "2">
+					<input type = "button" onclick = "save()" value = "저장"/>
+					
+					</td>
 				</tr>
+				
 			</table>
+			</div>
 		</form>
 </body>
 <script>
 
-		//뒤로가기 막기
-		history.pushState(null, null, location.href);
-		window.onpopstate = function () {
-		    history.go(1);
-		};
+ 		//뒤로가기 막기
+	    history.pushState(null,'',location.href);
+		window.onpopstate = function(){
+		 	history.go(0);
+			alert("저장하기전엔 뒤로 가실 수 없습니다.");
+		}			
+ 		
 
+ 		
 		//삭제버튼 붙이기
 		$(document).ready(function(){
 			$("#editable img").each(function(idx,item){//idx = 갯수 , item = ???
 				console.log(idx,item);
-				$(item).after("<input id='${path}' type='button' value='삭제' onclick='del(this)'><br/>");
+				 $(item).after("<input id='${path}' type='button' value='삭제' onclick='del(this)'><br/>");
 			});
 		});
 

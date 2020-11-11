@@ -5,14 +5,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 목록</title>
+<title>SCA Service</title>
 
 
 <style>
+
 		#writebutton{
 			background-color: #0064FF;
 			color: white;
-		}
+		} 
+
+
 
 </style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -23,10 +26,16 @@
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 </head>
 <body>
-		<c:import url="../navi.jsp"></c:import> 
-			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
+		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+		<c:if test="${type==0}">
+			<h1 style="position: relative; margin-top: 1%; left:15px;">자유게시판</h1>
+		</c:if>
+		<c:if test="${type==1}">
+			<h1 style="position: relative; margin-top: 1%; left:15px;">고객센터</h1>
+		</c:if>
+			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px;">
 				  <table class="table table-hover">
-					<thead style="background-color: #0064FF; color: white;">
+					<thead style="background-color: #0064FF; color: white;  font-family : '도현', 산세 리프;">
 						<tr>
 							<th style="width: 5%;">글번호</th>
 							<th style="width: 45%;">제목</th>
@@ -58,16 +67,13 @@
 							<button onclick="location.href='writeForm?type=${type}'" id="writebutton">글쓰기</button>
 						</td>
 					</tr>
-					<tr>
-						<td id="paging" colspan="5" style="text-align: center;">
-							<div class="container"   style="position: absolute; left: 37%;">
-								<nav arial-label="Page navigation" style="text-align: center">
-									<ul class="pagination" id="pagination"></ul>
-								</nav>
-							</div>
-						</td>
-					</tr>
+
 				</table>
+			</div>
+			<div class="container"   style="position: absolute; left: 35%;">
+				<nav arial-label="Page navigation" style="text-align: center">
+					<ul class="pagination" id="pagination"></ul>
+				</nav>
 			</div>
 
 </body>
@@ -111,7 +117,7 @@
 					visiblePages : 5, //보여줄 페이지 수 
 					onPageClick : function(event, page, type) { //event : 해당 이벤트 객체 / page : 내가 몇 페이지 클릭 했는지
 						//console.log(event);
-						listCall(page, type);
+						listCall(page);
 					}
 				});
 			},
@@ -142,12 +148,12 @@
 					content += "<td>(" + private_bbs + ")<a href='detail?idx="
 							+ item.board_idx + "&type=" + item.board_type
 							+ "&pri=" + item.private_bbs + "'>" + item.subject
-							+ "</a>(" + bchk + ")</td>";
+							+ "</a> [" + bchk + "]</td>";
 				} else {
 					content += "<td><a href='detail?idx=" + item.board_idx
 							+ "&type=" + item.board_type + "&pri="
-							+ item.private_bbs + "'>" + item.subject + "</a>("
-							+ bchk + ")</td>";
+							+ item.private_bbs + "'>" + item.subject + "</a> ["
+							+ bchk + "]</td>";
 				}
 			} else {
 				content += "<td><a href='detail?idx=" + item.board_idx

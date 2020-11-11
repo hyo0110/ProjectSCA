@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>SCA Service</title>
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<style>
 			table,th,td{
@@ -29,33 +29,29 @@
 			height: 500px;
 			border: 1px solid gray;
 			padding 5px;
-			overflow: auto; 
+			overflow: auto;
+			text-overflow: ellipsis;
 			}
 			
 		</style>
 	</head>
 	<body>
-			<c:import url="../navi.jsp"></c:import> 
-	<!--  get은 500자로 제한되어있음 -->
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+
 		<form action="write" method = "post">
 		<input type="hidden" name ="type" value="${type}">
-			<table class="board">
-				<tr>
-					<c:if test="${sessionScope.loginid ne ''}">
-					<th>작성자</th>
-					<td>
-					${sessionScope.loginid}
+		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
+			<table class="table table-hover">
+				<c:if test="${sessionScope.loginid ne ''}">
 					<input type=hidden name=id value="${sessionScope.loginid}">
-				</td>
 				</c:if>
-				</tr>
 				<tr>
 					<th>제목</th>
 					<td><input type = "text" name = "subject"/></td>
 				</tr>
 				<tr>
 					<th>내용</th> 
-					<td>
+					<td style="width: 80%;">
 						<div id="editable" contenteditable="true"></div> 
 						<input id = "content" type="hidden" name="content" value=""/>
 					</td>
@@ -68,9 +64,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan = "2"><input type = "button" onclick = "save()" value = "저장"/></td>
+					<td colspan = "2">
+					<input type = "button" onclick = "save()" value = "저장"/>
+					<input type="button" value="뒤로가기" onclick="goback()">
+					</td>
 				</tr>
 			</table>
+			</div>
 		</form>
 	</body>
 	<script>
@@ -106,6 +106,10 @@
 					
 				}
 			});
+		}
+		
+		function goback() { //뒤로가기 버튼
+			window.history.back();
 		}
 	</script>
 </html>

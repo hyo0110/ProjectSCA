@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-회원정보수정</title>
+<title>SCA Service</title>
 <style>
 ul {
 	padding : 0;
@@ -22,6 +22,7 @@ a {
 	padding : 0;
 	margin : 0;
 }
+
 .container {
 	display : inline-block;
 }
@@ -29,59 +30,117 @@ a {
 	float : left;
 }
 .snb_items {
-	border: 1px solid #3d3d3d;
-	width : 140px;
+	/* border: 1px solid #3d3d3d; */
+	width : 250px;
 }
 .snb_item {
-	width : 140px;
+	width : 250px;
 	height: 40px;
-	border-bottom : 1px solid #3d3d3d;
+	/* border-bottom : 1px solid #3d3d3d; */
 	text-align : center;
+	border\-radius: 0px 25px 25px 0px; 
+	/* border: 1px solid lightgray; */
 }
 .snb_item a {
 	width : 140px;
 	height: 40px;
-	color : #3d3d3d;
+	/* color : #3d3d3d; */
 	line-height : 40px;
 	vertical-align : middle;
 }
 .snb_item:last-child {
 	border-bottom : 0;
 }
+/* 여기까지 좌측 네비바 */
 .detail_wrap {
 	float:left;
-	width : 420px;
+	width : 850px;
+	height: 500px;
+	position: absolute;
+    left: 50%;
+    top: 38%;
+    transform: translate(-50%,-50%);
 }
 .detail {
 width : 100%;
 height : 100%;
-	border : 1px solid #3d3d3d;
-	background-color : #ededed;
+/* border : 1px solid #3d3d3d; */
+/* background-color : #ededed; */
 }
-
+input{
+border: 0;
+border-bottom:1px solid lightgray;
+}
+input:focus{
+        border-bottom:1px solid #4C4C4C;
+        outline: none;
+    }
+button{
+			background-color:#0064FF;
+            color:white;
+            padding:10px 80px;
+            color:#fff;
+            font-size:17px;
+            border: none;
+            cursor: pointer;           
+}    
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
-<c:import url="../navi.jsp"></c:import>
-			<div class="snb_wrap">
-				<ul class="snb_items">
-					<li class="snb_item"><a href="mypage_login">회원정보</a></li>
-					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
-					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
-				</ul>
-			</div>
-			<div class="detail_wrap"> 
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+			<div style="margin-top:50px;">
+				<div class="snb_wrap">
+					<ul class="snb_items">
+						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_login">회원정보</a></li>
+						<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
+						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
+					</ul>
+				</div>
+			</div>	
+			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray;">
 				<div class="detail">
+				<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보 수정</h3>
 				<form action="updateMember" method="GET" onsubmit="return pwchk()">
-					<p>아이디: <input type ="text" name="user_id" value="${member.id}" readonly></p>
-					<p>비밀번호 :<input type ="password" name="user_pw"></p>
-					<p>비밀번호확인 : <input type ="password" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span></p>
-					<p>이름 :<input type ="text" name="user_name" value="${member.name}"></p>
-					<p>이메일 :<input type ="email" name="user_email" value="${member.email}"></p>
-
-					<input type= "submit" value ="확인" />
-					<input type="button" onclick="location.href='mypage_detail'" value="취소"/>
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">아이디</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> 
+							<input type ="text" name="user_id" style=" border-bottom: none;" value="${member.id}" readonly/>
+						</div>
+					</div>
+					<%-- <p>아이디: <input type ="text" name="user_id" value="${member.id}" readonly></p> --%>
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">비밀번호</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> 
+							<input type ="password" name="user_pw"/>
+						</div>
+					</div>
+					<!-- <p>비밀번호 :<input type ="password" name="user_pw"></p> -->
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">비밀번호 확인</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> 
+							<input type ="password" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span>
+						</div>
+					</div>
+					<!-- <p>비밀번호확인 : <input type ="password" name="user_pw2" onchange="pwchk()"/><span id="pwchk"></span></p> -->
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">이름</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> 
+							<input type ="text" name="user_name" value="${member.name}">
+						</div>
+					</div>
+					<%-- <p>이름 :<input type ="text" name="user_name" value="${member.name}"></p> --%>
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">이메일</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> 
+							<input type ="email" name="user_email" value="${member.email}">
+						</div>
+					</div>
+					<%-- <p>이메일 :<input type ="email" name="user_email" value="${member.email}"></p> --%>
+					<div style="text-align: center; margin-top: 18px;">
+						<button type= "submit" style="margin-right: 30px;">확인</button>
+						<button type="button" onclick="location.href='mypage_detail'">취소</button>
+					</div>
 					</form>
 				</div>
 			</div>

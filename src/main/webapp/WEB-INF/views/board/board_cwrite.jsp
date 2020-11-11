@@ -6,7 +6,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>SCA Service</title>
 		<style>
 
 			table,th,td{
@@ -35,7 +35,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<c:import url="../navi.jsp"></c:import> 
+		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		<form action="cwrite" method = "post">
 		<input type="hidden" name ="type" value="${type}">
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
@@ -52,8 +52,8 @@
 					</td>
 				</tr>
 				<tr>
-					<th>내용</th>
-					<td><textarea name = "content" id="content"></textarea></td>
+					<th >내용</th>
+					<td style="width: 80%;"><textarea name = "content" id="content"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan = "2">

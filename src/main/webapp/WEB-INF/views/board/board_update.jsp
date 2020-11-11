@@ -70,6 +70,7 @@
 					
 					</td>
 				</tr>
+				
 			</table>
 			</div>
 		</form>
@@ -77,17 +78,19 @@
 <script>
 
  		//뒤로가기 막기
-	     history.pushState(null,'','updateForm');
+	    history.pushState(null,'',location.href);
 		window.onpopstate = function(){
-			history.go(0);
+		 	history.go(0);
 			alert("저장하기전엔 뒤로 가실 수 없습니다.");
 		}			
-	
+ 		
+
+ 		
 		//삭제버튼 붙이기
 		$(document).ready(function(){
 			$("#editable img").each(function(idx,item){//idx = 갯수 , item = ???
 				console.log(idx,item);
-				$(item).after("<input id='${path}' type='button' value='삭제' onclick='del(this)'><br/>");
+				 $(item).after("<input id='${path}' type='button' value='삭제' onclick='del(this)'><br/>");
 			});
 		});
 

@@ -26,49 +26,49 @@
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 </head>
 <body>
-<c:import url="../navi.jsp"></c:import>
-<div id="summary">
-	<ul>
-		<li>이 검색은 최근 6개월(2020년 상반기) 기준으로 검색됩니다.</li>
-		<li>적합한 결과가 2개 이상인 경우, 1개만 검색 결과로 나옵니다. (가나다 순)</li>
-	</ul>
-</div>
-<div>
-  <form method="get" action="whereresult" onsubmit="return countcheck()">
-      <div id="age">
-	      <h4>Age(최대 3개 선택 가능합니다)</h4>      
-	      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_10" value="10">10대</label>
-	      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_20" value="20">20대</label>
-	      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_30" value="30">30대</label>
-	      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_40" value="40">40대</label>
-	      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_50" value="50">50대</label>
-	      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_60" value="60">60대 이상</label>
-	      <label><input class="age_total" onclick="CountChecked(this)" type="checkbox" name="age_total" value="total">전체</label>
-      		<input class="age" type="hidden" name="age_cnt" value=""/>
-      </div>
-      
-      <div id="day">
-       <h4>Day(최대 1개 선택 가능합니다)</h4>
-      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_1" value="mon_thu">월~목</label>
-      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_2" value="fri_sun">금~일</label>
-      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_total" value="day_total">전체</label>
-       </div>
-       
-       <div id="time">
-      <h4>Time(최대 3개 선택 가능합니다)</h4>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_1" value="1">새벽(00~06)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_2" value="2">오전(06~11)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_3" value="3">점심(11~14)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_4" value="4">오후(14~17)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_5" value="5">저녁(17~21)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_6" value="6">밤(21~24)</label>
-      <label><input class="time_total" onclick="CountChecked_1(this)" type="checkbox" name="time_total" value="전체">전체</label>
-      <input class="time" type="hidden" name="time_cnt" value=""/>
-      </div>
-      
-      <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
-    </form>
-</div>
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+	<div id="summary">
+		<ul>
+			<li>이 검색은 최근 6개월(2020년 상반기) 기준으로 검색됩니다.</li>
+			<li>적합한 결과가 2개 이상인 경우, 1개만 검색 결과로 나옵니다. (가나다 순)</li>
+		</ul>
+	</div>
+	<div>
+	  <form method="get" action="whereresult" onsubmit="return countcheck()">
+	      <div id="age">
+		      <h4>Age(최대 3개 선택 가능합니다)</h4>      
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_10" value="10">10대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_20" value="20">20대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_30" value="30">30대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_40" value="40">40대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_50" value="50">50대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_60" value="60">60대 이상</label>
+		      <label><input class="age_total" onclick="CountChecked(this)" type="checkbox" name="age_total" value="total">전체</label>
+	      		<input class="age" type="hidden" name="age_cnt" value=""/>
+	      </div>
+	      
+	      <div id="day">
+	       <h4>Day(최대 1개 선택 가능합니다)</h4>
+	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_1" value="mon_thu">월~목</label>
+	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_2" value="fri_sun">금~일</label>
+	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_total" value="day_total">전체</label>
+	       </div>
+	       
+	       <div id="time">
+	      <h4>Time(최대 3개 선택 가능합니다)</h4>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_1" value="1">새벽(00~06)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_2" value="2">오전(06~11)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_3" value="3">점심(11~14)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_4" value="4">오후(14~17)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_5" value="5">저녁(17~21)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_6" value="6">밤(21~24)</label>
+	      <label><input class="time_total" onclick="CountChecked_1(this)" type="checkbox" name="time_total" value="전체">전체</label>
+	      <input class="time" type="hidden" name="time_cnt" value=""/>
+	      </div>
+	      
+	      <p><input type="submit" value="Submit"> <input type="reset" value="Reset"></p>
+	    </form>
+	</div>
 
 
 

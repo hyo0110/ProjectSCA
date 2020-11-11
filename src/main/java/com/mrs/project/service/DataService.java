@@ -65,13 +65,16 @@ public class DataService {
 	
 
 	public ModelAndView where_result(HashMap<String, String> param, ModelAndView mav) throws Exception {
-
+		int age_cnt = Integer.parseInt(param.get("age_cnt")); 
+		int time_cnt = Integer.parseInt(param.get("time_cnt")); 
+		
 		if (!param.isEmpty()) {
 			logger.info("params : " + param);//불러온 파라메이터
 			
 			// 1. R connection 실행
 			RConnection conn = new RConnection();
 			conn.eval("df<-data.frame()");
+			//age 시작
 			if (param.get("age_total") != null) {
 				conn.eval("library(KoNLP)");
 				conn.eval("library(dplyr)");
@@ -169,10 +172,12 @@ public class DataService {
 				conn.eval("df_1<-select(df_1, region, score)");
 				conn.eval("df<-rbind(df,df_1)");
 			}
-			//day 선택
-			if (param.get("day") != null) {//day parameter가 있을때
-				// 2. R 코드 실행
-				if(param.get("day")=="mon_thu") {//day가 월~목
+			
+			conn.eval("df<-df %>% group_by(region) %>% summarise(score=sum(score)/"+age_cnt+")");
+			//age 끝
+			
+			//day 시작
+				if(param.get("day_1")!=null) {//day가 월~목
 					conn.eval("library(KoNLP)");
 					conn.eval("library(dplyr)");
 					conn.eval("library(stringr)");
@@ -185,7 +190,8 @@ public class DataService {
 					conn.eval("df_1<-cbind(new_day,score)");
 					conn.eval("df_1<-select(df_1, region, score)");
 					conn.eval("df<-rbind(df,df_1)");
-				}else {//day 금~일
+				}
+				if (param.get("day_2")!=null) {//day 금~일
 					conn.eval("library(KoNLP)");
 					conn.eval("library(dplyr)");
 					conn.eval("library(stringr)");
@@ -199,9 +205,25 @@ public class DataService {
 					conn.eval("df_1<-select(df_1, region, score)");
 					conn.eval("df<-rbind(df,df_1)");
 				}
-			}//about day end
+				
+				if (param.get("day_total")!=null) {//day 금~일
+					conn.eval("library(KoNLP)");
+					conn.eval("library(dplyr)");
+					conn.eval("library(stringr)");
+					conn.eval("library(plotly)");
+					conn.eval("day<-read.csv(\"C:/Users/aa/Desktop/2차 프로젝트 관련/유동인구 xcel/202001_day_people_1.csv\")");
+					conn.eval("day$day_total_cnt<-ifelse(day$day_total_cnt > 120000000, NA, day$day_total_cnt)");
+					conn.eval("new_day<- na.omit(day) %>% arrange(desc(day_total_cnt)) %>% head(10)");
+					conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
+					conn.eval("df_1<-cbind(new_day,score)");
+					conn.eval("df_1<-select(df_1, region, score)");
+					conn.eval("df<-rbind(df,df_1)");
+				}
+				
+			//day 끝
 			
 			//about time start
+			
 			if (param.get("time_total") != null) {
 				conn.eval("library(KoNLP)");
 				conn.eval("library(dplyr)");
@@ -298,6 +320,7 @@ public class DataService {
 				conn.eval("df_1<-select(df_1, region, score)");
 				conn.eval("df<-rbind(df,df_1)");
 			}
+			conn.eval("df<-df %>% group_by(region) %>% summarise(score=sum(score)/"+time_cnt+")");
 			//about time end
 			
 			conn.eval("df<-df %>% group_by(region) %>% summarise(score=sum(score))");

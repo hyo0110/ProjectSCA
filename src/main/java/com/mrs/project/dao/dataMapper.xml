@@ -5,7 +5,13 @@
 	
 	<!-- 베스트 정보 불러오기  -->
 	<select id="what_result" resultType="data">
-	SELECT * FROM market_total_data WHERE region=#{param1} AND reg_date = '202001'
+		SELECT * FROM market_total_data WHERE region=#{param1} AND reg_date = '202001'
 	</select>
+	
+	<!-- 선택한 반기 정보 가져오기/ 일단은 지금은 지역구, 데이터코드(영업상태), 상권상태만 가져오는 중 -->
+	<select id="status" resultType="data">
+		SELECT total.region, total.data_code, total.mk_status FROM MARKET_TOTAL_DATA total, MARKET_REGION region WHERE region.REGION = #{param1} AND reg_date = #{param2} AND total.region = region.REGION
+	</select>
+
 	
 </mapper>

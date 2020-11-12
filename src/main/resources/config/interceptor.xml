@@ -15,7 +15,9 @@
 		<mvc:mapping path="/typelist*"/>
 		<mvc:mapping path="/admin*"/>	
 		<mvc:mapping path="/mypage*"/>
-		<mvc:mapping path="/detail*"/>
+		<mvc:mapping path="/detail*"/>		
+		<mvc:mapping path="/what*"/>		
+		<mvc:mapping path="/where*"/>
 		<!-- 이동시킬 클래스 지정 -->
 		<bean class="com.mrs.project.service.LoginInterceptor"></bean>
 	

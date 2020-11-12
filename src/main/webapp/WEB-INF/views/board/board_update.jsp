@@ -76,8 +76,6 @@
 			alert("저장하기전엔 뒤로 가실 수 없습니다.");
 		}			
  		
-
- 		
 		//삭제버튼 붙이기
 		$(document).ready(function(){
 			$("#editable img").each(function(idx,item){//idx = 갯수 , item = ???
@@ -119,9 +117,13 @@
 		
 		//저장시키기
 		function save(){
-			$("#editable input[type='button']").remove();
-			$("#content").val($("#editable").html()); 
-			$("form").submit(); 
-		}	
+			if(confirm("등록하시겠습니까?")==true){
+				$("#editable input[type='button']").remove();
+				$("#content").val($("#editable").html()); 
+				$("form").submit(); 
+			}else{
+				
+			}
+		}
 </script>
 </html>

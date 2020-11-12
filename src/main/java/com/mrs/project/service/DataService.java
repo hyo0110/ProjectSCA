@@ -54,7 +54,7 @@ public class DataService {
 		return result;
 	}
 
-	// 반기별 업종 불러오기 => 사실 이거로 다 해야하는데... 일단 html 삽입하는 거부터
+	// 반기별 업종 불러오기 일자, 지역에 따라. 
 	public HashMap<String, Object> openbiz(String region, String reg_date) throws Exception {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		DataDTO status = dao.status(region, reg_date);
@@ -86,7 +86,6 @@ public class DataService {
 		conn.eval("유동인구수 <- c(age$X10대, age$X20대, age$X30대, age$X40대, age$X50대, age$X60대)");
 		conn.eval("age_df <- data.frame(나이대, 유동인구수)");
 		conn.eval("age_result <- plot_ly(age_df, x=~나이대, y=~유동인구수)");
-		
 		try {	conn.eval("saveWidget(age_result, age_path, libdir='lib')");}catch(Exception e){
 			//e.printStackTrace();
 		}
@@ -98,8 +97,7 @@ public class DataService {
 		conn.eval("유동인구수=c(day$monday,day$tuesday,day$wednesday,day$thursday,day$friday,day$saturday,day$sunday)");
 		conn.eval("day_df <- data.frame(요일,유동인구수)");
 		conn.eval("day_df$요일 <- factor(day_df$요일, levels = c('월','화','수','목','금','토','일'))");
-		conn.eval("day_result <- plot_ly(day_df, x=~요일, y=~유동인구수)");		
-		
+		conn.eval("day_result <- plot_ly(day_df, x=~요일, y=~유동인구수)");	
 		try {	conn.eval("saveWidget(day_result, day_path, libdir='lib')");}catch(Exception e){
 			//e.printStackTrace();
 		}
@@ -111,16 +109,14 @@ public class DataService {
 		conn.eval("유동인구수 = c(time$time_1,time$time_2,time$time_3,time$time_4,time$time_5,time$time_6)");
 		conn.eval("time_df <- data.frame(시간대,유동인구수)");
 		conn.eval("time_df$시간대 <- factor(time_df$시간대, levels = c('새벽','오전','점심','오후','저녁','밤'))");
-		conn.eval("time_result <- plot_ly(time_df, x=~시간대, y=~유동인구수) %>% add_lines()");	
-		
+		conn.eval("time_result <- plot_ly(time_df, x=~시간대, y=~유동인구수) %>% add_lines()");		
 		try {	conn.eval("saveWidget(time_result, time_path, libdir='lib')");}catch(Exception e){
 			//e.printStackTrace();
-		}
-		
+		}		
 		conn.close(); // 자원닫기 어예
 		
 		result.put("status", status);
-		result.put("age_html", "/photo/" + age_html);
+		result.put("age_html", "/photo/" + age_html); //파일 서비스 한거 설정 그냥 같이 가기위해!
 		result.put("day_html", "/photo/" + day_html);
 		result.put("time_html", "/photo/" + time_html);
 		return result;

@@ -8,6 +8,10 @@
 <meta charset="UTF-8">
 <title>게시글 목록</title>
       <style>
+      @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+		/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+		/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
          table,th,td{
          border: 1px solid black;
          padding: 10px;

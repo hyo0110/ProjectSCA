@@ -38,19 +38,19 @@
       
       <div id="day">
        <h4>Day(최대 1개 선택 가능합니다)</h4>
-      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_1" value="mon_thu">월~목</label>
-      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_2" value="fri_sun">금~일</label>
-      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_total" value="day_total">전체</label>
+      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_1" value="월~목">월~목</label>
+      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_2" value="금~일">금~일</label>
+      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_total" value="전체">전체</label>
        </div>
        
        <div id="time">
       <h4>Time(최대 3개 선택 가능합니다)</h4>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_1" value="1">새벽(00~06)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_2" value="2">오전(06~11)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_3" value="3">점심(11~14)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_4" value="4">오후(14~17)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_5" value="5">저녁(17~21)</label>
-      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_6" value="6">밤(21~24)</label>
+      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_1" value="새벽(00~06)">새벽(00~06)</label>
+      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_2" value="오전(06~11)">오전(06~11)</label>
+      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_3" value="점심(11~14)">점심(11~14)</label>
+      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_4" value="오후(14~17)">오후(14~17)</label>
+      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_5" value="저녁(17~21)">저녁(17~21)</label>
+      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_6" value="밤(21~24)">밤(21~24)</label>
       <label><input class="time_total" onclick="CountChecked_1(this)" type="checkbox" name="time_total" value="전체">전체</label>
       <input class="time" type="hidden" name="time_cnt" value=""/>
       </div>
@@ -73,7 +73,7 @@
 	var totalChecked_day= 0; // 설정 끝
 	
 	 var age_total_chk = $("#age .age_total").is(":checked");
-	
+	 var time_total_chk = $("#time .time_total").is(":checked");
 	
 
 	function CountChecked(field) {
@@ -163,8 +163,8 @@
     });
 
     $("#time").click(function(){
-        var age_total_chk = $("#time .age_total").is(":checked");//.attr('checked');
-        if(age_total_chk){
+        var time_total_chk = $("#time .time_total").is(":checked");//.attr('checked');
+        if(time_total_chk){
         	$("#time .time_total input").prop('checked', true);
         	//$("#age .age input").prop('checked', false);
         	$(".time").prop('checked',false);

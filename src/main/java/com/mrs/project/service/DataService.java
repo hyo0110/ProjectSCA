@@ -74,7 +74,10 @@ public class DataService {
 			// 1. R connection 실행
 			RConnection conn = new RConnection();
 			conn.eval("df<-data.frame()");
+			conn.eval("df_4<-data.frame()");
+			conn.eval("df_5<-data.frame()");
 			//age 시작
+			
 			if (param.get("age_total") != null) {
 				conn.eval("library(KoNLP)");
 				conn.eval("library(dplyr)");
@@ -172,7 +175,6 @@ public class DataService {
 				conn.eval("df_1<-select(df_1, region, score)");
 				conn.eval("df<-rbind(df,df_1)");
 			}
-			
 			conn.eval("df<-df %>% group_by(region) %>% summarise(score=sum(score)/"+age_cnt+")");
 			//age 끝
 			
@@ -187,9 +189,9 @@ public class DataService {
 					conn.eval("day$mon_thu<-ifelse(day$mon_thu > 60000000,NA,day$mon_thu)");
 					conn.eval("new_day<- na.omit(day) %>% arrange(desc(mon_thu)) %>% head(10)");
 					conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-					conn.eval("df_1<-cbind(new_day,score)");
-					conn.eval("df_1<-select(df_1, region, score)");
-					conn.eval("df<-rbind(df,df_1)");
+					conn.eval("df_2<-cbind(new_day,score)");
+					conn.eval("df_2<-select(df_2, region, score)");
+					conn.eval("df_4<-rbind(df_4,df_2)");
 				}
 				if (param.get("day_2")!=null) {//day 금~일
 					conn.eval("library(KoNLP)");
@@ -201,9 +203,9 @@ public class DataService {
 					conn.eval("day$fri_sun<-ifelse(day$fri_sun > 50000000,NA,day$fri_sun)");
 					conn.eval("new_day<- na.omit(day) %>% arrange(desc(fri_sun)) %>% head(10)");
 					conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-					conn.eval("df_1<-cbind(new_day,score)");
-					conn.eval("df_1<-select(df_1, region, score)");
-					conn.eval("df<-rbind(df,df_1)");
+					conn.eval("df_2<-cbind(new_day,score)");
+					conn.eval("df_2<-select(df_2, region, score)");
+					conn.eval("df_4<-rbind(df_4,df_2)");
 				}
 				
 				if (param.get("day_total")!=null) {//day 금~일
@@ -215,9 +217,9 @@ public class DataService {
 					conn.eval("day$day_total_cnt<-ifelse(day$day_total_cnt > 120000000, NA, day$day_total_cnt)");
 					conn.eval("new_day<- na.omit(day) %>% arrange(desc(day_total_cnt)) %>% head(10)");
 					conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-					conn.eval("df_1<-cbind(new_day,score)");
-					conn.eval("df_1<-select(df_1, region, score)");
-					conn.eval("df<-rbind(df,df_1)");
+					conn.eval("df_2<-cbind(new_day,score)");
+					conn.eval("df_2<-select(df_2, region, score)");
+					conn.eval("df_4<-rbind(df_4,df_2)");
 				}
 				
 			//day 끝
@@ -234,9 +236,9 @@ public class DataService {
 				conn.eval("time$time_total_cnt<-ifelse(time$time_total_cnt > 120000000,NA,time$time_total_cnt)");
 				conn.eval("new_time<- na.omit(time) %>% arrange(desc(time_total_cnt)) %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(new_time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(new_time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
 			}
 			if (param.get("time_1") != null) {
 				conn.eval("library(KoNLP)");
@@ -247,9 +249,9 @@ public class DataService {
 				conn.eval("time<-time %>% arrange(desc(time_1_cnt))");
 				conn.eval("time<-time %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
 			}
 			if (param.get("time_2") != null) {
 				conn.eval("library(KoNLP)");
@@ -261,9 +263,9 @@ public class DataService {
 				conn.eval("time$time_2_cnt<-ifelse(time$time_2_cnt > 26000000,NA,time$time_2_cnt)");
 				conn.eval("new_time<- na.omit(time) %>% arrange(desc(time_2_cnt)) %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(new_time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(new_time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
 			}
 			
 			if (param.get("time_3") != null) {
@@ -276,9 +278,9 @@ public class DataService {
 				conn.eval("time$time_3_cnt<-ifelse(time$time_3_cnt > 20000000,NA,time$time_3_cnt)");
 				conn.eval("new_time<- na.omit(time) %>% arrange(desc(time_3_cnt)) %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(new_time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(new_time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
 			}
 			if (param.get("time_4") != null) {
 				conn.eval("library(KoNLP)");
@@ -290,9 +292,9 @@ public class DataService {
 				conn.eval("time$time_4_cnt<-ifelse(time$time_4_cnt > 20000000,NA,time$time_4_cnt)");
 				conn.eval("new_time<- na.omit(time) %>% arrange(desc(time_4_cnt)) %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(new_time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(new_time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
 			}
 			if (param.get("time_5") != null) {
 				conn.eval("library(KoNLP)");
@@ -304,9 +306,9 @@ public class DataService {
 				conn.eval("time$time_5_cnt<-ifelse(time$time_5_cnt > 20000000,NA,time$time_5_cnt)");
 				conn.eval("new_time<- na.omit(time) %>% arrange(desc(time_5_cnt)) %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(new_time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(new_time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
 			}
 			if (param.get("time_6") != null) {
 				conn.eval("library(KoNLP)");
@@ -314,37 +316,123 @@ public class DataService {
 				conn.eval("library(stringr)");
 				conn.eval("library(plotly)");
 				conn.eval("time<-read.csv(\"C:/Users/aa/Desktop/2차 프로젝트 관련/유동인구 xcel/202001_time_people.csv\")");
-				conn.eval("time<-time %>% arrange(desc(time_6_cnt) %>% head(10))");
+				conn.eval("time<-time %>% arrange(desc(time_6_cnt)) %>% head(10)");
 				conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
-				conn.eval("df_1<-cbind(time,score)");
-				conn.eval("df_1<-select(df_1, region, score)");
-				conn.eval("df<-rbind(df,df_1)");
+				conn.eval("df_3<-cbind(time,score)");
+				conn.eval("df_3<-select(df_3, region, score)");
+				conn.eval("df_5<-rbind(df_5,df_3)");
+				
+				/*
+				 * conn.
+				 * eval("time<-read.csv(\"C:/Users/aa/Desktop/2차 프로젝트 관련/유동인구 xcel/202001_time_people.csv\")"
+				 * ); conn.eval("time<-time %>% arrange(desc(time_6_cnt) %>% head(10)");
+				 * conn.eval("score<-c(10,9,8,7,6,5,4,3,2,1)");
+				 * conn.eval("df_3<-cbind(time,score)");
+				 * conn.eval("df_3<-select(df_3, region, score)");
+				 * conn.eval("df_5<-rbind(df_5,df_3)");
+				 */
 			}
-			conn.eval("df<-df %>% group_by(region) %>% summarise(score=sum(score)/"+time_cnt+")");
+			conn.eval("df_5<-df_5 %>% group_by(region) %>% summarise(score=sum(score)/"+time_cnt+")");
 			//about time end
 			
+			//
+			conn.eval("df<- rbind(df, df_4, df_5)");
 			conn.eval("df<-df %>% group_by(region) %>% summarise(score=sum(score))");
 			conn.eval("df<-df %>% arrange(desc(score))");
 			
 			REXP exp = conn.eval("df");
 			RList list = exp.asList();
-			conn.close();
+			//지역구 별 점수 뽑기 end
+			
+			
+			
+			String best_region= list.at(0).asString();
+			
+			conn.eval("market<-read.csv(\"C:/Users/aa/Desktop/2차 프로젝트 관련/유동인구 xcel/202001_market_1.csv\")");
+			conn.eval("market_1<-market %>% select(지역구_명, 업태구분명, accept)");
+			conn.eval("market_1<-market_1 %>% filter(지역구_명=='"+best_region+"') %>% arrange(desc(accept))");
+			exp = conn.eval("market_1");
+			RList list_market = exp.asList();
+			
+			
+			for(int i = 0; i<list_market.size();i++) {
+				// list.at(i).? 컬럼의 내용을 하나씩 뽑아내기
+				list_market.at(i).asStrings();
+				logger.info(i+"번째 리스트");
+				for(String item : list_market.at(i).asStrings()) {
+					logger.info(item);
+				}
+			}
+			String Sectors = list_market.at(1).asString();
+			
+			/*
+			  for(int i = 0; i<list.size();i++) {
+				  list.at(i).asStrings();
+				  for(String item : list.at(i).asStrings()) {
+					  if (i==0) { 
+						  conn.eval("region<-region %>% c("+item+")");
+					}else { 
+						conn.eval("score<-c("+item+")");
+						}
+					  }
+				  }
+			  conn.eval("result<-cbind(region,score)");
+			  conn.eval("result<-as.data.frame(result)");
+			  conn.eval("result<-plot_ly(result, x=~region, y=~score, type='bar')");
+			try {
+				  conn.eval("saveWidget(result,'C:/upload/result.html',libdir = 'lib')");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			 */
+			
+			conn.eval("library(htmlwidgets)");
+			conn.eval("region_df<-data.frame()");
+			conn.eval("score_df<-data.frame()");
 			for(int i = 0; i<list.size();i++) {
 				// list.at(i).? 컬럼의 내용을 하나씩 뽑아내기
 				list.at(i).asStrings();
 				logger.info(i+"번째 리스트");
 				for(String item : list.at(i).asStrings()) {
-					logger.info(item);
+					if (i==0) {
+						System.out.println("i가 0일때");
+						logger.info(item);
+						conn.eval("region<-c('"+item+"')");
+						conn.eval("region<-as.data.frame(region)");
+						conn.eval("region_df<-rbind(region_df,region)");
+					}
+					if (i==1) {
+						System.out.println("i가 1일때");
+						logger.info(item);
+						conn.eval("region_score<-c("+item+")");
+						conn.eval("region_score<-as.data.frame(region_score)");
+						conn.eval("score_df<-rbind(score_df,region_score)");
+					}
 				}
 			}
-			String first= list.at(0).asString();
-			mav.addObject("msg",first);
+			conn.eval("real_score<-cbind(region_df,score_df)");
+			conn.eval("real_score<-real_score %>% head(10)");
+			conn.eval("real_score<-plot_ly(real_score, x=~region, y=~region_score, type='bar') %>%" + 
+					"  layout(title='region_score', xaxis=list(title='지역구'),yaxis=list(title='점수'))");
+			
+			
+			try {
+				  conn.eval("saveWidget(real_score,'C:/upload/result.html',libdir = 'lib')");
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			conn.close();
+			// eval안에 주석까지 넣어서 돌리면 오류가 나요! 주석은 빼고 넣어주세여
+			
+			
+			mav.addObject("param", param);
+			mav.addObject("msg",best_region);
+			mav.addObject("Sectors",Sectors);
+			mav.addObject("fileName", "result.html"); 
 			mav.setViewName("main/main_where_result");
 			
-		} else{//param is 공백
-			mav.addObject("msg", "조건을 선택해주세요");
-			mav.setViewName("main/main_where_result");
-		}
+		} 
 		return mav;
 	}
 

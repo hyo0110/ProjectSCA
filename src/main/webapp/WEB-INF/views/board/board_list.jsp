@@ -6,28 +6,21 @@
 <head>
 <meta charset="UTF-8">
 <title>SCA Service</title>
-
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-
-body{
-	font-family: 'Noto Sans KR', sans-serif;
-}
-		#writebutton{
-			background-color: #0064FF;
-			color: white;
-		} 
-
-
-
-</style>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+body{
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+</style>
+	
 </head>
 <body>
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
@@ -37,44 +30,42 @@ body{
 		<c:if test="${type==1}">
 			<h1 style="position: relative; margin-top: 1%; left:15px;">고객센터</h1>
 		</c:if>
-			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px;">
-				  <table class="table table-hover">
-					<thead style="background-color: #0064FF; color: white;  font-family : '도현', 산세 리프;">
+			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px; margin-bottom: -16px; ">
+				  <table class="table table-hover table-bordered">
+					<thead style="font-family : '도현', 산세 리프;">
 						<tr>
-							<th style="width: 5%;">글번호</th>
+							<th style="width: 5%; text-align: center;">글번호</th>
 							<th style="width: 45%;">제목</th>
-							<th style="width: 10%;">작성자</th>
+							<th style="width: 10%; text-align: center;">작성자</th>
 							<th style="width: 15%;">작성일</th>
-							<th style="width: 5%;">조회수</th>
+							<th style="width: 5%; text-align: center;">조회수</th>
 						</tr>
 					</thead>
 					<tbody id="boardList">
 						<!--  리스트 출력 -->
 					</tbody>
-					<tr>
-						<td colspan="4" style="text-align: center;">
-							<form action="opSearch" method="GET">
-								<select name="search_option">
-									<option value="all"
-										<c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
-									<option value="title"
-										<c:if test="${search_option == 'title'}"></c:if>>제목</option>
-									<option value="content"
-										<c:if test="${search_option == 'content'}"></c:if>>내용</option>
-								</select> 
-								<input type="text" name="keyword" value="${keyword}" />
-								<input 	type="submit" value="검색" />
-								<input type="hidden" name="type" value="${type}" />
-							</form>
-						</td>
-						<td style="text-align: right;">
-							<button onclick="location.href='writeForm?type=${type}'" id="writebutton">글쓰기</button>
-						</td>
-					</tr>
-
 				</table>
 			</div>
-			<div class="container"   style="position: absolute; left: 35%;">
+			<div style="min-width: 1795px;left: 52px;background-color:#F6F6F6;height: 25px;position: relative;padding-right: 5px;padding-left: 5px; margin-bottom: 1%;"></div>
+			
+			<div style="position: relative; text-align: center;">
+			<form action="opSearch" method="GET">
+				<select name="search_option">
+					<option value="all"
+						<c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
+					<option value="title"
+						<c:if test="${search_option == 'title'}"></c:if>>제목</option>
+					<option value="content"
+						<c:if test="${search_option == 'content'}"></c:if>>내용</option>
+				</select> 
+				<input type="text" name="keyword" value="${keyword}" />
+				<input 	type="submit" value="검색" style="border: 1px solid #dee2e6;" class="btn btn-default"/>
+				<input type="hidden" name="type" value="${type}" />
+			</form>
+			</div>
+			
+			<button onclick="location.href='writeForm?type=${type}'"  style="position: relative;text-align: center;left: 90%;top: -27px; border: 1px solid #dee2e6;" class="btn btn-default">글쓰기</button>
+			<div class="container"   style="position: absolute; left: 38%;">
 				<nav arial-label="Page navigation" style="text-align: center">
 					<ul class="pagination" id="pagination"></ul>
 				</nav>
@@ -112,15 +103,14 @@ body{
 				var type = data.type;
 				console.log(type);
 
-				listPrint(data.list);//게시물 그리기
+				listPrint(data.list);
 				console.log(data.range);
 				//플러그인 사용
 				$("#pagination").twbsPagination({
-					startPage : data.currPage, //시작페이지
-					totalPages : data.range, //만들 수 있는 총 페이지 수
-					visiblePages : 5, //보여줄 페이지 수 
-					onPageClick : function(event, page, type) { //event : 해당 이벤트 객체 / page : 내가 몇 페이지 클릭 했는지
-						//console.log(event);
+					startPage : data.currPage, 
+					totalPages : data.range, 
+					visiblePages : 5, 
+					onPageClick : function(event, page, type) { 
 						listCall(page);
 					}
 				});
@@ -149,20 +139,20 @@ body{
 				}
 				if (item.private_bbs == 1) { //비밀글 여부
 					private_bbs = "비밀글";
-					content += "<td>(" + private_bbs + ")<a href='detail?idx="
+					content += "<td>&nbsp;&nbsp;&nbsp;(" + private_bbs + ")<a href='detail?idx="
 							+ item.board_idx + "&type=" + item.board_type
 							+ "&pri=" + item.private_bbs + "'>" + item.subject
 							+ "</a> [" + bchk + "]</td>";
 				} else {
 					content += "<td><a href='detail?idx=" + item.board_idx
 							+ "&type=" + item.board_type + "&pri="
-							+ item.private_bbs + "'>" + item.subject + "</a> ["
+							+ item.private_bbs + "'>&nbsp;&nbsp;&nbsp;" + item.subject + "</a> ["
 							+ bchk + "]</td>";
 				}
 			} else {
 				content += "<td><a href='detail?idx=" + item.board_idx
 						+ "&type=" + item.board_type + "&pri="
-						+ item.private_bbs + "'>" + item.subject + "</a> ["+item.com_total+"]</td>";
+						+ item.private_bbs + "'>&nbsp;&nbsp;&nbsp;" + item.subject + "</a> ["+item.com_total+"]</td>";
 			}
 
 			content += "<td>" + item.id + "</td>";
@@ -171,10 +161,9 @@ body{
 			content += "<td>" + item.bHit + "</td>";
 			content += "</tr>";
 		});
-		$("#boardList").empty(); // 이걸 안하면 데이터가 계속 쌓이게 됨
-		//근데 empty를 하면 제목들이 다 날라가서 html5에서는 thead와 tbody로 해서 tbody에만 적용할 수 있음
+		$("#boardList").empty(); 
 		$("#boardList").append(content);
-		content = ""; //내용이 끝나면 append 내용을 비워줌 
+		content = ""; 
 	}
 
 	var msg = "${msg}";

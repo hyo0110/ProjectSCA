@@ -14,11 +14,23 @@
 				bottom: 46%;
 			}
 			
-			#writebutton{
-			background-color: rgb(0, 76, 128);
-			color: white;
-		} 
-			
+			 .likebutton{
+		      text-decoration: none;
+		      font-size:15px;
+		      color: gray;
+		      padding:12px 25px;
+		      margin:15px;
+		      display:inline-block;
+		      border-radius: 3px;
+		      border: 1px solid #dee2e6;
+		    }
+
+			 .likebutton:hover{
+			 text-decoration: none;
+			 background-color: #009fe3;
+			color:white;
+			 }
+
 		</style>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,28 +43,28 @@
 	<body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 	
-		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: 3%; font-size: 15px;">
-			<table  class="table table-hover">
-				<tr  style="background-color: #0064FF; color: white;">
+		<div class="col-md-6" style="position: relative; max-width: 80%; left: 10%; margin-top: 3%; font-size: 15px; min-height: 700px;">
+			<table  class="table table-hover table-bordered">
+				<tr  style="background-color: #AFAFAF; color: white;">
 				<th>작성일</th><td>${info.reg_date}</td>
 				<th>작성자</th><td>${info.id}</td>
 				<th>조회수</th><td>${info.bHit}</td>
 				</tr>
 				<tr><th>제목</th><td colspan = "5">${info.subject}</td></tr>
-				<tr style="border-bottom:1px solid black;"><th>내용</th><td colspan = "5" >${info.content}</td></tr>
+				<tr style="border-bottom:1px solid black; height: 600px;"><th>내용</th><td colspan = "5" >${info.content}</td></tr>
 			</table>
 		 </div> 
 			
 			<br/>
 			
-		<div class="col-md-6" style="position: relative; max-width: 90%; left: 2%; margin-top: -1%; font-size: 15px;">
-			<table  class="table table-borderless">
+		<div class="col-md-6" style="position: relative; max-width: 80%; left: 13%; margin-top: 0%; font-size: 15px;">
+			<table  class="table table-borderless" style=" max-width: 93%;">
 			<tbody id="comList">
 				<!-- 댓글 리스트 출력 -->
 			</tbody>
 			<tr id="pa">
 				<td id="paging" colspan="2"style="text-align: center;height: 63px;">
-					<div class="container"   style="position: absolute; left: 40%;">
+					<div class="container"   style="position: absolute; left: 36%;">
 						<nav arial-label="Page navigation" style="text-align: center">
 							<ul class="pagination" id="pagination"></ul>
 						</nav>
@@ -64,35 +76,39 @@
 				<c:choose>
 	            <c:when test="${info.board_type eq '1'}"> <!-- 고객센터일때 어드민만 작성가능 -->
 	            	<c:if test="${sessionScope.loginid eq 'admin'}">
-			            <div id="cominput" style="position: relative;left: 10%; margin-top: 3%;">
-							댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert() id="writebutton">	
+			            <div id="cominput" style="position: relative;left: 14%; margin-top: 3%;">
+							<h3>답변 </h3><br/>
+							<input type="text" value="" id="content" style="width:70%;height: 150px;">&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value="작성" onclick = insert() style="height: 152px; width: 100px;margin-left: -20px; border: 1px solid #dee2e6; margin-top: -5px;"class="btn btn-default">	
 						</div>
 					</c:if>
 	            </c:when>
 	             <c:when test="${info.board_type eq '0'}"> <!-- 자유게시판일때 --> 
-		            <div id="cominput" style="position: relative;left: 5%; margin-top: 3%;">
-						댓글 : <input type="text" value="" id="content" style="width:70%">&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="작성" onclick = insert() id="writebutton">
+		            <div id="cominput" style="position: relative;left: 14%; margin-top: 3%;">
+						<h3>댓글 </h3><br/>
+						<input type="text" value="" id="content" style="width:70%;height: 150px;">&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="button" value="작성" onclick = insert() style="height: 152px; width: 100px;margin-left: -20px; border: 1px solid #dee2e6; margin-top: -5px;" class="btn btn-default">
 					</div>
 				</c:when> 
 	          </c:choose>  
 	          <br/>
 		<c:if test="${sessionScope.loginid eq info.id || sessionScope.loginid eq 'admin'}">
-			<a href="./delete?idx=${info.board_idx}&type=${info.board_type}">삭제</a>
-			<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}">수정</a>
+			<a href="./delete?idx=${info.board_idx}&type=${info.board_type}" class="likebutton" style="position: relative; left: 17%;">삭제</a>
+			<a href="./updateForm?idx=${info.board_idx}&type=${info.board_type}" class="likebutton" style="position: relative; left: 5%;">수정</a>
 		</c:if>		
 
 		<c:choose>
 		<c:when test="${sessionScope.loginid eq 'admin'}">
 			<c:if test="${info.board_type eq '0'}">
-				<a href="./admin?page=1">처음으로</a>
+				<a href="./admin?page=1" class="likebutton"style="position: absolute;left: 84%;">처음으로</a>
 			</c:if>
 			<c:if test="${info.board_type eq '1'}">
-				<a href="./admin_faqboard?page=1">처음으로</a>
+				<a href="./admin_faqboard?page=1" class="likebutton" style="position: absolute;left: 84%;">처음으로</a>
 			</c:if>
 		</c:when>
 		
 		<c:when test ="${sessionScope.loginid ne 'admin'}">
-			<a href="./typelist?type=${info.board_type}">처음으로</a>
+			<a href="./typelist?type=${info.board_type}" class="likebutton" style="position: absolute;left: 84%;">처음으로</a>
 		</c:when>
 		
 		</c:choose>
@@ -130,7 +146,7 @@
 					}else{
 						console.log(data.allCnt);
 						$("#pa").remove();
-						var content ="<th>등록된 댓글이 없습니다.</th>";
+						var content ="<th style='font-size:20px'>등록된 댓글이 없습니다.</th>";
 						$("#comList").append(content);
 					}
 				},
@@ -149,15 +165,15 @@
 			var content ="";
 			
 			list.forEach(function(item){
-					 content += "<tr>";
+					 content += "<tr style='border-bottom: 1px solid #dee2e6;'>";
 					 content += "<input type='hidden' name ='com_idx' value="+item.com_idx+">";
 					 content += "<input type='hidden' name ='board_idx' value="+item.board_idx+">";
-					 content += "<th style='width: 25px; border-color:black;'>"+item.id+"</th>";
+					 content += "<th style='width: 70px; border-color:black; font-size:20px;'>"+item.id+"</th>";
 					 var date = new Date(item.com_reg_date);
-					 content += "<td style='border-color:black;'>"+item.com_content;
-					 content += "     ["+date.toLocaleDateString("ko-KR")+"]";
+					 content += "<td style='border-color:black; font-size:20px;'>"+item.com_content+"</td>";
+					 content += "     <td style='width: 190px; color:gray;'>["+date.toLocaleDateString("ko-KR")+"]";
 					 if(item.id == loginId){
-					 	content += " &nbsp &nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute; background-color: rgb(0, 76, 128); color: white;'></td>";
+					 	content += "&nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute; border: 1px solid #dee2e6;' class='btn btn-default btn-sm'></td>";
 					 } else{
 						 content += "</td>";
 						  
@@ -200,6 +216,9 @@
 			var board_idx = "${info.board_idx}";
 			var id = "${sessionScope.loginid}";
 			var content = $("#content").val();
+			if(content==''){
+				content = "내용 없음";
+			}
 			console.log(board_idx+"/"+id+"/"+content);
 			
 			$.ajax({

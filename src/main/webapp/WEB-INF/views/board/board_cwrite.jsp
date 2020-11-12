@@ -39,7 +39,7 @@
 		<form action="cwrite" method = "post">
 		<input type="hidden" name ="type" value="${type}">
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
-			<table class="table table-hover">
+			<table class="table table-hover table-bordered">
 				<c:if test="${sessionScope.loginid ne ''}">
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
@@ -55,14 +55,10 @@
 					<th >내용</th>
 					<td style="width: 80%;"><textarea name = "content" id="content"></textarea></td>
 				</tr>
-				<tr>
-					<td colspan = "2">
-					<input type = "submit" value = "저장"/>
-					<input type="button" value="뒤로가기" onclick="goback()">
-					</td>
-				</tr>
 			</table>
 			</div>
+			<input type = "submit" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
 		</form>
 	</body>
 	<script>

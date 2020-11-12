@@ -86,6 +86,14 @@
 							<div id="status"> </div>
 						<!-- 영업종류 현황 부분 -->
 							<iframe id ="openbiz" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+						<!-- 나이별 유동인구 -->
+							<iframe id ="ppl_age" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+						<!-- 요일별 유동인구 -->
+							<iframe id ="ppl_day" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+						<!-- 시간별 유동인구 -->
+							<iframe id ="ppl_time" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+						
+						
 						</div>
 						
 					</div>
@@ -141,6 +149,9 @@
 	var reg_date ="";
 	var openbiz = "";	
 	var openbiz_src = "";
+	var age_html_src = "";
+	var day_html_src = "";
+	var time_html_src = "";
 
 	$("select[name='more_info']").change(function(){
 		reg_date = $("select[name='more_info']").val();
@@ -163,7 +174,17 @@
 				openbiz = data.status.data_code;
 				openbiz_src = "https://banana2990.github.io/onbusiness/"+openbiz+".html";
 				console.log(openbiz_src);
-				$("#openbiz").attr('src',openbiz_src);	
+				$("#openbiz").attr('src',openbiz_src);
+				
+				age_html_src = data.age_html;
+				$("#ppl_age").attr('src',age_html_src);
+				day_html_src = data.day_html;
+				$("#ppl_day").attr('src',day_html_src);
+				time_html_src = data.time_html;
+				$("#ppl_time").attr('src',time_html_src);
+				
+				
+				
 				console.log("확인요");				
 			},
 			error: function(e){

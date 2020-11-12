@@ -41,7 +41,7 @@
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 	<div id="map_location">
 	<strong> <h5>어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>

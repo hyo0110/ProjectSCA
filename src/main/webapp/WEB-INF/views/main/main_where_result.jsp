@@ -52,10 +52,10 @@
 </body>
 <script>
 function save(){
-var loginId = "${sessionScope.loginid }";
-var subject = $("#sub").val();
-var url = null;
-var param = "${param}";
+	var loginId = "${sessionScope.loginid }";
+	var subject = $("#sub").val();
+	var url = null;
+	var param = "${param}";
 	$.ajax({
 		url : "scriptsave",
 		type : 'get',
@@ -67,7 +67,7 @@ var param = "${param}";
 		dataType : 'json',
 		success : function(data) {
 		console.log(data);
-
+				alert(data.msg);
 		},
 		error : function(e) {
 			console.log(e);

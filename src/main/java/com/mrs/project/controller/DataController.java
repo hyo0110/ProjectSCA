@@ -87,9 +87,20 @@ public class DataController {
 	
 	@RequestMapping(value = "/scriptsave", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> scriptsave(@RequestParam HashMap<String, String>params) {
-		logger.info("전체파라미터 : "+params);
-
-		return null;
+		String loginId =params.get("loginId");
+		String subject = params.get("subject");		
+		String param =params.get("param");		
+		String paraming =param.substring(1, param.length()-1);		
+		String parameter = paraming.replace(", ","&");
+		String msg = "실패했뚬";
+		boolean success = service.scriptsave(parameter,loginId,subject);	
+		HashMap<String, Object> hash = new HashMap<String, Object>();
+		
+		if(success){
+			msg = "성공!";
+		}
+		hash.put("msg", msg);
+		return hash;
 	}
 
 	

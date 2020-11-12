@@ -500,4 +500,14 @@ public class DataService {
 		return mav;
 	}
 
+	public boolean scriptsave(String parameter, String loginId, String subject) {
+		 boolean success = false;
+		 int result = dao.scriptsave(parameter,loginId,subject);
+		 if(result>0) {
+			 success = true;
+		 } 
+		 
+		 return success;
+	}
+
 }

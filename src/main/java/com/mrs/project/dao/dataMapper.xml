@@ -26,5 +26,7 @@
 		SELECT * FROM ppl_time_data WHERE region = #{param1} AND reg_date = #{param2}
 	</select>
 	-->
-	
+	<insert id="scriptsave">
+		INSERT INTO MARKET_SCRAPPED_SEARCH(scrap_idx,parameter,id, scrap_sub) values(scrap_idx.NEXTVAL, #{param1}, #{param2}, #{param3})
+	</insert>
 </mapper>

@@ -43,7 +43,7 @@ public class MemberController {
 	
 	//로그인-----------------------------------------------------------------------------------------
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam String id, @RequestParam String pw, HttpSession session) {
+	public ModelAndView login(@RequestParam String id, @RequestParam String pw, HttpSession session, RedirectAttributes rAttr) {
 		//logger.info(id+"/"+pw);	
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -64,10 +64,12 @@ public class MemberController {
 			int cnt = service.login(id,pw);
 			if(cnt>0) {
 			session.setAttribute("loginid", id);
+			
 			msg = "로그인 성공했습니다.";
 			page = "redirect:/";
 		}
-			mav.addObject("msg",msg);
+			//mav.addObject("msg",msg);
+			rAttr.addFlashAttribute("msg", msg);
 		}		
 		
 		mav.setViewName(page);

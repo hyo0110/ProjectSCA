@@ -8,6 +8,12 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 ul {
 	padding : 0;
 	margin : 0;
@@ -67,13 +73,16 @@ height : 100%;
 /* background-color : #ededed; */
 }
 button{
-			background-color:#0064FF;
-            color:white;
+			/* background-color:#0064FF;
+            color:white; */
             padding:13px 80px;
-            color:#fff;
+            /* color:#fff; */
             font-size:17px;
-            border: none;
-            cursor: pointer;           
+            /* border: none; */
+            cursor: pointer;
+            border: 1px solid #004c80;             
+            color: #004c80; 
+            background-color: white;           
 }
 
 </style>
@@ -92,7 +101,7 @@ button{
 			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray;">
 				<div class="detail">
 					<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보</h3>
-					<p style="font-size:15px; text-align: center; margin-bottom: 20px;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며, 회원님의 명백한 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.</p>
+					<p style="font-size:15px; text-align: center; margin-bottom: 20px;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며,</br> 회원님의 명백한 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.</p>
 					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
 						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">아이디</div>
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.id}</div>
@@ -106,8 +115,8 @@ button{
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.email}</div>
 					</div>
 					<div style="text-align: center; margin-top: 60px;">
-						<button type="button" onclick="realdelete()" style="margin-right: 30px;">탈퇴</button> <!-- 탈퇴여부 -->
-						<button type="button" onclick="location.href='mypage_update'">수정</button>
+						<button type="button" onclick="realdelete()" style="margin-right: 30px; border-radius: 10px;">탈퇴</button> <!-- 탈퇴여부 -->
+						<button type="button" onclick="location.href='mypage_update'"style="border-radius: 10px;">수정</button>
 					</div>
 				</div>
 			</div> 

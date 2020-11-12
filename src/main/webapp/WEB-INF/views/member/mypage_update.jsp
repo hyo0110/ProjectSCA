@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 ul {
 	padding : 0;
 	margin : 0;
@@ -76,13 +81,16 @@ input:focus{
         outline: none;
     }
 button{
-			background-color:#0064FF;
-            color:white;
+			/* background-color:#0064FF;
+            color:white; */
             padding:10px 80px;
-            color:#fff;
+            /* color:#fff; */
             font-size:17px;
-            border: none;
-            cursor: pointer;           
+            /* border: none; */
+            cursor: pointer; 
+            border: 1px solid #004c80;             
+            color: #004c80; 
+            background-color: white;          
 }    
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -138,8 +146,8 @@ button{
 					</div>
 					<%-- <p>이메일 :<input type ="email" name="user_email" value="${member.email}"></p> --%>
 					<div style="text-align: center; margin-top: 18px;">
-						<button type= "submit" style="margin-right: 30px;">확인</button>
-						<button type="button" onclick="location.href='mypage_detail'">취소</button>
+						<button type= "submit" style="margin-right: 30px; border-radius: 10px;">확인</button>
+						<button type="button" onclick="location.href='mypage_detail'"style="border-radius: 10px;">취소</button>
 					</div>
 					</form>
 				</div>

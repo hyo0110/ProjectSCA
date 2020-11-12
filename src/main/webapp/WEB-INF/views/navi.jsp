@@ -23,11 +23,25 @@
 			parent.f_move();
 		}
 	</script> -->
+	<style>
+
+	@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
+	.btn{
+		color: #0033CC;
+	}
+		.btn:hover{
+			background-color: #2c81d0;
+		}
+	</style>
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="main">SCA</a>
+        <a class="navbar-brand" href="./">SCA</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,14 +88,14 @@
           
          <c:choose>
             <c:when test="${sessionScope.loginid eq  null}">
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'">로그인</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'" style="border: 1px solid #004c80;">로그인</button>
             &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'">회원가입</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'" style="border: 1px solid #004c80;">회원가입</button>
                
             </c:when>
             <c:otherwise>
             	${sessionScope.loginid}님 &nbsp;
-               <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'">로그아웃</button>
+               <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'" style="border: 1px solid #004c80;">로그아웃</button>
             </c:otherwise>
        </c:choose>
           

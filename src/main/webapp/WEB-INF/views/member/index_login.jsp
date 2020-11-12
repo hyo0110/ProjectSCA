@@ -8,7 +8,11 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 .col{
                 width: 500px;
                 height: 700px;
@@ -17,7 +21,7 @@
                 top: 50%;
                 transform: translate(-50%,-50%);
                 text-align: center;
-                font-family: 'Open Sans', sans-serif;
+                font-family: 'Noto Sans KR', sans-serif;
             }
     p{
         margin-top: 50px;

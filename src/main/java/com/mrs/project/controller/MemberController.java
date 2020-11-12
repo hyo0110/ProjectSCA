@@ -55,12 +55,12 @@ public class MemberController {
 		}
 		ModelAndView mav = new ModelAndView();	
 		String page = "member/index_login";	
+		String msg = "로그인 실패했습니다.";
 		
 		if(id.equals(adminId) && pw.equals(adminPw)) {
 			session.setAttribute("loginid", adminId);
 			page = "redirect:/admin";
-		} else {
-			String msg = "로그인 실패했습니다.";
+		} else{
 			int cnt = service.login(id,pw);
 			if(cnt>0) {
 			session.setAttribute("loginid", id);

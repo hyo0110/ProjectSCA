@@ -8,7 +8,11 @@
 	<meta charset="UTF-8">
 	<title>SCA Service</title>
 	<style>
-			
+	@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+	/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+	/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+				
 			#result_section{
 				margin: 3%;
 			}
@@ -16,9 +20,9 @@
 			#news_section{
 				border : 1px solid darkblue;
 				width: 400px;
-				top: 15%;
+				top: 20%;
 				right: 4%;
-				position: fixed;
+				position: absolute;
 				padding: 15px 5px;
 				background-color: white;
 			}
@@ -85,7 +89,15 @@
 						<!-- 해당구의 상권상태 부분 -->
 							<div id="status"> </div>
 						<!-- 영업종류 현황 부분 -->
-							<iframe id ="openbiz" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+							<iframe id ="openbiz" style="display:block; width:70vw; height: 70vh" src="" 	frameborder="0"></iframe>
+						<!-- 나이별 유동인구 -->
+							<iframe id ="ppl_age" style="display:block; width:60vw; height: 60vh" src="" 	frameborder="0"></iframe>
+						<!-- 요일별 유동인구 -->
+							<iframe id ="ppl_day" style="display:block; width:60vw; height: 60vh" src="" 	frameborder="0"></iframe>
+						<!-- 시간별 유동인구 -->
+							<iframe id ="ppl_time" style="display:block; width:60vw; height: 60vh" src="" 	frameborder="0"></iframe>
+						
+						
 						</div>
 						
 					</div>
@@ -141,6 +153,9 @@
 	var reg_date ="";
 	var openbiz = "";	
 	var openbiz_src = "";
+	var age_html_src = "";
+	var day_html_src = "";
+	var time_html_src = "";
 
 	$("select[name='more_info']").change(function(){
 		reg_date = $("select[name='more_info']").val();
@@ -163,7 +178,17 @@
 				openbiz = data.status.data_code;
 				openbiz_src = "https://banana2990.github.io/onbusiness/"+openbiz+".html";
 				console.log(openbiz_src);
-				$("#openbiz").attr('src',openbiz_src);	
+				$("#openbiz").attr('src',openbiz_src);
+				
+				age_html_src = data.age_html;
+				$("#ppl_age").attr('src',age_html_src);
+				day_html_src = data.day_html;
+				$("#ppl_day").attr('src',day_html_src);
+				time_html_src = data.time_html;
+				$("#ppl_time").attr('src',time_html_src);
+				
+				
+				
 				console.log("확인요");				
 			},
 			error: function(e){

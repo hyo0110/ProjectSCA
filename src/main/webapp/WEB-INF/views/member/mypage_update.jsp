@@ -8,6 +8,11 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 ul {
 	padding : 0;
 	margin : 0;
@@ -92,7 +97,7 @@ button{
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-			<div style="margin-top:50px;">
+			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
 						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_login">회원정보</a></li>
@@ -101,7 +106,7 @@ button{
 					</ul>
 				</div>
 			</div>	
-			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray;">
+			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="detail">
 				<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보 수정</h3>
 				<form action="updateMember" method="GET" onsubmit="return pwchk()">

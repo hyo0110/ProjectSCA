@@ -16,10 +16,28 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
 .nav{
 
+}
+
+#paging{
+	width: -webkit-fill-available;
+}
+
+#table{
+	position: relative;
+	width: -webkit-fill-available;
+}
+
+#footer{
+	position: relative;
+	bottom: 0;
+	width: -webkit-fill-available;
 }
 </style>
 
@@ -40,6 +58,7 @@
 	<link href="resources/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
  	<div id="wrapper">
 	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -74,7 +93,7 @@
     <div id="content-wrapper" class="d-flex flex-column"><!-- 게시판 div 박스입니다. -->
 	<!-- Main Content -->
 	<div id="content">
-	<div class="card shadow mb-4">
+	<div id="table" class="card shadow mb-4">
 		<div class="card-body">
 		  <div class="table-responsive" style="white-space:nowrap; overflow:hidden;">
 			<table class="table table-bordered" id="dataTable" width="100%;" cellspacing="0;">
@@ -104,7 +123,7 @@
 			</div><!-- table-responsive 박스 -->
 		</div>
 	</div>
-	   	<ul class="pagination" style="position: absolute; text-align:center; float:none;">
+	   	<ul id="paging" class="pagination" style="position: relative; float:none; left:500px;">
       		<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a></li>
 			<li class="page-item"><a class="page-link" href="./admin?page=${currPage-1}">Previous</a></li>
 			<li class="page-item"><a class="page-link" href="./admin?page=1">1</a></li>
@@ -115,13 +134,74 @@
 			<li class="page-item"><a class="page-link" href="./admin?page=6">6</a></li>
 			<li class="page-item"><a class="page-link" href="./admin?Page=${currPage+1}">Next</a></li>
 		</ul>
-    <footer class="sticky-footer bg-white" padding:"8px;">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
-          </div>
+    <footer id="footer" class="page-footer text-center text-md-left pt-4">
+
+    <!--Footer Links-->
+    <div class="container-fluid">
+      <div class="row">
+
+        <!--First column-->
+        <div class="col-md-3">
+          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
+          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
         </div>
-      </footer>
+        <!--/.First column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Second column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
+          <ul class="list-unstyled">
+            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
+          </ul>
+        </div>
+        <!--/.Second column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Third column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
+          <ul class="list-unstyled">
+            <li>Contacts</li>
+            <li>Terms</li>
+            <li>Condition</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+        <!--/.Third column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Fourth column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
+          <ul class="list-unstyled">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instargram</li>
+            <li>RSS</li>
+          </ul>
+        </div>
+        <!--/.Fourth column-->
+
+      </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+    
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
       </div><!-- content -->
       </div><!-- content-wrapper 박스 입니다. -->   
 </div><!-- wrapper div입니다. -->

@@ -8,7 +8,12 @@
 <meta charset="UTF-8">
 <title>SCA Service</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 li {
 	list-style: none;
 	padding: 0;
@@ -73,14 +78,7 @@ body {
 	height: 144px;
 	padding: 20px;
 }
-/* 
-.login_btn {
-	width: -webkit-fill-available;
-	height: 80px;
-	width: 120px;
-	padding: 20px;
-}
- */
+
 label{
 	width: 300px;
 }
@@ -101,7 +99,7 @@ label{
 	<div class="containerbox">
 		<div class="mem-top-txt">
 			<ul>
-				<li>저희 000은 회원님의 개인정보를 신중히 취급하며, 회원님의 동의없이 기재하신 회원정보를 공개하지
+				<li>저희 SCA는 회원님의 개인정보를 신중히 취급하며, 회원님의 동의없이 기재하신 회원정보를 </br>공개하지
 					않습니다.</li>
 				<li>회원님의 개인정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 입력 해주세요.</li>
 			</ul>
@@ -135,7 +133,7 @@ label{
 			
 				</div>
 				<div class="login_btn">
-					<button type="submit" style="width: 120px; height: 40px; border: 1px solid #004c80; border-radius: 10px; color: #004c80; background-color: white;">로그인</button>
+					<button type="submit" style="width: 120px; height: 40px; border: none; border-radius: 10px; color: white; background-color: #009fe3;">로그인</button>
 				</div>
 			</form>
 		</div>

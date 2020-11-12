@@ -16,12 +16,16 @@
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 
  <style>
-	 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
 	body{
 		font-family: 'Noto Sans KR', sans-serif;
 	}
-	
+
 	#map_location{
 		margin: 3%;
 	}
@@ -41,7 +45,7 @@
 
 </head>
 <body>
-	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 	<div id="map_location">
 	<strong> <h5>어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>

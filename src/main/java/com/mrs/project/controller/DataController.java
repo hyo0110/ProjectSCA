@@ -81,12 +81,27 @@ public class DataController {
 	public ModelAndView whereresult(ModelAndView model, @RequestParam HashMap<String, String> param) throws Exception {
 		ModelAndView mav = new ModelAndView();	
 		logger.info("어디로에 대한 결과");
-		System.out.println(param);
-		System.out.println(param.get("age_cnt"));
-		System.out.println(param.get("time_cnt"));
 		return service.where_result(param,mav);		
 	}
 	
+	
+	@RequestMapping(value = "/scriptsave", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> scriptsave(@RequestParam HashMap<String, String>params) {
+		String loginId =params.get("loginId");
+		String subject = params.get("subject");		
+		String param =params.get("param");		
+		String paraming =param.substring(1, param.length()-1);		
+		String parameter = paraming.replace(", ","&");
+		String msg = "실패했뚬";
+		boolean success = service.scriptsave(parameter,loginId,subject);	
+		HashMap<String, Object> hash = new HashMap<String, Object>();
+		
+		if(success){
+			msg = "성공!";
+		}
+		hash.put("msg", msg);
+		return hash;
+	}
 
 	
 	

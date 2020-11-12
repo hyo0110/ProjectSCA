@@ -14,83 +14,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
-ul {
-	padding : 0;
-	margin : 0;
-}
-li {
-	list-style: none;
-	padding : 0;
-	margin : 0;
-}
-a {
-	text-decoration: none;
-	padding : 0;
-	margin : 0;
-}
-
-.container {
-	display : inline-block;
-}
-.snb_wrap {
-	float : left;
-}
-.snb_items {
-	/* border: 1px solid #3d3d3d; */
-	width : 250px;
-}
-.snb_item {
-	width : 250px;
-	height: 40px;
-	/* border-bottom : 1px solid #3d3d3d; */
-	text-align : center;
-	border\-radius: 0px 25px 25px 0px; 
-	/* border: 1px solid lightgray; */
-}
-.snb_item a {
-	width : 140px;
-	height: 40px;
-	/* color : #3d3d3d; */
-	line-height : 40px;
-	vertical-align : middle;
-}
-.snb_item:last-child {
-	border-bottom : 0;
-}
-.detail_wrap {
-	float:left;
-	width : 850px;
-	height: 500px;
-	position: absolute;
-    left: 50%;
-    top: 38%;
-    transform: translate(-50%,-50%);
-}
-.detail {
-width : 100%;
-height : 100%;
-/* border : 1px solid #3d3d3d; */
-/* background-color : #ededed; */
-}
-button{
-			/* background-color:#0064FF;
-            color:white; */
-            padding:13px 80px;
-            /* color:#fff; */
-            font-size:17px;
-            /* border: none; */
-            cursor: pointer;
-            border: 1px solid #004c80;             
-            color: #004c80; 
-            background-color: white;           
-}
+	ul {
+		padding : 0;
+		margin : 0;
+	}
+	li {
+		list-style: none;
+		padding : 0;
+		margin : 0;
+	}
+	a {
+		text-decoration: none;
+		padding : 0;
+		margin : 0;
+	}
+	
+	.container {
+		font-family: 'Noto Sans KR', sans-serif;
+		display : inline-block;
+	}
+	.snb_wrap {
+		float : left;
+	}
+	.snb_items {
+		width : 250px;
+	}
+	.snb_item {
+		width : 250px;
+		height: 40px;
+		text-align : center;
+		border\-radius: 0px 25px 25px 0px; 
+	}
+	.snb_item a {
+		width : 140px;
+		height: 40px;
+		line-height : 40px;
+		vertical-align : middle;
+	}
+	.snb_item:last-child {
+		border-bottom : 0;
+	}
+	.detail_wrap {
+		float:left;
+		width : 850px;
+		height: 500px;
+		position: absolute;
+	    left: 50%;
+	    top: 38%;
+	    transform: translate(-50%,-50%);
+	}
+	.detail {
+		width : 100%;
+		height : 100%;
+	}
+	button{
+    	padding:13px 80px;
+        font-size:17px;
+        cursor: pointer;
+        background-color: #009fe3;             
+        color: white; 
+        border: none;      
+	}
 
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-		<div style="margin-top:50px;">
+		<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 			<div class="snb_wrap">
 				<ul class="snb_items">
 					<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_detail">회원정보</a></li>

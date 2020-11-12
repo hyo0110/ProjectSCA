@@ -38,17 +38,19 @@
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 	<div class="top_sub" style="margin-top: 50px;">
 		<img src="resources/img/seoulcity.PNG">
-		<p>"ㅇㅇㅇ가 창업자들을 위해 다양한 상권분석을</br> 도와드립니다."</p>
-		<p class="ex">우리는 서울이 보유하고있는 빅데이터를 수집,분석하여 창업자를 위해 다양한 정보를 제공합니다. 등 전체설명</p>		
+		<p>"SCA가 창업자들을 위해 다양한 상권분석을</br> 도와드립니다."</p>
+		<p class="ex">우리 SCA는 서울이 보유하고있는 빅데이터를 수집,분석하여 창업자를 위해 다양한 정보를 제공합니다.</p>		
 	</div>
 	<div style="width: 900px; height: 500px; border-bottom: 1px solid lightgray; margin: 0 auto; margin-bottom: 40px; margin-top: 50px; text-align: center;">
 		<p style="font-size: 20px; font-weight: 600; color: #2c81d0">어디서?</p>
-		<p style="font-size: 13px; color: #4C4C4C; font-weight: 600;">'어디서?'는 이미 어떤 가게를 열지 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다..?</p> 
+		<p style="font-size: 13px; color: #4C4C4C; font-weight: 600;">'어디서?'는 이미 어떤 가게를 열지 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.</br>
+			무슨 데이터를 분석 가공하여 무슨 결과를 내서 이런 데이터를 보여줍니다. </p> 
 		설명 및 예시 이미지
 	</div>
 	<div style="width: 900px; height: 500px; margin: 0 auto; margin-bottom: 40px; margin-top: 50px; text-align: center;">
 		<p style="font-size: 20px; font-weight: 600; color: #2c81d0">무엇을?</p>
-		<p style="font-size: 13px; color: #4C4C4C; font-weight: 600;">'무엇을?'는 이미 창업할 장소를 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다..?</p>
+		<p style="font-size: 13px; color: #4C4C4C; font-weight: 600;">'무엇을?'는 이미 창업할 장소를 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.</br>
+			무슨 데이터를 분석 가공하여 무슨 결과를 내서 이런 데이터를 보여줍니다. </p>
 	</div>
 
 </body>

@@ -18,15 +18,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mrs.project.dao.BoardDAO;
 import com.mrs.project.dto.BoardDTO;
-import com.mrs.project.dto.CommentaryDTO;
 import com.mrs.project.dto.FileDTO;
 
 
@@ -49,31 +46,26 @@ public class BoardService {
 		ModelAndView mav = new ModelAndView();
 		String page = "redirect:/typelist?type="+type;
 		int comCnt = 0;
-		
+		int success = 0;
 		String loginId = (String) session.getAttribute("loginid");
-		logger.info("현재 로그인된 아이디 : "+loginId); //세션 아이디 체크
 		
 		String board_id = dao.whoId(idx); // 글쓴 사람 누군지 확인
 		
 		if(type.equals("1")&& pri.equals("1")) { // 게시판이 고객센터이면서 비밀글일때
 				if(loginId.equals(board_id) || loginId.equals("admin")) { //세션아이디랑 글쓴이랑 같으면
-					logger.info("관리자나 글쓴이 들어오기");
-					
+
 					if(loginId.equals(board_id)) {
 					
 						comCnt = dao.comAllCount(idx); //댓글 달림 여부 체크 (카운트갯수)
 						
 						if(comCnt > 0) { // 댓글 확인 여부 체크
 							boolean update = dao.updateBchk(idx);
-							logger.info("댓글확인 체크 여부 : "+ update);
 						}
 					}
-						int success = dao.bhit(idx); //조회수 올리기
-						logger.info("조회수 올리기 : "+success);
+						success = dao.bhit(idx); //조회수 올리기
 						
 						BoardDTO dto = dao.detail(idx); //내용 불러오기
 						ArrayList<FileDTO> fileList = dao.fileList(idx); //사진리스트 넣기
-						logger.info("첨부된 파일 : " + fileList.size());
 						
 						mav.addObject("fileList",fileList);
 						mav.addObject("info",dto);
@@ -84,11 +76,9 @@ public class BoardService {
 				}
 				
 		}else {
-				int success = dao.bhit(idx); //조회수
-				logger.info("조회수 올리기 : "+success);
+				success = dao.bhit(idx); //조회수
 				BoardDTO dto = dao.detail(idx);
 				ArrayList<FileDTO> fileList = dao.fileList(idx);
-				logger.info("첨부된 파일 : " + fileList.size());
 				mav.addObject("fileList",fileList);
 				mav.addObject("info",dto);
 				page = "board/board_detail";
@@ -103,7 +93,6 @@ public class BoardService {
 	//게시글 삭제하기
 	public String delete(String idx, String type, RedirectAttributes rAttr) {
 		int success = dao.delete(idx);
-		logger.info("글 삭제 여부 : " + success);
 		String msg = "삭제 실패";
 		if(success>0) {
 			msg = "삭제성공";
@@ -120,19 +109,12 @@ public class BoardService {
 		//리스트/현재페이지/최대 만들수 있는 페이지수
 				HashMap<String, Object> json = new HashMap<String, Object>();
 				
-				logger.info("현재 페이지 : {}",page);
-				logger.info("페이지당 보여줄 수  : {}",pagePerCnt);	
-				logger.info("요청한 게시판 종류 : {}",type);
-
 				int allCnt = dao.allCount(type);//전체 게시물 수
-				logger.info("총페이지 갯수 : "+allCnt);
-				//만들 수 있는 최대 페이지
-				//총갯수:21, 페이지당 보여줄 수:5 이때 만들 페이지는???
+
 				int range = allCnt%pagePerCnt>0?
 						Math.round(allCnt/pagePerCnt)+1
 						:Math.round(allCnt/pagePerCnt);
-				logger.info("만들 수 있는 페이지:"+range);
-					
+
 				if(page>range) {
 					page = range;
 				}
@@ -162,7 +144,6 @@ public class BoardService {
 	public ModelAndView cwrite(HashMap<String, String> params, HttpSession session) {
 		logger.info("글쓰기 접속");
 		int success = dao.cwrite(params);
-		logger.info("성공여부 : "+success);
 		ModelAndView mav = new ModelAndView();
 		String page = "redirect:/writeForm?type="+params.get("type");
 		if(success>0) {
@@ -190,7 +171,6 @@ public class BoardService {
 			Files.write(path, bytes); 
 			HashMap<String, String> fileList = (HashMap<String, String>) session.getAttribute("fileList");
 			fileList.put(newFileName, fileName);
-			logger.info("업로드 한 파일 갯수 :" + fileList.size());
 			session.setAttribute("fileList", fileList);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -213,7 +193,6 @@ public class BoardService {
 		
 		//2. 실제 파일 삭제 하기
 		String delFileName = root+"upload/"+fileName;
-		logger.info("지울 파일 경로 : " + delFileName);
 		File file = new File(delFileName);
 		if(file.exists()) { //파일이 존재할 경우
 			if(file.delete()) { //삭제 처리 후 성공하면
@@ -227,7 +206,6 @@ public class BoardService {
 		//3. fileList에서 삭제한 파일명 지우기
 		if(fileList.get(fileName) != null) { //파일명이 리스트에 존재하면
 			fileList.remove(fileName); 
-			logger.info("삭제 후 남은 파일 갯수 : " + fileList.size());
 		}
 		
 		//4. session에 fileList 넣기
@@ -254,13 +232,9 @@ public class BoardService {
 		
 		if(dao.write(bean)==1) { //글 등록 성공시
 			int size = fileList.size();
-			logger.info("저장할 파일 수 : " + size);
 			int idx = bean.getBoard_idx();
-			logger.info("idx : "+idx);
 			if(size>0) { //업로드한 파일이 있다면 
-				logger.info(idx+"번 게시물에 소속된 파일 등록");
 				for(String key : fileList.keySet()) { 
-					//idx, oriFileName, newFileName
 					dao.writeFile(idx, (String)fileList.get(key),key);
 				}
 			}
@@ -270,7 +244,6 @@ public class BoardService {
 			for(String fileName : fileList.keySet()) { 
 				File file = new File(root+"upload/"+fileName);
 				 boolean success= file.delete();
-				 logger.info(fileName+"삭제결과"+success);
 			}
 			
 		}
@@ -301,11 +274,8 @@ public class BoardService {
 		HashMap<String, String> delFileList = (HashMap<String, String>) session.getAttribute("delFileList");
 		
 		//2. 실제 파일 삭제 하기 -> 저장할때 하는걸로 바꿈
-
 		//3. fileList에서 삭제한 파일명 넣기
 		delFileList.put(fileName, fileName);
-		logger.info(delFileList.get(fileName));
-		logger.info("업로드 한 파일 갯수 :" + delFileList.size());
 		
 		//4. session에 fileList 넣기
 		session.setAttribute("delFileList", delFileList);
@@ -327,32 +297,24 @@ public class BoardService {
 		bean.setId(params.get("id"));
 		bean.setBoard_type(params.get("type"));
 		bean.setBoard_idx(Integer.parseInt(params.get("idx")));
-		System.out.println("idx 세팅 : "+bean.getBoard_idx());
 		
 		HashMap<String, Object> fileList = (HashMap<String, Object>) session.getAttribute("fileList");
 		HashMap<String, Object> delFileList = (HashMap<String, Object>) session.getAttribute("delFileList");
 		
 		if(dao.update(bean)==1) { //글 수정 성공시
 			int size = fileList.size();
-			logger.info("저장할 파일 수 : " + size);
 			int delSize = delFileList.size();
-			logger.info("삭제할 파일 수 : "+delSize);
 			int idx = bean.getBoard_idx();
-			logger.info("idx : "+idx);
 			if(size>0) { //업로드한 파일이 있다면 
-				logger.info(idx+"번 게시물에 소속된 파일 등록");
 				for(String key : fileList.keySet()) { 
-					//idx, oriFileName, newFileName
 					dao.writeFile(idx, (String)fileList.get(key),key);
 				}
 			}
 			if(delSize>0) {
 				for(String delKey : delFileList.keySet()) {
 					dao.deleteFile(idx,delKey);
-					logger.info("성공 :" + delKey);
 					
 					String delFileName = root+"upload/"+delKey;
-					logger.info("지울 파일 경로 : " + delFileName);
 					File file = new File(delFileName);
 					if(file.exists()) { //파일이 존재할 경우
 						if(file.delete()) { //삭제 처리 후 성공하면
@@ -369,7 +331,6 @@ public class BoardService {
 			for(String fileName : fileList.keySet()) { 
 				File file = new File(root+"upload/"+fileName);
 				 boolean success= file.delete();
-				 logger.info(fileName+"삭제결과"+success);
 			}
 			
 		}
@@ -387,13 +348,8 @@ public class BoardService {
 	public HashMap<String, Object> comlist(int page, int pagePerCnt, String idx) {
 
 		HashMap<String, Object> json = new HashMap<String, Object>();
-		
-		logger.info("현재 페이지 : {}",page);
-		logger.info("페이지당 보여줄 수  : {}",pagePerCnt);	
-		logger.info("해당 글  : {}",idx);	
 
 		int allCnt = dao.comAllCount(idx);
-		logger.info("총댓글 갯수 : "+allCnt);
 		
 		int range = allCnt%pagePerCnt>0?
 				Math.round(allCnt/pagePerCnt)+1
@@ -420,7 +376,6 @@ public class BoardService {
 		String msg = "댓글삭제 실패";
 		if(dao.delCom(params)) {
 			msg = "댓글 삭제 성공";
-			logger.info("삭제됏니?");
 		}
 		
 		json.put("msg", msg);
@@ -436,7 +391,6 @@ public class BoardService {
 		String msg = "댓글등록 실패";
 		if(dao.insertCom(params)) {
 			msg = "댓글 등록 성공";
-			logger.info("등록됏니?");
 		}
 		
 		json.put("msg", msg);

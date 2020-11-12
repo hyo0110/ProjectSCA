@@ -60,9 +60,9 @@ public class DataController {
 		return service.newslist(region);
 	}
 	
-	//무엇을 반기별 업종분표 불러오기
+	//무엇을 반기별 업종분표 불러오기// 차트만들어서 보여주기
 	@RequestMapping(value = "/openbiz", method = RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> openbiz(@RequestParam HashMap<String, String> param) {		
+	public @ResponseBody HashMap<String, Object> openbiz(@RequestParam HashMap<String, String> param) throws Exception {		
 		logger.info("영업중인 : "+ param.get("region") +", "+ param.get("reg_date"));
 		String region = param.get("region");
 		String reg_date = param.get("reg_date");

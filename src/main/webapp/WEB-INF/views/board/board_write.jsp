@@ -6,9 +6,14 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>SCA Service</title>
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<style>
+		@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+		/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+		/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 			table,th,td{
 				border: 1px solid black;
 				border-collapse: collapse;
@@ -29,13 +34,14 @@
 			height: 500px;
 			border: 1px solid gray;
 			padding 5px;
-			overflow: auto; 
+			overflow: auto;
+			text-overflow: ellipsis;
 			}
 			
 		</style>
 	</head>
 	<body>
-	<c:import url="../navi.jsp"></c:import> 
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 		<form action="write" method = "post">
 		<input type="hidden" name ="type" value="${type}">
@@ -50,7 +56,7 @@
 				</tr>
 				<tr>
 					<th>내용</th> 
-					<td>
+					<td style="width: 80%;">
 						<div id="editable" contenteditable="true"></div> 
 						<input id = "content" type="hidden" name="content" value=""/>
 					</td>

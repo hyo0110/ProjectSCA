@@ -43,7 +43,7 @@ public class MemberController {
 	
 	//로그인-----------------------------------------------------------------------------------------
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam String id, @RequestParam String pw, HttpSession session) {
+	public ModelAndView login(@RequestParam String id, @RequestParam String pw, HttpSession session, RedirectAttributes rAttr) {
 		//logger.info(id+"/"+pw);	
 		try {
 			MessageDigest digest = MessageDigest.getInstance("SHA-256");
@@ -55,19 +55,21 @@ public class MemberController {
 		}
 		ModelAndView mav = new ModelAndView();	
 		String page = "member/index_login";	
+		String msg = "로그인 실패했습니다.";
 		
 		if(id.equals(adminId) && pw.equals(adminPw)) {
 			session.setAttribute("loginid", adminId);
 			page = "redirect:/admin";
-		} else {
-			String msg = "로그인 실패했습니다.";
+		} else{
 			int cnt = service.login(id,pw);
 			if(cnt>0) {
 			session.setAttribute("loginid", id);
+			
 			msg = "로그인 성공했습니다.";
-			page = "redirect:/main";
+			page = "redirect:/";
 		}
-			mav.addObject("msg",msg);
+			//mav.addObject("msg",msg);
+			rAttr.addFlashAttribute("msg", msg);
 		}		
 		
 		mav.setViewName(page);
@@ -162,7 +164,7 @@ public class MemberController {
 		logger.info("~~~~~");
 		String page ="redirect:/mypage_update";
 		if(count>0) {
-			page="redirect:/mypage_login";
+			page="redirect:/mypage_detail";
 		}
 		return page;
 	}
@@ -183,7 +185,7 @@ public class MemberController {
 					
 		}
 		
-		// 내가쓴글 들어갈때
+		// 내가 쓴 글 들어갈때
 		@RequestMapping(value = "/mypage_written", method = RequestMethod.GET)
 		public String mypage_written(HttpSession session, Model model, @RequestParam int page) {
 			String id = (String) session.getAttribute("loginid");

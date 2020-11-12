@@ -27,4 +27,11 @@ public class HomeController {
 		
 		return "navi";
 	}
+	
+	@RequestMapping(value = "/service_explain", method = RequestMethod.GET)
+	public String service_explain(Model model) {
+		//logger.info("네비바 요청");
+		
+		return "service_explain";
+	}
 }

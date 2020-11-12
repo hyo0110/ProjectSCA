@@ -6,8 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-스크랩</title>
+<title>SCA Service</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
+
 ul {
 	padding : 0;
 	margin : 0;
@@ -63,35 +69,41 @@ a {
 .scrapbox {
 width : 100%;
 height : 100%;
-	border : 1px solid #3d3d3d;
-	background-color : #ededed;
+	/* border : 1px solid #3d3d3d; */
+	/* background-color : #ededed; */
 }
 table,th,td{
-				border: 1px solid black;
+				border-bottom: 1px solid lightgray;
 				border-collapse: collapse;
 				padding: 10px 10px;
+				
 			}
+table{
+position: absolute;
+left: 6%;
+top: 5%;
+}		
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-			<div style="margin-top:50px;">
+			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
-						<li class="snb_item"><a href="mypage_login">회원정보</a></li>
+						<li class="snb_item"><a href="mypage_detail">회원정보</a></li>
 						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_scrap">스크랩</a></li>
 						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="scrap_wrap" style="border-radius:25px; border: 1px solid lightgray;">
+			<div class="scrap_wrap" style="border-radius:20px; border: 1px solid lightgray; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="scrapbox">
 					<table>
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>삭제</th>
+							<th style="width: 7%;">번호</th>
+							<th style="width: 60%;">제목</th>
+							<th style="width: 10%; text-align: center;">삭제</th>
 						</tr>
 						<c:forEach items = "${list}" var = "scrap">
 						<tr>

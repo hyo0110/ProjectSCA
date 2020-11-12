@@ -6,9 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시글 목록</title>
+<title>SCA Service</title>
 		<style>
-			
+		@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+		/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+		/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+					
 		</style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -18,7 +22,7 @@
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
 	<body>
-	<c:import url="../navi.jsp"></c:import> 
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
 			<table class="table table-hover">

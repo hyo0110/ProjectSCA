@@ -15,7 +15,6 @@ public interface AdminDAO {
 
 	int totalist();
 	
-	
 	int admindel(String board_idx);//관리자 게시판 삭제
 
 	ArrayList<MemberDTO> admemberlist(int start, int end);//관리자 회원 페이지

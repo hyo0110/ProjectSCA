@@ -6,8 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-재로그인</title>
+<title>SCA Service</title>
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
 li {
 	list-style: none;
 	padding: 0;
@@ -23,13 +29,13 @@ li {
 	margin-left: -455px;
 	border-style: solid;
 	border-width: 1px;
-	border-color: #333 #dee3eb #dee3eb;
+	border-color: lightgray;
 	background-color: #f8f8f8;
 	padding: 20px 40px;
 }
 
 .containerbox {
-
+	font-family: 'Open Sans', sans-serif;
 	position: relative;
 	width: 1920px;
 	height: 900px;
@@ -38,7 +44,7 @@ li {
 .re_login_wrap {
 	margin-top: 50px;
 	margin-left: -455px;
-	outline: 1px solid blue;
+	outline: 1px solid lightgray;
 	height: 335px;
 	position: relative;
 	width: 910px;
@@ -49,6 +55,7 @@ li {
 }
 
 h3 {
+	font-family: 'Open Sans', sans-serif;
 	text-align: center;
 	margin: 0;
 }
@@ -56,7 +63,7 @@ h3 {
 body {
 	overflow: hidden;
 	width: 100%;
-	height: 100%;
+	height: 100%;	
 }
 
 .login_title {
@@ -69,14 +76,6 @@ body {
 .login_input {
 	width: -webkit-fill-available;
 	height: 144px;
-
-	padding: 20px;
-}
-
-.login_btn {
-	width: -webkit-fill-available;
-	height: 61px;
-
 	padding: 20px;
 }
 
@@ -100,7 +99,7 @@ label{
 	<div class="containerbox">
 		<div class="mem-top-txt">
 			<ul>
-				<li>저희 000은 회원님의 개인정보를 신중히 취급하며, 회원님의 동의없이 기재하신 회원정보를 공개하지
+				<li>저희 SCA는 회원님의 개인정보를 신중히 취급하며, 회원님의 동의없이 기재하신 회원정보를 </br>공개하지
 					않습니다.</li>
 				<li>회원님의 개인정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 입력 해주세요.</li>
 			</ul>
@@ -134,7 +133,7 @@ label{
 			
 				</div>
 				<div class="login_btn">
-					<input type="submit" value="로그인" />
+					<button type="submit" style="width: 120px; height: 40px; border: none; border-radius: 10px; color: white; background-color: #009fe3;">로그인</button>
 				</div>
 			</form>
 		</div>

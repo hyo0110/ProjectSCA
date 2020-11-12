@@ -6,64 +6,83 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지-내가쓴글</title>
+<title>SCA Service</title>
 <style>
-	ul {
-		padding : 0;
-		margin : 0;
-	}
-	li {
-		list-style: none;
-		padding : 0;
-		margin : 0;
-	}
-	a {
-		text-decoration: none;
-		padding : 0;
-		margin : 0;
-	}
-	.container {
-		display : inline-block;
-	}
-	.snb_wrap {
-		float : left;
-	}
-	.snb_items {
-		border: 1px solid #3d3d3d;
-		width : 140px;
-	}
-	.snb_item {
-		width : 140px;
-		height: 40px;
-		border-bottom : 1px solid #3d3d3d;
-		text-align : center;
-	}
-	.snb_item a {
-		width : 140px;
-		height: 40px;
-		color : #3d3d3d;
-		line-height : 40px;
-		vertical-align : middle;
-	}
-	.snb_item:last-child {
-		border-bottom : 0;
-	}
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+
+ul {
+	padding : 0;
+	margin : 0;
+}
+li {
+	list-style: none;
+	padding : 0;
+	margin : 0;
+}
+a {
+	text-decoration: none;
+	padding : 0;
+	margin : 0;
+}
+
+.container {
+	display : inline-block;
+}
+.snb_wrap {
+	float : left;
+}
+.snb_items {
+	/* border: 1px solid #3d3d3d; */
+	width : 250px;
+}
+.snb_item {
+	width : 250px;
+	height: 40px;
+	/* border-bottom : 1px solid #3d3d3d; */
+	text-align : center;
+	border\-radius: 0px 25px 25px 0px; 
+	/* border: 1px solid lightgray; */
+}
+.snb_item a {
+	width : 140px;
+	height: 40px;
+	/* color : #3d3d3d; */
+	line-height : 40px;
+	vertical-align : middle;
+}
+.snb_item:last-child {
+	border-bottom : 0;
+}
 	.board_wrap {
-		float:left;
-		width : 420px;
-		height : 120px;
+	float:left;
+	width : 850px;
+	height: 580px;
+	position: absolute;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%,-50%);
 	}
 	.boardbox {
 		width : 100%;
 		height : 100%;
-		border : 1px solid #3d3d3d;
-		background-color : #ededed;
+/* 		border : 1px solid #3d3d3d;
+		background-color : #ededed; */
 	}
 	table,th,td{
-		border: 1px solid black;
+		border-bottom: 1px solid lightgray;
 		border-collapse: collapse;
 		padding: 10px 10px;
 	}
+	
+	table{
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	
+	}	
 	.pageitem {
 		float: left;
 	}
@@ -73,37 +92,49 @@
 <body>
 
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-			<div class="snb_wrap">
-				<ul class="snb_items">
-					<li class="snb_item"><a href="mypage_login">회원정보</a></li>
-					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
-					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
-				</ul>
+			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
+				<div class="snb_wrap">
+					<ul class="snb_items">
+						<li class="snb_item"><a href="mypage_detail">회원정보</a></li>
+						<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
+						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_written?page=1">글목록</a></li>
+					</ul>
+				</div>
 			</div>
-			<div class="board_wrap">
+			<div class="board_wrap" style="border-radius:20px; border: 1px solid lightgray; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="boardbox">
 					<table>
 						<tr>
-							<th>글 유형</th>
-							<th>제목</th>
-							<th>등록일</th>
+							<th style="width: 120px;">글 유형</th>
+							<th style="width: 510px;">제목</th>
+							<th style="width: 130px;">등록일</th>
 						</tr>
 						<c:forEach items = "${list}" var = "board">
 						<tr>
-							<td>${board.board_name}</td>
-							<td><a href="detail?idx=${board.board_idx}&type=${board.board_type}&pri=${board.private_bbs}">${board.subject}</a>(${board.bchk == '1' ? 'Y' : 
-							'N'})</td>
+							<td>
+							<c:if test="${board.board_name =='freeboard'}">
+								자유게시판
+							</c:if>
+							<c:if test="${board.board_name =='contact'}">
+								고객센터
+							</c:if>
+							</td>
+							<td><a href="detail?idx=${board.board_idx}&type=${board.board_type}&pri=${board.private_bbs}">${board.subject}</a>
+							<c:if test="${board.board_type==1}">
+								(${board.bchk == '1' ? 'Y' : 'N'})
+							</c:if>
+							</td>
 							<td>${board.reg_date}</td>
 						</tr>
 						</c:forEach>
 						</table>
 						
-						<ul>
-						<c:if test="${curPage > 1}"><div><a href="mypage_written?page=${curPage-1}">이전</a></div></c:if>
+						<ul style="top: 536px; position: absolute; left: 368px;">
+						<c:if test="${curPage > 1}"><li class="pageitem"><a href="mypage_written?page=${curPage-1}">이전</a></li></c:if>
 						<c:forEach var="i" begin="1" end="${totalPage}">
-							<li class="pageitem"<c:out value="${curPage == i ? 'style=background:red;' : ''}"/>><a href="mypage_written?page=${i}">${i}</a>	</li>
+							<li class="pageitem"<c:out value="${curPage == i ? 'style= font-weight:600;' : ''}"/>><a href="mypage_written?page=${i}">${i}</a>	</li>
 						</c:forEach>
-						<c:if test="${curPage ne totalPage}"><div><a href="mypage_written?page=${curPage+1}">다음</a></div></c:if>
+						<c:if test="${curPage ne totalPage}"><li class="pageitem"><a href="mypage_written?page=${curPage+1}">다음</a></li></c:if>
 						</ul>
 						
 				</div>

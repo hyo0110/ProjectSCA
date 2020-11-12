@@ -58,9 +58,9 @@ public class DataService {
 	public HashMap<String, Object> openbiz(String region, String reg_date) throws Exception {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		DataDTO status = dao.status(region, reg_date);
-		DataDTO ppl_age = dao.ppl_age(region,reg_date);
-		DataDTO ppl_day = dao.ppl_day(region,reg_date);
-		DataDTO ppl_time = dao.ppl_time(region,reg_date);
+		//DataDTO ppl_age = dao.ppl_age(region,reg_date);  // dto 쓸 수 있을거 같으면 쓰기... 인데.. 
+		//DataDTO ppl_day = dao.ppl_day(region,reg_date);
+		//DataDTO ppl_time = dao.ppl_time(region,reg_date);
 		
 		String age_html = reg_date + "_" + region + "_" + "age.html";
 		String day_html = reg_date + "_" + region + "_" + "day.html";
@@ -79,20 +79,45 @@ public class DataService {
 		conn.assign("age_path", age_result_path);
 		conn.assign("day_path", day_result_path);
 		conn.assign("time_path", time_result_path);
-		
-		conn.eval("age <- read.csv('C:/upload/db_move_age_people.csv')");
+		//나이대 하기
+		conn.eval("age <- read.csv('C:/upload/db_move_age_people.csv')"); // 여기 파일 주소 바꾸기
 		conn.eval("age <- filter(age, reg_date==selected_reg_date, region==selected_region)");
 		conn.eval("나이대 <- c('10대','20대','30대','40대','50대','60대이상')");
 		conn.eval("유동인구수 <- c(age$X10대, age$X20대, age$X30대, age$X40대, age$X50대, age$X60대)");
 		conn.eval("age_df <- data.frame(나이대, 유동인구수)");
 		conn.eval("age_result <- plot_ly(age_df, x=~나이대, y=~유동인구수)");
 		
-		try {
-		conn.eval("saveWidget(age_result, age_path, libdir='lib')");
-		}catch(Exception e){
-			e.printStackTrace();
+		try {	conn.eval("saveWidget(age_result, age_path, libdir='lib')");}catch(Exception e){
+			//e.printStackTrace();
 		}
-		conn.close();
+		
+		//요일
+		conn.eval("day <- read.csv('C:/upload/db_move_day_people.csv')"); // 여기 파일 주소 바꾸기
+		conn.eval("day <- filter(day, reg_date==selected_reg_date, region==selected_region)");
+		conn.eval("요일=c('월','화','수','목','금','토','일')");
+		conn.eval("유동인구수=c(day$monday,day$tuesday,day$wednesday,day$thursday,day$friday,day$saturday,day$sunday)");
+		conn.eval("day_df <- data.frame(요일,유동인구수)");
+		conn.eval("day_df$요일 <- factor(day_df$요일, levels = c('월','화','수','목','금','토','일'))");
+		conn.eval("day_result <- plot_ly(day_df, x=~요일, y=~유동인구수)");		
+		
+		try {	conn.eval("saveWidget(day_result, day_path, libdir='lib')");}catch(Exception e){
+			//e.printStackTrace();
+		}
+		
+		// 시간대
+		conn.eval("time <- read.csv('C:/upload/db_move_time_people.csv')"); // 여기 파일 주소 바꾸기
+		conn.eval("time <- filter(time, reg_date==selected_reg_date, region==selected_region)");
+		conn.eval("시간대 = c('새벽','오전','점심','오후','저녁','밤')");
+		conn.eval("유동인구수 = c(time$time_1,time$time_2,time$time_3,time$time_4,time$time_5,time$time_6)");
+		conn.eval("time_df <- data.frame(시간대,유동인구수)");
+		conn.eval("time_df$시간대 <- factor(time_df$시간대, levels = c('새벽','오전','점심','오후','저녁','밤'))");
+		conn.eval("time_result <- plot_ly(time_df, x=~시간대, y=~유동인구수) %>% add_lines()");	
+		
+		try {	conn.eval("saveWidget(time_result, time_path, libdir='lib')");}catch(Exception e){
+			//e.printStackTrace();
+		}
+		
+		conn.close(); // 자원닫기 어예
 		
 		result.put("status", status);
 		result.put("age_html", "/photo/" + age_html);

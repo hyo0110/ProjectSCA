@@ -88,7 +88,7 @@ top: 5%;
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-			<div style="margin-top:50px;">
+			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
 						<li class="snb_item"><a href="mypage_detail">회원정보</a></li>
@@ -97,7 +97,7 @@ top: 5%;
 					</ul>
 				</div>
 			</div>
-			<div class="scrap_wrap" style="border-radius:20px; border: 1px solid lightgray;">
+			<div class="scrap_wrap" style="border-radius:20px; border: 1px solid lightgray; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="scrapbox">
 					<table>
 						<tr>

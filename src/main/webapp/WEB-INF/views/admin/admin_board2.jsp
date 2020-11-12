@@ -58,7 +58,7 @@
 	<link href="resources/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-	<c:import url="../navi.jsp">	</c:import>	
+	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
  	<div id="wrapper">
 	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 

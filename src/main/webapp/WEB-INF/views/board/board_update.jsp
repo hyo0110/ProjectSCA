@@ -13,15 +13,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
-/* table,th,td{
-				border: 1px solid black;
-				border-collapse: collapse;
-				padding: 10px 10px;
-			}
-			
-			table.board{
-				width:100%;
-			} */
 			
 			input[type='text']{
 				width: 100%;
@@ -35,6 +26,7 @@
 			padding 5px;
 			overflow: auto; 
 			}
+			
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
@@ -64,20 +56,15 @@
 				<tr>
 					<th>파일첨부</th>
 					<td>
-						<input type="button" onclick="fileUp()" value ="파일 업로드 "/>
+						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
 						<div id="files"></div>
 					</td>
 				</tr>
 				</c:if>
-				<tr>
-					<td colspan = "2">
-					<input type = "button" onclick = "save()" value = "저장"/>
-					
-					</td>
-				</tr>
-				
+
 			</table>
 			</div>
+			<input type = "button" onclick = "save()" value = "저장" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
 		</form>
 </body>
 <script>
@@ -95,7 +82,7 @@
 		$(document).ready(function(){
 			$("#editable img").each(function(idx,item){//idx = 갯수 , item = ???
 				console.log(idx,item);
-				 $(item).after("<input id='${path}' type='button' value='삭제' onclick='del(this)'><br/>");
+				 $(item).after("&nbsp;&nbsp;<input id='${path}' type='button' value='삭제' onclick='del(this)' style='text-align: center;border: 1px solid #dee2e6;' class='btn btn-default btn-sm'><br/>");
 			});
 		});
 

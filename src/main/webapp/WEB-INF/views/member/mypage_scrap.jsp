@@ -115,7 +115,7 @@ top: 5%;
 						<c:forEach items = "${list}" var = "scrap">
 						<tr>
 							<td>${scrap.scrap_idx}</td>
-							<td>${scrap.scrap_sub}</td>
+							<td><a href="whereresult?${scrap.parameter}">${scrap.scrap_sub}</a></td>
 							<td><a href="scrap_delete?idx=${scrap.scrap_idx}">삭제</a></td>
 						</tr>
 						</c:forEach>

@@ -89,7 +89,7 @@
 	var totalChecked_day= 0; // 설정 끝
 	
 	 var age_total_chk = $("#age .age_total").is(":checked");
-	
+	 var time_total_chk = $("#time .time_total").is(":checked");
 	
 
 	function CountChecked(field) {
@@ -179,8 +179,8 @@
     });
 
     $("#time").click(function(){
-        var age_total_chk = $("#time .age_total").is(":checked");//.attr('checked');
-        if(age_total_chk){
+        var time_total_chk = $("#time .time_total").is(":checked");//.attr('checked');
+        if(time_total_chk){
         	$("#time .time_total input").prop('checked', true);
         	//$("#age .age input").prop('checked', false);
         	$(".time").prop('checked',false);

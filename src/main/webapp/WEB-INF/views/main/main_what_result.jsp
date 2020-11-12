@@ -20,9 +20,9 @@
 			#news_section{
 				border : 1px solid darkblue;
 				width: 400px;
-				top: 15%;
+				top: 20%;
 				right: 4%;
-				position: fixed;
+				position: absolute;
 				padding: 15px 5px;
 				background-color: white;
 			}
@@ -89,13 +89,13 @@
 						<!-- 해당구의 상권상태 부분 -->
 							<div id="status"> </div>
 						<!-- 영업종류 현황 부분 -->
-							<iframe id ="openbiz" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+							<iframe id ="openbiz" style="display:block; width:70vw; height: 70vh" src="" 	frameborder="0"></iframe>
 						<!-- 나이별 유동인구 -->
-							<iframe id ="ppl_age" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+							<iframe id ="ppl_age" style="display:block; width:60vw; height: 60vh" src="" 	frameborder="0"></iframe>
 						<!-- 요일별 유동인구 -->
-							<iframe id ="ppl_day" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+							<iframe id ="ppl_day" style="display:block; width:60vw; height: 60vh" src="" 	frameborder="0"></iframe>
 						<!-- 시간별 유동인구 -->
-							<iframe id ="ppl_time" style="display:block; width:80vw; height: 80vh" src="" 	frameborder="0"></iframe>
+							<iframe id ="ppl_time" style="display:block; width:60vw; height: 60vh" src="" 	frameborder="0"></iframe>
 						
 						
 						</div>

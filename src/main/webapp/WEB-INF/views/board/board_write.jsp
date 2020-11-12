@@ -46,7 +46,7 @@
 		<form action="write" method = "post">
 		<input type="hidden" name ="type" value="${type}">
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
-			<table class="table table-hover">
+			<table class="table table-hover table-bordered">
 				<c:if test="${sessionScope.loginid ne ''}">
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
@@ -64,18 +64,14 @@
 				<tr>
 					<th>파일첨부</th>
 					<td>
-						<input type="button" onclick="fileUp()" value ="파일 업로드 "/>
+						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
 						<div id="files"></div>
-					</td>
-				</tr>
-				<tr>
-					<td colspan = "2">
-					<input type = "button" onclick = "save()" value = "저장"/>
-					<input type="button" value="뒤로가기" onclick="goback()">
 					</td>
 				</tr>
 			</table>
 			</div>
+			<input type = "submit" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
 		</form>
 	</body>
 	<script>

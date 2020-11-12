@@ -92,24 +92,13 @@
           
          <c:choose>
             <c:when test="${sessionScope.loginid eq  null}">
-<<<<<<< HEAD
-            <button class="btn btn-default" onclick="location.href='index'" style="border: 1px solid #004c80;">로그인</button>
-            &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-default" onclick="location.href='joinForm'" style="border: 1px solid #004c80;">회원가입</button>
-=======
             <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그인</button>
             &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>
->>>>>>> 45b66965ec1cfdfd5431de9cb43e3c3960b2d90c
-               
+            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>              
             </c:when>
             <c:otherwise>
             	${sessionScope.loginid}님 &nbsp;
-<<<<<<< HEAD
-               <button class="btn btn-default" onclick="location.href='logout'" style="border: 1px solid #004c80;">로그아웃</button>
-=======
                <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
->>>>>>> 45b66965ec1cfdfd5431de9cb43e3c3960b2d90c
             </c:otherwise>
        </c:choose>
           

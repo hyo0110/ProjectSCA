@@ -43,19 +43,20 @@
         outline: none;
     }
     .btn{
-            background-color:#009fe3;
-            color:white;
+            boeder:1px solid #009fe3;
+            color: #009fe3;
+            background-color: white;
             padding:13px 180px;
-            color:#fff;
             font-size:17px;
             border-radius:25px;
-            border: none;
             cursor: pointer;
             margin-top: 30px;
             }
             
     button:hover {
           opacity: 0.8;
+          background-color:#009fe3;
+          color: white; 
         }  
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>

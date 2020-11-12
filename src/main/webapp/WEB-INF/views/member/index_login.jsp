@@ -46,19 +46,20 @@
     }
     
     .btn{
-            background-color:#009fe3;
-            color:white;
+            border:1px solid #009fe3;
+            color: #009fe3;
             padding:13px 130px;
-            color:#fff;
             font-size:17px;
             border-radius:20px;
-            border: none;
+            background-color:white;
             cursor: pointer;
             
             }
             
     button:hover {
           opacity: 0.8;
+          background-color:#009fe3;
+          color: white; 
         }        
             
     #loginbtn       {

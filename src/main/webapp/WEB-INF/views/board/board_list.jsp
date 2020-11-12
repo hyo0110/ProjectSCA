@@ -55,7 +55,7 @@
 					</tbody>
 				</table>
 			</div>
-			<div style="min-width: 1795px;left: 52px;background-color:#F6F6F6;height: 25px;position: relative;padding-right: 5px;padding-left: 5px; margin-bottom: 1%;"></div>
+			<div style="width: 1780px;left: 52px;background-color:#F6F6F6;height: 25px;position: relative;padding-right: 5px;padding-left: 5px; margin-bottom: 1%;"></div>
 			
 			<div style="position: relative; text-align: center;">
 			<form action="opSearch" method="GET">

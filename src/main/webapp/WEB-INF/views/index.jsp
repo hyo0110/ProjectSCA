@@ -76,8 +76,8 @@
 		</div>
 		<div class="main_box">
 		    <img src="resources/img/service_explain.PNG" width="340px;" class="img1" onclick="location.href='service_explain'">
-		    <img src="resources/img/what.PNG" width="340px;" class="img2" onclick="location.href='what'">
-		    <img src="resources/img/where.PNG" width="340px;" class="img3" onclick="location.href='where'">
+		    <img src="resources/img/what.png" width="340px;" class="img2" onclick="location.href='what'">
+		    <img src="resources/img/where.png" width="340px;" class="img3" onclick="location.href='where'">
 		</div>
 		<div class="bar_menu">
 		    <div class="bar_scrap">스크랩한 글 갯수</div>

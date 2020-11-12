@@ -71,9 +71,14 @@
     	padding:13px 80px;
         font-size:17px;
         cursor: pointer;
-        background-color: #009fe3;             
-        color: white; 
-        border: none;      
+        border: 1px solid #004c80; 
+		border-radius: 5px; 
+		color: #004c80;
+		background-color: white;      
+	}
+	button:hover{
+		background-color: #009fe3; 
+		color: white;
 	}
 	
 	#footer{

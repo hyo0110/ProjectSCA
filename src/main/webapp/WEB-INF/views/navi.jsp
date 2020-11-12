@@ -44,7 +44,7 @@
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; background-color: white;">
         <a class="navbar-brand" href="./"><img src="resources/img/logo.PNG"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

@@ -1,7 +1,9 @@
 package com.mrs.project.controller;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,16 +31,15 @@ public class DataController {
 	//메인 들어가기
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model) {
-		logger.info("메인으로");
-		
+		logger.info("메인으로");		
 		return "main";
 	}
-	
+	// 최근 검색 결과 5개 넣는거.... 
 	LinkedHashMap<String, String> recent_search = new LinkedHashMap<String, String>() {			
 		private final int MAX = 5;			
 		protected boolean removeEldestEntry(java.util.Map.Entry<String,String> eldest) {
 			return size() >= MAX;
-		};			
+		};	
 	};
 	
 	//-------------------------------------스크랩 개수 세기----------------------------------------------
@@ -47,8 +48,7 @@ public class DataController {
 		logger.info("로그인한 아이디: "+ param.get("loginid"));
 		String loginid = param.get("loginid");
 		return service.scrap_cnt(loginid);
-	}
-	
+	}	
 	
 	//----------------------------------------무엇을-----------------------------------------------------
 	//무엇을 들어가기
@@ -63,16 +63,14 @@ public class DataController {
 	public ModelAndView whatresult(Model model, @RequestParam String region, HttpSession session) {
 		logger.info("무엇을 결과 "+region);
 		DataDTO data = service.what_result(region);
-		ModelAndView mav = new ModelAndView();			
+		ModelAndView mav = new ModelAndView();	
 		mav.addObject("region", region);
 		mav.addObject("data", data);
 		recent_search.put(region,"whatresult?region="+region);	
 		session.setAttribute("recent_search", recent_search);
 		mav.setViewName("main/main_what_result");		
 		return mav;
-	}
-	
-	
+	}	
 	
 	// 무엇을 뉴스리스트
 	@RequestMapping(value = "/newslist", method = RequestMethod.GET)
@@ -94,8 +92,7 @@ public class DataController {
 	//어디에서 들어가기
 	@RequestMapping(value = "/where", method = RequestMethod.GET)
 	public String where(Model model) {
-		logger.info("어디에서");
-		
+		logger.info("어디에서");		
 		return "main/main_where";
 	}
 	
@@ -103,9 +100,27 @@ public class DataController {
 	public ModelAndView whereresult(ModelAndView model, @RequestParam HashMap<String, String> param, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();	
 		logger.info("어디로에 대한 결과");
+		/*
+		Set<String> keyset = param.keySet();
+		Iterator<String> keyIter = keyset.iterator();
+		int i = 0;
+		String[] values = new String[param.keySet().size()];
+		while(keyIter.hasNext()) {
+			String key = keyIter.next();
+			String value = param.get(key);
+			System.out.println(key + " : " + value);
+			values[i] = value;
+			i++;
+		}
+		
+		for(int j = 0; j<param.keySet().size(); j++) {
+			System.out.println(values[j]);
+		}
+	  */
+		
 		String parameter = param.toString();
 		recent_search.put(parameter,"whereresult?"+param);
-		session.setAttribute("recent_search", recent_search);		
+		session.setAttribute("recent_search", recent_search);
 		return service.where_result(param,mav);		
 	}
 	

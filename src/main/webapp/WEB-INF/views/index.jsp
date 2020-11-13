@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -89,13 +90,22 @@
 		    	<div id="scrap_cnt">	</div>
 		    </div>
 		    <div class="bar_search">최근 검색한 조건
-		    	<div id="recent_search">  최근 검색한 조건이 없습니다. 	</div>
-		    </div>
+		    	<div id="recent_search"> 	</div>
+		    	
+<%--   	<%
+    HashMap<String,String> map = (HashMap<String,String>) session.getAttribute("recent_search");
+    String region_condition = map.get("region");
+    
+	%>
+
+ --%>
+ 		    </div>
 		</div>
 	</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
+</script>
 <script>
 
 var msg = "${msg}";
@@ -121,10 +131,17 @@ var loginid = "${sessionScope.loginid}";
 			});
 		});
 
+var recent_search_url = "${sessionScope.recent_search.region}";
+var recent_search_name = "${sessionScope.recent_search }";
 var recent_search = "${sessionScope.recent_search}";
-	if(recent_search!=null){
-		$("#recent_search").html("<h4>"+recent_search+"</h4>");
-	}
+//var test = "";
 
-</script>
+	if(recent_search!=''){
+		console.log(recent_search_url);
+		console.log(recent_search_name);
+		$("#recent_search").html("<h6>"+recent_search_name+"</h6>");
+		//<a href=""whatresult?region="+"></a> ?age_40=40대&age_cnt=1&day_2=금~일&time_2=오전&time_cnt=1
+	}else{		
+		$("#recent_search").html("<h6>최근 검색한 조건이 없습니다.</h6>");
+	}
 </html>

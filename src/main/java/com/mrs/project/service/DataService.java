@@ -32,8 +32,7 @@ public class DataService {
 		int scrap_cnt = dao.scrap_cnt(loginid);
 		result.put("scrap_cnt",scrap_cnt);
 		return result;
-	}
-	
+	}	
 	
 	// 해당 구 베스트 정보+망고플레이트 불러오기
 	public DataDTO what_result(String region) {

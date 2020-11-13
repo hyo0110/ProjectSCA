@@ -29,7 +29,12 @@
 				height: 500px;
 				resize: none;
 			}
-			
+						 #footer	{
+		position:absolute;
+		top:900px;
+		text-align:center!important;
+		width: -webkit-fill-available;
+}
 			
 		</style>
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -43,7 +48,7 @@
 		<form action="cwrite" method = "post">
 		<input type="hidden" name ="type" value="${type}">
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
-			<table class="table table-hover">
+			<table class="table table-hover table-bordered">
 				<c:if test="${sessionScope.loginid ne ''}">
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
@@ -59,18 +64,91 @@
 					<th >내용</th>
 					<td style="width: 80%;"><textarea name = "content" id="content"></textarea></td>
 				</tr>
-				<tr>
-					<td colspan = "2">
-					<input type = "submit" value = "저장"/>
-					<input type="button" value="뒤로가기" onclick="goback()">
-					</td>
-				</tr>
 			</table>
 			</div>
+			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default" onclick="save()"/>
+			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
 		</form>
+		<!--Footer Links-->
+   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
+    <div class="container-fluid">
+      <div class="row">
+        <!--First column-->
+        <div class="col-md-3">
+          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
+          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
+        </div>
+        <!--/.First column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Second column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
+          <ul class="list-unstyled">
+            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
+          </ul>
+        </div>
+        <!--/.Second column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Third column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
+          <ul class="list-unstyled">
+            <li>Contacts</li>
+            <li>Terms</li>
+            <li>Condition</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+        <!--/.Third column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Fourth column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
+          <ul class="list-unstyled">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instargram</li>
+            <li>RSS</li>
+          </ul>
+        </div>
+        <!--/.Fourth column-->
+
+      </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+    
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+  
 	</body>
 	<script>
 
+	function save(){
+		if(confirm("등록하시겠습니까?")==true){
+			$("form").submit(); 
+		}else{
+			
+		}
+
+	}
+	
+	
 	$("#privatecheck").change(function(){
 		if ($("#privatecheck").is(":checked")) {
 	    $("#privateHidden").val('1');

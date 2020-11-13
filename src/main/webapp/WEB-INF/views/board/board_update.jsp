@@ -13,15 +13,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
-/* table,th,td{
-				border: 1px solid black;
-				border-collapse: collapse;
-				padding: 10px 10px;
-			}
-			
-			table.board{
-				width:100%;
-			} */
 			
 			input[type='text']{
 				width: 100%;
@@ -35,6 +26,14 @@
 			padding 5px;
 			overflow: auto; 
 			}
+			
+		#footer	{
+		position:absolute;
+		top:900px;
+		text-align:center!important;
+		width: -webkit-fill-available;
+}
+			
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
@@ -64,21 +63,84 @@
 				<tr>
 					<th>파일첨부</th>
 					<td>
-						<input type="button" onclick="fileUp()" value ="파일 업로드 "/>
+						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
 						<div id="files"></div>
 					</td>
 				</tr>
 				</c:if>
-				<tr>
-					<td colspan = "2">
-					<input type = "button" onclick = "save()" value = "저장"/>
-					
-					</td>
-				</tr>
-				
+
 			</table>
 			</div>
+			<input type = "button" onclick = "save()" value = "저장" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
 		</form>
+		
+			<!--Footer Links-->
+   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
+    <div class="container-fluid">
+      <div class="row">
+        <!--First column-->
+        <div class="col-md-3">
+          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
+          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
+        </div>
+        <!--/.First column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Second column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
+          <ul class="list-unstyled">
+            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
+          </ul>
+        </div>
+        <!--/.Second column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Third column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
+          <ul class="list-unstyled">
+            <li>Contacts</li>
+            <li>Terms</li>
+            <li>Condition</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+        <!--/.Third column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Fourth column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
+          <ul class="list-unstyled">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instargram</li>
+            <li>RSS</li>
+          </ul>
+        </div>
+        <!--/.Fourth column-->
+
+      </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+    
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+  
 </body>
 <script>
 
@@ -89,13 +151,11 @@
 			alert("저장하기전엔 뒤로 가실 수 없습니다.");
 		}			
  		
-
- 		
 		//삭제버튼 붙이기
 		$(document).ready(function(){
 			$("#editable img").each(function(idx,item){//idx = 갯수 , item = ???
 				console.log(idx,item);
-				 $(item).after("<input id='${path}' type='button' value='삭제' onclick='del(this)'><br/>");
+				 $(item).after("&nbsp;&nbsp;<input id='${path}' type='button' value='삭제' onclick='del(this)' style='text-align: center;border: 1px solid #dee2e6;' class='btn btn-default btn-sm'><br/>");
 			});
 		});
 
@@ -132,9 +192,13 @@
 		
 		//저장시키기
 		function save(){
-			$("#editable input[type='button']").remove();
-			$("#content").val($("#editable").html()); 
-			$("form").submit(); 
-		}	
+			if(confirm("등록하시겠습니까?")==true){
+				$("#editable input[type='button']").remove();
+				$("#content").val($("#editable").html()); 
+				$("form").submit(); 
+			}else{
+				
+			}
+		}
 </script>
 </html>

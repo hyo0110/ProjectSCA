@@ -94,7 +94,7 @@ th, td {
 	
 	<div class="text-center">
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a>
+			<li class="page-item"><a class="page-link" href="./admin?page=i"><span>처음</span></a>
 				<a id="prevPage" class="page-link" href="./admin?page=${currPage-1}"
 				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
 					class="sr-only">Previous</span>
@@ -116,6 +116,7 @@ th, td {
 	</div>
 	
 <script>
+
 //삭제 버튼
 	function ajaxCall(board_idx){
 		

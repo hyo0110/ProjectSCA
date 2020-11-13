@@ -24,25 +24,27 @@
 		}
 	</script> -->
 	<style>
-
 	@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
-		.btn{
-			color: #0033CC;
+	/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+	@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+	/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+	
+	.btn{
+		color: #0033CC;
+	}
+	.btn:hover{
+			background-color: #009fe3;
+			color:white;
 		}
-		.btn:hover{
-			background-color: #2c81d0;
-		}
-		.btn:active:hover {
-			background-color: #2c81d0;
-		}
+		
+	.btn:active{
+			background-color: #009fe3;
+	}
 	</style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; background-color: white;">
         <a class="navbar-brand" href="./"><img src="resources/img/logo.PNG"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -57,7 +59,7 @@
             <!-- <li class="nav-item active">
               <a class="nav-link" href="main">검색<span class="sr-only">(current)</span></a>
             </li> -->
-			<li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif;">
+			<li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-right: 20px; margin-left: 30px;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   검색
                 </a>
@@ -67,7 +69,7 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif;">
+            <li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; margin-right: 20px; ">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   마이페이지
                 </a>
@@ -78,11 +80,11 @@
                 </div>
             </li>
 
-            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif;">
+            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; margin-right: 20px; ">
               <a class="nav-link" href="typelist?type=0">자유게시판</a>
             </li>
 
-            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif;">
+            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
                 <a class="nav-link" href="typelist?type=1">고객센터</a>
               </li>
 
@@ -90,14 +92,13 @@
           
          <c:choose>
             <c:when test="${sessionScope.loginid eq  null}">
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그인</button>
+            <button class="btn btn-default" onclick="location.href='index'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그인</button>
             &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>
-               
+            <button class="btn btn-default" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>              
             </c:when>
             <c:otherwise>
             	${sessionScope.loginid}님 &nbsp;
-               <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
+               <button class="btn btn-default" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
             </c:otherwise>
        </c:choose>
           

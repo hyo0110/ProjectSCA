@@ -12,7 +12,13 @@
 		/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 		/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
-					
+		
+		#footer	{
+			position:absolute;
+			top:800px;
+			text-align:center!important;
+			width: -webkit-fill-available;
+		}	
 		</style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -21,69 +27,119 @@
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
 	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
 	</head>
+	
 	<body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
-			<table class="table table-hover">
-				<thead style="background-color: #0064FF; color: white;">
+			<table class="table table-hover table-bordered">
+				<thead>
 					<tr>
 						<p>${count}개의 글이 있습니다. </p>
 					</tr>
 					<tr>
-						<th style="width: 5%;">글번호</th>
-							<th style="width: 45%;">제목</th>
-							<th style="width: 10%;">작성자</th>
-							<th style="width: 15%;">작성일</th>
-							<th style="width: 5%;">조회수</th>
+						<th style="width: 5%; text-align: center;">글번호</th>
+						<th style="width: 45%;">제목</th>
+						<th style="width: 10%; text-align: center;">작성자</th>
+						<th style="width: 15%;">작성일</th>
+						<th style="width: 5%; text-align: center;">조회수</th>
 					</tr>	
 			</thead>
 			<tbody id="boardList">
 				<!--  리스트 출력 -->
 			</tbody>
-			<!--
-			<tbody>
-				<c:forEach items="${list}" var="bbs">
-					<tr>
-					<td>${bbs.board_idx}</td>
-					<td>
-						<a href="detail?idx=${bbs.board_idx}&type=${type}&pri=${bbs.private_bbs}">${bbs.subject}</a>
-					</td>
-					<td>${bbs.id}</td>
-					<td>${bbs.reg_date}</td>
-					<td>${bbs.bHit}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-			  -->
-			  	<tr>
-					<td colspan="4" style="text-align: center;">
-						<form action="opSearch" method="GET">
-							<select name="search_option">
-								<option value="all"
-									<c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
-								<option value="title"
-									<c:if test="${search_option == 'title'}"></c:if>>제목</option>
-								<option value="content"
-									<c:if test="${search_option == 'content'}"></c:if>>내용</option>
-							</select> 
-							<input type="text" name="keyword" value="${keyword}" />
-							<input 	type="submit" value="검색" />
-							<input type="hidden" name="type" value="${type}" />
-						</form>
-					</td>
-					<td style="text-align: right;">
-						<button onclick="location.href='writeForm?type=${type}'" id="writebutton">글쓰기</button>
-					</td>
-				</tr>
-			  
-		</table>
+			</table>
 		</div>
-		<div class="container"   style="position: absolute; left: 35%;">
-			<nav arial-label="Page navigation" style="text-align: center">
-				<ul class="pagination" id="pagination"></ul>
-			</nav>
-		</div>
+		<div style="width: 1780px;left: 52px;background-color:#F6F6F6;height: 25px;position: relative;padding-right: 5px;padding-left: 5px; margin-bottom: 1%; top:-16px;"></div>
+			 
+			<div style="position: relative; text-align: center;">
+			<form action="opSearch" method="GET">
+				<select name="search_option">
+					<option value="all"
+						<c:if test="${search_option == 'all'}"></c:if>>제목+내용</option>
+					<option value="title"
+						<c:if test="${search_option == 'title'}"></c:if>>제목</option>
+					<option value="content"
+						<c:if test="${search_option == 'content'}"></c:if>>내용</option>
+				</select> 
+				<input type="text" name="keyword" value="${keyword}" />
+				<input 	type="submit" value="검색" style="border: 1px solid #dee2e6;" class="btn btn-default"/>
+				<input type="hidden" name="type" value="${type}" />
+			</form>
+			</div>
+			
+			<button onclick="location.href='writeForm?type=${type}'"  style="position: relative;text-align: center;left: 90%;top: -27px; border: 1px solid #dee2e6;" class="btn btn-default">글쓰기</button>
+			<div class="container"   style="position: absolute; left: 35%;">
+				<nav arial-label="Page navigation" style="text-align: center">
+					<ul class="pagination" id="pagination"></ul>
+				</nav>
+			</div>
+		<!--Footer Links-->
+   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
+    <div class="container-fluid">
+      <div class="row">
+        <!--First column-->
+        <div class="col-md-3">
+          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
+          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
+        </div>
+        <!--/.First column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Second column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
+          <ul class="list-unstyled">
+            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
+          </ul>
+        </div>
+        <!--/.Second column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Third column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
+          <ul class="list-unstyled">
+            <li>Contacts</li>
+            <li>Terms</li>
+            <li>Condition</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+        <!--/.Third column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Fourth column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
+          <ul class="list-unstyled">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instargram</li>
+            <li>RSS</li>
+          </ul>
+        </div>
+        <!--/.Fourth column-->
+
+      </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+    
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
 		
 	</body>
 	<script>

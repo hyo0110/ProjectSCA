@@ -13,32 +13,21 @@ public class LoginInterceptor extends HandlerInterceptorAdapter { //꼭 상속�
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) 
 			throws Exception {
-		System.out.println("Controller 접근 전");
+		//System.out.println("Controller 접근 전");
 		//세션검사
 		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("loginid"));
-		System.out.println("session 값 있어? : " + session);
+		//System.out.println(session.getAttribute("loginid"));
+		//System.out.println("session 값 있어? : " + session);
 		//세션에 loginId가 없으면 -> /로 보낸다
 		if(session.getAttribute("loginid") == null){
-			System.out.println("로그인 안한 놈..");
+			//System.out.println("로그인 안한 놈..");
 			response.sendRedirect("/project/index");
 		}else {
-			System.out.println("로그인 한 분");
+			//System.out.println("로그인 한 분");
 		}
 		return true;
 	}
 
-	//컨트롤러를 지나서view로 가기 직전
-	/*
-	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView modelAndView) throws Exception {
-		System.out.println("Controller 에서 View전송 직전");
-		String userId = (String) request.getSession().getAttribute("id");
-		String content = "<div>안녕하세요!!! "+userId+"님 <a href='./logout'>logout</a></div>";
-		modelAndView.addObject("loginBox",content);
-	}
-*/
 	//컨트롤러 요청이 처리되고 난 후
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)

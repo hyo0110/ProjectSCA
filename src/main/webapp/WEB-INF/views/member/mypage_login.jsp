@@ -82,6 +82,26 @@ body {
 label{
 	width: 300px;
 }
+
+#loginbtn{
+	width: 120px; 
+	height: 40px; 
+	border: 1px solid #004c80; 
+	border-radius: 5px; 
+	color: #004c80;
+	background-color: white;
+}
+#loginbtn:hover{
+	background-color: #009fe3; 
+	color: white;
+}
+
+#footer	{
+		position:absolute;
+		bottom:0;
+		text-align:center!important;
+		width: -webkit-fill-available;
+	}
 </style>
 
 
@@ -133,12 +153,78 @@ label{
 			
 				</div>
 				<div class="login_btn">
-					<button type="submit" style="width: 120px; height: 40px; border: none; border-radius: 10px; color: white; background-color: #009fe3;">로그인</button>
+					<button type="submit" id="loginbtn">로그인</button>
 				</div>
 			</form>
 		</div>
 	</div>
+	<!--Footer Links-->
+   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
+    <div class="container-fluid">
+      <div class="row">
+        <!--First column-->
+        <div class="col-md-3">
+          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
+          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
+        </div>
+        <!--/.First column-->
 
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Second column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
+          <ul class="list-unstyled">
+            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
+          </ul>
+        </div>
+        <!--/.Second column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Third column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
+          <ul class="list-unstyled">
+            <li>Contacts</li>
+            <li>Terms</li>
+            <li>Condition</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </div>
+        <!--/.Third column-->
+
+        <hr class="w-100 clearfix d-md-none">
+
+        <!--Fourth column-->
+        <div class="col-md-2 mx-auto">
+          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
+          <ul class="list-unstyled">
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instargram</li>
+            <li>RSS</li>
+          </ul>
+        </div>
+        <!--/.Fourth column-->
+
+      </div>
+    </div>
+    <!--/.Footer Links-->
+
+    <hr>
+    
+    <!--Copyright-->
+    <div class="footer-copyright py-3 text-center">
+      <div class="container-fluid">
+        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
+      </div>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+	
 
 </body>
 </html>

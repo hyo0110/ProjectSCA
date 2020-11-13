@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<td>환영합니다. <spring:eval expression="@config['manager.id']" /> 님
+<td>환영합니다. <spring:eval var="admin" expression="@config['manager.id']" /> 님
 </td>
 
 <!DOCTYPE html>
@@ -58,7 +58,6 @@
 	<link href="resources/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
  	<div id="wrapper">
 	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -67,7 +66,7 @@
 			<div class="sidebar-brand-icon rotate-n-15">
           		<i class="fas fa-laugh-wink"></i>
 			</div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Admin<sup></sup></div>
 		</a>
 
       <!-- Divider -->
@@ -88,6 +87,12 @@
           	<i class="fas fa-fw fa-table"></i>
           	<span>문의글관리</span></a>
       	</li>  
+      	<!-- Nav Item - Tables -->
+		<li class="nav-item active">
+        	<a class="nav-link" href="logout">
+          	<i class="fas fa-fw fa-table"></i>
+          	<span>로그아웃</span></a>
+		</li>
 		</ul><!-- accordionSidebar ui박스 -->
      <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column"><!-- 게시판 div 박스입니다. -->
@@ -95,7 +100,7 @@
 	<div id="content">
 	<div id="table" class="card shadow mb-4">
 		<div class="card-body">
-		  <div class="table-responsive" style="white-space:nowrap; overflow:hidden;">
+		  <div class="table-responsive" style="white-space:nowrap; overflow:hidden; position:absolute; top:100px;">
 			<table class="table table-bordered" id="dataTable" width="100%;" cellspacing="0;">
 			<tr>
 				<th style="width:10%;">글번호</th>
@@ -123,7 +128,7 @@
 			</div><!-- table-responsive 박스 -->
 		</div>
 	</div>
-	   	<ul id="paging" class="pagination" style="position: relative; float:none; left:500px;">
+	   	<ul id="paging" class="pagination" style="position: relative; float:none; top:480px; left:500px;">
       		<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a></li>
 			<li class="page-item"><a class="page-link" href="./admin?page=${currPage-1}">Previous</a></li>
 			<li class="page-item"><a class="page-link" href="./admin?page=1">1</a></li>
@@ -134,12 +139,12 @@
 			<li class="page-item"><a class="page-link" href="./admin?page=6">6</a></li>
 			<li class="page-item"><a class="page-link" href="./admin?Page=${currPage+1}">Next</a></li>
 		</ul>
-    <footer id="footer" class="page-footer text-center text-md-left pt-4">
 
+      </div><!-- content -->
+    <footer id="footer" class="page-footer text-center text-md-left pt-4">
     <!--Footer Links-->
     <div class="container-fluid">
       <div class="row">
-
         <!--First column-->
         <div class="col-md-3">
           <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
@@ -202,12 +207,12 @@
 
   </footer>
   <!--/.Footer-->
-      </div><!-- content -->
       </div><!-- content-wrapper 박스 입니다. -->   
 </div><!-- wrapper div입니다. -->
 	<a class="scroll-to-top rounded" href="#page-top">
     	<i class="fas fa-angle-up"></i>
   	</a>
+  	
 </body>
 <script>
 //삭제 버튼
@@ -240,6 +245,9 @@
 	var currPage = ${currPage}; //현재 페이지
 	var listCount = ${listCount};
 
+
+</script>
+
 <!-- Bootstrap core JavaScript-->
   <script src="resources/jquery/jquery.min.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -258,7 +266,5 @@
   <script src="resources/js/demo/datatables-demo.js"></script>
 
 	
-</script>
-
 
 </html>

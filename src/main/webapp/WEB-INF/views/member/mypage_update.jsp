@@ -81,17 +81,17 @@ input:focus{
         outline: none;
     }
 button{
-			/* background-color:#0064FF;
-            color:white; */
             padding:10px 80px;
-            /* color:#fff; */
             font-size:17px;
-            /* border: none; */
             cursor: pointer; 
             border: 1px solid #004c80;             
             color: #004c80; 
             background-color: white;          
-}    
+} 
+button:hover{
+		background-color: #009fe3; 
+		color: white;
+	}   
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>

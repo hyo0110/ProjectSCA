@@ -83,6 +83,19 @@ label{
 	width: 300px;
 }
 
+#loginbtn{
+	width: 120px; 
+	height: 40px; 
+	border: 1px solid #004c80; 
+	border-radius: 5px; 
+	color: #004c80;
+	background-color: white;
+}
+#loginbtn:hover{
+	background-color: #009fe3; 
+	color: white;
+}
+
 #footer	{
 		position:absolute;
 		bottom:0;
@@ -140,7 +153,7 @@ label{
 			
 				</div>
 				<div class="login_btn">
-					<button type="submit" style="width: 120px; height: 40px; border: none; border-radius: 10px; color: white; background-color: #009fe3;">로그인</button>
+					<button type="submit" id="loginbtn">로그인</button>
 				</div>
 			</form>
 		</div>

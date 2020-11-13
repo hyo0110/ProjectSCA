@@ -63,7 +63,8 @@ public class AdminController {
 				mav.setViewName(page);
 			}		
 		return mav;
-	}	
+	}
+	
 	//관리자 게시글 삭제
 	@RequestMapping(value = "/admindel", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> admindel(@RequestParam String board_idx) {

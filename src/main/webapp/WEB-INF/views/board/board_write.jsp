@@ -70,15 +70,21 @@
 				</tr>
 			</table>
 			</div>
-			<input type = "submit" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default" onclick="save()"/>
 			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
 		</form>
 	</body>
 	<script>
+		
 		function save(){
-			$("#editable input[type='button']").remove();
-			$("#content").val($("#editable").html()); 
-			$("form").submit(); 
+			if(confirm("등록하시겠습니까?")==true){
+				$("#editable input[type='button']").remove();
+				$("#content").val($("#editable").html()); 
+				$("form").submit(); 
+			}else{
+				
+			}
+
 		}
 	
 	

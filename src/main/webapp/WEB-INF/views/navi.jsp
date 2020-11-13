@@ -39,12 +39,12 @@
 		
 	.btn:active{
 			background-color: #009fe3;
-
+	}
 	</style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; background-color: white;">
         <a class="navbar-brand" href="./"><img src="resources/img/logo.PNG"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -92,13 +92,13 @@
           
          <c:choose>
             <c:when test="${sessionScope.loginid eq  null}">
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='index'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그인</button>
+            <button class="btn btn-default" onclick="location.href='index'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그인</button>
             &nbsp;&nbsp;&nbsp;
-            <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>              
+            <button class="btn btn-default" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>              
             </c:when>
             <c:otherwise>
             	${sessionScope.loginid}님 &nbsp;
-               <button class="btn btn-outline-success my-2 my-sm-0" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
+               <button class="btn btn-default" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
             </c:otherwise>
        </c:choose>
           

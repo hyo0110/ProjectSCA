@@ -50,7 +50,7 @@ public class AdminController {
 			System.out.println("Session :"+session.getAttribute("loginid"));
 			String loginId=(String) session.getAttribute("loginid");
 			String msg = "접근할 수 없습니다.";
-			String page = "redirect:/";
+			String page = "index";
 			if(managerid.equals(loginId)) {
 				mav = service.adminlist(params);
 				msg = "접근 성공";

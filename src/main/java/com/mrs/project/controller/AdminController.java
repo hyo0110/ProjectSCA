@@ -46,19 +46,25 @@ public class AdminController {
 		logger.info("params"+params);
 		ModelAndView mav = new ModelAndView();	
 			System.out.println(managerid+"어드민값");
-			String msg;
-			
-			if(managerid!=null) {
+			System.out.println("Session :"+session.getAttribute("loginid"));
+			String loginId=(String) session.getAttribute("loginid");
+			String msg = "접근할 수 없습니다.";
+			String page = "redirect:/";
+			if(managerid.equals(loginId)) {
 				mav = service.adminlist(params);
+				msg = "접근 성공";
 				mav.setViewName("admin/admin_board2");
 				logger.info("리스트를 잘 불러오는가요?"+mav);
 			}else {
-				if(!managerid.equals("admin")) {
-					msg = "접근할 수 없습니다.";
+				if(!managerid.equals(loginId)) {
+					
 				}
+				mav.addObject("msg", msg);
+				mav.setViewName(page);
 			}		
 		return mav;
-	}	
+	}
+	
 	//관리자 게시글 삭제
 	@RequestMapping(value = "/admindel", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> admindel(@RequestParam String board_idx) {

@@ -109,7 +109,8 @@
 </body> 
 
 <script>
-
+var loginId = "${sessionScope.loginid}";
+console.log(loginId);
 //삭제 버튼
 	function ajaxCall(board_idx){
 		

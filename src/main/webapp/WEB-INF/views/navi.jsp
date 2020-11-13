@@ -86,7 +86,7 @@
 
             <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
                 <a class="nav-link" href="typelist?type=1">고객센터</a>
-              </li>
+             </li>
 
           </ul>
           

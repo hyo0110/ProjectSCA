@@ -84,6 +84,12 @@
           	<i class="fas fa-fw fa-table"></i>
           	<span>문의글관리</span></a>
       	</li>  
+      	<!-- Nav Item - Tables -->
+		<li class="nav-item active">
+        	<a class="nav-link" href="logout">
+          	<i class="fas fa-fw fa-table"></i>
+          	<span>로그아웃</span></a>
+		</li>
 		</ul><!-- accordionSidebar ui박스 -->
      <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column"><!-- 게시판 div 박스입니다. -->
@@ -236,6 +242,9 @@
 	var currPage = ${currPage}; //현재 페이지
 	var listCount = ${listCount};
 
+
+</script>
+
 <!-- Bootstrap core JavaScript-->
   <script src="resources/jquery/jquery.min.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -254,7 +263,5 @@
   <script src="resources/js/demo/datatables-demo.js"></script>
 
 	
-</script>
-
 
 </html>

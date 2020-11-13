@@ -25,12 +25,12 @@
 
 }
 </style>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="/js/jquery.twbsPagination.js" type="text/javascript"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+
 
 <!-- Custom fonts for this template -->
 	<link href="resources/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -73,6 +73,12 @@
           	<i class="fas fa-fw fa-table"></i>
           	<span>게시글관리</span></a>
       	</li>  
+      	<!-- Nav Item - Tables -->
+		<li class="nav-item active">
+        	<a class="nav-link" href="logout">
+          	<i class="fas fa-fw fa-table"></i>
+          	<span>로그아웃</span></a>
+		</li>
 		</ul><!-- accordionSidebar ui박스 -->
      <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column"><!-- 게시판 div 박스입니다. -->
@@ -186,9 +192,9 @@
   	</a>
 </body>
 <script>
+
 //삭제 버튼
 	function ajaxCall(id){
-		
 		if(confirm('삭제하시겠습니까?')){
 			$.ajax({
 				url:"adminmemberdel",
@@ -216,6 +222,8 @@
 	var currPage = ${currPage}; //현재 페이지
 	var listCount = ${listCount};
 
+</script>
+
 <!-- Bootstrap core JavaScript-->
   <script src="resources/jquery/jquery.min.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -232,9 +240,5 @@
 
 <!-- Page level custom scripts -->
   <script src="resources/js/demo/datatables-demo.js"></script>
-
-	
-</script>
-
 
 </html>

@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<form id = "fileUpload" action="upload" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" onchange="fileView(this)" style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type="file" name="file" onchange="fileView(this)" style="text-align: center; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 		</form>
 	</body>
 	<script>
@@ -26,7 +26,7 @@
 
 		if(filePath != ''){ 
 			var content = "<img src='/${path}' width='250'/>";
-			content +="&nbsp;&nbsp;<input id='${path}' type='button' value='삭제' onclick='del(this)' style='text-align: center;border: 1px solid #dee2e6;' class='btn btn-default btn-sm'><br/>"; //해당 사진 삭제 버튼
+			content +="&nbsp;&nbsp;<input id='${path}' type='button' value='삭제' onclick='del(this)' style='text-align: center;border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif; font-size:18px;' class='btn btn-default btn-sm'><br/>"; //해당 사진 삭제 버튼
 			var elem = window.opener.document.getElementById('editable'); 
 			elem.innerHTML +=content; 
 			self.close(); 

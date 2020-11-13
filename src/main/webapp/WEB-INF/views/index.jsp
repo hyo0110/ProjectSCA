@@ -48,13 +48,16 @@
 	right: 130px;
 	outline: 1px solid red;
 	}
+	
+	/* 확인하기위해 임시로 position:absolute  원래는 position:fixed */
 	.bar_search{
-	    position: fixed;
+	    position: absolute; 
 	    width: 150px;
 	    height: 200px;
 	    top: 690px;
 	    right: 130px;
 	    outline: 1px solid blue;
+	    background-color: white;
 	}
 	
 	#scrap_cnt{
@@ -85,7 +88,9 @@
 		    <div class="bar_scrap">스크랩한 글 갯수
 		    	<div id="scrap_cnt">	</div>
 		    </div>
-		    <div class="bar_search">최근 검색한 조건</div>
+		    <div class="bar_search">최근 검색한 조건
+		    	<div id="recent_search">  최근 검색한 조건이 없습니다. 	</div>
+		    </div>
 		</div>
 	</div>
 	
@@ -170,23 +175,26 @@ if(msg!=""){
 
 var scrap_cnt = "${scrap_cnt}";
 var loginid = "${sessionScope.loginid}";
-$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
-	$.ajax({
-			url: "scrap_cnt",
-			type:'get',
-			data: {"loginid": loginid},
-			dataType :'json',
-			success:function(data){				
-				console.log(data);
-				$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
-			},
-			error: function(e){
-				console.log(e);
-			}
+	$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
+		$.ajax({
+				url: "scrap_cnt",
+				type:'get',
+				data: {"loginid": loginid},
+				dataType :'json',
+				success:function(data){				
+					console.log(data);
+					$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
 		});
-	});
 
-
+var recent_search = "${sessionScope.recent_search}";
+	if(recent_search!=null){
+		$("#recent_search").html("<h4>"+recent_search+"</h4>");
+	}
 
 </script>
 </html>

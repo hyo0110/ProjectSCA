@@ -51,7 +51,7 @@ public class MemberController {
 			//logger.info("id : "+byteArrid);
 		
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		ModelAndView mav = new ModelAndView();	
 		String page = "member/index_login";	
@@ -64,7 +64,7 @@ public class MemberController {
 			int cnt = service.login(id,pw);
 			if(cnt>0) {
 			session.setAttribute("loginid", id);
-			
+			session.setAttribute("recent_search", null);
 			msg = "로그인 성공했습니다.";
 			page = "redirect:/";
 		}
@@ -103,6 +103,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("loginid");
+		session.removeAttribute("recent_search");
 		model.addAttribute("msg","로그아웃 되었습니다.");
 		
 		return "index";

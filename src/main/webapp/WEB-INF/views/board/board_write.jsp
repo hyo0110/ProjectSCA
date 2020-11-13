@@ -37,7 +37,7 @@
 			overflow: auto;
 			text-overflow: ellipsis;
 			}
-			
+		
 		</style>
 	</head>
 	<body>
@@ -51,28 +51,30 @@
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
 				<tr>
-					<th>제목</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">제목</th>
 					<td><input type = "text" name = "subject"/></td>
 				</tr>
 				<tr>
-					<th>내용</th> 
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; vertical-align:middle; text-align: center;">내용</th> 
 					<td style="width: 80%;">
 						<div id="editable" contenteditable="true"></div> 
 						<input id = "content" type="hidden" name="content" value=""/>
 					</td>
 				</tr>
 				<tr>
-					<th>파일첨부</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">파일첨부</th>
 					<td>
-						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
+						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 						<div id="files"></div>
 					</td>
 				</tr>
 			</table>
 			</div>
-			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default" onclick="save()"/>
-			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default" onclick="save()"/>
+			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 		</form>
+		
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 	<script>
 		

@@ -63,7 +63,7 @@ a {
 	height: 500px;
 	position: absolute;
     left: 50%;
-    top: 38%;
+    top: 41%;
     transform: translate(-50%,-50%);
 }
 .detail {
@@ -92,11 +92,13 @@ button:hover{
 		background-color: #009fe3; 
 		color: white;
 	}   
+
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+		<div style=" width: 1920px; height: 600px;">	
 			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
@@ -152,6 +154,8 @@ button:hover{
 					</form>
 				</div>
 			</div>
+		</div>	
+			<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	
 </body>
 

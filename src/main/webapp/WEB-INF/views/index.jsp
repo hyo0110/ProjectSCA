@@ -14,11 +14,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
-/* 	body {
+/*  	body {
 	overflow: hidden;
 	width: 100%;
-	height: 100%;	
-	} */	
+	} 	 */
 	.main_top{
 	    width: 100%;
 	    height: 300px;
@@ -49,22 +48,28 @@
 	right: 130px;
 	outline: 1px solid red;
 	}
+	
+	/* 확인하기위해 임시로 position:absolute  원래는 position:fixed */
 	.bar_search{
-	    position: fixed;
+	    position: absolute; 
 	    width: 150px;
 	    height: 200px;
 	    top: 690px;
 	    right: 130px;
 	    outline: 1px solid blue;
+	    background-color: white;
 	}
 	
+	#scrap_cnt{
+		margin: 10%;
+	}
 
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js">
 	
 </script>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <div class="main">
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 <%-- 	<h3>${sessionScope.loginid }</h3> --%>
@@ -76,84 +81,19 @@
 		</div>
 		<div class="main_box">
 		    <img src="resources/img/service_explain.PNG" width="340px;" class="img1" onclick="location.href='service_explain'">
-		    <img src="resources/img/what.png" width="340px;" class="img2" onclick="location.href='what'">
-		    <img src="resources/img/where.png" width="340px;" class="img3" onclick="location.href='where'">
+		    <img src="resources/img/what.PNG" width="340px;" class="img2" onclick="location.href='what'">
+		    <img src="resources/img/where.PNG" width="340px;" class="img3" onclick="location.href='where'">
 		</div>
 		<div class="bar_menu">
-		    <div class="bar_scrap">스크랩한 글 갯수</div>
-		    <div class="bar_search">최근 검색한 조건</div>
+		    <div class="bar_scrap">스크랩한 글 갯수
+		    	<div id="scrap_cnt">	</div>
+		    </div>
+		    <div class="bar_search">최근 검색한 조건
+		    	<div id="recent_search">  최근 검색한 조건이 없습니다. 	</div>
+		    </div>
 		</div>
 	</div>
-	<footer id="footer" class="page-footer text-center text-md-left pt-4" style="text-align:center!important;">
-	<!--Footer Links-->
-    <div class="container-fluid">
-      <div class="row">
-        <!--First column-->
-        <div class="col-md-3">
-          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
-          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
-        </div>
-        <!--/.First column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Second column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
-          <ul class="list-unstyled">
-            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
-          </ul>
-        </div>
-        <!--/.Second column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Third column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
-          <ul class="list-unstyled">
-            <li>Contacts</li>
-            <li>Terms</li>
-            <li>Condition</li>
-            <li>Privacy Policy</li>
-          </ul>
-        </div>
-        <!--/.Third column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Fourth column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
-          <ul class="list-unstyled">
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instargram</li>
-            <li>RSS</li>
-          </ul>
-        </div>
-        <!--/.Fourth column-->
-
-      </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <hr>
-    
-    <!--Copyright-->
-    <div class="footer-copyright py-3 text-center">
-      <div class="container-fluid">
-        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
-      </div>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-</div>
-
-
-
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
 <script>
@@ -163,6 +103,28 @@ if(msg!=""){
 	alert(msg);
 }
 
+var scrap_cnt = "${scrap_cnt}";
+var loginid = "${sessionScope.loginid}";
+	$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
+		$.ajax({
+				url: "scrap_cnt",
+				type:'get',
+				data: {"loginid": loginid},
+				dataType :'json',
+				success:function(data){				
+					console.log(data);
+					$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
+		});
+
+var recent_search = "${sessionScope.recent_search}";
+	if(recent_search!=null){
+		$("#recent_search").html("<h4>"+recent_search+"</h4>");
+	}
 
 </script>
 </html>

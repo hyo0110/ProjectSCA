@@ -28,6 +28,8 @@
 
 	#map_location{
 		margin: 3%;
+		width: 1920px;
+		height: 700px;
 	}
 	
 	.area {
@@ -40,18 +42,20 @@
 	    left: 15px;
 	    padding:2px;
 	}
+
 	
 </style>
 
 </head>
-<body>
+<body style=" overflow-x: hidden;">
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 	<div id="map_location">
 	<strong> <h5>어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>
-		<div id="map" style="width:95%;height:500px;"></div>
+		<div id="map" style="width:90%;height:500px;"></div>
 	</div>
 	
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
 <script>

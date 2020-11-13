@@ -20,7 +20,6 @@
 		<mvc:mapping path="/where*"/>
 		<!-- 이동시킬 클래스 지정 -->
 		<bean class="com.mrs.project.service.LoginInterceptor"></bean>
-	
 	</mvc:interceptor>
 </mvc:interceptors>
 

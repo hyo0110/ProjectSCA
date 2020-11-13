@@ -59,7 +59,7 @@
             <!-- <li class="nav-item active">
               <a class="nav-link" href="main">검색<span class="sr-only">(current)</span></a>
             </li> -->
-			<li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif;">
+			<li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-right: 20px; margin-left: 30px;">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   검색
                 </a>
@@ -69,7 +69,7 @@
                 </div>
             </li>
 
-            <li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif;">
+            <li class="nav-item dropdown" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; margin-right: 20px; ">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   마이페이지
                 </a>
@@ -80,11 +80,11 @@
                 </div>
             </li>
 
-            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif;">
+            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; margin-right: 20px; ">
               <a class="nav-link" href="typelist?type=0">자유게시판</a>
             </li>
 
-            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif;">
+            <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
                 <a class="nav-link" href="typelist?type=1">고객센터</a>
               </li>
 

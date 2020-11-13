@@ -3,6 +3,11 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mrs.project.dao.DataDAO">
 	
+	<!-- 스크랩 개수 불러오기  -->
+	<select id="scrap_cnt" resultType="int">
+	 	SELECT COUNT(scrap_idx) FROM Market_scrapped_search WHERE ID = #{param1}	
+	</select>
+	
 	<!-- 베스트 정보 불러오기  -->
 	<select id="what_result" resultType="data">
 		SELECT * FROM market_total_data WHERE region=#{param1} AND reg_date = '202001'

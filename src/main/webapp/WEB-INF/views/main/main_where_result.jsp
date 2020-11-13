@@ -56,17 +56,17 @@
 <body>
 	<c:import url="../navi.jsp"></c:import>
 		<div id=condition>
-			<c:if test="${param.age_10 ne null}">${param.age_10}대 </c:if>
-			<c:if test="${param.age_20 ne null}">${param.age_20}대 </c:if>
-			<c:if test="${param.age_30 ne null}">${param.age_30}대 </c:if>
-			<c:if test="${param.age_40 ne null}">${param.age_40}대 </c:if>
-			<c:if test="${param.age_50 ne null}">${param.age_50}대 </c:if>
-			<c:if test="${param.age_60 ne null}">${param.age_60}대 이상 </c:if>
-			<c:if test="${param.age_total ne null}">${param.age_total}연령 </c:if>
+			<c:if test="${param.age_10 ne null}">${param.age_10} </c:if>
+			<c:if test="${param.age_20 ne null}">${param.age_20} </c:if>
+			<c:if test="${param.age_30 ne null}">${param.age_30} </c:if>
+			<c:if test="${param.age_40 ne null}">${param.age_40} </c:if>
+			<c:if test="${param.age_50 ne null}">${param.age_50} </c:if>
+			<c:if test="${param.age_60 ne null}">${param.age_60} 이상 </c:if>
+			<c:if test="${param.age_total ne null}">${param.age_total} 연령 </c:if>
 			
 			<c:if test="${param.day_1 ne null}">${param.day_1} </c:if>
 			<c:if test="${param.day_2 ne null}">${param.day_2} </c:if>
-			<c:if test="${param.day_total ne null}">${param.day_total}요일 </c:if>
+			<c:if test="${param.day_total ne null}">${param.day_total} 요일 </c:if>
 			
 			<c:if test="${param.time_1 ne null}">${param.time_1}시간 </c:if>
 			<c:if test="${param.time_2 ne null}">${param.time_2}시간 </c:if>

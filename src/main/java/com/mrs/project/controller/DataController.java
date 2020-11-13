@@ -34,7 +34,7 @@ public class DataController {
 		logger.info("메인으로");		
 		return "main";
 	}
-	// 최근 검색 결과 5개 넣는거.... 
+	// 최근 검색 결과 5개만 넣게 하는 법
 	LinkedHashMap<String, String> recent_search = new LinkedHashMap<String, String>() {			
 		private final int MAX = 5;			
 		protected boolean removeEldestEntry(java.util.Map.Entry<String,String> eldest) {
@@ -88,6 +88,7 @@ public class DataController {
 		String reg_date = param.get("reg_date");
 		return service.openbiz(region,reg_date);
 	}
+	
 	//--------------------------------------- 어디에서 --------------------------------------------------
 	//어디에서 들어가기
 	@RequestMapping(value = "/where", method = RequestMethod.GET)
@@ -143,12 +144,9 @@ public class DataController {
 			boolean success = service.scriptsave(parameter,loginId,subject);	
 			if(success){
 				msg = "";
-			}	}
+			}
+		}		
 		hash.put("msg", msg);
 		return hash;
-	}
-
-	
-	
-	
+	}	
 }

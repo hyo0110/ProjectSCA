@@ -50,7 +50,8 @@
 	outline: 1px solid red;
 	}
 	.bar_search{
-	    position: fixed;
+	    position: absolute;
+	    background-color: white;
 	    width: 150px;
 	    height: 200px;
 	    top: 690px;
@@ -87,13 +88,18 @@
 		    	<div id="scrap_cnt">	</div>
 		    </div>
 		    <div class="bar_search">최근 검색한 조건
-		    	<div id="recent_search"> 	</div>
+		    	<div id="recent_search"> 
+				</div>
 
  		    </div>
 		</div>
 	</div>
 	</div>
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
+
+
+
 </body>
 
 <script>

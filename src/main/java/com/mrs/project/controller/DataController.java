@@ -66,7 +66,7 @@ public class DataController {
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("region", region);
 		mav.addObject("data", data);
-		recent_search.put(region,"whatresult?region="+region);	
+		recent_search.put("region","whatresult?region="+region);	
 		session.setAttribute("recent_search", recent_search);
 		mav.setViewName("main/main_what_result");		
 		return mav;
@@ -132,13 +132,18 @@ public class DataController {
 		String param =params.get("param");		
 		String paraming =param.substring(1, param.length()-1);		
 		String parameter = paraming.replace(", ","&");
-		String msg = "실패했뚬";
-		boolean success = service.scriptsave(parameter,loginId,subject);	
+		String msg = "스크랩에 실패했습니다";
+		int scrap_cnt = (int) service.scrap_cnt(loginId).get("scrap_cnt");
+		System.out.println(scrap_cnt);
 		HashMap<String, Object> hash = new HashMap<String, Object>();
 		
-		if(success){
-			msg = "성공!";
-		}
+		if(scrap_cnt>=5) {
+			msg = "이미 5개의 스크랩이 존재합니다. 조건 스크랩은 5개까지 가능합니다.";						
+		}else {			
+			boolean success = service.scriptsave(parameter,loginId,subject);	
+			if(success){
+				msg = "";
+			}	}
 		hash.put("msg", msg);
 		return hash;
 	}

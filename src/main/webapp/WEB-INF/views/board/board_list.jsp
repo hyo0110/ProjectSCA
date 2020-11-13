@@ -33,7 +33,7 @@
 		</c:if>
 			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px; margin-bottom: -16px; ">
 				  <table class="table table-hover table-bordered">
-					<thead style="font-family: 'Do Hyeon', sans-serif; font-size: 25px;">
+					<thead style=" font-family: 'Noto Sans KR', sans-serif; font-size: 25px;">
 						<tr>
 							<th style="width: 5%; text-align: center;">글번호</th>
 							<th style="width: 45%; text-align: center;">제목</th>

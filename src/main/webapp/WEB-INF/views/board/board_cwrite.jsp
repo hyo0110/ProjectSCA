@@ -47,13 +47,13 @@
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		<form action="cwrite" method = "post">
 		<input type="hidden" name ="type" value="${type}">
-		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px;">
+		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px; font-family: 'Noto Sans KR', sans-serif;">
 			<table class="table table-hover table-bordered">
 				<c:if test="${sessionScope.loginid ne ''}">
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
 				<tr>
-					<th>제목</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">제목</th>
 					<td>
 					<input type = "text" name = "subject"/> &nbsp
 					<input type="checkbox" name="privatecheck" id="privatecheck"/>비밀글	
@@ -61,13 +61,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th >내용</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; vertical-align:middle; text-align: center;">내용</th>
 					<td style="width: 80%;"><textarea name = "content" id="content"></textarea></td>
 				</tr>
 			</table>
 			</div>
-			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default" onclick="save()"/>
-			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default" onclick="save()"/>
+			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 		</form>
 		<!--Footer Links-->
    	<footer id="footer" class="page-footer text-center text-md-left pt-4">

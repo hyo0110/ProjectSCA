@@ -21,6 +21,31 @@
 .nav{
 
 }
+
+#footerBox{ /*footer에는 relative를 주면 안됨*/
+    margin-top: 80px;
+   width: 100%; height: 200px;
+   background-color:white;
+   bottom: 0;
+}
+
+
+#footerBox>#infoBox{
+   position: relative; /*부모*/
+   width: 1600px; height: 200px;
+   margin:0 auto;
+}
+
+#infoBox address{
+   position: absolute;
+   color: #555;
+   font: 0.9rem/180% 'NanumGothic';
+   width: 50%; height: 50px
+    top:50%; left:50%;
+    transform:translate(-50%, -50%);
+    bottom:0px;
+    text-align: center;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -110,13 +135,30 @@
 			</div><!-- table-responsive 박스 -->
 		</div>
 	</div>
-	   	<ul class="pagination" style="position: absolute; text-align:center; float:none; left:500px;">
-      		<li class="page-item"><a class="page-link" href="./admin_member?page=1"><span>처음</span></a></li>
-			<li class="page-item"><a class="page-link" href="./admin_member?page=${currPage-1}">Previous</a></li>
-			<li class="page-item"><a class="page-link" href="./admin_member?page=1">1</a></li>
-			<li class="page-item"><a class="page-link" href="./admin_member?page=2">2</a></li>
-			<li class="page-item"><a class="page-link" href="./admin_member?Page=${currPage+1}">Next</a></li>
+	   	<ul class="pagination">
+		<div class="text-center" style="bottom:190px; left: 893px; position: absolute;">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="./admin_member?page=1"><span>처음</span></a>
+			<c:if test="${currPage-1>0}">
+			<a id="prevPage" class="page-link" href="./admin_member?page=${currPage-1}" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span><span
+					class="sr-only">Previous</span></a>
+			</c:if>
+			<li class="page-link">
+			<c:forEach var="i" begin="${1}" end="${endPage}">		 	
+				<a href="./admin_member?page=${i}">${i}</a>
+			</c:forEach>
+			</li>
+			<c:if test="${endPage>=currPage+1}">
+			<li class="page-item"><a id="nextPage" class="page-link"
+				href="./admin_member?page=${currPage+1}" aria-label="Next"> <span
+					aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+			</a></c:if> 
+			<a class="page-link" href="./admin_member?page=${endPage}"><span>끝</span></a>
+			</li>	
 		</ul>
+	</div>
+      </div><!-- content -->
     <footer id="footer" class="page-footer text-center text-md-left pt-4">
 
     <!--Footer Links-->

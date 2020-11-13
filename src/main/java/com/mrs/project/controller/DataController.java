@@ -1,6 +1,9 @@
 package com.mrs.project.controller;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+
+import javax.servlet.http.HttpSession;
 
 import org.rosuda.REngine.REXP;
 import org.rosuda.REngine.Rserve.RConnection;
@@ -22,7 +25,6 @@ import com.mrs.project.service.DataService;
 @Controller
 public class DataController {
 	@Autowired DataService service;
-	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	//메인 들어가기
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -31,6 +33,13 @@ public class DataController {
 		
 		return "main";
 	}
+	
+	LinkedHashMap<String, String> recent_search = new LinkedHashMap<String, String>() {			
+		private final int MAX = 5;			
+		protected boolean removeEldestEntry(java.util.Map.Entry<String,String> eldest) {
+			return size() >= MAX;
+		};			
+	};
 	
 	//-------------------------------------스크랩 개수 세기----------------------------------------------
 	@RequestMapping(value = "/scrap_cnt", method = RequestMethod.GET)
@@ -51,15 +60,19 @@ public class DataController {
 	
 	// 무엇을 결과화면
 	@RequestMapping(value = "/whatresult", method = RequestMethod.GET)
-	public ModelAndView whatresult(Model model, @RequestParam String region) {
+	public ModelAndView whatresult(Model model, @RequestParam String region, HttpSession session) {
 		logger.info("무엇을 결과 "+region);
 		DataDTO data = service.what_result(region);
 		ModelAndView mav = new ModelAndView();			
 		mav.addObject("region", region);
 		mav.addObject("data", data);
+		recent_search.put(region,"whatresult?region="+region);	
+		session.setAttribute("recent_search", recent_search);
 		mav.setViewName("main/main_what_result");		
 		return mav;
 	}
+	
+	
 	
 	// 무엇을 뉴스리스트
 	@RequestMapping(value = "/newslist", method = RequestMethod.GET)
@@ -87,9 +100,12 @@ public class DataController {
 	}
 	
 	@RequestMapping(value = "/whereresult", method = RequestMethod.GET)
-	public ModelAndView whereresult(ModelAndView model, @RequestParam HashMap<String, String> param) throws Exception {
+	public ModelAndView whereresult(ModelAndView model, @RequestParam HashMap<String, String> param, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();	
 		logger.info("어디로에 대한 결과");
+		String parameter = param.toString();
+		recent_search.put(parameter,"whereresult?"+param);
+		session.setAttribute("recent_search", recent_search);		
 		return service.where_result(param,mav);		
 	}
 	

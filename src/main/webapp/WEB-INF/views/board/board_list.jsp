@@ -26,30 +26,30 @@
 <body style="overflow-x: hidden;">
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 		<c:if test="${type==0}">
-			<h1 style="position: relative; margin-top: 1%; left:15px;">자유게시판</h1>
+			<h1 style="position: relative; margin-top: 1%; left:20px; font-family: 'Noto Sans KR', sans-serif;">자유게시판</h1>
 		</c:if>
 		<c:if test="${type==1}">
-			<h1 style="position: relative; margin-top: 1%; left:15px;">고객센터</h1>
+			<h1 style="position: relative; margin-top: 1%; left:20px;font-family: 'Noto Sans KR', sans-serif;">고객센터</h1>
 		</c:if>
 			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px; margin-bottom: -16px; ">
 				  <table class="table table-hover table-bordered">
-					<thead style="font-family : '도현', 산세 리프;">
+					<thead style=" font-family: 'Noto Sans KR', sans-serif; font-size: 25px;">
 						<tr>
 							<th style="width: 5%; text-align: center;">글번호</th>
-							<th style="width: 45%;">제목</th>
+							<th style="width: 45%; text-align: center;">제목</th>
 							<th style="width: 10%; text-align: center;">작성자</th>
-							<th style="width: 15%;">작성일</th>
+							<th style="width: 15%; text-align: center;">작성일</th>
 							<th style="width: 5%; text-align: center;">조회수</th>
 						</tr>
 					</thead>
-					<tbody id="boardList">
+					<tbody id="boardList" style="font-family: 'Noto Sans KR', sans-serif; font-size: 17px;">
 						<!--  리스트 출력 -->
 					</tbody>
 				</table>
 			</div>
 			<div style="width: 1780px;left: 52px;background-color:#F6F6F6;height: 25px;position: relative;padding-right: 5px;padding-left: 5px; margin-bottom: 1%;"></div>
 			
-			<div style="position: relative; text-align: center;">
+			<div style="position: relative; text-align: center; font-family: 'Noto Sans KR', sans-serif;">
 			<form action="opSearch" method="GET">
 				<select name="search_option">
 					<option value="all"
@@ -60,12 +60,12 @@
 						<c:if test="${search_option == 'content'}"></c:if>>내용</option>
 				</select> 
 				<input type="text" name="keyword" value="${keyword}" />
-				<input 	type="submit" value="검색" style="border: 1px solid #dee2e6;" class="btn btn-default"/>
+				<input 	type="submit" value="검색" style="border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 				<input type="hidden" name="type" value="${type}" />
 			</form>
 			</div>
 			
-			<button onclick="location.href='writeForm?type=${type}'"  style="position: relative;text-align: center;left: 90%;top: -27px; border: 1px solid #dee2e6;" class="btn btn-default">글쓰기</button>
+			<button onclick="location.href='writeForm?type=${type}'"  style="position: relative;text-align: center;left: 90%;top: -27px; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default">글쓰기</button>
 			<div class="container"   style="position: absolute; left: 38%;">
 				<nav arial-label="Page navigation" style="text-align: center">
 					<ul class="pagination" id="pagination"></ul>
@@ -131,7 +131,7 @@
 
 		list.forEach(function(item) {
 			content += "<tr>";
-			content += "<td>" + item.board_idx + "</td>";
+			content += "<td style='text-align: center; '>" + item.board_idx + "</td>";
 			if (item.board_type == 1) { // 고객센터일때
 				if (item.bchk == 0) { // 댓글확인여부 Y랑 N 띄우기
 					bchk = "N";
@@ -156,10 +156,10 @@
 						+ item.private_bbs + "'>&nbsp;&nbsp;&nbsp;" + item.subject + "</a> ["+item.com_total+"]</td>";
 			}
 
-			content += "<td>" + item.id + "</td>";
+			content += "<td style='text-align: center;'>" + item.id + "</td>";
 			var date = new Date(item.reg_date);
-			content += "<td>" + date.toLocaleDateString("ko-KR") + "</td>";
-			content += "<td>" + item.bHit + "</td>";
+			content += "<td style='text-align: center;'>" + date.toLocaleDateString("ko-KR") + "</td>";
+			content += "<td style='text-align: center;'>" + item.bHit + "</td>";
 			content += "</tr>";
 		});
 		$("#boardList").empty(); 

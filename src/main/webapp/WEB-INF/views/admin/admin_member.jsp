@@ -75,7 +75,7 @@ table{
 		    	<ul class="pagination">
 		    			<li class="page-item">
 		    				<a class="page-link" href="./admin_member?page=1"><span>처음</span></a>
-		    				<c:if test="${currPage>0}}">
+		    				<c:if test="${currPage>0}">
 		    						<a id="prevPage" class="page-link" href="./admin_member?page=${currPage-1}" aria-label="Previous">
 		    						<span aria-hidden="true">&laquo;</span>
 		    						<span class="sr-only">Previous</span>		

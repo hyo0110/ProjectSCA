@@ -1,7 +1,5 @@
 package com.mrs.project.dao;
 
-import java.util.HashMap;
-
 import com.mrs.project.dto.DataDTO;
 
 public interface DataDAO {

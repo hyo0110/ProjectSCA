@@ -43,11 +43,11 @@
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
 				<tr>
-					<th>제목</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif;; font-size: 22px; text-align: center;">제목</th>
 					<td><input type = "text" name = "subject"/></td>
 				</tr>
 				<tr>
-					<th>내용</th> 
+					<th style="font-family: 'Noto Sans KR', sans-serif;; font-size: 22px; text-align: center; vertical-align:middle;">내용</th> 
 					<td style="width: 80%;">
 						<div id="editable" contenteditable="true">${info.content}</div> 
 						<input id = "content" type="hidden" name="content" value="" />
@@ -55,9 +55,9 @@
 				</tr>
 				<c:if test="${info.board_type=='0'}"> <!-- 자유게시판(0)이면 수정의 파일업로드 기능 존재함 -->
 				<tr>
-					<th>파일첨부</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 22px; text-align: center;">파일첨부</th>
 					<td>
-						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
+						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 						<div id="files"></div>
 					</td>
 				</tr>
@@ -65,7 +65,7 @@
 
 			</table>
 			</div>
-			<input type = "button" onclick = "save()" value = "저장" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type = "button" onclick = "save()" value = "저장" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 		</form>
 		
 <jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>

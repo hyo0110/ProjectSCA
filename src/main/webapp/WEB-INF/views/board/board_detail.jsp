@@ -16,6 +16,7 @@
 			#cominput{
 				position : absolute;
 				bottom: 46%;
+				font-family: 'Noto Sans KR', sans-serif;
 			}
 			
 			 .likebutton{
@@ -27,6 +28,7 @@
 		      display:inline-block;
 		      border-radius: 3px;
 		      border: 1px solid #dee2e6;
+		      font-family: 'Noto Sans KR', sans-serif;
 		    }
 
 			 .likebutton:hover{
@@ -35,7 +37,30 @@
 			color:white;
 			 }
 
-
+		#footerBox{ /*footer에는 relative를 주면 안됨*/
+		    margin-top: 80px;
+		   width: 100%; height: 200px;
+		   background-color:white;
+		   bottom: 0;
+		}
+		
+		
+		#footerBox>#infoBox{
+		   position: relative; /*부모*/
+		   width: 1600px; height: 200px;
+		   margin:0 auto;
+		}
+		
+		#infoBox address{
+		   position: absolute;
+		   color: #555;
+		   font: 0.9rem/180% 'NanumGothic';
+		   width: 50%; height: 50px
+		    top:50%; left:50%;
+		    transform:translate(-50%, -50%);
+		    bottom:0px;
+		    text-align: center;
+		}
 		</style>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -51,12 +76,21 @@
 		<div class="col-md-6" style="position: relative; max-width: 80%; left: 10%; margin-top: 3%; font-size: 15px; min-height: 700px;">
 			<table  class="table table-hover table-bordered">
 				<tr  style="background-color: #AFAFAF; color: white;">
-				<th>작성일</th><td>${info.reg_date}</td>
-				<th>작성자</th><td>${info.id}</td>
-				<th>조회수</th><td>${info.bHit}</td>
+				<th style="font-family: 'Noto Sans KR', sans-serif;; font-size: 22px; text-align: center;">작성일</th>
+					<td style="font-family: 'Noto Sans KR', sans-serif; font-size: 17px; text-align: center;">${info.reg_date}</td>
+				<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 22px; text-align: center;">작성자</th>
+					<td style="font-family: 'Noto Sans KR', sans-serif; font-size: 17px; text-align: center;">${info.id}</td>
+				<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 22px; text-align: center;">조회수</th>
+					<td style="font-family: 'Noto Sans KR', sans-serif; font-size: 17px; text-align: center;">${info.bHit}</td>
 				</tr>
-				<tr><th>제목</th><td colspan = "5">${info.subject}</td></tr>
-				<tr style="border-bottom:1px solid black; height: 600px;"><th>내용</th><td colspan = "5" >${info.content}</td></tr>
+				<tr>
+					<th  style="font-family: 'Noto Sans KR', sans-serif; font-size: 22px; text-align: center;">제목</th>
+					<td colspan = "5" style="font-family: 'Noto Sans KR', sans-serif; font-size: 17px;">${info.subject}</td>
+				</tr>
+				<tr style="border-bottom:1px solid black; height: 600px;">
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; vertical-align:middle; text-align: center;">내용</th>
+					<td colspan = "5" style="font-family: 'Noto Sans KR', sans-serif; font-size: 17px;">${info.content}</td>
+				</tr>
 			</table>
 		 </div> 
 			
@@ -64,7 +98,7 @@
 			
 		<div class="col-md-6" style="position: relative; max-width: 80%; left: 13%; margin-top: 0%; font-size: 15px;">
 			<table  class="table table-borderless" style=" max-width: 93%;">
-			<tbody id="comList">
+			<tbody id="comList" >
 				<!-- 댓글 리스트 출력 -->
 			</tbody>
 			<tr id="pa">
@@ -83,16 +117,16 @@
 	            	<c:if test="${sessionScope.loginid eq 'admin'}">
 			            <div id="cominput" style="position: relative;left: 14%; margin-top: 3%;">
 							<h3>답변 </h3><br/>
-							<input type="text" value="" id="content" style="width:70%;height: 150px;">&nbsp;&nbsp;&nbsp;&nbsp;
-							<input type="button" value="작성" onclick = insert() style="height: 152px; width: 100px;margin-left: -20px; border: 1px solid #dee2e6; margin-top: -5px;"class="btn btn-default">	
+							<input type="text" value="" id="content" style="width:70%;height: 150px; font-family: 'Noto Sans KR', sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;
+							<input type="button" value="작성" onclick = insert() style="height: 152px; width: 100px;margin-left: -20px; border: 1px solid #dee2e6; margin-top: -5px; font-family: 'Noto Sans KR', sans-serif;"class="btn btn-default">	
 						</div>
 					</c:if>
 	            </c:when>
 	             <c:when test="${info.board_type eq '0'}"> <!-- 자유게시판일때 --> 
 		            <div id="cominput" style="position: relative;left: 14%; margin-top: 3%;">
 						<h3>댓글 </h3><br/>
-						<input type="text" value="" id="content" style="width:70%;height: 150px;">&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" value="작성" onclick = insert() style="height: 152px; width: 100px;margin-left: -20px; border: 1px solid #dee2e6; margin-top: -5px;" class="btn btn-default">
+						<input type="text" value="" id="content" style="width:70%;height: 150px; font-family: 'Noto Sans KR', sans-serif;">&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="button" value="작성" onclick = insert() style="height: 152px; width: 100px;margin-left: -20px; border: 1px solid #dee2e6; margin-top: -5px; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default">
 					</div>
 				</c:when> 
 	          </c:choose>  
@@ -105,22 +139,32 @@
 		<c:choose>
 		<c:when test="${sessionScope.loginid eq 'admin'}">
 			<c:if test="${info.board_type eq '0'}">
-				<a href="./admin?page=1" class="likebutton"style="position: absolute;left: 84%;">처음으로</a>
+				<a href="./admin?page=1" class="likebutton"style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
 			</c:if>
 			<c:if test="${info.board_type eq '1'}">
-				<a href="./admin_faqboard?page=1" class="likebutton" style="position: absolute;left: 84%;">처음으로</a>
+				<a href="./admin_faqboard?page=1" class="likebutton" style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
 			</c:if>
 		</c:when>
 		
 		<c:when test ="${sessionScope.loginid ne 'admin'}">
-			<a href="./typelist?type=${info.board_type}" class="likebutton" style="position: absolute;left: 84%;">처음으로</a>
+			<a href="./typelist?type=${info.board_type}" class="likebutton" style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
 		</c:when>
 		
 		</c:choose>
-		
-	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+	
 	</body>
 	
+	<footer id="footerBox"> <!--#########width:100% footer시작-->
+	<hr style="margin: 0 0;">
+   <section id="infoBox"> <!--@@width:1100px infoBox시작 -->
+
+
+      <address>
+         08505 서울시 금천구 가산디지털2로 115, 509호,811호(가산동, 대륭테크노타운3차) 대표 공효진 <br> 이메일 mastereum@sca.net FAX.02-6740-4949<br>고객상담센터 1577-4410 COPYRIGHT ⓒ 2020 SCA. ALL RIGHT RESERVED.
+      </address>
+
+   </section><!--@@@@@@@@@@@@@@infoBox끝 -->
+	</footer><!--###################################footer끝 -->
 	<script>
 	
 		listCall(1);		
@@ -153,7 +197,7 @@
 					}else{
 						console.log(data.allCnt);
 						$("#pa").remove();
-						var content ="<th style='font-size:20px'>등록된 댓글이 없습니다.</th>";
+						var content ="<th style='font-size:20px; font-family: 'Noto Sans KR', sans-serif;'>등록된 댓글이 없습니다.</th>";
 						$("#comList").append(content);
 					}
 				},
@@ -172,7 +216,7 @@
 			var content ="";
 			
 			list.forEach(function(item){
-					 content += "<tr style='border-bottom: 1px solid #dee2e6;'>";
+					 content += "<tr style='border-bottom: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;'>";
 					 content += "<input type='hidden' name ='com_idx' value="+item.com_idx+">";
 					 content += "<input type='hidden' name ='board_idx' value="+item.board_idx+">";
 					 content += "<th style='width: 70px; border-color:black; font-size:20px;'>"+item.id+"</th>";
@@ -180,7 +224,7 @@
 					 content += "<td style='border-color:black; font-size:20px;'>"+item.com_content+"</td>";
 					 content += "     <td style='width: 190px; color:gray;'>["+date.toLocaleDateString("ko-KR")+"]";
 					 if(item.id == loginId){
-					 	content += "&nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute; border: 1px solid #dee2e6;' class='btn btn-default btn-sm'></td>";
+					 	content += "&nbsp<input type='button' value='삭제' id='"+item.com_idx+"' onclick=del(this) style='left: 88%;position: absolute; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;' class='btn btn-default btn-sm'></td>";
 					 } else{
 						 content += "</td>";
 						  

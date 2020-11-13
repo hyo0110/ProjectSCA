@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.tags.EvalTag;
 
@@ -76,7 +75,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin_faqboard", method = RequestMethod.GET)
-	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session,RedirectAttributes rAttr) {
+	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session, RedirectAttributes rAttr) {
 		logger.info("여기오나요?");
 		String msg = null;
 		ModelAndView mav = new ModelAndView();	

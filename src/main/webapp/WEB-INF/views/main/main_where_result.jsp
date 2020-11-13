@@ -98,35 +98,35 @@
 
 </body>
 <script>
-function save(){
-	var loginId = "${sessionScope.loginid }";
-	var subject = $("#sub").val();
-	var url = null;
-	var param = "${param}";
-	$.ajax({
-		url : "scriptsave",
-		type : 'get',
-		data : {
-		"subject" : subject,
-		"param":param,
-		"loginId":loginId,
-		},
-		dataType : 'json',
-		success : function(data) {
-		console.log(data);
-				alert(data.msg);
-				location.reload();
-		},
-		error : function(e) {
-			console.log(e);
-		}
-
-	});
-}
-
- function show(){
-	$("#script_box").css("display","block");
-} 
+	function save(){
+		var loginId = "${sessionScope.loginid }";
+		var subject = $("#sub").val();
+		var url = null;
+		var param = "${param}";
+		$.ajax({
+			url : "scriptsave",
+			type : 'get',
+			data : {
+			"subject" : subject,
+			"param":param,
+			"loginId":loginId,
+			},
+			dataType : 'json',
+			success : function(data) {
+			console.log(data);
+					alert(data.msg);
+					location.reload();
+			},
+			error : function(e) {
+				console.log(e);
+			}
+	
+		});
+	}
+	
+	 function show(){
+		$("#script_box").css("display","block");
+	} 
 
 </script>
 </html>

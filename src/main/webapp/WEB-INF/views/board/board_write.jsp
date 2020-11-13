@@ -51,44 +51,61 @@
 					<input type=hidden name=id value="${sessionScope.loginid}">
 				</c:if>
 				<tr>
-					<th>제목</th>
-					<td><input type = "text" name = "subject"/></td>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">제목</th>
+					<td><input type = "text" id="subject" name = "subject"/></td>
 				</tr>
 				<tr>
-					<th>내용</th> 
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; vertical-align:middle; text-align: center;">내용</th> 
 					<td style="width: 80%;">
 						<div id="editable" contenteditable="true"></div> 
 						<input id = "content" type="hidden" name="content" value=""/>
 					</td>
 				</tr>
 				<tr>
-					<th>파일첨부</th>
+					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">파일첨부</th>
 					<td>
-						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6;" class="btn btn-default"/>
+						<input type="button" onclick="fileUp()" value ="파일 업로드 " style="text-align: center; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 						<div id="files"></div>
 					</td>
 				</tr>
 			</table>
 			</div>
-			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default" onclick="save()"/>
-			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6;" class="btn btn-default"/>
+			<input type = "button" value = "저장"  style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default" onclick="save()"/>
+			<input type="button" value="뒤로가기" onclick="goback()" style="position: relative;text-align: center;left: 88%; border: 1px solid #dee2e6; font-family: 'Noto Sans KR', sans-serif;" class="btn btn-default"/>
 		</form>
 		
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 	</body>
 	<script>
 		
+	
+	
 		function save(){
-			if(confirm("등록하시겠습니까?")==true){
-				$("#editable input[type='button']").remove();
-				$("#content").val($("#editable").html()); 
-				$("form").submit(); 
-			}else{
-				
-			}
-
+			var subject = $("#subject").val();
+			var content = $("#editable").html();
+			console.log("제목: ",subject,"내용: ",content);
+				if(subject !='' && content !=''){
+					if(confirm("등록하시겠습니까?")==true){
+						$("#editable input[type='button']").remove();
+						$("#content").val($("#editable").html()); 
+						$("form").submit(); 
+					}
+				}else{
+					alert("작성란을 채워주세요");
+				}
 		}
 	
+/* 		function save(){
+			if($("input[name='subject']").val() == "" || $("input[name='content']").val() == ""){
+				alert("작성란을 채워주세요");
+			}else{
+				if(confirm("등록하시겠습니까?")==true){
+					$("#editable input[type='button']").remove();
+					$("#content").val($("#editable").html()); 
+					$("form").submit(); 
+				}
+			}	
+		} */
 	
 		function fileUp(){ //파일 업로드 새창 띄우기
 			var myWin = window.open('uploadForm','파일 업로드','width=600, height=200'); 

@@ -111,7 +111,7 @@ button:hover{
 			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="detail">
 				<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보 수정</h3>
-				<form action="updateMember" method="GET" onsubmit="return pwchk()">
+				<form action="updateMember" method="GET" onsubmit="return updatechk()">
 					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
 						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">아이디</div>
 						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> 
@@ -179,6 +179,21 @@ function pwchk(){
 	}	
 }
 
+function updatechk(){
+
+    if(($("input[name='user_pw']").val()!="") && ($("input[name='user_pw2']").val()!="") && ($("input[name='user_pw']").val()==$("input[name='user_pw2']").val())){
+       if($("input[name='user_name']").val()!=""){
+          if($("input[name='user_email']").val()!=""){
+             return true;
+             }
+          }
+       }         
+ alert("누락된 곳이 있거나 틀린곳이 없는지 확인해주세요.");
+ return false;
+ }
+					
+	
+	
 
 </script>
 </html>

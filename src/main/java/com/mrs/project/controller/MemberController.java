@@ -87,7 +87,7 @@ public class MemberController {
 	//회원가입-----------------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public ModelAndView join(@RequestParam HashMap<String, Object> params) {
-		//logger.info("params : {}",params);
+		logger.info("params : {}",params);
 		
 		return service.join(params);
 	}

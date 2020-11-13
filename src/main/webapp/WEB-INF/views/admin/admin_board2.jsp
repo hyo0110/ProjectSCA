@@ -4,9 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<td>환영합니다. <spring:eval var="admin" expression="@config['manager.id']" /> 님
-</td>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,10 +31,29 @@
 	width: -webkit-fill-available;
 }
 
-#footer{
-	position: relative;
-	bottom: 0;
-	width: -webkit-fill-available;
+#footerBox{ /*footer에는 relative를 주면 안됨*/
+    margin-top: 80px;
+   width: 100%; height: 200px;
+   background-color:white;
+   bottom: 0;
+}
+
+
+#footerBox>#infoBox{
+   position: relative; /*부모*/
+   width: 1600px; height: 200px;
+   margin:0 auto;
+}
+
+#infoBox address{
+   position: absolute;
+   color: #555;
+   font: 0.9rem/180% 'NanumGothic';
+   width: 50%; height: 50px
+    top:50%; left:50%;
+    transform:translate(-50%, -50%);
+    bottom:0px;
+    text-align: center;
 }
 </style>
 
@@ -59,9 +75,11 @@
 </head>
 <body id="page-top">
  	<div id="wrapper">
-	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"  style="width:28rem!important;">
 
       <!-- Sidebar - Brand -->
+      	<img src="resources/img/logo.PNG" style="width:175px; height:150px; text-align:right; left:37px; position:relative; top:17px;">	
+		</br>
 		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 			<div class="sidebar-brand-icon rotate-n-15">
           		<i class="fas fa-laugh-wink"></i>
@@ -74,24 +92,26 @@
 		
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+	</br>
   	<!-- Nav Item - Tables -->
 		<li class="nav-item active">
         	<a class="nav-link" href="admin_member">
           	<i class="fas fa-fw fa-table"></i>
-          	<span>회원관리</span></a>
+          	<span style="font-size:23px;">회원관리</span></a>
 		</li>
+	</br>
 	<!-- Nav Item - Tables -->
 		<li class="nav-item active">
         	<a class="nav-link" href="admin_faqboard">
           	<i class="fas fa-fw fa-table"></i>
-          	<span>문의글관리</span></a>
+          	<span style="font-size:23px;">문의글관리</span></a>
       	</li>  
-      	<!-- Nav Item - Tables -->
+     </br>
+      <!-- Nav Item - Tables -->
 		<li class="nav-item active">
         	<a class="nav-link" href="logout">
           	<i class="fas fa-fw fa-table"></i>
-          	<span>로그아웃</span></a>
+          	<span style="font-size:23px;">로그아웃</span></a>
 		</li>
 		</ul><!-- accordionSidebar ui박스 -->
      <!-- Content Wrapper -->
@@ -100,10 +120,10 @@
 	<div id="content">
 	<div id="table" class="card shadow mb-4">
 		<div class="card-body">
-		  <div class="table-responsive" style="white-space:nowrap; overflow:hidden; position:absolute; top:100px;">
-			<table class="table table-bordered" id="dataTable" width="100%;" cellspacing="0;">
+		  <div class="table-responsive" style="width:97%; white-space:nowrap; overflow:hidden; position:absolute; top:150px; font-size:large;">
+			<table class="table table-bordered table-hover" id="dataTable" width="100%;" cellspacing="0;">
 			<tr>
-				<th style="width:10%;">글번호</th>
+				<th style="width:30%;">글번호</th>
 				<th style="width:40%;">제목</th>
 				<th style="width:10%;">작성자</th>
 				<th style="width:10%;">작성일</th>
@@ -128,18 +148,29 @@
 			</div><!-- table-responsive 박스 -->
 		</div>
 	</div>
-	   	<ul id="paging" class="pagination" style="position: relative; float:none; top:480px; left:500px;">
-      		<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=${currPage-1}">Previous</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=1">1</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=2">2</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=3">3</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=4">4</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=5">5</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?page=6">6</a></li>
-			<li class="page-item"><a class="page-link" href="./admin?Page=${currPage+1}">Next</a></li>
+	<h1 style="left:255px; height:117px; top:67px; position:absolute; right:141px; font-size:48px;">관리자 페이지</h1>
+	<div class="text-center" style="bottom:190px; left: 893px; position: absolute;">
+		<ul class="pagination">
+			<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a>
+			<c:if test="${currPage-1>0}">
+			<a id="prevPage" class="page-link" href="./admin?page=${currPage-1}" aria-label="Previous">
+			<span aria-hidden="true">&laquo;</span><span
+					class="sr-only">Previous</span></a>
+			</c:if>
+			<li class="page-link">
+			<c:forEach var="i" begin="${1}" end="${endPage}">		 	
+				<a href="./admin?page=${i}">${i}</a>
+			</c:forEach>
+			</li>
+			<c:if test="${endPage>=currPage+1}">
+			<li class="page-item"><a id="nextPage" class="page-link"
+				href="./admin?page=${currPage+1}" aria-label="Next"> <span
+					aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
+			</a></c:if> 
+			<a class="page-link" href="./admin?page=${endPage}"><span>끝</span></a>
+			</li>	
 		</ul>
-
+	</div>
       </div><!-- content -->
     <footer id="footer" class="page-footer text-center text-md-left pt-4">
     <!--Footer Links-->
@@ -244,7 +275,6 @@
 	var start =${start}; //왼쪽
 	var currPage = ${currPage}; //현재 페이지
 	var listCount = ${listCount};
-
 
 </script>
 

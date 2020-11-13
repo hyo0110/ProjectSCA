@@ -47,9 +47,6 @@ th, td {
 	top: 120px;
 }
 
-.nav{
-
-}
 </style>
 
 <link
@@ -94,7 +91,7 @@ th, td {
 	
 	<div class="text-center">
 		<ul class="pagination">
-			<li class="page-item"><a class="page-link" href="./admin?page=i"><span>처음</span></a>
+			<li class="page-item"><a class="page-link" href="./admin?page=1"><span>처음</span></a>
 				<a id="prevPage" class="page-link" href="./admin?page=${currPage-1}"
 				aria-label="Previous"> <span aria-hidden="true">&laquo;</span> <span
 					class="sr-only">Previous</span>
@@ -112,8 +109,7 @@ th, td {
 			
 		</ul>
 	</div>
-	</div>
-	</div>
+
 	
 <script>
 
@@ -146,7 +142,8 @@ th, td {
 	var start =${start}; //왼쪽
 	var currPage = ${currPage}; //현재 페이지
 	var listCount = ${listCount};
-
+	
+	
 	
 </script>
 

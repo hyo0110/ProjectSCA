@@ -40,11 +40,14 @@
 	.btn:active{
 			background-color: #009fe3;
 	}
+	/* nav{
+	border-bottom: 1px solid lightgray;
+	} */
 	</style>
   </head>
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 80px; background-color: white;">
+    <nav class="navbar navbar-expand-lg navbar-light bg" style="height: 80px; background-color: #FDFDFD;">
         <a class="navbar-brand" href="./"><img src="resources/img/logo.PNG"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

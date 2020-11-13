@@ -3,27 +3,20 @@ package com.mrs.project.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.Resource;
-import javax.naming.ldap.ManageReferralControl;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.jstl.core.Config;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.support.ManagedArray;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.tags.EvalTag;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -41,7 +34,7 @@ public class AdminController {
 	
 // 관리자 페이지 접속
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView index(Model model,HttpSession session,@RequestParam Map<String, String> params) {
+	public ModelAndView index(Model model,HttpSession session,@RequestParam Map<String, String> params, RedirectAttributes rAttr) {
 		logger.info("관리자모드 진입");
 		logger.info("params"+params);
 		ModelAndView mav = new ModelAndView();	
@@ -59,9 +52,9 @@ public class AdminController {
 				if(!managerid.equals(loginId)) {
 					
 				}
-				mav.addObject("msg", msg);
 				mav.setViewName(page);
 			}		
+	rAttr.addFlashAttribute("msg", msg);
 		return mav;
 	}
 	
@@ -83,9 +76,9 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/admin_faqboard", method = RequestMethod.GET)
-	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session) {
+	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session,RedirectAttributes rAttr) {
 		logger.info("여기오나요?");
-		String msg;
+		String msg = null;
 		ModelAndView mav = new ModelAndView();	
 		if(managerid!=null) {
 			mav = service.adminfaqlist(params);
@@ -96,6 +89,7 @@ public class AdminController {
 				msg = "접근할 수 없습니다.";
 			}
 		}
+		rAttr.addFlashAttribute("msg", msg);
 		return mav;
 	}
 		

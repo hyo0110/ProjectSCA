@@ -78,8 +78,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="mypage_login">회원정보</a>
-                  <a class="dropdown-item" href="mypage_login">스크랩</a>
-                  <a class="dropdown-item" href="mypage_login">내가 쓴 글</a>
+                  <a class="dropdown-item" href="mypage_scrap">스크랩</a>
+                  <a class="dropdown-item" href="mypage_written">내가 쓴 글</a>
                 </div>
             </li>
 

@@ -4,9 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<td>환영합니다. <spring:eval expression="@config['manager.id']" /> 님
-</td>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,11 +40,13 @@
 	<link href="resources/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 <body id="page-top">
-	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>	
+<%-- 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>	 --%>
  	<div id="wrapper">
-	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+	<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"  style="width:28rem!important;">
 
       <!-- Sidebar - Brand -->
+    	<img src="resources/img/logo.PNG" style="width:175px; height:150px; text-align:right; left:37px; position:relative; top:17px;">	
+		</br>
 		<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
 			<div class="sidebar-brand-icon rotate-n-15">
           		<i class="fas fa-laugh-wink"></i>
@@ -60,24 +59,26 @@
 		
       <!-- Divider -->
       <hr class="sidebar-divider">
-
+	</br>
   	<!-- Nav Item - Tables -->
 		<li class="nav-item active">
         	<a class="nav-link" href="admin_faqboard">
           	<i class="fas fa-fw fa-table"></i>
-          	<span>문의글관리</span></a>
+          	<span style="font-size:23px;">문의글관리</span></a>
 		</li>
+	</br>
 	<!-- Nav Item - Tables -->
 		<li class="nav-item active">
         	<a class="nav-link" href="admin">
           	<i class="fas fa-fw fa-table"></i>
-          	<span>게시글관리</span></a>
+          	<span style="font-size:23px;">게시글관리</span></a>
       	</li>  
+      </br>
       	<!-- Nav Item - Tables -->
 		<li class="nav-item active">
         	<a class="nav-link" href="logout">
           	<i class="fas fa-fw fa-table"></i>
-          	<span>로그아웃</span></a>
+          	<span style="font-size:23px;">로그아웃</span></a>
 		</li>
 		</ul><!-- accordionSidebar ui박스 -->
      <!-- Content Wrapper -->
@@ -86,8 +87,8 @@
 	<div id="content">
 	<div class="card shadow mb-4">
 		<div class="card-body">
-		  <div class="table-responsive" style="white-space:nowrap; overflow:hidden;">
-			<table class="table table-bordered" id="dataTable" width="100%;" cellspacing="0;">
+		  <div class="table-responsive" style="width:97%; white-space:nowrap; overflow:hidden; position:absolute; top:150px; font-size:large;">
+			<table class="table table-bordered table-hover" id="dataTable" width="100%;" cellspacing="0;">
 			<tr>
 				<th style="width:25%;">아이디</th>
 				<th style="width:25%;">이름</th>

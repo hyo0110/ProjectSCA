@@ -57,6 +57,7 @@
 			<p style="font-size: 13px; color: #4C4C4C; font-weight: 600;">'무엇을?'는 이미 창업할 장소를 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.</br>
 				무슨 데이터를 분석 가공하여 무슨 결과를 내서 이런 데이터를 보여줍니다. </p>
 		</div>
+		
 	<footer id="footer" class="page-footer text-center text-md-left pt-4">
 	<!--Footer Links-->
     <div class="container-fluid">

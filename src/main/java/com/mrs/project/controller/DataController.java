@@ -32,6 +32,15 @@ public class DataController {
 		return "main";
 	}
 	
+	//-------------------------------------스크랩 개수 세기----------------------------------------------
+	@RequestMapping(value = "/scrap_cnt", method = RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> scrap_cnt(@RequestParam HashMap<String, String> param) {		
+		logger.info("로그인한 아이디: "+ param.get("loginid"));
+		String loginid = param.get("loginid");
+		return service.scrap_cnt(loginid);
+	}
+	
+	
 	//----------------------------------------무엇을-----------------------------------------------------
 	//무엇을 들어가기
 	@RequestMapping(value = "/what", method = RequestMethod.GET)

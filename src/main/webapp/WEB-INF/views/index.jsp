@@ -58,6 +58,9 @@
 	    outline: 1px solid blue;
 	}
 	
+	#scrap_cnt{
+		margin: 10%;
+	}
 
 </style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js">
@@ -76,11 +79,13 @@
 		</div>
 		<div class="main_box">
 		    <img src="resources/img/service_explain.PNG" width="340px;" class="img1" onclick="location.href='service_explain'">
-		    <img src="resources/img/what.png" width="340px;" class="img2" onclick="location.href='what'">
-		    <img src="resources/img/where.png" width="340px;" class="img3" onclick="location.href='where'">
+		    <img src="resources/img/what.PNG" width="340px;" class="img2" onclick="location.href='what'">
+		    <img src="resources/img/where.PNG" width="340px;" class="img3" onclick="location.href='where'">
 		</div>
 		<div class="bar_menu">
-		    <div class="bar_scrap">스크랩한 글 갯수</div>
+		    <div class="bar_scrap">스크랩한 글 갯수
+		    	<div id="scrap_cnt">	</div>
+		    </div>
 		    <div class="bar_search">최근 검색한 조건</div>
 		</div>
 	</div>
@@ -162,6 +167,25 @@ var msg = "${msg}";
 if(msg!=""){
 	alert(msg);
 }
+
+var scrap_cnt = "${scrap_cnt}";
+var loginid = "${sessionScope.loginid}";
+$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
+	$.ajax({
+			url: "scrap_cnt",
+			type:'get',
+			data: {"loginid": loginid},
+			dataType :'json',
+			success:function(data){				
+				console.log(data);
+				$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
+			},
+			error: function(e){
+				console.log(e);
+			}
+		});
+	});
+
 
 
 </script>

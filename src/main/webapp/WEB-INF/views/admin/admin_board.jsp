@@ -47,9 +47,6 @@ th, td {
 	top: 120px;
 }
 
-.nav{
-
-}
 </style>
 
 <link
@@ -112,8 +109,7 @@ th, td {
 			
 		</ul>
 	</div>
-	</div>
-	</div>
+
 	
 <script>
 

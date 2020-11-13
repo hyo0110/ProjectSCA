@@ -93,7 +93,7 @@ top: 5%;
 			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
-						<li class="snb_item"><a href="mypage_detail">회원정보</a></li>
+						<li class="snb_item"><a href="mypage_login">회원정보</a></li>
 						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_scrap">스크랩</a></li>
 						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
 					</ul>

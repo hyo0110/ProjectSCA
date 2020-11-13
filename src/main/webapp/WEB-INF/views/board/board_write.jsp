@@ -52,7 +52,7 @@
 				</c:if>
 				<tr>
 					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">제목</th>
-					<td><input type = "text" name = "subject"/></td>
+					<td><input type = "text" id="subject" name = "subject"/></td>
 				</tr>
 				<tr>
 					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; vertical-align:middle; text-align: center;">내용</th> 
@@ -78,17 +78,34 @@
 	</body>
 	<script>
 		
+	
+	
 		function save(){
-			if(confirm("등록하시겠습니까?")==true){
-				$("#editable input[type='button']").remove();
-				$("#content").val($("#editable").html()); 
-				$("form").submit(); 
-			}else{
-				
-			}
-
+			var subject = $("#subject").val();
+			var content = $("#editable").html();
+			console.log("제목: ",subject,"내용: ",content);
+				if(subject !='' && content !=''){
+					if(confirm("등록하시겠습니까?")==true){
+						$("#editable input[type='button']").remove();
+						$("#content").val($("#editable").html()); 
+						$("form").submit(); 
+					}
+				}else{
+					alert("작성란을 채워주세요");
+				}
 		}
 	
+/* 		function save(){
+			if($("input[name='subject']").val() == "" || $("input[name='content']").val() == ""){
+				alert("작성란을 채워주세요");
+			}else{
+				if(confirm("등록하시겠습니까?")==true){
+					$("#editable input[type='button']").remove();
+					$("#content").val($("#editable").html()); 
+					$("form").submit(); 
+				}
+			}	
+		} */
 	
 		function fileUp(){ //파일 업로드 새창 띄우기
 			var myWin = window.open('uploadForm','파일 업로드','width=600, height=200'); 

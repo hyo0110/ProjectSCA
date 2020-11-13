@@ -6,22 +6,47 @@
 <head>
 <meta charset="UTF-8">
 <title>SCA Service</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+		<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>    
-	<script src="resources/js/jquery.twbsPagination.js" type="text/javascript"></script> 
+
 
 <style>
-
 @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
 /* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
+#footerBox{ /*footer에는 relative를 주면 안됨*/
+    margin-top: 80px;
+   width: 100%; height: 200px;
+   background-color:white;
+   bottom: 0;
+}
+
+
+#footerBox>#infoBox{
+   position: relative; /*부모*/
+   width: 1600px; height: 200px;
+   margin:0 auto;
+}
+
+#infoBox address{
+   position: absolute;
+   color: #555;
+   font: 0.9rem/180% 'NanumGothic';
+   width: 50%; height: 50px
+    top:50%; left:50%;
+    transform:translate(-50%, -50%);
+    bottom:0px;
+    text-align: center;
+}
+
 </style>
-	
+	 
 </head>
 <body style="overflow-x: hidden;">
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
@@ -71,8 +96,23 @@
 					<ul class="pagination" id="pagination"></ul>
 				</nav>
 			</div>
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+
+
+
 </body>
+
+<footer id="footerBox"> <!--#########width:100% footer시작-->
+	<hr style="margin: 0 0;">
+   <section id="infoBox"> <!--@@width:1100px infoBox시작 -->
+
+
+      <address>
+         08505 서울시 금천구 가산디지털2로 115, 509호,811호(가산동, 대륭테크노타운3차) 대표 공효진 <br> 이메일 mastereum@sca.net FAX.02-6740-4949<br>고객상담센터 1577-4410 COPYRIGHT ⓒ 2020 SCA. ALL RIGHT RESERVED.
+      </address>
+
+   </section><!--@@@@@@@@@@@@@@infoBox끝 -->
+</footer><!--###################################footer끝 -->
+
 <script>
 	var type = "${type}";
 
@@ -108,10 +148,10 @@
 				console.log(data.range);
 				//플러그인 사용
 				$("#pagination").twbsPagination({
-					startPage : data.currPage, 
-					totalPages : data.range, 
-					visiblePages : 5, 
-					onPageClick : function(event, page, type) { 
+					startPage:data.currPage, //시작페이지
+					totalPages:data.range, //만들 수 있는 총 페이지 수
+					visiblePages: 5, //보여줄 페이지 수 
+					onPageClick:function(event,page,type){ //event : 해당 이벤트 객체 / page : 내가 몇 페이지 클릭 했는지
 						listCall(page);
 					}
 				});

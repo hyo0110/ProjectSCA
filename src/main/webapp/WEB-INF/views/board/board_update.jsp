@@ -73,6 +73,25 @@
 </body>
 <script>
 
+
+ 	function save(){
+			var content = $("#editable").html();
+			console.log("123",content);
+			
+				if(content !=''){
+					console.log("컨텐트 값 있음");
+					if(confirm("등록하시겠습니까?")==true){
+						$("#editable input[type='button']").remove();
+						$("#content").val($("#editable").html()); 
+						$("form").submit(); 
+					}
+				}else{
+					console.log("컨텐트빈칸");
+					alert("내용을 채워주세요");
+				}
+		}
+ 
+
  		//뒤로가기 막기
 	    history.pushState(null,'',location.href);
 		window.onpopstate = function(){
@@ -119,15 +138,6 @@
 			}); 
 		}
 		
-		//저장시키기
-		function save(){
-			if(confirm("등록하시겠습니까?")==true){
-				$("#editable input[type='button']").remove();
-				$("#content").val($("#editable").html()); 
-				$("form").submit(); 
-			}else{
-				
-			}
-		}
+
 </script>
 </html>

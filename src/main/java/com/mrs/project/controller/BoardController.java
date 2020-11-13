@@ -87,6 +87,7 @@ public class BoardController {
 	//게시판 수정 + 기존파일 삭제했으면 실제 삭제 + 새로올린파일 있으면 실제 저장까지
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView update(@RequestParam HashMap<String, String> params ,HttpSession session) {
+		logger.info("params : "+params);
 		return service.update(params,session);
 	}
 	

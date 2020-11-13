@@ -15,13 +15,14 @@
 
     .col{
                 width: 500px;
-                height: 700px;
+                height: 900px;
                 position: absolute;
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%,-50%);
                 margin: 0 auto;
                 font-family: 'Noto Sans KR', sans-serif;
+                margin-top: 50px;
             }
     h4{
         color: #4C4C4C;
@@ -63,6 +64,7 @@
 </head>
 <body>
 		<div class="col">
+		<p style=" font-family: 'Noto Sans KR', sans-serif; font-size: 30px; font-weight: 600; margin-bottom: 30px;">회원가입</p>
 	<form action="join" method="post" onsubmit="return joinchk()">
 		<div>
 		    <h4>아이디</h4>
@@ -115,6 +117,8 @@
 					if(data.dbchk>0){
 						document.getElementById('idchk').innerHTML='아이디가 존재합니다. 다른 아이디를 입력해주세요.'
 		                document.getElementById('idchk').style.color='red';
+						document.getElementById('user_id').value = null;
+						//id.focus;
 					}else if(id==""){
 						document.getElementById('idchk').innerHTML='아이디를 입력해주세요.'
 			            document.getElementById('idchk').style.color='red';
@@ -162,10 +166,9 @@
 				}
 			}
 		console.log("안돼");
-		alert("누락된 곳이 없는지 확인해주세요.");
+		alert("누락된 곳이 있거나 틀린곳이 없는지 확인해주세요.");
 		return false;
 		}
-	
 
 </script>
 </html>

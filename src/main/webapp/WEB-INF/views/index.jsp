@@ -14,11 +14,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 /* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 
-/* 	body {
+/*  	body {
 	overflow: hidden;
 	width: 100%;
-	height: 100%;	
-	} */	
+	} 	 */
 	.main_top{
 	    width: 100%;
 	    height: 300px;
@@ -67,7 +66,7 @@
 	
 </script>
 </head>
-<body>
+<body style="overflow-x: hidden;">
 <div class="main">
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 <%-- 	<h3>${sessionScope.loginid }</h3> --%>
@@ -89,6 +88,7 @@
 		    <div class="bar_search">최근 검색한 조건</div>
 		</div>
 	</div>
+	
 	<footer id="footer" class="page-footer text-center text-md-left pt-4" style="text-align:center!important;">
 	<!--Footer Links-->
     <div class="container-fluid">

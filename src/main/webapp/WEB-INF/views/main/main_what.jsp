@@ -28,6 +28,8 @@
 
 	#map_location{
 		margin: 3%;
+		width: 1920px;
+		height: 700px;
 	}
 	
 	.area {
@@ -40,92 +42,20 @@
 	    left: 15px;
 	    padding:2px;
 	}
-	
-			#footer	{
-		position:absolute;
-		top:900px;
-		text-align:center!important;
-		width: -webkit-fill-available;
-}
+
 	
 </style>
 
 </head>
-<body>
+<body style=" overflow-x: hidden;">
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
 	<div id="map_location">
 	<strong> <h5>어느 지역의 정보를 알고 싶으신가요? </h5> </strong><br>
-		<div id="map" style="width:95%;height:500px;"></div>
+		<div id="map" style="width:90%;height:500px;"></div>
 	</div>
 	
-	<!--Footer Links-->
-   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
-    <div class="container-fluid">
-      <div class="row">
-        <!--First column-->
-        <div class="col-md-3">
-          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
-          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
-        </div>
-        <!--/.First column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Second column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
-          <ul class="list-unstyled">
-            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
-          </ul>
-        </div>
-        <!--/.Second column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Third column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
-          <ul class="list-unstyled">
-            <li>Contacts</li>
-            <li>Terms</li>
-            <li>Condition</li>
-            <li>Privacy Policy</li>
-          </ul>
-        </div>
-        <!--/.Third column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Fourth column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
-          <ul class="list-unstyled">
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instargram</li>
-            <li>RSS</li>
-          </ul>
-        </div>
-        <!--/.Fourth column-->
-
-      </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <hr>
-    
-    <!--Copyright-->
-    <div class="footer-copyright py-3 text-center">
-      <div class="container-fluid">
-        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
-      </div>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-	
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
 <script>

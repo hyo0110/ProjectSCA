@@ -22,13 +22,7 @@
 	#summary{
 		margin: 15px;
 	}
-	
-				#footer	{
-		position:absolute;
-		top:900px;
-		text-align:center!important;
-		width: -webkit-fill-available;
-}
+
 </style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -49,32 +43,32 @@
 	  <form method="get" action="whereresult" onsubmit="return countcheck()">
 	      <div id="age">
 		      <h4>Age(최대 3개 선택 가능합니다)</h4>      
-		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_10" value="10">10대</label>
-		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_20" value="20">20대</label>
-		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_30" value="30">30대</label>
-		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_40" value="40">40대</label>
-		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_50" value="50">50대</label>
-		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_60" value="60">60대 이상</label>
-		      <label><input class="age_total" onclick="CountChecked(this)" type="checkbox" name="age_total" value="total">전체</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_10" value="10대">10대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_20" value="20대">20대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_30" value="30대">30대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_40" value="40대">40대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_50" value="50대">50대</label>
+		      <label><input class="age" onclick="CountChecked(this)" type="checkbox" name="age_60" value="60대">60대 이상</label>
+		      <label><input class="age_total" onclick="CountChecked(this)" type="checkbox" name="age_total" value="연령전체">전체</label>
 	      		<input class="age" type="hidden" name="age_cnt" value=""/>
 	      </div>
 	      
 	      <div id="day">
 	       <h4>Day(최대 1개 선택 가능합니다)</h4>
-	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_1" value="mon_thu">월~목</label>
-	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_2" value="fri_sun">금~일</label>
-	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_total" value="day_total">전체</label>
+	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_1" value="월~목">월~목</label>
+	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_2" value="금~일">금~일</label>
+	      <label><input class="day" onclick="CountChecked_2(this)" type="checkbox" name="day_total" value="요일전체">전체</label>
 	       </div>
 	       
 	       <div id="time">
 	      <h4>Time(최대 3개 선택 가능합니다)</h4>
-	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_1" value="1">새벽(00~06)</label>
-	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_2" value="2">오전(06~11)</label>
-	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_3" value="3">점심(11~14)</label>
-	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_4" value="4">오후(14~17)</label>
-	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_5" value="5">저녁(17~21)</label>
-	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_6" value="6">밤(21~24)</label>
-	      <label><input class="time_total" onclick="CountChecked_1(this)" type="checkbox" name="time_total" value="전체">전체</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_1" value="새벽">새벽(00~06)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_2" value="오전">오전(06~11)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_3" value="점심">점심(11~14)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_4" value="오후">오후(14~17)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_5" value="저녁">저녁(17~21)</label>
+	      <label><input class="time" onclick="CountChecked_1(this)" type="checkbox" name="time_6" value="밤">밤(21~24)</label>
+	      <label><input class="time_total" onclick="CountChecked_1(this)" type="checkbox" name="time_total" value="시간전체">전체</label>
 	      <input class="time" type="hidden" name="time_cnt" value=""/>
 	      </div>
 	      
@@ -82,74 +76,7 @@
 	    </form>
 	</div>
 
-<!--Footer Links-->
-   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
-    <div class="container-fluid">
-      <div class="row">
-        <!--First column-->
-        <div class="col-md-3">
-          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
-          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
-        </div>
-        <!--/.First column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Second column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
-          <ul class="list-unstyled">
-            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
-          </ul>
-        </div>
-        <!--/.Second column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Third column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
-          <ul class="list-unstyled">
-            <li>Contacts</li>
-            <li>Terms</li>
-            <li>Condition</li>
-            <li>Privacy Policy</li>
-          </ul>
-        </div>
-        <!--/.Third column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Fourth column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
-          <ul class="list-unstyled">
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instargram</li>
-            <li>RSS</li>
-          </ul>
-        </div>
-        <!--/.Fourth column-->
-
-      </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <hr>
-    
-    <!--Copyright-->
-    <div class="footer-copyright py-3 text-center">
-      <div class="container-fluid">
-        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
-      </div>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-
-
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 <script>
 	var maxChecked_age = 3;   //선택가능한 체크박스 갯수

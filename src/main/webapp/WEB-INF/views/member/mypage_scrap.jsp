@@ -63,7 +63,7 @@ a {
 	height: 500px;
 	position: absolute;
     left: 50%;
-    top: 38%;
+    top: 42%;
     transform: translate(-50%,-50%);
 }
 .scrapbox {
@@ -84,17 +84,12 @@ left: 6%;
 top: 5%;
 }		
 
-#footer{
-	position:relative;
-	top:530px;
-	text-align:left!important;
-}
-
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
+	<div style=" width: 1920px; height: 600px;">	
 			<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif;">
 				<div class="snb_wrap">
 					<ul class="snb_items">
@@ -122,73 +117,7 @@ top: 5%;
 						</table>
 				</div>
 			</div>
-	<!--Footer Links-->
-   	<footer id="footer" class="page-footer text-center text-md-left pt-4">
-    <div class="container-fluid">
-      <div class="row">
-        <!--First column-->
-        <div class="col-md-3">
-          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
-          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
-        </div>
-        <!--/.First column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Second column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
-          <ul class="list-unstyled">
-            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
-          </ul>
-        </div>
-        <!--/.Second column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Third column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
-          <ul class="list-unstyled">
-            <li>Contacts</li>
-            <li>Terms</li>
-            <li>Condition</li>
-            <li>Privacy Policy</li>
-          </ul>
-        </div>
-        <!--/.Third column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Fourth column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
-          <ul class="list-unstyled">
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instargram</li>
-            <li>RSS</li>
-          </ul>
-        </div>
-        <!--/.Fourth column-->
-
-      </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <hr>
-    
-    <!--Copyright-->
-    <div class="footer-copyright py-3 text-center">
-      <div class="container-fluid">
-        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
-      </div>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-	
-	
+	</div>	
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 </html>

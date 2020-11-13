@@ -48,13 +48,16 @@
 	right: 130px;
 	outline: 1px solid red;
 	}
+	
+	/* 확인하기위해 임시로 position:absolute  원래는 position:fixed */
 	.bar_search{
-	    position: fixed;
+	    position: absolute; 
 	    width: 150px;
 	    height: 200px;
 	    top: 690px;
 	    right: 130px;
 	    outline: 1px solid blue;
+	    background-color: white;
 	}
 	
 	#scrap_cnt{
@@ -85,80 +88,12 @@
 		    <div class="bar_scrap">스크랩한 글 갯수
 		    	<div id="scrap_cnt">	</div>
 		    </div>
-		    <div class="bar_search">최근 검색한 조건</div>
+		    <div class="bar_search">최근 검색한 조건
+		    	<div id="recent_search">  최근 검색한 조건이 없습니다. 	</div>
+		    </div>
 		</div>
 	</div>
-	
-	<footer id="footer" class="page-footer text-center text-md-left pt-4" style="text-align:center!important;">
-	<!--Footer Links-->
-    <div class="container-fluid">
-      <div class="row">
-        <!--First column-->
-        <div class="col-md-3">
-          <h5 class="text-uppercase font-weight-bold mb-4">Our Company</h5>
-          <p>Our mission is to organize the commercial district information and make it universially accessible and useful </p>
-        </div>
-        <!--/.First column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Second column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">Location</h5>
-          <ul class="list-unstyled">
-            <li>115, Gasan digital 2-ro, Geumcheon-gu, Seoul, Republic of Korea</li>
-          </ul>
-        </div>
-        <!--/.Second column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Third column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">About Us</h5>
-          <ul class="list-unstyled">
-            <li>Contacts</li>
-            <li>Terms</li>
-            <li>Condition</li>
-            <li>Privacy Policy</li>
-          </ul>
-        </div>
-        <!--/.Third column-->
-
-        <hr class="w-100 clearfix d-md-none">
-
-        <!--Fourth column-->
-        <div class="col-md-2 mx-auto">
-          <h5 class="text-uppercase font-weight-bold mb-4">FOLLOW US</h5>
-          <ul class="list-unstyled">
-            <li>Facebook</li>
-            <li>Twitter</li>
-            <li>Instargram</li>
-            <li>RSS</li>
-          </ul>
-        </div>
-        <!--/.Fourth column-->
-
-      </div>
-    </div>
-    <!--/.Footer Links-->
-
-    <hr>
-    
-    <!--Copyright-->
-    <div class="footer-copyright py-3 text-center">
-      <div class="container-fluid">
-        © 2020 Copyright: <a href="http://localhost:8080/project">Goodeesite.com</a>
-      </div>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
-</div>
-
-
-
+<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
 <script>
@@ -170,23 +105,26 @@ if(msg!=""){
 
 var scrap_cnt = "${scrap_cnt}";
 var loginid = "${sessionScope.loginid}";
-$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
-	$.ajax({
-			url: "scrap_cnt",
-			type:'get',
-			data: {"loginid": loginid},
-			dataType :'json',
-			success:function(data){				
-				console.log(data);
-				$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
-			},
-			error: function(e){
-				console.log(e);
-			}
+	$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
+		$.ajax({
+				url: "scrap_cnt",
+				type:'get',
+				data: {"loginid": loginid},
+				dataType :'json',
+				success:function(data){				
+					console.log(data);
+					$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
 		});
-	});
 
-
+var recent_search = "${sessionScope.recent_search}";
+	if(recent_search!=null){
+		$("#recent_search").html("<h4>"+recent_search+"</h4>");
+	}
 
 </script>
 </html>

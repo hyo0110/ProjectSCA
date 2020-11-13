@@ -34,4 +34,11 @@ public class HomeController {
 		
 		return "service_explain";
 	}
+	
+	@RequestMapping(value = "/footer", method = RequestMethod.GET)
+	public String footer(Model model) {
+		//logger.info("네비바 요청");
+		
+		return "footer";
+	}
 }

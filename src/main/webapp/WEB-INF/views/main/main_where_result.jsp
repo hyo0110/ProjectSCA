@@ -68,6 +68,7 @@ function save(){
 		success : function(data) {
 		console.log(data);
 				alert(data.msg);
+				location.reload();
 		},
 		error : function(e) {
 			console.log(e);

@@ -26,6 +26,15 @@ public class DataService {
 	@Autowired
 	DataDAO dao;
 
+	//스크랩 개수 세기
+	public HashMap<String, Object> scrap_cnt(String loginid) {
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		int scrap_cnt = dao.scrap_cnt(loginid);
+		result.put("scrap_cnt",scrap_cnt);
+		return result;
+	}
+	
+	
 	// 해당 구 베스트 정보+망고플레이트 불러오기
 	public DataDTO what_result(String region) {
 		DataDTO data = new DataDTO();
@@ -41,7 +50,7 @@ public class DataService {
 		try {
 			doc = Jsoup.connect(url).get();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		Elements element = doc.select("div.news_wrap.api_ani_send > div > a");
 		ArrayList<String> title = (ArrayList<String>) element.eachAttr("title");
@@ -414,5 +423,7 @@ public class DataService {
 		 
 		 return success;
 	}
+
+
 
 }

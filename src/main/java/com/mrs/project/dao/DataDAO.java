@@ -20,5 +20,7 @@ public interface DataDAO {
 
 	int scriptsave(String parameter, String loginId, String subject);
 
+	int scrap_cnt(String loginid);
+
 
 }

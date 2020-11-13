@@ -132,7 +132,7 @@
 					$("#news_list").append("<li><a href='"+data.link_5+"' class = 'news_item'>"+data.title_5+"</a></li>");					 
 					},
 				error: function(e){
-					console.log(e)
+					console.log(e);
 				}
 			});
 		});

@@ -153,7 +153,9 @@
 	function joinchk(){
 
 		if($("input[name='user_id']")!=""){
-			if(($("input[name='user_pw']").val()!="") && ($("input[name='user_pw2']").val()!="") && ($("input[name='user_pw']").val()==$("input[name='user_pw2']").val())){
+			if(($("input[name='user_pw']").val()!="") && 
+					($("input[name='user_pw2']").val()!="") && 
+					($("input[name='user_pw']").val()==$("input[name='user_pw2']").val())){
 				if($("input[name='user_name']").val()!=""){
 					if($("input[name='user_email']").val()!=""){
 						return true;

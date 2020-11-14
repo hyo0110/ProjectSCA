@@ -105,29 +105,29 @@
 
 <script>
 
-var msg = "${msg}";
-if(msg!=""){
-	alert(msg);
-}
-
-var scrap_cnt = "${scrap_cnt}";
-var loginid = "${sessionScope.loginid}";
-$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
-	$.ajax({
-			url: "scrap_cnt",
-			type:'get',
-			data: {"loginid": loginid},
-			dataType :'json',
-			success:function(data){				
-				console.log(data);
-				$("#scrap_cnt").html("<h4><a href='mypage_scrap'>"+data.scrap_cnt+"/5</a></h4>");
-			},
-			error: function(e){
-				console.log(e);
-			}
+	var msg = "${msg}";
+	if(msg!=""){
+		alert(msg);
+	}
+	
+	 // ----------------------- 현재 스크랩한 개수 가져오기 ---------------------------
+	var scrap_cnt = "${scrap_cnt}";
+	var loginid = "${sessionScope.loginid}";
+	$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
+		$.ajax({
+				url: "scrap_cnt",
+				type:'get',
+				data: {"loginid": loginid},
+				dataType :'json',
+				success:function(data){				
+					console.log(data);
+					$("#scrap_cnt").html("<h4><a href='mypage_scrap'>"+data.scrap_cnt+"/5</a></h4>");
+				},
+				error: function(e){
+					console.log(e);
+				}
+			});
 		});
-	});
-
 
    // ----------------------- 최근 검색한 것 리스트로 뽑아 누르면 이동하게 해주기 ---------------------------
 	var recent_search = "${sessionScope.recent_search}";
@@ -143,7 +143,7 @@ $(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크
 		var value = "";
 		var zero = "";
 		
-		if(list.length==1){ // 첫 검색때
+		if(list.length==1){ //--------검색한 게 한 개 이상 있을 때------------------
 			zero = first.split("]")[0];
 			console.log(zero);
 			if(zero.indexOf("/*")!=-1){ // 조건 선택한거면				
@@ -193,12 +193,12 @@ $(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크
 						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
 					}				
 				}
-			}			
-		} 
+			}
+		}
 		
 		$("#recent_search").html(research_content);
-		//---------검색한 게 한 개 이상 있을 때------------------
-	}else{		
+		
+	}else{//---------검색한 게 없을 때------------------
 		$("#recent_search").html("<h6>최근 검색한 조건이 없습니다.</h6>");
 	}
 	//--------------------------------------------------------------------------

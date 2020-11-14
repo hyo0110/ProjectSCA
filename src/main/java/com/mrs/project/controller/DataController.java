@@ -69,10 +69,11 @@ public class DataController {
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("region", region);
 		mav.addObject("data", data);	
-		
+	
 		if(recent_search.size()==5) {
 			recent_search.remove(0);
-		}	
+		}
+		
 		recent_search.add(region); //whatresult?region="+region		
 		session.setAttribute("recent_search", recent_search);
 		
@@ -111,6 +112,7 @@ public class DataController {
 		logger.info("어디로에 대한 결과");
 		
 		// 이렇게까지 해야할까.. 흑흑... 검색한거 세션에 저장하는 것
+
 		Set<String> keyset = param.keySet();
 		Iterator<String> keyIter = keyset.iterator();
 		int i = 0;
@@ -120,11 +122,11 @@ public class DataController {
 		while(keyIter.hasNext()) {
 			String key = keyIter.next();
 			String value = param.get(key);
-			System.out.println(key + " : " + value);
+			//System.out.println(key + " : " + value);
 			values[i] = value;
-			System.out.println(values[i]);
+			//System.out.println(values[i]);
 			parameter[i] = key+"="+values[i];
-			System.out.println(parameter[i]);
+			//System.out.println(parameter[i]);
 			i++;
 		}
 		
@@ -135,7 +137,7 @@ public class DataController {
 			parameterset += parameter[j]+"&";
 			if(parameter[j].contains("cnt")) {					
 			}else {
-				valueset += values[j]+"/ ";				
+				valueset += values[j]+"/";				
 			}
 		}
 		

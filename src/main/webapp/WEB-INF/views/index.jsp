@@ -141,43 +141,63 @@ $(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크
 		var last = list[list.length-1].split("]")[0];
 		var name = "";
 		var value = "";
+		var zero = "";
 		
-		for(var i = 0; i<list.length; i++){
-			if(i==0){ // 처음거
-				if(first.indexOf("/ *")!=-1){ // 조건 선택한거면
-					
-					name = first.split("/ *")[0];
-					console.log(name);	
-				value = first.split("/ *")[1];
-					research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
-				}else{ // 지역선택한거면
-					name = first;
-					value = first;
-					research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-				}				
-			}else if(i==list.length-1){ // 마지막거
-				if(last.indexOf("/ *")!=-1){ // 조건 선택한거면
-					name = last.split("/ *")[0];
-					value = last.split("/ *")[1];
-					research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
-				}else{ // 지역선택한거면
-					name = last;
-					value = last;
-					research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-				}				
-			}else{//중간것들
-				if(list[i].indexOf("/ *")!=-1){ // 조건 선택한거면\
-					name = list[i].split("/ *")[0];
-					value = list[i].split("/ *")[1];
-					research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';
-					}else{ // 지역선택한거면
-					name = list[i];
-					value = list[i];
-					research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-				}				
+		if(list.length==1){ // 첫 검색때
+			zero = first.split("]")[0];
+			console.log(zero);
+			if(zero.indexOf("/*")!=-1){ // 조건 선택한거면				
+				name = zero.split("/*")[0];
+				console.log(name);	
+				value = zero.split("/*")[1];
+				research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
+			}else{ // 지역선택한거면
+				name = zero;
+				value = zero;
+				research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
 			}
-		}		
+		}else{// 2~5일때 
+			for(var i = 0; i<list.length; i++){
+				if(i==0){ // 처음거
+					if(first.indexOf("/*")!=-1){ // 조건 선택한거면
+						
+						name = first.split("/*")[0];
+						console.log(name);	
+					value = first.split("/*")[1];
+						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
+					}else{ // 지역선택한거면
+						name = first;
+						value = first;
+						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+					}				
+				}else if(i==list.length-1){ // 마지막거
+					if(last.indexOf("/*")!=-1){ // 조건 선택한거면
+						name = last.split("/*")[0];
+						console.log(name);	
+						value = last.split("/*")[1];
+						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
+					}else{ // 지역선택한거면
+						name = last;
+						value = last;
+						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+					}				
+				}else{//중간것들
+					if(list[i].indexOf("/*")!=-1){ // 조건 선택한거면\
+						name = list[i].split("/*")[0];
+						console.log(name);	
+						value = list[i].split("/*")[1];
+						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';
+						}else{ // 지역선택한거면
+						name = list[i];
+						value = list[i];
+						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+					}				
+				}
+			}			
+		} 
+		
 		$("#recent_search").html(research_content);
+		//---------검색한 게 한 개 이상 있을 때------------------
 	}else{		
 		$("#recent_search").html("<h6>최근 검색한 조건이 없습니다.</h6>");
 	}

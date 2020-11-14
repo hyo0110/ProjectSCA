@@ -3,6 +3,7 @@ package com.mrs.project.controller;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -34,13 +35,15 @@ public class DataController {
 		logger.info("메인으로");		
 		return "main";
 	}
-	// 최근 검색 결과 5개만 넣게 하는 법
+	
+	LinkedList<String> recent_search = new LinkedList<String>();	
+	/*최근 검색 결과 5개만 넣게 하는 법
 	LinkedHashMap<String, String> recent_search = new LinkedHashMap<String, String>() {			
-		private final int MAX = 5;			
+		private final int MAX = 6;			
 		protected boolean removeEldestEntry(java.util.Map.Entry<String,String> eldest) {
 			return size() >= MAX;
 		};	
-	};
+	}; */
 	
 	//-------------------------------------스크랩 개수 세기----------------------------------------------
 	@RequestMapping(value = "/scrap_cnt", method = RequestMethod.GET)
@@ -65,8 +68,13 @@ public class DataController {
 		DataDTO data = service.what_result(region);
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("region", region);
-		mav.addObject("data", data);
-		recent_search.put("region","whatresult?region="+region);	
+		mav.addObject("data", data);	
+		
+		if(recent_search.size()==5) {
+			recent_search.remove(0);
+		}
+	
+		recent_search.add(region); //whatresult?region="+region
 		session.setAttribute("recent_search", recent_search);
 		mav.setViewName("main/main_what_result");		
 		return mav;
@@ -101,28 +109,52 @@ public class DataController {
 	public ModelAndView whereresult(ModelAndView model, @RequestParam HashMap<String, String> param, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();	
 		logger.info("어디로에 대한 결과");
-		/*
+		
+		// 이렇게까지 해야할까.. 흑흑... 검색한거 세션에 저장하는 것
 		Set<String> keyset = param.keySet();
 		Iterator<String> keyIter = keyset.iterator();
 		int i = 0;
-		String[] values = new String[param.keySet().size()];
+		String[] parameter = new String[param.keySet().size()];
+		String[] values = new String[param.keySet().size()];	
+		
 		while(keyIter.hasNext()) {
 			String key = keyIter.next();
 			String value = param.get(key);
 			System.out.println(key + " : " + value);
 			values[i] = value;
+			System.out.println(values[i]);
+			parameter[i] = key+"="+values[i];
+			System.out.println(parameter[i]);
 			i++;
 		}
 		
-		for(int j = 0; j<param.keySet().size(); j++) {
-			System.out.println(values[j]);
-		}
-	  */
+		String parameterset= "";
+		String valueset ="";
 		
-		String parameter = param.toString();
-		recent_search.put(parameter,"whereresult?"+param);
+		for(int j = 0; j<param.keySet().size()-1; j++) {
+			parameterset += parameter[j]+"&";
+			if(parameter[j].contains("age_cnt")) {					
+			}else {
+				valueset += values[j]+"/ ";				
+			}
+		}
+		
+		if(parameter[param.keySet().size()-1].contains("cnt")) {				
+		}else {
+			valueset += values[param.keySet().size()-1];	
+		}
+		
+		parameterset += parameter[param.keySet().size()-1];
+		
+		String parameters = valueset +"*"+ parameterset;
+		System.out.println(parameters);		
+		
+		if(recent_search.size()==5) {
+			recent_search.remove(0);
+		}
+		recent_search.add(parameters); //"whereresult?"+param	
 		session.setAttribute("recent_search", recent_search);
-		return service.where_result(param,mav);		
+		return service.where_result(param,mav);	
 	}
 	
 	

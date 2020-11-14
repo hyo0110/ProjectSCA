@@ -79,8 +79,7 @@ public class MemberController {
 	
 	//회원가입폼----------------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/joinForm", method = RequestMethod.GET)
-	public String joinForm(Model model) {
-		
+	public String joinForm(Model model) {		
 		return "member/index_join";
 	}
 	
@@ -104,8 +103,7 @@ public class MemberController {
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("loginid");
 		session.removeAttribute("recent_search");
-		model.addAttribute("msg","로그아웃 되었습니다.");
-		
+		model.addAttribute("msg","로그아웃 되었습니다.");		
 		return "index";
 	}
 	//마이페이지 재로그인 화면이동
@@ -130,21 +128,17 @@ public class MemberController {
 	//마이페이지 내 정보 상세보기
 	@RequestMapping(value = "/mypage_detail", method = RequestMethod.GET)
 	public String mypage_detail(HttpSession session, Model model) { 
-		 String id =(String) session.getAttribute("loginid");
-		 
+		 String id =(String) session.getAttribute("loginid");		 
 		MemberDTO dto = service.mypage_detail(id);
-		model.addAttribute("member",dto);
-		
+		model.addAttribute("member",dto);		
 		return "member/mypage_detail";
 	}
 	//마이페이지 탈퇴하기
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
 	public String deleteMember(HttpSession session, Model model) {
-
 		String id = (String) session.getAttribute("loginid");
 		service.deleteMember(id);
 		session.removeAttribute("loginid");
-
 		return "redirect:/logout";
 	}
 	

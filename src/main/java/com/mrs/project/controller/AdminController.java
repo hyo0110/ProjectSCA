@@ -52,7 +52,7 @@ public class AdminController {
 				}
 				mav.setViewName(page);
 			}		
-	rAttr.addFlashAttribute("msg", msg);
+			rAttr.addFlashAttribute("msg", msg);
 		return mav;
 	}
 	

@@ -72,10 +72,10 @@ public class DataController {
 		
 		if(recent_search.size()==5) {
 			recent_search.remove(0);
-		}
-	
-		recent_search.add(region); //whatresult?region="+region
+		}	
+		recent_search.add(region); //whatresult?region="+region		
 		session.setAttribute("recent_search", recent_search);
+		
 		mav.setViewName("main/main_what_result");		
 		return mav;
 	}	
@@ -133,13 +133,13 @@ public class DataController {
 		
 		for(int j = 0; j<param.keySet().size()-1; j++) {
 			parameterset += parameter[j]+"&";
-			if(parameter[j].contains("age_cnt")) {					
+			if(parameter[j].contains("cnt")) {					
 			}else {
 				valueset += values[j]+"/ ";				
 			}
 		}
 		
-		if(parameter[param.keySet().size()-1].contains("cnt")) {				
+		if(parameter[param.keySet().size()-1].contains("cnt")) {
 		}else {
 			valueset += values[param.keySet().size()-1];	
 		}

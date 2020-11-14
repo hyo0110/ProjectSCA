@@ -62,7 +62,6 @@
 	
 	#scrap_cnt{
 		margin: 10%;
-		
 	}
 
 </style>
@@ -137,6 +136,7 @@ $(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크
 	
 	if(recent_search!=''){	// 잘 받아오낭		
 		var list = recent_search.split(", ");
+		console.log(list);	
 		var first = list[0].split("[")[1];
 		var last = list[list.length-1].split("]")[0];
 		var name = "";
@@ -145,8 +145,10 @@ $(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크
 		for(var i = 0; i<list.length; i++){
 			if(i==0){ // 처음거
 				if(first.indexOf("/ *")!=-1){ // 조건 선택한거면
+					
 					name = first.split("/ *")[0];
-					value = first.split("/ *")[1];
+					console.log(name);	
+				value = first.split("/ *")[1];
 					research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
 				}else{ // 지역선택한거면
 					name = first;

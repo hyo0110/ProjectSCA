@@ -42,12 +42,13 @@
 		cursor: pointer;
 	}	
 	.bar_scrap{
-	position: fixed;
-	width: 150px;
-	height: 100px;
-	top: 558px;
-	right: 130px;
-	outline: 1px solid red;
+		position: fixed;
+		width: 150px;
+		height: 100px;
+		top: 558px;
+		right: 130px;
+		outline: 1px solid red;
+		background-color: white;
 	}
 	.bar_search{
 	    position: absolute;
@@ -61,6 +62,7 @@
 	
 	#scrap_cnt{
 		margin: 10%;
+		
 	}
 
 </style>
@@ -119,7 +121,7 @@ $(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크
 			dataType :'json',
 			success:function(data){				
 				console.log(data);
-				$("#scrap_cnt").html("<h4>"+data.scrap_cnt+"/5 </h4>");
+				$("#scrap_cnt").html("<h4><a href='mypage_scrap'>"+data.scrap_cnt+"/5</a></h4>");
 			},
 			error: function(e){
 				console.log(e);

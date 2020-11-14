@@ -126,7 +126,7 @@
 	
 	 function show(){
 		$("#script_box").css("display","block");
-	} 
+	};
 
 </script>
 </html>

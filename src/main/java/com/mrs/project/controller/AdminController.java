@@ -26,8 +26,7 @@ import com.mrs.project.service.AdminService;
 @Controller
 public class AdminController {
 	@Autowired AdminService service;
-	@Value("#{config['manager.id']}")
-	private String managerid;
+	@Value("#{config['manager.id']}") String managerid;
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	

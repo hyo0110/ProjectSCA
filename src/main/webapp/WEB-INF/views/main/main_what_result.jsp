@@ -172,7 +172,7 @@
 			success: function(data){
 				//console.log(data.status.data_code);
 				//상권상태
-				$("#status").html("<h3>"+data.status.region+data.status.mk_status+"</h3>"+
+				$("#status").html("<h3><strong><em>"+data.status.region+data.status.mk_status+"</em></strong></h3>"+
 						"<br> 총 유동인구 수는 "+data.status.total_ppl_cnt+"명 입니다");
 				//업종분포표
 				openbiz = data.status.data_code;

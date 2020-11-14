@@ -35,9 +35,9 @@
 	}
 	#sector{
 		border: 1px solid black;
-	    margin-top: 6%;
-	    float: right;
-	    margin-right: 36%;
+	    margin-top: 8%;
+	    float: left;
+	    margin-left: 3%;
 	    width: 20%;
 	    height: 300px;
 	    text-align: center;
@@ -46,9 +46,11 @@
 	#scrap{
 		border: 1px solid black;
 	    display: inline-block;
-	    float: right;
-	    margin-right: 13%;
-	    z-index: 999;
+	   	right: 5%;
+	   	top: 10%;
+	    margin-right: 3%;
+	    z-index: 10;
+	    position: fixed;
 	}
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -85,6 +87,7 @@
 				<button onclick=save()>저장</button>
 			</div>
 		</div>
+		
 		<div id="region">
 			<strong><a href="whatresult?region=${msg}" style="font-size: 18px;">${msg}</a></strong>
 		</div>
@@ -126,7 +129,7 @@
 	
 	 function show(){
 		$("#script_box").css("display","block");
-	};
+	}
 
 </script>
 </html>

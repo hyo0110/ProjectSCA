@@ -33,11 +33,11 @@ public class AdminController {
 // 관리자 페이지 접속 -> 무조건 게시글 관리부터 가게 되어있음
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public ModelAndView index(Model model,HttpSession session,@RequestParam String type, RedirectAttributes rAttr) {
-		logger.info("관리자모드 진입");
-		logger.info("type :"+type);
+		//logger.info("관리자모드 진입");
+		//logger.info("type :"+type);
 		ModelAndView mav = new ModelAndView();	
-			System.out.println(managerid+"어드민값");
-			System.out.println("Session :"+session.getAttribute("loginid"));
+			//System.out.println(managerid+"어드민값");
+			//System.out.println("Session :"+session.getAttribute("loginid"));
 			String loginId=(String) session.getAttribute("loginid");
 			String msg = "접근할 수 없습니다.";
 			String page = "index";
@@ -58,7 +58,7 @@ public class AdminController {
 	//관리자 게시글 삭제
 	@RequestMapping(value = "/admindel", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> admindel(@RequestParam String board_idx) {
-		logger.info(board_idx+"삭제 idx값");
+		//logger.info(board_idx+"삭제 idx값");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String msg = "실패";
 		int del_cnt = service.admindel(board_idx);
@@ -85,7 +85,7 @@ public class AdminController {
 		
 	@RequestMapping(value = "/admin_member", method = RequestMethod.GET)
 	public ModelAndView admin_member(Model model) {
-		logger.info("여기오나요?");
+		//logger.info("여기오나요?");
 		ModelAndView mav = new ModelAndView();	
 		if(managerid!=null) {
 			mav.setViewName("admin/admin_member");
@@ -103,7 +103,7 @@ public class AdminController {
 	
 	@RequestMapping(value = "/adminmemberdel", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> adminmemberdel(@RequestParam String id) {
-		logger.info(id+"삭제 idx값");
+		//logger.info(id+"삭제 idx값");
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String msg = "실패";
 		int del_cnt = service.adminmemberdel(id);

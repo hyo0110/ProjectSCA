@@ -156,7 +156,7 @@ public class MemberController {
 	public String updateMember(Model model, @RequestParam String user_id,
 			@RequestParam String user_pw, @RequestParam String user_name, @RequestParam String user_email) {		
 		int count = service.updateMember(user_id, user_pw, user_name, user_email);
-		logger.info("~~~~~");
+		//ogger.info("~~~~~");
 		String page ="redirect:/mypage_update";
 		if(count>0) {
 			page="redirect:/mypage_detail";

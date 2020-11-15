@@ -104,9 +104,9 @@ public class AdminService {
 		}
 		
 		ArrayList<MemberDTO> list = dao.admemberlist(start,end);
-		logger.info("회원사이즈"+list.size());
+		//logger.info("회원사이즈"+list.size());
 		ModelAndView mav = new ModelAndView();
-		logger.info("list"+list.size());	
+		//logger.info("list"+list.size());	
 		mav.addObject("listCount",listCount);//페이지당 보여줌
 		mav.addObject("currPage",page); //현재 페이지
 		mav.addObject("endPage",totPage); //끝페이지
@@ -118,20 +118,20 @@ public class AdminService {
  		for (int iCount = start; iCount <= end; iCount++) {
 		    if (iCount == page) {
 		    	mav.addObject("iCount",iCount);
-		    	System.out.print(" <b>" + iCount + "</b>");
+		    	//System.out.print(" <b>" + iCount + "</b>");
 		    } else {
-		        System.out.print(" " + iCount + " ");
+		       // System.out.print(" " + iCount + " ");
 		    }
 		}
 		mav.addObject("admemberlist",list);
 		mav.setViewName("admin/admin_member");
-		logger.info("admemberlist"+mav);
+		//logger.info("admemberlist"+mav);
 		return mav;
 	}
 
 	public int adminmemberdel(String id) {
 		int success = dao.adminmemberdel(id);
-		logger.info("삭제 갯수"+success);	
+		//logger.info("삭제 갯수"+success);	
 		return success;
 	}
 
@@ -166,7 +166,7 @@ public class AdminService {
 		}
 		
 		ArrayList<BoardDTO> list = dao.faqlist(start,end);
-		logger.info("list"+list.size());
+		//logger.info("list"+list.size());
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("listCount",listCount);//페이지당 보여줌
 		mav.addObject("currPage",page); //현재 페이지
@@ -178,9 +178,9 @@ public class AdminService {
  		for (int iCount = start; iCount <= end; iCount++) {
 		    if (iCount == page) {
 		    	mav.addObject("iCount",iCount);
-		    	System.out.print(" <b>" + iCount + "</b>");
+		    	//System.out.print(" <b>" + iCount + "</b>");
 		    } else {
-		        System.out.print(" " + iCount + " ");
+		        //System.out.print(" " + iCount + " ");
 		    }
 		}
  		

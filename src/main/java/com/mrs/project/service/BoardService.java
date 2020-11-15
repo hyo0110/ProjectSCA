@@ -142,7 +142,7 @@ public class BoardService {
 	/*-----------------------------------고객센터 관련------------------------------------------------------*/
 	//고개센터 글쓰기
 	public ModelAndView cwrite(HashMap<String, String> params, HttpSession session) {
-		logger.info("글쓰기 접속");
+		//logger.info("글쓰기 접속");
 		int success = dao.cwrite(params);
 		ModelAndView mav = new ModelAndView();
 		String page = "redirect:/writeForm?type="+params.get("type");
@@ -173,7 +173,7 @@ public class BoardService {
 			fileList.put(newFileName, fileName);
 			session.setAttribute("fileList", fileList);
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 	
 		mav.addObject("path","photo/"+newFileName); 
@@ -400,7 +400,7 @@ public class BoardService {
 	
 	   //게시판 검색---------------------------------------------------------------------------------------------------------------
 	   public List<BoardDTO> listSearch(String search_option, String keyword, String type) {
-	      logger.info("리스트 나옴?");
+	      //logger.info("리스트 나옴?");
 	      Map<String, String> map = new HashMap<String, String>();
 	      map.put("search_option", search_option);
 	      map.put("keyword",keyword);
@@ -410,7 +410,7 @@ public class BoardService {
 
 
 	   public int countRecord(String search_option, String keyword, String type) {
-	      logger.info("여기도나옴?");
+	      //logger.info("여기도나옴?");
 	      Map<String, String> map = new HashMap<String, String>();
 	      map.put("search_option", search_option);
 	      map.put("keyword",keyword);

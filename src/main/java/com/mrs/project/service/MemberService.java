@@ -57,12 +57,11 @@ public class MemberService {
 
 	public int mypage_loginpw(String id, String pw) {
 		int result = dao.mypage_loginpw(id, pw);
-		logger.info(""+result);
+		//logger.info(""+result);
 		return result;
 	}
 
 	public void deleteMember(String id) {
-
 		dao.deleteMember(id);
 
 	}

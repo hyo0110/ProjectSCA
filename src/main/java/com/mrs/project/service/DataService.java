@@ -354,9 +354,9 @@ public class DataService {
 			for(int i = 0; i<list_market.size();i++) {
 				// list.at(i).? 컬럼의 내용을 하나씩 뽑아내기
 				list_market.at(i).asStrings();
-				logger.info(i+"번째 리스트");
+				//logger.info(i+"번째 리스트");
 				for(String item : list_market.at(i).asStrings()) {
-					logger.info(item);
+					//logger.info(item);
 				}
 			}
 			String Sectors = list_market.at(1).asString();
@@ -369,17 +369,17 @@ public class DataService {
 			for(int i = 0; i<list.size();i++) {
 				// list.at(i).? 컬럼의 내용을 하나씩 뽑아내기
 				list.at(i).asStrings();
-				logger.info(i+"번째 리스트");
+				//logger.info(i+"번째 리스트");
 				for(String item : list.at(i).asStrings()) {
 					if (i==0) {
-						System.out.println("i가 0일때");
+						//System.out.println("i가 0일때");
 						logger.info(item);
 						conn.eval("region<-c('"+item+"')");
 						conn.eval("region<-as.data.frame(region)");
 						conn.eval("region_df<-rbind(region_df,region)");
 					}
 					if (i==1) {
-						System.out.println("i가 1일때");
+						//System.out.println("i가 1일때");
 						logger.info(item);
 						conn.eval("region_score<-c("+item+")");
 						conn.eval("region_score<-as.data.frame(region_score)");
@@ -395,7 +395,7 @@ public class DataService {
 			try {
 				  conn.eval("saveWidget(real_score,'C:/upload/result.html',libdir = 'lib')");
 			} catch (Exception e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 			}
 			
 			conn.close();

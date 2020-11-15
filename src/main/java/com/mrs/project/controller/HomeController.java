@@ -23,22 +23,17 @@ public class HomeController {
 	
 	@RequestMapping(value = "/nav", method = RequestMethod.GET)
 	public String nav(Model model) {
-		logger.info("네비바 요청");
-		
+		//logger.info("네비바 요청");		
 		return "navi";
 	}
 	
 	@RequestMapping(value = "/service_explain", method = RequestMethod.GET)
-	public String service_explain(Model model) {
-		//logger.info("네비바 요청");
-		
+	public String service_explain(Model model) {	
 		return "service_explain";
 	}
 	
 	@RequestMapping(value = "/footer", method = RequestMethod.GET)
 	public String footer(Model model) {
-		//logger.info("네비바 요청");
-		
 		return "footer";
 	}
 }

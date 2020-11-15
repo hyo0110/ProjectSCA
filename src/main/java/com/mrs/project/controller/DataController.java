@@ -32,7 +32,7 @@ public class DataController {
 	//메인 들어가기
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String main(Model model) {
-		logger.info("메인으로");		
+		//logger.info("메인으로");		
 		return "main";
 	}
 	
@@ -48,7 +48,7 @@ public class DataController {
 	//-------------------------------------스크랩 개수 세기----------------------------------------------
 	@RequestMapping(value = "/scrap_cnt", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> scrap_cnt(@RequestParam HashMap<String, String> param) {		
-		logger.info("로그인한 아이디: "+ param.get("loginid"));
+		//logger.info("로그인한 아이디: "+ param.get("loginid"));
 		String loginid = param.get("loginid");
 		return service.scrap_cnt(loginid);
 	}	
@@ -57,14 +57,14 @@ public class DataController {
 	//무엇을 들어가기
 	@RequestMapping(value = "/what", method = RequestMethod.GET)
 	public String what(Model model) {
-		logger.info("무엇으로");		
+		//logger.info("무엇으로");		
 		return "main/main_what";
 	}
 	
 	// 무엇을 결과화면
 	@RequestMapping(value = "/whatresult", method = RequestMethod.GET)
 	public ModelAndView whatresult(Model model, @RequestParam String region, HttpSession session) {
-		logger.info("무엇을 결과 "+region);
+		//logger.info("무엇을 결과 "+region);
 		DataDTO data = service.what_result(region);
 		ModelAndView mav = new ModelAndView();	
 		mav.addObject("region", region);
@@ -84,7 +84,7 @@ public class DataController {
 	// 무엇을 뉴스리스트
 	@RequestMapping(value = "/newslist", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> newslist(@RequestParam HashMap<String, String> param) {		
-		logger.info("뉴스리스트: "+ param.get("region"));
+		//logger.info("뉴스리스트: "+ param.get("region"));
 		String region = param.get("region");		
 		return service.newslist(region);
 	}
@@ -92,7 +92,7 @@ public class DataController {
 	//무엇을 반기별 업종분표 불러오기// 차트만들어서 보여주기
 	@RequestMapping(value = "/openbiz", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> openbiz(@RequestParam HashMap<String, String> param) throws Exception {		
-		logger.info("영업중인 : "+ param.get("region") +", "+ param.get("reg_date"));
+		//logger.info("영업중인 : "+ param.get("region") +", "+ param.get("reg_date"));
 		String region = param.get("region");
 		String reg_date = param.get("reg_date");
 		return service.openbiz(region,reg_date);
@@ -102,14 +102,14 @@ public class DataController {
 	//어디에서 들어가기
 	@RequestMapping(value = "/where", method = RequestMethod.GET)
 	public String where(Model model) {
-		logger.info("어디에서");		
+		//logger.info("어디에서");		
 		return "main/main_where";
 	}
 	
 	@RequestMapping(value = "/whereresult", method = RequestMethod.GET)
 	public ModelAndView whereresult(ModelAndView model, @RequestParam HashMap<String, String> param, HttpSession session) throws Exception {
 		ModelAndView mav = new ModelAndView();	
-		logger.info("어디로에 대한 결과");
+		//logger.info("어디로에 대한 결과");
 		
 		// 이렇게까지 해야할까.. 흑흑... 검색한거 세션에 저장하는 것
 
@@ -149,7 +149,7 @@ public class DataController {
 		parameterset += parameter[param.keySet().size()-1];
 		
 		String parameters = valueset +"*"+ parameterset;
-		System.out.println(parameters);		
+		//System.out.println(parameters);		
 		
 		if(recent_search.size()==5) {
 			recent_search.remove(0);

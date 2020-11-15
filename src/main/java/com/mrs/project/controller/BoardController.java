@@ -45,7 +45,6 @@ public class BoardController {
 	//아작스 사용해서 페이징한 리스트
 	@RequestMapping(value = "/listcall", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> listcall(@RequestParam HashMap<String, String>params) {
-
 		String page = params.get("page");
 		String pagePerCnt = params.get("ppn");	
 		String type = params.get("type");
@@ -165,7 +164,7 @@ public class BoardController {
 	
 	  @RequestMapping(value = "/opSearch", method = RequestMethod.GET)
 	   public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
-	      System.out.println("여기 오긴오니????");
+	      //System.out.println("여기 오긴오니????");
 	      //logger.info("검색 요청");   
 	     // logger.info("option: "+search_option);
 	     // logger.info("keyword : "+keyword);

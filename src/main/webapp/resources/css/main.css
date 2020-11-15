@@ -94,16 +94,17 @@ a:hover {
 	cursor: pointer;
 }	
 .bar_scrap{
-	position: fixed;
+	position: absolute;
 	width: 150px;
 	height: 100px;
-	top: 640px;
+	top: 150px;
 	right: 130px;
 	border: 3px solid #eee000;
 	border-radius: 50px;
 	text-align:center;
 	padding: 15px 10px;
 	background-color: white;
+	z-index: 10;
 }
 .bar_menu span{
 	font-size : 1.1rem;
@@ -118,11 +119,12 @@ a:hover {
     background-color: white;
     width: 150px;
     height: 200px;
-    top: 700px;
+    top: 280px;
     right: 130px;
 	border: 3px solid #3d3d3d;
 	border-radius: 10px;
 	padding: 10px;
+	z-index: 10;
 }
 
 #scrap_cnt{

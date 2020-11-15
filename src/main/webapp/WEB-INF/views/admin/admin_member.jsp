@@ -51,7 +51,7 @@
 </head>
 <body style="overflow-x: hidden;">
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-		<h1 style="position: relative; margin-top: 1%; left:20px; font-family: 'Noto Sans KR', sans-serif;">관리자페이지</h1>
+		<h1 style="position: relative; margin-top: 1%; left:20px; font-family: 'Noto Sans KR', sans-serif;">회원관리</h1>
 		
 			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px; margin-bottom: -16px; ">
 				  <table class="table table-hover table-bordered">

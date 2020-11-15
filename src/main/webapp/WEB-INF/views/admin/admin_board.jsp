@@ -36,7 +36,7 @@
    position: absolute;
    color: #555;
    font: 0.9rem/180% 'NanumGothic';
-   width: 50%; height: 50px
+   width: 50%; height: 50px;
     top:50%; left:50%;
     transform:translate(-50%, -50%);
     bottom:0px;
@@ -49,7 +49,12 @@
 <body style="overflow-x: hidden;">
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
 
-			<h1 style="position: relative; margin-top: 1%; left:20px; font-family: 'Noto Sans KR', sans-serif;">관리자페이지</h1>
+		<c:if test="${type==0}">
+			<h1 style="position: relative; margin-top: 1%; left:20px; font-family: 'Noto Sans KR', sans-serif;"> 자유게시판 관리 </h1>
+		</c:if>
+		<c:if test="${type==1}">
+			<h1 style="position: relative; margin-top: 1%; left:20px;font-family: 'Noto Sans KR', sans-serif;"> 문의글 관리</h1>
+		</c:if>
 
 			<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 1%; font-size: 15px; margin-bottom: -16px; ">
 				  <table class="table table-hover table-bordered">

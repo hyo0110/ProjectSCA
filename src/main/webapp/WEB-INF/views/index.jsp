@@ -25,9 +25,9 @@
 		<div>
 			<div class="main_top">
 				<div>
-					<h1 class="main_tit">서울상권분석</h1>
-					<p class="main_tit">예비 창업자를 도와 더 나은,</p>
-					<p class="main_tit">경제를</p>
+					<h1 class="main_tit">외식업 예비 창업자를 위한 </h1>
+					<p class="main_tit"> 서울 상권 분석 서비스. </p>
+					<p class="main_tit">Seoul Commercial-districts Analysis</p>
 				</div>
 				<!--진짜 세상 구리다 누가 간지나게 해줄사람 없나요  -->
 			</div>
@@ -59,15 +59,7 @@
 		        </div>
 		      </div>
 		    </div>
-		    <div class="bar_menu">
-			    <div class="bar_scrap"><span>스크랩 게시물</span>
-			    	<div id="scrap_cnt"></div>
-			    </div>
-			    <div class="bar_search"><span>최근 검색한 조건</span>
-			    	<div id="recent_search"> 
-				</div>
-			    </div>
-			</div>
+
 	    </div>
 	</div>
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
@@ -77,101 +69,7 @@
 	var msg = "${msg}";
 	if(msg!=""){
 		alert(msg);
-	}
-	
-	 // ----------------------- 현재 스크랩한 개수 가져오기 ---------------------------
-	var scrap_cnt = "${scrap_cnt}";
-	var loginid = "${sessionScope.loginid}";
-	$(document).ready(function(){ // 문서가 로딩되면, 해당 아이디 스크랩 개수 가져오기
-		$.ajax({
-				url: "scrap_cnt",
-				type:'get',
-				data: {"loginid": loginid},
-				dataType :'json',
-				success:function(data){				
-					console.log(data);
-					$("#scrap_cnt").html("<h4><a href='mypage_scrap'>"+data.scrap_cnt+"/5</a></h4>");
-				},
-				error: function(e){
-					console.log(e);
-				}
-			});
-		});
-
-   // ----------------------- 최근 검색한 것 리스트로 뽑아 누르면 이동하게 해주기 ---------------------------
-	var recent_search = "${sessionScope.recent_search}";
-	var research_content = "";
-	//console.log(recent_search);
-	
-	if(recent_search!=''){	// 잘 받아오낭		
-		var list = recent_search.split(", ");
-		console.log(list);	
-		var first = list[0].split("[")[1];
-		var last = list[list.length-1].split("]")[0];
-		var name = "";
-		var value = "";
-		var zero = "";
-		
-		if(list.length==1){ //--------검색한 게 한 개 이상 있을 때------------------
-			zero = first.split("]")[0];
-			console.log(zero);
-			if(zero.indexOf("/*")!=-1){ // 조건 선택한거면				
-				name = zero.split("/*")[0];
-				console.log(name);	
-				value = zero.split("/*")[1];
-				research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
-			}else{ // 지역선택한거면
-				name = zero;
-				value = zero;
-				research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-			}
-		}else{// 2~5일때 
-			for(var i = 0; i<list.length; i++){
-				if(i==0){ // 처음거
-					if(first.indexOf("/*")!=-1){ // 조건 선택한거면
-						
-						name = first.split("/*")[0];
-						console.log(name);	
-					value = first.split("/*")[1];
-						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
-					}else{ // 지역선택한거면
-						name = first;
-						value = first;
-						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-					}				
-				}else if(i==list.length-1){ // 마지막거
-					if(last.indexOf("/*")!=-1){ // 조건 선택한거면
-						name = last.split("/*")[0];
-						console.log(name);	
-						value = last.split("/*")[1];
-						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
-					}else{ // 지역선택한거면
-						name = last;
-						value = last;
-						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-					}				
-				}else{//중간것들
-					if(list[i].indexOf("/*")!=-1){ // 조건 선택한거면\
-						name = list[i].split("/*")[0];
-						console.log(name);	
-						value = list[i].split("/*")[1];
-						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';
-						}else{ // 지역선택한거면
-						name = list[i];
-						value = list[i];
-						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
-					}				
-				}
-			}
-		}
-		
-		$("#recent_search").html(research_content);
-		
-	}else{//---------검색한 게 없을 때------------------
-		$("#recent_search").html("<h6>최근 검색한 조건이 없습니다.</h6>");
-	}
-	//--------------------------------------------------------------------------
-	
+	}	
 	
 </script>
 </html>

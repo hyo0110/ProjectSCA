@@ -59,7 +59,7 @@ public class MemberController {
 		
 		if(id.equals(adminId) && pw.equals(adminPw)) {
 			session.setAttribute("loginid", adminId);
-			page = "redirect:/admin";
+			page = "redirect:/admin?type=0";
 		} else{
 			int cnt = service.login(id,pw);
 			if(cnt>0) {

@@ -36,7 +36,7 @@
                   <a class="dropdown-item" href="mypage_written?page=1">내가 쓴 글</a>
                 </div>
             </li>
-
+			
             <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; margin-right: 20px; ">
               <a class="nav-link" href="typelist?type=0">자유게시판</a>
             </li>
@@ -44,7 +44,19 @@
             <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
                 <a class="nav-link" href="typelist?type=1">고객센터</a>
              </li>
-
+             <c:if test="${sessionScope.loginid eq 'admin'}">
+              <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
+                <a class="nav-link" href="admin?type=0">자유게시판 관리</a>
+             </li>
+             
+              <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
+                <a class="nav-link" href="admin?type=1">문의글 관리</a>
+             </li>
+             
+              <li class="nav-item" style="font-family: 'Noto Sans KR', sans-serif; font-size: 18px; margin-left: 20px; ">
+                <a class="nav-link" href="admin_member">회원 관리</a>
+             </li>
+		</c:if>
           </ul>
           
          <c:choose>

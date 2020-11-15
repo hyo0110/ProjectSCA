@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +28,8 @@
 
 #footerBox>#infoBox{
    position: relative; /*부모*/
-   width: 1600px; height: 200px;
+   width: 1600px; 
+   height: 200px;
    margin:0 auto;
 }
 
@@ -36,8 +37,10 @@
    position: absolute;
    color: #555;
    font: 0.9rem/180% 'NanumGothic';
-   width: 50%; height: 50px
-    top:50%; left:50%;
+   width: 50%; 
+   height: 50px;
+    top:50%; 
+    left:50%;
     transform:translate(-50%, -50%);
     bottom:0px;
     text-align: center;
@@ -95,7 +98,6 @@
 	
 	function listCall(page) {
 		var ppn = 10;
-
 		$.ajax({
 			url : "membercall",
 			type : 'get',
@@ -105,7 +107,6 @@
 			},
 			dataType : 'json',
 			success : function(data) {
-
 				listPrint(data.list);
 				console.log(data.range);
 				//플러그인 사용
@@ -128,31 +129,37 @@
 	function listPrint(list) {
 		//console.log(list); //5개만 배열로 찍힘
 		var content="";
+		var id ="";
 		list.forEach(function(item) {
+			id = item.id;
 			content += "<tr>";
 			content += "<td style='text-align: center; '>" + item.id + "</td>";
 			content += "<td style='text-align: center;'>" + item.name + "</td>";
 			content += "<td style='text-align: center;'>" + item.email + "</td>";
-			content += "<td><input type='button' onclick='ajaxCall("+item.id+")' value='탈퇴'/></td>"
+			content += "<td><input type='button' onclick='ajaxCall(this)' value='탈퇴' data-string='"+item.id+"' class='selectid'/></td>";
+			
 			content += "</tr>";
 		});
-		$("#boardList").empty(); 
+		$("#boardList").empty();
 		$("#boardList").append(content);
 		content = ""; 
-	}
+		
+	};
 
 	var msg = "${msg}";
 	if (msg != "") {
 		alert(msg);
-	}
+	};
 	
 	//삭제 버튼
-	function ajaxCall(id){
-		if(confirm('삭제하시겠습니까?')){
+	function ajaxCall(id) {
+		var selectid = $(id).attr("data-string");
+		//console.log(selectid);
+		if(confirm('삭제하시겠습니까?')){			
 			$.ajax({
 				url:"adminmemberdel",
 				type:'GET',
-				data:{'id':id},
+				data:{'id':selectid},
 				dataType:'JSON',
 				success:function(d){	
 					//디비랑 페이지가 삭제되지만 페이지 새로고침이 안된다.
@@ -163,9 +170,14 @@
 					console.log(e);
 				}
 			});
+			
 		}else{
-			("취소")
-		}
-	}
+			("취소");
+		};		
+	};
+	
+		
+
+	
 </script>
 </html>

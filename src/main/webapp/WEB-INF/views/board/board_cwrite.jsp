@@ -51,7 +51,7 @@
 					<th style="font-family: 'Noto Sans KR', sans-serif; font-size: 20px; text-align: center;">제목</th>
 					<td>
 					<input type = "text" name = "subject" id="subject"/> &nbsp
-					<input type="checkbox" name="privatecheck" id="privatecheck"/>비밀글	
+					<input type="checkbox" name="privatecheck" id="privatecheck"/> 비밀글	
 					<input type="hidden" name="privateHidden" id="privateHidden"/>
 					</td>
 				</tr>
@@ -75,8 +75,8 @@
 		console.log("제목: ",subject,"내용: ",content);
 			if(subject !='' && content !=''){
 				if(confirm("등록하시겠습니까?")==true){
-					$("#editable input[type='button']").remove();
-					$("#content").val($("#editable").html()); 
+					//$("#editable input[type='button']").remove();
+					//$("#content").val($("#editable").html()); 
 					$("form").submit(); 
 				}
 			}else{

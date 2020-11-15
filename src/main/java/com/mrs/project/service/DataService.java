@@ -135,7 +135,7 @@ public class DataService {
 		int time_cnt = Integer.parseInt(param.get("time_cnt"));
 
 		if (!param.isEmpty()) {
-			logger.info("params : " + param);// 불러온 파라메이터
+			//logger.info("params : " + param);// 불러온 파라메이터
 
 			// 1. R connection 실행
 			RConnection conn = new RConnection();
@@ -373,14 +373,14 @@ public class DataService {
 				for(String item : list.at(i).asStrings()) {
 					if (i==0) {
 						//System.out.println("i가 0일때");
-						logger.info(item);
+						//logger.info(item);
 						conn.eval("region<-c('"+item+"')");
 						conn.eval("region<-as.data.frame(region)");
 						conn.eval("region_df<-rbind(region_df,region)");
 					}
 					if (i==1) {
 						//System.out.println("i가 1일때");
-						logger.info(item);
+						//logger.info(item);
 						conn.eval("region_score<-c("+item+")");
 						conn.eval("region_score<-as.data.frame(region_score)");
 						conn.eval("score_df<-rbind(score_df,region_score)");

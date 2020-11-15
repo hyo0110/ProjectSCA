@@ -26,7 +26,7 @@
 			<div class="main_top">
 				<div>
 					<h1 class="main_tit">외식업 예비 창업자를 위한 </h1>
-					<p class="main_tit"> 서울 상권 분석 서비스. </p>
+					<p class="main_tit"> 서울 상권 분석 서비스, </p>
 					<p class="main_tit">Seoul Commercial-districts Analysis</p>
 				</div>
 				<!--진짜 세상 구리다 누가 간지나게 해줄사람 없나요  -->

@@ -94,9 +94,9 @@ public class BoardController {
 	//고객센터의 글쓰기
 	@RequestMapping(value = "/cwrite", method = RequestMethod.POST)
 	public ModelAndView cwrite(@RequestParam HashMap<String, String> params ,HttpSession session) {
-
+		//System.out.println(params);
 		if(params.get("privateHidden").equals("")) {
-			System.out.println("들어옴?");
+			//System.out.println("들어옴?");
 			params.put("privateHidden", "0");
 		}
 		return service.cwrite(params,session);

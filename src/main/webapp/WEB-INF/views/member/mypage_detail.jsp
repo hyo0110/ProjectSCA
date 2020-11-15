@@ -7,117 +7,49 @@
 <head>
 <meta charset="UTF-8">
 <title>SCA Service</title>
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
-
-	ul {
-		padding : 0;
-		margin : 0;
-	}
-	li {
-		list-style: none;
-		padding : 0;
-		margin : 0;
-	}
-	a {
-		text-decoration: none;
-		padding : 0;
-		margin : 0;
-	}
-	
-	.container {
-		font-family: 'Noto Sans KR', sans-serif;
-		display : inline-block;
-	}
-	.snb_wrap {
-		float : left;
-	}
-	.snb_items {
-		width : 250px;
-	}
-	.snb_item {
-		width : 250px;
-		height: 40px;
-		text-align : center;
-		border\-radius: 0px 25px 25px 0px; 
-	}
-	.snb_item a {
-		width : 140px;
-		height: 40px;
-		line-height : 40px;
-		vertical-align : middle;
-	}
-	.snb_item:last-child {
-		border-bottom : 0;
-	}
-	.detail_wrap {
-		float:left;
-		width : 850px;
-		height: 500px;
-		position: absolute;
-	    left: 50%;
-	    top: 41%;
-	    transform: translate(-50%,-50%);
-	}
-	.detail {
-		width : 100%;
-		height : 100%;
-	}
-	button{
-    	padding:13px 80px;
-        font-size:17px;
-        cursor: pointer;
-        border: 1px solid #004c80; 
-		border-radius: 5px; 
-		color: #004c80;
-		background-color: white;      
-	}
-	button:hover{
-		background-color: #009fe3; 
-		color: white;
-	}
-
-</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="resources/css/my_page.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body style="overflow-x: hidden;">
 
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-		<div style="margin-top:50px; font-family: 'Noto Sans KR', sans-serif; width: 1920px; height: 600px;">
-				<div class="snb_wrap">
-					<ul class="snb_items">
-						<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_detail">회원정보</a></li>
-						<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
-						<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
-					</ul>
-				</div>
-				<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray;">
-					<div class="detail">
-						<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보</h3>
-						<p style="font-size:15px; text-align: center; margin-bottom: 20px;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며,</br> 회원님의 명백한 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.</p>
-						<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
-							<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">아이디</div>
-							<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.id}</div>
-						</div>
-						<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
-							<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">이름</div>
-							<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.name}</div>
-						</div>
-						<div style="width: 100%; height: 65px; margin-bottom: 20px;">
-							<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">이메일</div>
-							<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.email}</div>
-						</div>
-						<div style="text-align: center; margin-top: 60px;">
-							<button type="button" onclick="realdelete()" style="margin-right: 30px; border-radius: 10px;">탈퇴</button> <!-- 탈퇴여부 -->
-							<button type="button" onclick="location.href='mypage_update'"style="border-radius: 10px;">수정</button>
-						</div>
+		<div class="containerbox">
+			<div class="snb_wrap">
+				<ul class="snb_items">
+					<li class="snb_item" style="background-color: #e8f0fe;"><a href="mypage_detail">회원정보</a></li>
+					<li class="snb_item"><a href="mypage_scrap">스크랩</a></li>
+					<li class="snb_item"><a href="mypage_written?page=1">글목록</a></li>
+				</ul>
+			</div>
+			<div class="detail_wrap" style="border-radius:25px; border: 1px solid lightgray;">
+				<div class="detail">
+					<h3 style="text-align: center; margin-top: 40px; margin-bottom: 20px;">회원정보</h3>
+					<p style="font-size:15px; text-align: center; margin-bottom: 20px;">회원정보는 개인정보처리방침에 따라 안전하게 보호되며,</br> 회원님의 명백한 동의 없이 공개 또는 제 3자에게 제공되지 않습니다.</p>
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">아이디</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.id}</div>
+					</div>
+					<div style="width: 100%; height: 65px; border-bottom: 1px solid lightgray;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">이름</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.name}</div>
+					</div>
+					<div style="width: 100%; height: 65px; margin-bottom: 20px;">
+						<div style="float: left; width: 20%; height:40%; margin-top: 20px; margin-left: 20px;">이메일</div>
+						<div style="float: right; width: 70%; height:40%; margin-top: 20px;"> ${member.email}</div>
+					</div>
+					<div style="text-align: center; margin-top: 60px;">
+						<button type="button" onclick="realdelete()" style="margin-right: 30px; border-radius: 10px;">탈퇴</button> <!-- 탈퇴여부 -->
+						<button type="button" onclick="location.href='mypage_update'"style="border-radius: 10px;">수정</button>
 					</div>
 				</div>
 			</div>
+		</div>
 	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 <script>

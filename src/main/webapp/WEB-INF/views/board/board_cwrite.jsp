@@ -31,6 +31,7 @@
 			}
 		
 		</style>
+		<link rel="stylesheet" href="resources/css/nav.css">
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"></script>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -39,7 +40,7 @@
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-		<form action="cwrite" method = "post">
+		<form action="cwrite" style="margin-top:80px;" method = "post">
 		<input type="hidden" name ="type" value="${type}">
 		<div class="col-md-6" style="position: relative; max-width: 95%; left: 2%; margin-top: 3%; font-size: 15px; font-family: 'Noto Sans KR', sans-serif;">
 			<table class="table table-hover table-bordered">

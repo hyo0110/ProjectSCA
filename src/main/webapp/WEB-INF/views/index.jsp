@@ -8,103 +8,72 @@
 <head>
 <meta charset="UTF-8">
 <title>SCA Service</title>
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
-
-/*  	body {
-	overflow: hidden;
-	width: 100%;
-	} 	 */
-	.main_top{
-	    width: 100%;
-	    height: 300px;
-	}
-	.main_box{
-		width: 1200px;
-		height: 300px;
-		/* outline: 1px solid black; */
-		margin: 0 auto;
-		margin-top: 200px;
-		margin-bottom: 50px;
-	}	
-	.img1{
-		margin-right: 85px;
-	}
-	.img2{
-		margin-right: 85px;
-	}	
-	.img1:hover,.img2:hover,.img3:hover{
-		opacity: 80%;
-		cursor: pointer;
-	}	
-	.bar_scrap{
-		position: fixed;
-		width: 150px;
-		height: 100px;
-		top: 558px;
-		right: 130px;
-		outline: 1px solid red;
-		background-color: white;
-	}
-	.bar_search{
-	    position: absolute;
-	    background-color: white;
-	    width: 150px;
-	    height: 200px;
-	    top: 690px;
-	    right: 130px;
-	    outline: 1px solid blue;
-	}
-	
-	#scrap_cnt{
-		margin: 10%;
-	}
-
-</style>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js">
-	
-</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="resources/css/main.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="overflow-x: hidden;">
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-<%-- 	<h3>${sessionScope.loginid }</h3> --%>
-<div class="main">
-	<div>
-		<div class="main_top">
-			<img src="resources/img/main.gif" style="width: 100%; position: absolute;">
-			<p style="position: relative; top: 40%;  font-family: 'Noto Sans KR', sans-serif; font-size: 60px; font-weight: 700; left: 38%; color: #fff;">예비창업자를 도와</br>더 나은 경제를 만드는</br>서울상권분석입니다.</p>
-			<!--진짜 세상 구리다 누가 간지나게 해줄사람 없나요  -->
-		</div>
-		<div class="main_box">
-		    <img src="resources/img/service_explain.PNG" width="340px;" class="img1" onclick="location.href='service_explain'">
-		    <img src="resources/img/what.PNG" width="340px;" class="img2" onclick="location.href='what'">
-		    <img src="resources/img/where.PNG" width="340px;" class="img3" onclick="location.href='where'">
-		</div>
-		<div class="bar_menu">
-		    <div class="bar_scrap">스크랩한 글 갯수
-		    	<div id="scrap_cnt">	</div>
-		    </div>
-		    <div class="bar_search">최근 검색한 조건
-		    	<div id="recent_search"> 
+	<%-- 	<h3>${sessionScope.loginid }</h3> --%>
+	<div class="main">
+		<div>
+			<div class="main_top">
+				<div>
+					<h1 class="main_tit">서울상권분석</h1>
+					<p class="main_tit">예비 창업자를 도와 더 나은,</p>
+					<p class="main_tit">경제를</p>
 				</div>
-
- 		    </div>
-		</div>
+				<!--진짜 세상 구리다 누가 간지나게 해줄사람 없나요  -->
+			</div>
+			<div class="container">
+		      <div class="row">
+		        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+		          <div class="each-services">
+		          	<a href="service_explain">
+			            <img src="resources/img/intro.png" alt="Services">
+			            <span>서비스 소개</span>
+		            </a>
+		          </div>
+		        </div>
+	   	        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+		          <div class="each-services services2">
+		          	<a href="what">
+			            <img src="resources/img/what.png" alt="Services">
+			            <span>무엇을?</span>
+		            </a>
+		          </div>
+		        </div>
+		        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+		          <div class="each-services services3">
+			          <a href="where">
+				          <img src="resources/img/where.png" alt="Services">
+				          <span>어디서?</span>
+			          </a>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="bar_menu">
+			    <div class="bar_scrap"><span>스크랩 게시물</span>
+			    	<div id="scrap_cnt"></div>
+			    </div>
+			    <div class="bar_search"><span>최근 검색한 조건</span>
+			    	<div id="recent_search"> 
+					</div>
+			    </div>
+			</div>
+	    </div>
 	</div>
-	</div>
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
-
-
-
-
+	<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
 </body>
 
 <script>
-
 	var msg = "${msg}";
 	if(msg!=""){
 		alert(msg);

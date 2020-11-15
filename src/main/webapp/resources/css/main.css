@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('nav.css');
+.where_container {
+	margin-top : 80px;
+}
+li {
+	list-style : none;
+}
+@-webkit-keyframes zoom {
+    50% {
+        -webkit-transform: scale(1.05);
+    }
+}
+
+@keyframes zoom {
+    50% {
+        transform: scale(1.05);
+    }
+}
+.main {
+	position: relative;
+	margin-top: 80px;
+}
+.main_top{
+    width: 100%;
+    height: 500px;
+    background-size : cover;
+    background-image : url('../img/main_bg.png');
+   	text-align :center;
+   	display: flex;
+   	align-items : center;
+   	justify-content: center;
+   	flex-direction: column;
+   	border-bottom:1px solid #f3f3f3;
+}
+.main_top h1 {
+	margin-bottom: 30px;
+}
+.main_tit {
+	line-height : 3rem;
+	font-size : 3rem;
+	font-weight : 700;
+	color : #000;
+	text-align :left;
+}
+.main_box{
+	width: 1200px;
+	/* outline: 1px solid black; */
+	margin: 0 auto;
+	margin-top: 200px;
+	margin-bottom: 50px;
+}
+.row {
+	margin : 50px 0!important;
+}
+.each-services {
+	padding : 30px;
+	height: 300px;
+	background : #4b89dc;
+	border-radius : 10px;
+	text-align:center;
+	box-shadow:10px 10px 0px -7px #f3f3f3;
+}
+
+.each-services:hover {
+    -webkit-animation: zoom .3s;
+    animation: zoom .3s;
+}
+a:hover {
+	text-decoration: none;
+}
+.services2{
+	background-color:#335AF5;
+}
+.services3 {
+	background-color :#3F3ADE;
+}
+.each-services span {
+	display: block;
+	font-size : 2rem;
+	color : #fff;
+	margin-top : 50px;
+}
+.img1{
+	margin-right: 85px;
+}
+.img2{
+	margin-right: 85px;
+}	
+.img1:hover,.img2:hover,.img3:hover{
+	opacity: 80%;
+	cursor: pointer;
+}	
+.bar_scrap{
+	position: fixed;
+	width: 150px;
+	height: 100px;
+	top: 640px;
+	right: 130px;
+	border: 3px solid #eee000;
+	border-radius: 50px;
+	text-align:center;
+	padding: 15px 10px;
+}
+.bar_menu span{
+	font-size : 1.1rem;
+	font-weight: 500;
+}
+.bar_search span {
+	display:block;
+	margin-bottom : 15px;
+}
+.bar_search{
+    position: absolute;
+    background-color: white;
+    width: 150px;
+    height: 200px;
+    top: 700px;
+    right: 130px;
+	border: 3px solid #3d3d3d;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#scrap_cnt{
+	margin: 10%;
+}
+/* summary */
+#summary {
+	padding : 15px 15px;
+	border : 1px solid #4b89dc;
+	font-size : 1.1rem;
+}
+
+#summary ul {
+	padding : 0;
+	margin : 0;
+}
+.form_wrap {
+	padding : 30px 15px;
+}
+.form_wrap label {
+	margin : 10px 5px;
+	font-size : 1.1rem;
+}
+.btn_where {
+    padding: 10px 80px;
+    font-size: 17px;
+    cursor: pointer;
+    border: 1px solid #004c80;
+    color: #004c80;
+    background-color: white;
+}
+.btn_where:hover {
+	background-color : #007bff;
+	color : #fff;
+}
+.form_wrap div {
+	margin : 20px 0;
+}
+.form_wrap input[type=checkbox] {
+	width : 20px;
+	height : 20px;
+	margin-right : 10px;
+}

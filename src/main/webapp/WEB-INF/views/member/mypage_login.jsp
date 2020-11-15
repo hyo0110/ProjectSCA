@@ -7,111 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>SCA Service</title>
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
-/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
-
-li {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	text-align: center;
-}
-
-.mem-top-txt {
-	position: relative;
-	width: 910px;
-	top: 30px;
-	left: 50%;
-	margin-left: -455px;
-	border-style: solid;
-	border-width: 1px;
-	border-color: lightgray;
-	background-color: #f8f8f8;
-	padding: 20px 40px;
-}
-
-.containerbox {
-	font-family: 'Open Sans', sans-serif;
-	position: relative;
-	width: 1920px;
-	height: 600px;
-}
-
-.re_login_wrap {
-	margin-top: 50px;
-	margin-left: -455px;
-	outline: 1px solid lightgray;
-	height: 335px;
-	position: relative;
-	width: 910px;
-	top: 30px;
-	left: 50%;
-	text-align: center;
-	padding: 20px 72px;
-}
-
-h3 {
-	font-family: 'Open Sans', sans-serif;
-	text-align: center;
-	margin: 0;
-}
-
-/* body {
-	overflow: hidden;
-	width: 100%;
-	height: 100%;	
-} */
-
-.login_title {
-	width: -webkit-fill-available;
-	height: 80px;
-
-	padding: 20px;
-}
-
-.login_input {
-	width: -webkit-fill-available;
-	height: 144px;
-	padding: 20px;
-}
-
-label{
-	width: 300px;
-}
-
-#loginbtn{
-	width: 120px; 
-	height: 40px; 
-	border: 1px solid #004c80; 
-	border-radius: 5px; 
-	color: #004c80;
-	background-color: white;
-}
-#loginbtn:hover{
-	background-color: #009fe3; 
-	color: white;
-}
-
-
-</style>
-
-
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js">
-	
-</script>
-
-</head>
-
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="resources/css/my_page.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>	
 <body style="overflow-x: hidden;">
-
 	<jsp:include page="/WEB-INF/views/navi.jsp"></jsp:include>
-	
-
 	<div class="containerbox">
 		<div class="mem-top-txt">
 			<ul>

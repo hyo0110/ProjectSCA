@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
+@import url('nav.css');
+	body {
+		width : 100%;
+		height: 100%;
+	}
+	/* my_page_login*/
+	.containerbox li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		text-align: center;
+	}
+	
+	.mem-top-txt {
+		position: relative;
+		width: 910px;
+		top: 30px;
+		left: 50%;
+		margin-left: -455px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: lightgray;
+		background-color: #f8f8f8;
+		padding: 20px 40px;
+	}
+	
+	.containerbox {
+		margin-top :80px;
+		font-family: 'Open Sans', sans-serif;
+		position: relative;
+		width: 1920px;
+		height: 600px;
+		padding-top : 30px;
+	}
+	
+	.re_login_wrap {
+		margin-top: 50px;
+		margin-left: -455px;
+		outline: 1px solid lightgray;
+		height: 335px;
+		position: relative;
+		width: 910px;
+		top: 30px;
+		left: 50%;
+		text-align: center;
+		padding: 20px 72px;
+	}
+	
+	.containerbox h3 {
+		font-family: 'Open Sans', sans-serif;
+		text-align: center;
+		margin: 0;
+	}
+	
+	/* body {
+		overflow: hidden;
+		width: 100%;
+		height: 100%;	
+	} */
+	
+	.login_title {
+		width: -webkit-fill-available;
+		height: 80px;
+	
+		padding: 20px;
+	}
+	
+	.login_input {
+		width: -webkit-fill-available;
+		height: 144px;
+		padding: 20px;
+	}
+
+	.containerbox label{
+		width: 300px;
+	}
+
+	#loginbtn{
+	    padding: 0;
+		width: 120px; 
+		height: 40px; 
+		border: 1px solid #004c80; 
+		border-radius: 5px; 
+		color: #004c80;
+		background-color: white;
+	}
+	#loginbtn:hover{
+		background-color: #009fe3; 
+		color: white;
+	}
+
+	ul {
+		padding : 0;
+		margin : 0;
+	}
+	li {
+		list-style: none;
+		padding : 0;
+		margin : 0;
+	}
+	a {
+		text-decoration: none;
+		padding : 0;
+		margin : 0;
+	}
+	
+	.container {
+		font-family: 'Noto Sans KR', sans-serif;
+		display : inline-block;
+	}
+	.snb_wrap {
+		float : left;
+	}
+	.snb_items {
+		width : 250px;
+	}
+	.snb_item {
+		width : 250px;
+		height: 40px;
+		text-align : center;
+		border\-radius: 0px 25px 25px 0px; 
+	}
+	.snb_item a {
+		width : 140px;
+		height: 40px;
+		line-height : 40px;
+		vertical-align : middle;
+	}
+	.snb_item:last-child {
+		border-bottom : 0;
+	}
+	.detail {
+
+	}
+	.detail_wrap {
+		margin-left : 20px;
+		float:left;
+		width : 850px;
+		height: 500px;
+		border: 1px solid lightgray;
+		border-radius : 10px;
+	}
+	button{
+    	padding:13px 80px;
+        font-size:17px;
+        cursor: pointer;
+        border: 1px solid #004c80; 
+		border-radius: 5px; 
+		color: #004c80;
+		background-color: white;      
+	}
+	button:hover{
+		background-color: #009fe3; 
+		color: white;
+	}
+	.page_wrp {
+		margin-top : 10px;
+		width : 100%;
+		display : flex;
+		align-items: center;
+		justify-content : center;
+	}
+
+	.scrapbox, .boardbox {
+		height: 500px;
+		border : 1px solid lightgray;
+		border-radius : 10px;
+	}

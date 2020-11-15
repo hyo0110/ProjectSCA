@@ -4,9 +4,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
-<td>환영합니다. <spring:eval expression="@config['manager.id']" /> 님
-</td>
-
 <!DOCTYPE html>
 <html>
 <head>

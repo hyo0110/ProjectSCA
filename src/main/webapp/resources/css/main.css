@@ -103,6 +103,7 @@ a:hover {
 	border-radius: 50px;
 	text-align:center;
 	padding: 15px 10px;
+	background-color: white;
 }
 .bar_menu span{
 	font-size : 1.1rem;

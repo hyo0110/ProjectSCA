@@ -65,7 +65,7 @@
 			    </div>
 			    <div class="bar_search"><span>최근 검색한 조건</span>
 			    	<div id="recent_search"> 
-					</div>
+				</div>
 			    </div>
 			</div>
 	    </div>
@@ -171,5 +171,7 @@
 		$("#recent_search").html("<h6>최근 검색한 조건이 없습니다.</h6>");
 	}
 	//--------------------------------------------------------------------------
+	
+	
 </script>
 </html>

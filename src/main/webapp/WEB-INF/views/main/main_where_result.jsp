@@ -53,7 +53,7 @@
 		border: 1px solid black;
 	    display: inline-block;
 	   	right: 5%;
-	   	top: 10%;
+	   	top: 13%;
 	    margin-right: 3%;
 	    z-index: 10;
 	    position: fixed;
@@ -64,6 +64,7 @@
 <body>
 	<c:import url="../navi.jsp"></c:import>
 		<div id="condition" style="margin-top:80px;">
+		선택하신 조건 (
 			<c:if test="${param.age_10 ne null}">${param.age_10} </c:if>
 			<c:if test="${param.age_20 ne null}">${param.age_20} </c:if>
 			<c:if test="${param.age_30 ne null}">${param.age_30} </c:if>
@@ -83,10 +84,11 @@
 			<c:if test="${param.time_5 ne null}">${param.time_5}시간 </c:if>
 			<c:if test="${param.time_6 ne null}">${param.time_6}시간 </c:if>
 			<c:if test="${param.time_total ne null}">${param.time_total} </c:if>
+			)으로 검색한 결과입니다. 
 		</div>
 		
 		<div id="scrap">
-			<button onclick=show()>스크랩하기</button>
+			<button onclick=show()> 결과 스크랩하기</button>
 			<div id="script_box">
 				스크랩 제목
 				<input type="text" value="" id="sub">

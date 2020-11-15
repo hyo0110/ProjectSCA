@@ -30,11 +30,11 @@ public class AdminController {
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-// 관리자 페이지 접속
+// 관리자 페이지 접속 -> 무조건 게시글 관리부터 가게 되어있음
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public ModelAndView index(Model model,HttpSession session,@RequestParam Map<String, String> params, RedirectAttributes rAttr) {
+	public ModelAndView index(Model model,HttpSession session,@RequestParam String type, RedirectAttributes rAttr) {
 		logger.info("관리자모드 진입");
-		logger.info("params"+params);
+		logger.info("type :"+type);
 		ModelAndView mav = new ModelAndView();	
 			System.out.println(managerid+"어드민값");
 			System.out.println("Session :"+session.getAttribute("loginid"));
@@ -42,10 +42,9 @@ public class AdminController {
 			String msg = "접근할 수 없습니다.";
 			String page = "index";
 			if(managerid.equals(loginId)) {
-				mav = service.adminlist(params);
 				msg = "접근 성공";
-				mav.setViewName("admin/admin_board2");
-				logger.info("리스트를 잘 불러오는가요?"+mav);
+				mav.setViewName("admin/admin_board");
+				mav.addObject("type", type);
 			}else {
 				if(!managerid.equals(loginId)) {
 					
@@ -73,35 +72,34 @@ public class AdminController {
 		return map;
 	}
 
-	@RequestMapping(value = "/admin_faqboard", method = RequestMethod.GET)
-	public ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String> params,HttpSession session, RedirectAttributes rAttr) {
-		logger.info("여기오나요?");
-		String msg = null;
-		ModelAndView mav = new ModelAndView();	
-		if(managerid!=null) {
-			mav = service.adminfaqlist(params);
-			mav.setViewName("admin/admin_faqboard2");
-			logger.info("회원리스트를 잘 불러오는가요?"+mav);
-		}			else {
-			if(!managerid.equals("admin")) {
-				msg = "접근할 수 없습니다.";
-			}
-		}
-		rAttr.addFlashAttribute("msg", msg);
-		return mav;
-	}
+	/*
+	 * @RequestMapping(value = "/admin_faqboard", method = RequestMethod.GET) public
+	 * ModelAndView adminfaqboard(Model model,@RequestParam Map<String, String>
+	 * params,HttpSession session, RedirectAttributes rAttr) {
+	 * logger.info("여기오나요?"); String msg = null; ModelAndView mav = new
+	 * ModelAndView(); if(managerid!=null) { mav = service.adminfaqlist(params);
+	 * mav.setViewName("admin/admin_faqboard2");
+	 * logger.info("회원리스트를 잘 불러오는가요?"+mav); } else { if(!managerid.equals("admin"))
+	 * { msg = "접근할 수 없습니다."; } } rAttr.addFlashAttribute("msg", msg); return mav; }
+	 */
 		
 	@RequestMapping(value = "/admin_member", method = RequestMethod.GET)
-	public ModelAndView admin_member(Model model,@RequestParam Map<String, String> params) {
+	public ModelAndView admin_member(Model model) {
 		logger.info("여기오나요?");
 		ModelAndView mav = new ModelAndView();	
 		if(managerid!=null) {
-			mav = service.admemberlist(params);
-			mav.setViewName("admin/admin_member2");
-			logger.info("회원리스트를 잘 불러오는가요?"+mav);
+			mav.setViewName("admin/admin_member");
 		}			
 		return mav;
 	}
+	
+	//아작스 사용해서 페이징한 리스트
+		@RequestMapping(value = "/membercall", method = RequestMethod.GET)
+		public @ResponseBody HashMap<String, Object> listcall(@RequestParam HashMap<String, String>params) {
+			String page = params.get("page");
+			String pagePerCnt = params.get("ppn");	
+			return service.membercall(Integer.parseInt(page), Integer.parseInt(pagePerCnt));
+		}
 	
 	@RequestMapping(value = "/adminmemberdel", method = RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> adminmemberdel(@RequestParam String id) {

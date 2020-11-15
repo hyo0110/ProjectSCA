@@ -49,13 +49,13 @@
 	<div>
 		<div class="top_sub" style="margin-top: 50px;">
 			<img src="resources/img/seoulcity.PNG">
-			<p>"SCA가 창업자들을 위해 <br> 서울 식음료 상권분석을 도와드립니다."</p>
+			<p>"SCA가 창업자들을 위해 <br> 서울 외식업 상권분석을 도와드립니다."</p>
 			<p class="ex">저희 SCA는 서울내 외식업 관련 데이터를 수집 및 분석하여 예비 창업자를 위한 여러 정보를 제공합니다.</p>		
 		</div>
 		<div style="width: 900px; height: 500px; border-bottom: 1px solid lightgray; margin: 0 auto; margin-bottom: 40px; margin-top: 50px; text-align: center;">
 			<p style="font-size: 20px; font-weight: 600; color: #2c81d0">무엇을?</p>
 			<p style="font-size: 13px; color: #4C4C4C; font-weight: 600;">
-			'무엇을?'는 이미 창업할 장소를 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.<br/>
+			'무엇을?'은 이미 창업할 장소를 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.<br/>
 			서울시가 제공한 유동인구, 집객시설정보, 상권변화지표, 식음료 부분 인허가 정보 데이터를 분석 가공하여<br/> 
 			해당 지역의 상권 상태와 수요예상 계층을 보여주는 자료입니다. </p>
 			<div> <img src = ""> </div>

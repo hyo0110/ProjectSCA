@@ -109,9 +109,7 @@ public class AdminController {
 		int del_cnt = service.adminmemberdel(id);
 		if(del_cnt>0) {
 			msg = "성공";
-		}
-				// 제이슨 형태로 결과값을 보내줘야함.
-		
+		}		
 		map.put("msg", msg);
 		map.put("del_cnt", del_cnt);
 		return map;

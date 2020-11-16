@@ -26,7 +26,7 @@
 			#news_section{
 				border : 1px solid darkblue;
 				width: 400px;
-				top: 110%;
+				top: 620px;
 				right: 4%;
 				position: absolute;
 				padding: 15px 5px;
@@ -142,11 +142,11 @@
 				dataType :'json',
 				success:function(data){
 					//div ="news_sectoin" 에다 가져온 애들을 넣어야함. console.log(data); console.log(data.title_1); console.log(data.link_1);
-					$("#news_list").append("<li><a href='"+data.link_1+"' class = 'news_item'>"+data.title_1+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_2+"' class = 'news_item'>"+data.title_2+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_3+"' class = 'news_item'>"+data.title_3+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_4+"' class = 'news_item'>"+data.title_4+"</a></li>");
-					$("#news_list").append("<li><a href='"+data.link_5+"' class = 'news_item'>"+data.title_5+"</a></li>");					 
+					$("#news_list").append("<li><a href='"+data.link_1+"' class = 'news_item'> - "+data.title_1+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_2+"' class = 'news_item'> - "+data.title_2+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_3+"' class = 'news_item'> - "+data.title_3+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_4+"' class = 'news_item'> - "+data.title_4+"</a></li>");
+					$("#news_list").append("<li><a href='"+data.link_5+"' class = 'news_item'> - "+data.title_5+"</a></li>");					 
 					},
 				error: function(e){
 					console.log(e);

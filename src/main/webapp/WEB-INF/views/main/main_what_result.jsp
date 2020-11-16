@@ -225,7 +225,7 @@
 				dataType :'json',
 				success:function(data){				
 					console.log(data);
-					$("#scrap_cnt").html("<h4><a href='mypage_scrap'> ＊"+data.scrap_cnt+"/5</a></h4>");
+					$("#scrap_cnt").html("<h4><a href='mypage_scrap'> "+data.scrap_cnt+"/5</a></h4>");
 				},
 				error: function(e){
 					console.log(e);
@@ -254,11 +254,11 @@
 				name = zero.split("/*")[0];
 				console.log(name);	
 				value = zero.split("/*")[1];
-				research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
+				research_content += '<a href="whereresult?'+value+'">* '+ name +'</a><br>';					
 			}else{ // 지역선택한거면
 				name = zero;
 				value = zero;
-				research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+				research_content += '<a href="whatresult?region='+value+'">* '+ name +'</a><br>';
 			}
 		}else{// 2~5일때 
 			for(var i = 0; i<list.length; i++){
@@ -268,33 +268,33 @@
 						name = first.split("/*")[0];
 						console.log(name);	
 					value = first.split("/*")[1];
-						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
+						research_content += '<a href="whereresult?'+value+'">* '+ name +'</a><br>';					
 					}else{ // 지역선택한거면
 						name = first;
 						value = first;
-						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+						research_content += '<a href="whatresult?region='+value+'">* '+ name +'</a><br>';
 					}				
 				}else if(i==list.length-1){ // 마지막거
 					if(last.indexOf("/*")!=-1){ // 조건 선택한거면
 						name = last.split("/*")[0];
 						console.log(name);	
 						value = last.split("/*")[1];
-						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';					
+						research_content += '<a href="whereresult?'+value+'">* '+ name +'</a><br>';					
 					}else{ // 지역선택한거면
 						name = last;
 						value = last;
-						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+						research_content += '<a href="whatresult?region='+value+'">* '+ name +'</a><br>';
 					}				
 				}else{//중간것들
 					if(list[i].indexOf("/*")!=-1){ // 조건 선택한거면\
 						name = list[i].split("/*")[0];
 						console.log(name);	
 						value = list[i].split("/*")[1];
-						research_content += '<a href="whereresult?'+value+'">'+ name +'</a><br>';
+						research_content += '<a href="whereresult?'+value+'">* '+ name +'</a><br>';
 						}else{ // 지역선택한거면
 						name = list[i];
 						value = list[i];
-						research_content += '<a href="whatresult?region='+value+'">'+ name +'</a><br>';
+						research_content += '<a href="whatresult?region='+value+'">* '+ name +'</a><br>';
 					}				
 				}
 			}

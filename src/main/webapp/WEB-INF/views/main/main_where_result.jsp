@@ -57,8 +57,8 @@
 		border: 1px solid black;
 	    display: inline-block;
 	   	right: 5%;
-	   	top: 13%;
-	    margin-right: 3%;
+	   	top: 90%;
+	   /*  margin-right: 3%; */
 	    z-index: 10;
 	    position: fixed;
 	}

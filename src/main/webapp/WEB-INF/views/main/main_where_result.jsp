@@ -72,7 +72,7 @@
 		    <div class="bar_scrap" style="top: 237px; right: 93px;'"><span>스크랩 게시물</span>
 		    	<div id="scrap_cnt"></div>
 		    </div>
-		    <div class="bar_search"><h6>최근 검색한 조건</h6>
+		    <div class="bar_search" style="top: 360px; right:95px;"><h6>최근 검색한 조건</h6>
 		    	<div id="recent_search"> 
 			</div>
 		    </div>

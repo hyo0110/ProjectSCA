@@ -34,6 +34,7 @@ li {
    	justify-content: center;
    	flex-direction: column;
    	border-bottom:1px solid #f3f3f3;
+   	-webkit-text-stroke: 1px #ffffff;
 }
 .main_top h1 {
 	margin-bottom: 30px;

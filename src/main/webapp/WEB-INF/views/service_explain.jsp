@@ -58,7 +58,7 @@
 			'무엇을?'은 이미 창업할 장소를 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.<br/>
 			서울시가 제공한 유동인구, 집객시설정보, 상권변화지표, 식음료 부분 인허가 정보 데이터를 분석 가공하여<br/> 
 			해당 지역의 상권 상태와 수요예상 계층을 보여주는 자료입니다. </p>
-			<div> <img src = ""> </div>
+			<div> <img src = "resources/img/insert_img_what.jpg"> </div>
 		</div>
 		<div style="width: 900px; height: 500px; margin: 0 auto; margin-bottom: 40px; margin-top: 50px; text-align: center;">			
 			<p style="font-size: 20px; font-weight: 600; color: #2c81d0">어디서?</p>
@@ -66,7 +66,7 @@
 			'어디서?'는 이미 어떤 가게를 열지 정하신 예비 창업자가 참고하기 좋은 분석 자료 입니다.<br/>
 			나이대, 요일, 시간대를 선택하면 해당 시간대에 각 구별 유동인구를 분석하여 <br/>
 			가게를 열기에 가장 적합한 지역구를 나타내줍니다. </p>
-			<div><img src = ""></div>
+			<div><img src = "resources/img/insert_img_where.jpg"></div>
 		</div>
 	</div>	
 		

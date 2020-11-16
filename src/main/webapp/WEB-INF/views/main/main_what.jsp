@@ -31,6 +31,8 @@
 		margin: 3%;
 		width: 1920px;
 		height: 700px;
+		top: 50px;
+    	position: relative;
 	}
 	
 	.area {

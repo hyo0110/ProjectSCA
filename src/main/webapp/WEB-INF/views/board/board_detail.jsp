@@ -139,10 +139,10 @@
 		<c:choose>
 		<c:when test="${sessionScope.loginid eq 'admin'}">
 			<c:if test="${info.board_type eq '0'}">
-				<a href="./admin?page=1" class="likebutton"style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
+				<a href="./admin?type=0" class="likebutton"style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
 			</c:if>
 			<c:if test="${info.board_type eq '1'}">
-				<a href="./admin_faqboard?page=1" class="likebutton" style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
+				<a href="./admin?type=1" class="likebutton" style="position: absolute;left: 84%; font-family: 'Noto Sans KR', sans-serif;">처음으로</a>
 			</c:if>
 		</c:when>
 		

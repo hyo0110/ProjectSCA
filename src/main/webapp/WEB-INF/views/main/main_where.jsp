@@ -40,7 +40,7 @@
 		    <div class="bar_scrap"><span>스크랩 게시물</span>
 		    	<div id="scrap_cnt"></div>
 		    </div>
-		    <div class="bar_search"><span>최근 검색한 조건</span>
+		    <div class="bar_search"><h6>최근 검색한 조건</h6>
 		    	<div id="recent_search"> 
 			</div>
 		    </div>

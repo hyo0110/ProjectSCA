@@ -21,12 +21,13 @@
 	/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
 	#condition{
 		border: 1px solid black;
-	    margin-top: 3%;
 	    padding: 1%;
 	    width: 50%;
-	    margin-left: 10%;
+	    margin-left: 27%;
 	    font-family: 'Noto Sans KR', sans-serif;
-	}
+	    top: 50px;
+	    position: relative;
+    }
 	#script_box{
 		display: none;
 	}
@@ -34,21 +35,23 @@
 		border: 1px solid black;
 	    margin-top: 8%;
 	    float: left;
-	    margin-left: 20%;
+	    margin-left: 27%;
 	    width: 20%;
 	    height: 300px;
 	    text-align: center;
 	    display: inline-block;
+	    padding-top: 75px;
 	}
 	#sector{
 		border: 1px solid black;
 	    margin-top: 8%;
 	    float: left;
-	    margin-left: 3%;
+	    margin-left: 10%;
 	    width: 20%;
 	    height: 300px;
 	    text-align: center;
 	    display: inline-block;
+	    padding-top: 75px;
 	}
 	#scrap{
 		border: 1px solid black;
@@ -64,12 +67,12 @@
 </head>
 <body>
 	<c:import url="../navi.jsp"></c:import>
-	
+	<div style="width: 20%; display: inline-block;">
    		<div class="bar_menu">
-		    <div class="bar_scrap"><span>스크랩 게시물</span>
+		    <div class="bar_scrap" style="top: 237px; right: 93px;'"><span>스크랩 게시물</span>
 		    	<div id="scrap_cnt"></div>
 		    </div>
-		    <div class="bar_search"><span>최근 검색한 조건</span>
+		    <div class="bar_search" style="top: 380px; right: 90px;"><span>최근 검색한 조건</span>
 		    	<div id="recent_search"> 
 			</div>
 		    </div>
@@ -83,8 +86,10 @@
 				<button onclick='save()'>저장</button>
 			</div>
 		</div>
+	</div>	
 	
-		<div id="condition" style="margin-top:80px;">
+	<div style="width:80%; text-align: center;">
+		<div id="condition" style="margin-top:80px; border-radius: 10px;">
 		선택하신 조건 (
 			<c:if test="${param.age_10 ne null}">${param.age_10} </c:if>
 			<c:if test="${param.age_20 ne null}">${param.age_20} </c:if>
@@ -110,21 +115,19 @@
 		
 
 		
-		<div id="region">
-			선택한 조건에 제일 부합하는 지역구는 <br/>
-			<strong><a href="whatresult?region=${msg}" style="font-size: 18px;">${msg}</a></strong>
-			입니다.
+		<div id="region" style="border-radius: 10px;">
+			선택한 조건에 제일 부합하는 지역구 <br/>
+			<strong><a href="whatresult?region=${msg}" style="font-size: 70px;">${msg}</a></strong>
 		</div>
-		<div id="sector">
-			${msg}에서 <br>
-			가장 영업 인허가가 많이 된 외식업 분류는<br>
-			<strong> ${Sectors} </strong> 입니다.
+		<div id="sector" style="border-radius: 10px;">
+			가장 영업 인허가가 많이 된 외식업 분류<br>
+			<strong style="font-size: 70px;"> ${Sectors} </strong>
 		</div>
 		
-	<c:if test="${fileName ne null and fileName ne ''}">
-		<iframe src="/photo/${fileName}" width="70%" height="500px" style="border:none"></iframe>
-	</c:if>
-
+		<c:if test="${fileName ne null and fileName ne ''}">
+			<iframe src="/photo/${fileName}" width="70%" height="500px" style="border:none"></iframe>
+		</c:if>
+	</div>
 </body>
 <script>
 	function save(){

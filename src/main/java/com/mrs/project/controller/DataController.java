@@ -177,7 +177,7 @@ public class DataController {
 		}else {			
 			boolean success = service.scriptsave(parameter,loginId,subject);	
 			if(success){
-				msg = "";
+				msg = "스크랩에 성공했습니다.";
 			}
 		}		
 		hash.put("msg", msg);

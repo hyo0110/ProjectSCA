@@ -26,7 +26,7 @@
 			#news_section{
 				border : 1px solid darkblue;
 				width: 400px;
-				top: 20%;
+				top: 110%;
 				right: 4%;
 				position: absolute;
 				padding: 15px 5px;
@@ -225,7 +225,7 @@
 				dataType :'json',
 				success:function(data){				
 					console.log(data);
-					$("#scrap_cnt").html("<h4><a href='mypage_scrap'>"+data.scrap_cnt+"/5</a></h4>");
+					$("#scrap_cnt").html("<h4><a href='mypage_scrap'> ＊"+data.scrap_cnt+"/5</a></h4>");
 				},
 				error: function(e){
 					console.log(e);

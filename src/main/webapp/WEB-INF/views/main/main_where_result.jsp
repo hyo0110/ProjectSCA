@@ -175,7 +175,7 @@
 				dataType :'json',
 				success:function(data){				
 					console.log(data);
-					$("#scrap_cnt").html("<h4><a href='mypage_scrap'>"+data.scrap_cnt+"/5</a></h4>");
+					$("#scrap_cnt").html("<h4><a href='mypage_scrap'>＊"+data.scrap_cnt+"/5</a></h4>");
 				},
 				error: function(e){
 					console.log(e);

@@ -12,7 +12,31 @@
 		/* font-family: 'Do Hyeon', sans-serif; 쓸 때 이것만 넣어주세요 제목 폰트 */
 		@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap');
 		/* font-family: 'Noto Sans KR', sans-serif;  쓸 때 이것만 넣어주세요 이건 글 폰트*/
+		
+		#footerBox{ /*footer에는 relative를 주면 안됨*/
+		   margin-top: 80px;
+		   width: 100%; height: 200px;
+		   background-color:white;
+		   bottom: 0;
+		}
 
+
+		#footerBox>#infoBox{
+		   position: relative; /*부모*/
+		   width: 1600px; height: 200px;
+		   margin:0 auto;
+		}
+		
+		#infoBox address{
+		   position: absolute;
+		   color: #555;
+		   font: 0.9rem/180% 'NanumGothic';
+		   width: 50%; height: 50px
+		    top:50%; left:50%;
+		    transform:translate(-50%, -50%);
+		    bottom:0px;
+		    text-align: center;
+		}
 		</style>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -68,7 +92,17 @@
 					<ul class="pagination" id="pagination"></ul>
 				</nav>
 			</div>
-<jsp:include page="/WEB-INF/views/footer.jsp"></jsp:include>
+<footer id="footerBox"> <!--#########width:100% footer시작-->
+	<hr style="margin: 0 0;">
+   <section id="infoBox"> <!--@@width:1100px infoBox시작 -->
+
+
+      <address>
+         08505 서울시 금천구 가산디지털2로 115, 509호,811호(가산동, 대륭테크노타운3차) 대표 공효진 <br> 이메일 mastereum@sca.net FAX.02-6740-4949<br>고객상담센터 1577-4410 COPYRIGHT ⓒ 2020 SCA. ALL RIGHT RESERVED.
+      </address>
+
+   </section><!--@@@@@@@@@@@@@@infoBox끝 -->
+</footer><!--###################################footer끝 -->
 	</body>
 	<script>
 	var type = "${type}";	

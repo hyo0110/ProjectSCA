@@ -153,39 +153,20 @@ public class BoardController {
 
 	
 	//게시판 검색--------------------------------------------------------------------------------------------------------------------------------------------------------
-	/*
-	@RequestMapping(value = "/opSearch", method = RequestMethod.POST)
-	public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword) {
-		logger.info("검색 요청");	
-		logger.info("keyword : "+keyword);
-		return  service.listAll(search_option,keyword);
-	}
-	*/
-	
+
 	  @RequestMapping(value = "/opSearch", method = RequestMethod.GET)
 	   public ModelAndView opSearch(@RequestParam(defaultValue="title") String search_option,@RequestParam(defaultValue="") String keyword,@RequestParam String type) {
-	      //System.out.println("여기 오긴오니????");
-	      //logger.info("검색 요청");   
-	     // logger.info("option: "+search_option);
-	     // logger.info("keyword : "+keyword);
-	      //logger.info("type : "+type);
+
 	      List<BoardDTO> list = service.listSearch(search_option,keyword,type);
 	      int count = service.countRecord(search_option,keyword,type);
+	      
 	      ModelAndView mav = new ModelAndView();
-	      Map<String, Object> map = new HashMap<String, Object>();
-	      map.put("list", list);
-	      map.put("count", count);
-	      map.put("search_option", search_option);
-	      map.put("keyword",keyword);
-	      map.put("type", type);
 	      mav.addObject("keyword",keyword);
 	      mav.addObject("search_option", search_option);
-	      mav.addObject("map",map);
 	      mav.addObject("list", list);
 	      mav.addObject("count",count);
 	      mav.addObject("type",type);
 	      mav.setViewName("board/board_resultlist"); 
-	     // logger.info("listcnt:"+list.size());
 	      return mav;
 	   }
 	  

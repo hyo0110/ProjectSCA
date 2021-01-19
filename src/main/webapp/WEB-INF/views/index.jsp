@@ -68,7 +68,7 @@
 <script>
 	var msg = "${msg}";
 	if(msg!=""){
-		alert(msg);
+		alert(msg1);
 	}	
 	
 </script>

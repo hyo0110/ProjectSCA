@@ -66,6 +66,10 @@
         margin-top: 70px;
         margin-bottom: 30px;
     } 
+    
+    #confView{
+    	margin-top : 30px;
+    }
 
 </style>
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
@@ -85,10 +89,11 @@
                     </div>
                     <div class="btnbox">
                             <button type="submit" value="Login" class="btn" id="loginbtn">Login</button>
-                            <button type="button" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
                     </div>
                 </div>
             </form> 
+            <button type="button" id="signUp" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
+            <button type="button" id="confView" class="btn" onclick="confView(this)">Social</button>
         </div>
 
 </body>
@@ -96,7 +101,21 @@
 	var msg = "${msg}";
 	if(msg != ""){
 		alert(msg);
-		}
+    }
+    function accessCode(){
+    	location.href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=504490bc7bab52d815247c9fa2477533&redirect_uri=http://127.0.0.1:8080/project/Kakaologin";
+    }
 	
+	
+	/*
+		confView : 소셜 로그인 버튼 생성 함수
+		btn : #confView인 버튼
+	*/
+	function confView(btn){
+		$(".col").append('<a href="javascript:accessCode();"><img src="resources/img/kakao_login_medium_narrow.png" style="margin-top:30px;"></a>');
+		$("#confView").remove();
+    }
+	
+
 </script>
 </html>

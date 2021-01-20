@@ -5,7 +5,9 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -106,14 +108,14 @@ public class MemberController {
 		model.addAttribute("msg","로그아웃 되었습니다.");		
 		return "index";
 	}
-	//마이페이지 재로그인 화면이동
+	//마이페이지 재로그인 화면이동-------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/mypage_login", method = RequestMethod.GET)
 	public String mypage_login(HttpSession session, Model model) {	
 		
 		return "member/mypage_login";
 	}
 	
-	//마이페이지 재로그인 화면이동
+	//마이페이지 재로그인 화면이동-------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/mypage_login", method = RequestMethod.POST)
 	public String mypage_relogin(HttpSession session,@RequestParam String pw) {	
 		String id =(String) session.getAttribute("loginid");
@@ -125,7 +127,7 @@ public class MemberController {
 		}
 	}
 	
-	//마이페이지 내 정보 상세보기
+	//마이페이지 내 정보 상세보기-------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/mypage_detail", method = RequestMethod.GET)
 	public String mypage_detail(HttpSession session, Model model) { 
 		 String id =(String) session.getAttribute("loginid");		 
@@ -133,7 +135,7 @@ public class MemberController {
 		model.addAttribute("member",dto);		
 		return "member/mypage_detail";
 	}
-	//마이페이지 탈퇴하기
+	//마이페이지 탈퇴하기---------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/deleteMember", method = RequestMethod.GET)
 	public String deleteMember(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("loginid");
@@ -142,7 +144,7 @@ public class MemberController {
 		return "redirect:/logout";
 	}
 	
-	// 내 정보 수정 페이지 들어갈때
+	// 내 정보 수정 페이지 들어갈때-------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/mypage_update", method = RequestMethod.GET)
 	public String mypage_update(HttpSession session, Model model) {
 		String id = (String) session.getAttribute("loginid");
@@ -151,7 +153,7 @@ public class MemberController {
 		return "member/mypage_update";
 	}
 	
-	// 내 정보 수정하기
+	// 내 정보 수정하기-----------------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/updateMember", method = RequestMethod.GET)
 	public String updateMember(Model model, @RequestParam String user_id,
 			@RequestParam String user_pw, @RequestParam String user_name, @RequestParam String user_email) {		
@@ -164,7 +166,7 @@ public class MemberController {
 		return page;
 	}
 	
-	// 스크랩 페이지 들어갈때
+	// 스크랩 페이지 들어갈때--------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/mypage_scrap", method = RequestMethod.GET)
 		public String mypage_scrap(HttpSession session, Model model) {
 			String id = (String) session.getAttribute("loginid");
@@ -172,7 +174,7 @@ public class MemberController {
 			return "member/mypage_scrap";
 		}
 		
-		// 스크랩 페이지 삭제할때
+		// 스크랩 페이지 삭제할때-------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/scrap_delete", method = RequestMethod.GET)
 		public String scrap_delete(@RequestParam String idx) {
 			service.scrap_delete(idx);
@@ -180,13 +182,28 @@ public class MemberController {
 					
 		}
 		
-		// 내가 쓴 글 들어갈때
+		// 내가 쓴 글 들어갈때------------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/mypage_written", method = RequestMethod.GET)
 		public String mypage_written(HttpSession session, Model model, @RequestParam int page) {
 			String id = (String) session.getAttribute("loginid");
 
 			return service.mypage_written(id, page, model);
-		}		
-
+		}
+		
+		//카카오 로그인
+		@RequestMapping(value = "/Kakaologin", method = RequestMethod.GET)
+		public ModelAndView Kakaologin(ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
+			
+			logger.info("params : " + params);
+			String result = service.getAccessToken(params);
+			System.out.println("controller access_token : " + result);
+			
+			mav.addObject("result", result);
+			mav.setViewName("index");
+		
+			
+			return mav;
+		}
+	 
 
 }

@@ -12,7 +12,7 @@
 	<!-- 개별 인터셉터 -->
 	<mvc:interceptor>
 		<!-- 가로챌 요청(list) -->
-		<mvc:mapping path="/typelist*"/>
+		<!-- <mvc:mapping path="/typelist*"/> -->
 		<mvc:mapping path="/admin*"/>	
 		<mvc:mapping path="/mypage*"/>
 		<mvc:mapping path="/detail*"/>		

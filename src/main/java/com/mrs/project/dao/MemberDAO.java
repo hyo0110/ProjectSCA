@@ -35,6 +35,13 @@ public interface MemberDAO {
 
 	int mypage_loginpw(String id, String pw);
 	
-	int getTotalCnt(String id); 
+	int getTotalCnt(String id);
+
+	int kaoIdChk(String id);
+
+	int memberConnect(String id, String pw, String kakaoId);
+
+	ArrayList<MemberDTO> kaoLogin(String id);
+
 
 }

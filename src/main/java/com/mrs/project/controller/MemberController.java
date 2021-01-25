@@ -63,12 +63,19 @@ public class MemberController {
 			session.setAttribute("loginid", adminId);
 			page = "redirect:/admin?type=0";
 		} else{
+			//일반로그인인지
 			int cnt = service.login(id,pw);
 			if(cnt>0) {
 			session.setAttribute("loginid", id);
 			session.setAttribute("recent_search", null);
 			msg = "로그인 성공했습니다.";
 			page = "redirect:/";
+			//sns로그인인지(kakaoid, googleid ...)
+				/*
+				 * int cnt = service.login(id,pw); if(cnt>0) { session.setAttribute("loginid",
+				 * id); session.setAttribute("recent_search", null); msg = "로그인 성공했습니다."; page =
+				 * "redirect:/";
+				 */
 		}
 			//mav.addObject("msg",msg);
 			rAttr.addFlashAttribute("msg", msg);
@@ -108,6 +115,17 @@ public class MemberController {
 		model.addAttribute("msg","로그아웃 되었습니다.");		
 		return "index";
 	}
+	//카카오 로그아웃 페이지 이동
+	@RequestMapping(value = "/kaologout", method = RequestMethod.GET)
+	public ModelAndView kaologout(ModelAndView mav,HttpSession session) {
+		System.out.println("kao Logout");
+		String reqURL ="https://kauth.kakao.com/oauth/logout?client_id=504490bc7bab52d815247c9fa2477533&logout_redirect_uri=http://127.0.0.1:8080/project/logout";
+		//service.AcsCode(reqURL);
+		mav.addObject("reqURL", reqURL);
+		mav.setViewName("member/kaologout");
+		return mav;
+	}
+	
 	//마이페이지 재로그인 화면이동-------------------------------------------------------------------------------------------
 	@RequestMapping(value = "/mypage_login", method = RequestMethod.GET)
 	public String mypage_login(HttpSession session, Model model) {	
@@ -190,12 +208,93 @@ public class MemberController {
 			return service.mypage_written(id, page, model);
 		}
 		
-		//카카오 로그인
+		//-----------------------------------------------------------------------------------------------------------------------------
+		//SNS Social Controll
+		
+		//인가 코드 받기 ----------------------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/AcsCode", method = RequestMethod.GET)
+		public ModelAndView AcsCode(RedirectAttributes rAttr ,ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
+			//인가코드 URL
+			String reqURL ="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=504490bc7bab52d815247c9fa2477533&redirect_uri=http://127.0.0.1:8080/project/Kakaologin";
+			//service.AcsCode(reqURL);
+			mav.addObject("reqURL", reqURL);
+			mav.setViewName("member/AcsCode");
+			return mav;
+		}
+		
+		
+		//카카오 로그인-----------------------------------------------------------------------------------------------------------------		
 		@RequestMapping(value = "/Kakaologin", method = RequestMethod.GET)
-		public ModelAndView Kakaologin(ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
+		public ModelAndView Kakaologin(RedirectAttributes rAttr ,ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
 			
 			logger.info("params : " + params);
-			String result = service.getAccessToken(params);
+			String token = service.getAccessToken(params);
+			session.setAttribute("AccessToken", token);
+			
+			System.out.println("controller access_token : " + token);
+			String id =service.getUserInfo_kakao(token);
+			
+			mav.addObject("result", token);
+			mav = service.kaoIdChk(id,session ,rAttr);
+			return mav;
+		}
+		
+		//SNS와 회원 열결------------------------ ------------------------------------------------------------------------
+		@RequestMapping(value = "/MemberConnect", method = RequestMethod.POST)
+		public ModelAndView MemberConnect(@RequestParam String id, @RequestParam String pw, HttpSession session, RedirectAttributes rAttr) {
+			//logger.info(id+"/"+pw);	
+			try {
+				MessageDigest digest = MessageDigest.getInstance("SHA-256");
+				byte[] byteArrid = digest.digest(id.getBytes(StandardCharsets.UTF_8));
+			
+			} catch (NoSuchAlgorithmException e) {
+				//e.printStackTrace();
+			}
+			
+			ModelAndView mav = new ModelAndView();	
+			String page = "member/index_login";	
+			String msg = "로그인 실패했습니다.";
+			
+			if(id.equals(adminId) && pw.equals(adminPw)) {
+				session.setAttribute("loginid", adminId);
+				page = "redirect:/admin?type=0";
+			} else{
+				//일반로그인인지
+				int cnt = service.login(id,pw);
+				if(cnt>0) {
+					
+				//세션의 kakaoid를 해당 id에 추가
+				String kakaoId = (String) session.getAttribute("kakaoId");
+				System.out.println(kakaoId);
+				int success = service.memberConnect(id, pw, kakaoId);
+				if (success>0) {
+					
+					session.setAttribute("loginid", id);
+					session.setAttribute("recent_search", null);
+					msg = "로그인 성공했습니다.";
+					page = "redirect:/";
+				}
+				//sns로그인인지(kakaoid, googleid ...)
+					/*
+					 * int cnt = service.login(id,pw); if(cnt>0) { session.setAttribute("loginid",
+					 * id); session.setAttribute("recent_search", null); msg = "로그인 성공했습니다."; page =
+					 * "redirect:/";
+					 */
+			}
+				//mav.addObject("msg",msg);
+				rAttr.addFlashAttribute("msg", msg);
+			}		
+			
+			mav.setViewName(page);
+			
+			return mav;
+		}
+		//네이버 로그인-----------------------------------------------------------------------------------------------------------------
+		@RequestMapping(value = "/naverLogin", method = RequestMethod.GET)
+		public ModelAndView naverLogin(ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
+			
+			logger.info("params : " + params);
+			String result = service.getAccessToken_naver(params);
 			System.out.println("controller access_token : " + result);
 			
 			mav.addObject("result", result);
@@ -204,6 +303,19 @@ public class MemberController {
 			
 			return mav;
 		}
-	 
+		
+		//카카오 계정 연결 끊기(사용자 원할 때(선택), 혹은 탈퇴시(필수) 
+		@RequestMapping(value = "/disconnect", method = RequestMethod.POST)
+		public ModelAndView disconnect(ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
+
+			System.out.println("disconnect 컨트롤러-----------------------");
+			//System.out.println("access token : "+ session.getAttribute("AccessToken"));
+			service.disconnect(session);
+			session.removeAttribute("loginid");
+			session.removeAttribute("recent_search");
+			mav.setViewName("index");
+			return mav;
+		}
+		
 
 }

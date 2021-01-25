@@ -7,6 +7,10 @@
 	SELECT COUNT(id) FROM market_member WHERE id=#{param1} AND pw=#{param2}
 	</select>
 	
+	<select id="kaoLogin" resultType="member">
+	SELECT * FROM market_member WHERE KAKAO_ID=#{param1}
+	</select>
+	
 	<insert id="join" parameterType="HashMap">
 		INSERT INTO market_member(id,pw,name,email)
 		 VALUES(#{user_id},#{user_pw},#{user_name},#{user_email})
@@ -55,6 +59,25 @@
 	<select id = "getTotalCnt"  resultType="int">
 		SELECT COUNT(board_idx) from market_board where id = #{id}
 	</select>
+	
+	<select id = "kaoIdChk"  resultType="int">
+		SELECT COUNT(KAKAO_ID) from market_member where KAKAO_ID = #{param1}
+		<!-- <isEqual properties="#{param2}" compareValue="K">
+		KAKAO_ID = #{param1}
+		</isEqual>
+		<isEqual properties="#{param2}" compareValue="N">
+		KAKAO_ID = #{param1}
+		</isEqual>
+		
+		KAKAO_ID = #{param1}
+		KAKAO_ID = #{param1}
+		KAKAO_ID = #{param1}
+		KAKAO_ID = #{param1} -->
+	</select>
+	
+	<update id="memberConnect">
+		UPDATE market_member SET KAKAO_ID = #{param3} WHERE id=#{param1} AND pw = #{param2}
+	</update>
 	
 	<resultMap type="market_board_type" id="market_board_type">
 		<result column="board_name" property="board_name"/>

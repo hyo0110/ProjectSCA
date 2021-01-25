@@ -86,9 +86,9 @@
 <body>
 	
         <div class="col">
-            <p class="display-4 text-dark font-weight-bold">Welcome</p>
+            <!-- <p class="display-4 text-dark font-weight-bold">Welcome</p> -->
 
-            <form action="login" method="POST" class="form">
+            <form action="MemberConnect" method="POST" class="form">
                 <div>
                     <div>
                         <div><input type="text" name="id" placeholder="ID"/></div>
@@ -102,31 +102,31 @@
                 </div>
             </form> 
             <button type="button" id="signUp" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
-            <button type="button" id="confView" class="btn" onclick="confView(this)">Social</button>
+            <!-- <button type="button" id="confView" class="btn" onclick="confView(this)">Social</button> -->
         </div>
-
+<%=session.getAttribute("kakaoId")%>
 </body>
 <script>
 	var msg = "${msg}";
 	if(msg != ""){
 		alert(msg);
     }
-    function accessCode_Kakao(){
-    	location.href="http://127.0.0.1:8080/project/AcsCode";
+    /* function accessCode_Kakao(){
+    	location.href="https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=504490bc7bab52d815247c9fa2477533&redirect_uri=http://127.0.0.1:8080/project/Kakaologin";
     }
 	
 	function accessCode_Naver(){
 		location.href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=8MdhoeyuHdGjRRVM_YPS&redirect_uri=http://127.0.0.1:8080/project/naverLogin&state=hLiDdL2uhPtsftcU";
-	}
+	} */
 	/*
 		confView : 소셜 로그인 버튼 생성 함수
 		btn : #confView인 버튼
 	*/
-	function confView(btn){
+	/* function confView(btn){
 		$(".col").append('<a href="javascript:accessCode_Kakao();"><img class="img" src="resources/img/kakao_login_medium_narrow.png" style="margin-top:30px;"></a>');
 		$(".col").append('<a href="javascript:accessCode_Naver();"><img class="img" src="resources/img/네이버 아이디로 로그인_완성형_Green.PNG" style="margin-top:30px;"></a>');
 		$("#confView").remove();
-    }
+    } */
 	
 
 </script>

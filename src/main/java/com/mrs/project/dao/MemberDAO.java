@@ -41,7 +41,10 @@ public interface MemberDAO {
 
 	int memberConnect(String id, String pw, String kakaoId);
 
+	int kaoIdDelete(String kakaoId, String loginid);
+	
 	ArrayList<MemberDTO> kaoLogin(String id);
+
 
 
 }

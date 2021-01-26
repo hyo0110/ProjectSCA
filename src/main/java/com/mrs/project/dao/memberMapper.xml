@@ -75,6 +75,10 @@
 		KAKAO_ID = #{param1} -->
 	</select>
 	
+	<update id="kaoIdDelete">
+		UPDATE market_member SET KAKAO_ID = null WHERE KAKAO_ID=#{param1} AND id=#{param2}
+	</update>
+	
 	<update id="memberConnect">
 		UPDATE market_member SET KAKAO_ID = #{param3} WHERE id=#{param1} AND pw = #{param2}
 	</update>

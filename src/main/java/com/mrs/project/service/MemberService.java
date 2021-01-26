@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -35,12 +36,14 @@ import com.mrs.project.dto.ScrapDTO;
 
 @Service
 public class MemberService {
-	private String REST_API_KEY = "504490bc7bab52d815247c9fa2477533";
-	private String REDIRECT_URI = "http://127.0.0.1:8080/project/Kakaologin";
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired
 	MemberDAO dao;
-
+	@Value("#{config['Kakao.appkey']}") String KaoKaoAppkey;
+	@Value("#{config['Kakao.HOST']}") String KaoKaoHOST;//https://kauth.kakao.com
+	@Value("#{config['KaKao.RedirectURL']}") String RedirectURL;//http://127.0.0.1:8080/project/Kakaologin
+	
 	// 로그인-----------------------------------------------------------------------------------------------------------------
 	public int login(String id, String pw) {
 		int cnt = dao.login(id, pw);
@@ -147,13 +150,14 @@ public class MemberService {
     public String getAccessToken (Map<String, Object> params) {
         String access_Token = "";
         String refresh_Token = "";
-        String reqURL = "https://kauth.kakao.com/oauth/token";
+        String code = (String) params.get("code");
+        String reqURL = KaoKaoHOST+"/oauth/token";
         
         try {
             URL url = new URL(reqURL);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             
-            //POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+            //POST 요청을 위해 기본값이 false인 setDoOutput(Server와 통신 가능하게 하는 메서드)을 true로
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
             
@@ -161,17 +165,17 @@ public class MemberService {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
             StringBuilder sb = new StringBuilder();
             sb.append("grant_type=authorization_code");
-            sb.append("&client_id=504490bc7bab52d815247c9fa2477533");
-            sb.append("&redirect_uri=http://127.0.0.1:8080/project/Kakaologin");
-            sb.append("&code=" + params.get("code"));
+            sb.append("&client_id="+KaoKaoAppkey);
+            sb.append("&redirect_uri="+RedirectURL);
+            sb.append("&code=" + code);
             bw.write(sb.toString());
             bw.flush();
             
-            //    결과 코드가 200이라면 성공
+            //결과 코드가 200이라면 성공
             int responseCode = conn.getResponseCode();
-            System.out.println("responseCode : " + responseCode);
+            //System.out.println("responseCode : " + responseCode);
  
-            //    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
+            //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             String line = "";
             String result = "";
@@ -179,27 +183,27 @@ public class MemberService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            System.out.println("response body : " + result);
+            //System.out.println("response body : " + result);
             
-            //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
+            //Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
             JsonParser parser = new JsonParser();
             JsonElement element = parser.parse(result);
             
             access_Token = element.getAsJsonObject().get("access_token").getAsString();
             refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
             
-            System.out.println("access_token : " + access_Token);
-            System.out.println("refresh_token : " + refresh_Token);
+            //System.out.println("access_token : " + access_Token);
+            //System.out.println("refresh_token : " + refresh_Token);
             
             br.close();
             bw.close();
             
-            //카카오로시도
         } catch (Exception e) {
             e.printStackTrace();
         } 
         return access_Token;
     }
+    
 
 	public String getAccessToken_naver(Map<String, Object> params) {
 		 	String access_Token = "";
@@ -260,7 +264,6 @@ public class MemberService {
 	
 	public String getUserInfo_kakao(String token) {
 		//요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
-	    HashMap<String, Object> userInfo = new HashMap<>();
 	    String reqURL = "https://kapi.kakao.com/v2/user/me";
 	    String kakaoId = null;
 	    try {
@@ -299,29 +302,26 @@ public class MemberService {
 		return kakaoId;
 	}
 
-	public ModelAndView kaoIdChk(String kaoId, HttpSession session, RedirectAttributes rAttr) {
-		ModelAndView mav = new ModelAndView();
-		String page = "member/index_login_connect";
-		String msg = "로그인에 실패했습니다.";
-		int chkIdCount = dao.kaoIdChk(kaoId);
-		System.out.println(chkIdCount);
+	public ModelAndView kaoIdChk(String kaoId, HttpSession session, RedirectAttributes rAttr, ModelAndView mav) {
+		String page = "";
+		String msg = "";
 		
-		if (chkIdCount>0) {
+		//id가 있다면
+		if (dao.kaoIdChk(kaoId)>0) {
 			//로그인
+			//kakaoId에 대응하는 id를 찾아
+			//세션에 담고, 페이지 redirect 
 			ArrayList<MemberDTO> result = dao.kaoLogin(kaoId);
-			//kaoid에 대응하는 id와 pw를 찾아서
 			String id = result.get(0).getId();
-			String pw = result.get(0).getPw();
-			
-			session.setAttribute("loginid", id);
 			page = "redirect:/";
 			msg = "로그인에 성공했습니다.";
-			//param에 담아서 controller의 /login 태우기
+			session.setAttribute("loginid", id);
 			
 		}else {
 			//아이디가 없으면 kakaoId를 세션에 담기
+			page = "redirect:/index";
+			msg = "연결된 회원 아이디가 없습니다. 연결하고자 하는 아이디로 로그인 해주세요.";
 			session.setAttribute("kakaoId", kaoId);
-			//연결하려고 하는 아이디를 받아오자
 		}
 		mav.setViewName(page);
 		rAttr.addFlashAttribute("msg", msg);
@@ -359,40 +359,23 @@ public class MemberService {
 		return success;
 	}
 
-	public void AcsCode(String reqURL) {
-
-		try {
-			URL url = new URL(reqURL);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			conn.setRequestMethod("GET");
-	        
-	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
-	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        System.out.println(conn.getInputStream());
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+	
 	
 	//카카오 계정 연결 끊기
-	public void disconnect(HttpSession session) {
+	public String disconnect(HttpSession session) {
 
 		//Access token 꺼내오기
 		String AccTk = (String) session.getAttribute("AccessToken");
-		System.out.println("AccessToken :" + AccTk);
 		String reqURL = "https://kapi.kakao.com/v1/user/unlink";
-
+		String kakaoId = null;
 		try {
 			URL url = new URL(reqURL);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			
 			//POST요청
 			conn.setRequestMethod("POST");
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
 		    conn.setRequestProperty("Authorization", "Bearer " + AccTk);
 			
 			int responseCode = conn.getResponseCode();
@@ -404,9 +387,47 @@ public class MemberService {
             while ((line = br.readLine()) != null) {
                 result += line;
             }
-            System.out.println(result);
+            //System.out.println(result); 
+			JsonParser parser = new JsonParser();
+			JsonElement element = parser.parse(result);
+			  
+			  kakaoId = element.getAsJsonObject().get("id").getAsString();
+			  
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return kakaoId;
+	}
+
+	//인가 코드 받기
+	public HashMap<String, Object> KaoAcsCode(HashMap<String, Object> map) {
+		
+		String reqURL = KaoKaoHOST+"/oauth/authorize?response_type=code&client_id="+KaoKaoAppkey+"&redirect_uri="+RedirectURL;
+		map.put("reqURL", reqURL);
+		
+		return map;
+	}
+
+	public ModelAndView deleteId(String kakaoId, HttpSession session, ModelAndView mav, RedirectAttributes rAttr) {
+		
+		String msg = "연결끊기에 실패했습니다.";
+		String page = "redirect:/";
+		if (dao.kaoIdChk(kakaoId)>0) {
+			
+			String loginid = (String) session.getAttribute("loginid");
+			
+			if(dao.kaoIdDelete(kakaoId,loginid)>0) {
+				session.removeAttribute("loginid");
+				session.removeAttribute("recent_search");
+				session.removeAttribute("AccessToken");
+				msg = "연결끊기에 성공했습니다.";
+				
+			}
+		
+		}
+		mav.setViewName(page);
+		rAttr.addFlashAttribute("msg", msg);
+		
+		return mav;
 	}
 }

@@ -84,47 +84,87 @@
 <script src = "https://code.jquery.com/jquery-3.5.1.min.js"> </script>
 </head>
 <body>
+	<c:choose>
+		<c:when test="${sessionScope.kakaoId eq  null}">
+	        <div class="col">
+	            <p class="display-4 text-dark font-weight-bold">Welcome</p>
 	
-        <div class="col">
-            <p class="display-4 text-dark font-weight-bold">Welcome</p>
-
-            <form action="login" method="POST" class="form">
-                <div>
-                    <div>
-                        <div><input type="text" name="id" placeholder="ID"/></div>
-                    </div>
-                    <div>
-                        <div><input type="password" name="pw" placeholder="Password"/></div>
-                    </div>
-                    <div class="btnbox">
-                            <button type="submit" value="Login" class="btn" id="loginbtn">Login</button>
-                    </div>
-                </div>
-            </form> 
-            <button type="button" id="signUp" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
-            <button type="button" id="confView" class="btn" onclick="confView(this)">Social</button>
-        </div>
-
+	            <form action="login" method="POST" class="form">
+	                <div>
+	                    <div>
+	                        <div><input type="text" name="id" placeholder="ID"/></div>
+	                    </div>
+	                    <div>
+	                        <div><input type="password" name="pw" placeholder="Password"/></div>
+	                    </div>
+	                    <div class="btnbox">
+	                            <button type="submit" value="Login" class="btn" id="loginbtn">Login</button>
+	                    </div>
+	                </div>
+	            </form> 
+	            <button type="button" id="signUp" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
+	            <button type="button" id="confView" class="btn" onclick="confView(this)">Social</button>
+	        </div>
+        </c:when>
+        <c:otherwise>
+	        <div class="col">
+		            <p class="display-4 text-dark font-weight-bold">Disconnection</p>
+	        		<form action="MemberConnect" method="POST" class="form">
+		                <div>
+		                    <div>
+		                        <div><input type="text" name="id" placeholder="ID"/></div>
+		                    </div>
+		                    <div>
+		                        <div><input type="password" name="pw" placeholder="Password"/></div>
+		                    </div>
+		                    <div class="btnbox">
+		                            <button type="submit" value="Login" class="btn" id="loginbtn">Login</button>
+		                    </div>
+		                </div>
+		            </form> 
+		            <button type="button" id="signUp" value="Sign up" onclick="location.href='joinForm'" class="btn">Sign in</button>
+		        </div>
+        </c:otherwise>
+	</c:choose>
 </body>
 <script>
 	var msg = "${msg}";
 	if(msg != ""){
 		alert(msg);
     }
-    function accessCode_Kakao(){
-    	location.href="http://127.0.0.1:8080/project/AcsCode";
+	
+	
+	/*
+	 * accessCode : sns 인가 코드 접근
+	 * IdKInds : SNS 구분 key(ex : K(카카오), N(네이버), G(구글))
+	 * val : 각 버튼의 해당하는 값
+	 */
+     function accessCode(val){
+    	var IdKinds = val;
+    	 $.ajax({
+    		url : "AcsCode",
+    		type :"get",
+    		data :{
+    			"IdKinds": IdKinds,
+    		},
+    		dataType:'json',
+    		success:function(data){
+    			location.href=data.reqURL;
+    		},
+    		error:function(e){
+    			alert('접근할 수 없습니다.');
+    		}
+    	});
     }
 	
-	function accessCode_Naver(){
-		location.href="https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=8MdhoeyuHdGjRRVM_YPS&redirect_uri=http://127.0.0.1:8080/project/naverLogin&state=hLiDdL2uhPtsftcU";
-	}
 	/*
-		confView : 소셜 로그인 버튼 생성 함수
-		btn : #confView인 버튼
-	*/
+	 *	confView : 소셜 로그인 버튼 생성 함수
+	 *	btn         : Social 버튼
+	 * .col         : div 
+	 */
 	function confView(btn){
-		$(".col").append('<a href="javascript:accessCode_Kakao();"><img class="img" src="resources/img/kakao_login_medium_narrow.png" style="margin-top:30px;"></a>');
-		$(".col").append('<a href="javascript:accessCode_Naver();"><img class="img" src="resources/img/네이버 아이디로 로그인_완성형_Green.PNG" style="margin-top:30px;"></a>');
+		$(".col").append('<a href=\"javascript:accessCode(\'K\');\"><img class="img" src="resources/img/kakao_login_medium_narrow.png" style="margin-top:30px;"></a>');
+		$(".col").append('<a href=\"javascript:accessCode(\'N\');\"><img class="img" src="resources/img/네이버 아이디로 로그인_완성형_Green.PNG" style="margin-top:30px;"></a>');
 		$("#confView").remove();
     }
 	

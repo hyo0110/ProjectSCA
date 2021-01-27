@@ -114,6 +114,7 @@ public class MemberController {
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("loginid");
 		session.removeAttribute("SnsId");
+		session.removeAttribute("IdKinds");
 		session.removeAttribute("recent_search");
 		model.addAttribute("msg","로그아웃 되었습니다.");		
 		return "index";
@@ -234,22 +235,27 @@ public class MemberController {
 			String SnsId="";
 			String IdKinds = (String) session.getAttribute("IdKinds");
 
+			System.out.println(IdKinds);
+			System.out.println(params.get("code"));
 			/*인가코드가 받아지면,
 			 *토큰 발급
 			 */
+			
 			if (params.get("code")!=null) {
 				
 				switch (IdKinds) {
 				case "K":
 					
-						AccessToken = service.getAccessToken(params);
-						SnsId =service.getUserInfo_kakao(AccessToken);
+						AccessToken = service.getAccessToken(IdKinds, params);
+						SnsId =service.getUserInfoSns(IdKinds, AccessToken);
 						session.setAttribute("AccessToken", AccessToken);
 					
 					break;
 	
 				case "N":
-					
+					AccessToken = service.getAccessToken(IdKinds, params);
+					SnsId =service.getUserInfoSns(IdKinds, AccessToken);
+					session.setAttribute("AccessToken", AccessToken);
 					break;
 					
 				case "G":
@@ -282,11 +288,13 @@ public class MemberController {
 				page = "redirect:/admin?type=0";
 			} else if(success>0) {//일반로그인
 				String IdKinds= (String) session.getAttribute("IdKinds");
+				String SnsId = "";
+				
 				switch (IdKinds) {
 		
 				case "K":
-					String SnsId = (String) session.getAttribute("SnsId");
-					if (service.memberConnect(id, pw, SnsId) > 0) {
+					SnsId = (String) session.getAttribute("SnsId");
+					if (service.memberConnect(id, pw, SnsId,IdKinds) > 0) {
 						session.setAttribute("loginid", id);
 						session.setAttribute("recent_search", null);
 						session.removeAttribute("SnsId");
@@ -298,13 +306,20 @@ public class MemberController {
 
 				case "N":
 					
+					SnsId = (String) session.getAttribute("SnsId");
+					if (service.memberConnect(id, pw, SnsId,IdKinds) > 0) {
+						session.setAttribute("loginid", id);
+						session.setAttribute("recent_search", null);
+						session.removeAttribute("SnsId");
+						msg = "로그인에 성공했습니다.";
+						page = "redirect:/";
+					} 
 					break;
 					
 				case "G":
 					
 					break;
 				}
-				session.removeAttribute("IdKinds");
 			}
 			rAttr.addFlashAttribute("msg", msg);
 			mav.setViewName(page);
@@ -324,7 +339,7 @@ public class MemberController {
 			return mav;
 		}
 				
-		//카카오 로그아웃(페이지 이동)
+		//카카오 로그아웃(페이지 이동)----------------------------------------------------------------------------------
 		@RequestMapping(value = "/kaologout", method = RequestMethod.GET)
 		public ModelAndView kaologout(ModelAndView mav,HttpSession session) {
 			String reqURL ="https://kauth.kakao.com/oauth/logout?client_id=504490bc7bab52d815247c9fa2477533&logout_redirect_uri=http://127.0.0.1:8080/project/logout";
@@ -334,20 +349,24 @@ public class MemberController {
 			return mav;
 		}
 		
-		//네이버 로그인-----------------------------------------------------------------------------------------------------------------
-		@RequestMapping(value = "/naverLogin", method = RequestMethod.GET)
-		public ModelAndView naverLogin(ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
-			
-			logger.info("params : " + params);
-			String result = service.getAccessToken_naver(params);
-			System.out.println("access_token : " + result);
-			
-			mav.addObject("result", result);
-			mav.setViewName("index");
-		
-			
-			return mav;
-		}
+	/*
+	 * //네이버
+	 * 로그인--------------------------------------------------------------------------
+	 * ---------------------------------------
+	 * 
+	 * @RequestMapping(value = "/naverLogin", method = RequestMethod.GET) public
+	 * ModelAndView naverLogin(ModelAndView mav, HttpSession session, @RequestParam
+	 * Map<String, Object> params) {
+	 * 
+	 * logger.info("params : " + params); String result =
+	 * service.getAccessToken_naver(params); System.out.println("access_token : " +
+	 * result);
+	 * 
+	 * mav.addObject("result", result); mav.setViewName("index");
+	 * 
+	 * 
+	 * return mav; }
+	 */
 		
 		
 		

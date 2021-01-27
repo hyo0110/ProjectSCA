@@ -147,33 +147,69 @@ public class MemberService {
 	}
 
 	//토근 받기
-    public String getAccessToken (Map<String, Object> params) {
+    public String getAccessToken (String idKinds, Map<String, Object> params) {
         String access_Token = "";
         String refresh_Token = "";
         String code = (String) params.get("code");
-        String reqURL = KaoKaoHOST+"/oauth/token";
+        String reqURL = "";
+        URL url =null;
+        HttpURLConnection conn = null;
+        BufferedWriter bw =null;
+        StringBuilder sb =null;
         
         try {
-            URL url = new URL(reqURL);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        	switch (idKinds) {
+    		
+        	case "K":
+				reqURL = KaoKaoHOST+"/oauth/token";
+				url = new URL(reqURL);
+	            conn = (HttpURLConnection) url.openConnection();
+	            
+	            //POST 요청을 위해 기본값이 false인 setDoOutput(Server와 통신 가능하게 하는 메서드)을 true로
+	            conn.setRequestMethod("POST");
+	            conn.setDoOutput(true);
+	            
+	            //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+	            bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+	            sb = new StringBuilder();
+	            sb.append("grant_type=authorization_code");
+	            sb.append("&client_id="+KaoKaoAppkey);
+	            sb.append("&redirect_uri="+RedirectURL);
+	            sb.append("&code=" + code);
+	            bw.write(sb.toString());
+	            bw.flush();
+    	            
+    			break;
+
+    		case "N":
+    			reqURL = "https://nid.naver.com/oauth2.0/token";
+    			url = new URL(reqURL);
+	            conn = (HttpURLConnection) url.openConnection();
+	            
+	            //POST 요청을 위해 기본값이 false인 setDoOutput을 true로
+	            conn.setRequestMethod("POST");
+	            conn.setDoOutput(true);
+	            
+	            //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
+	            bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
+	            sb = new StringBuilder();
+	            sb.append("grant_type=authorization_code");
+	            sb.append("&client_id=8MdhoeyuHdGjRRVM_YPS");
+	            sb.append("&client_secret=dhAJJ0HA2V");
+	            sb.append("&code=" + params.get("code"));
+	            sb.append("&state=" + params.get("state"));
+	            bw.write(sb.toString());
+	            bw.flush();
+    			break;
+    			
+    		case "G":
+    			break;
+    		}
             
-            //POST 요청을 위해 기본값이 false인 setDoOutput(Server와 통신 가능하게 하는 메서드)을 true로
-            conn.setRequestMethod("POST");
-            conn.setDoOutput(true);
-            
-            //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-            StringBuilder sb = new StringBuilder();
-            sb.append("grant_type=authorization_code");
-            sb.append("&client_id="+KaoKaoAppkey);
-            sb.append("&redirect_uri="+RedirectURL);
-            sb.append("&code=" + code);
-            bw.write(sb.toString());
-            bw.flush();
             
             //결과 코드가 200이라면 성공
             int responseCode = conn.getResponseCode();
-            //System.out.println("responseCode : " + responseCode);
+            System.out.println("responseCode : " + responseCode);
  
             //요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
             BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -205,79 +241,83 @@ public class MemberService {
     }
     
 
-	public String getAccessToken_naver(Map<String, Object> params) {
-		 	String access_Token = "";
-	        String refresh_Token = "";
-	        String reqURL = "https://nid.naver.com/oauth2.0/token";
-	        
-	        try {
-	            URL url = new URL(reqURL);
-	            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	            
-	            //POST 요청을 위해 기본값이 false인 setDoOutput을 true로
-	            conn.setRequestMethod("POST");
-	            conn.setDoOutput(true);
-	            
-	            //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송
-	            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(conn.getOutputStream()));
-	            StringBuilder sb = new StringBuilder();
-	            sb.append("grant_type=authorization_code");
-	            sb.append("&client_id=8MdhoeyuHdGjRRVM_YPS");
-	            sb.append("&client_secret=dhAJJ0HA2V");
-	            sb.append("&code=" + params.get("code"));
-	            sb.append("&state=" + params.get("state"));
-	            bw.write(sb.toString());
-	            bw.flush();
-	            
-	            //    결과 코드가 200이라면 성공
-	            int responseCode = conn.getResponseCode();
-	            System.out.println("responseCode : " + responseCode);
-	 
-	            //    요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기
-	            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	            String line = "";
-	            String result = "";
-	            
-	            while ((line = br.readLine()) != null) {
-	                result += line;
-	            }
-	            System.out.println("response body : " + result);
-	            
-	            //    Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성
-	            JsonParser parser = new JsonParser();
-	            JsonElement element = parser.parse(result);
-	            
-	            access_Token = element.getAsJsonObject().get("access_token").getAsString();
-	            refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
-	            
-	            System.out.println("access_token : " + access_Token);
-	            System.out.println("refresh_token : " + refresh_Token);
-	            
-	            br.close();
-	            bw.close();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        } 
-	        return access_Token;
-	    }
-
+	/*
+	 * public String getAccessToken_naver(Map<String, Object> params) { String
+	 * access_Token = ""; String refresh_Token = ""; String reqURL =
+	 * "https://nid.naver.com/oauth2.0/token";
+	 * 
+	 * try { URL url = new URL(reqURL); HttpURLConnection conn = (HttpURLConnection)
+	 * url.openConnection();
+	 * 
+	 * //POST 요청을 위해 기본값이 false인 setDoOutput을 true로 conn.setRequestMethod("POST");
+	 * conn.setDoOutput(true);
+	 * 
+	 * //POST 요청에 필요로 요구하는 파라미터 스트림을 통해 전송 BufferedWriter bw = new
+	 * BufferedWriter(new OutputStreamWriter(conn.getOutputStream())); StringBuilder
+	 * sb = new StringBuilder(); sb.append("grant_type=authorization_code");
+	 * sb.append("&client_id=8MdhoeyuHdGjRRVM_YPS");
+	 * sb.append("&client_secret=dhAJJ0HA2V"); sb.append("&code=" +
+	 * params.get("code")); sb.append("&state=" + params.get("state"));
+	 * bw.write(sb.toString()); bw.flush();
+	 * 
+	 * // 결과 코드가 200이라면 성공 int responseCode = conn.getResponseCode();
+	 * System.out.println("responseCode : " + responseCode);
+	 * 
+	 * // 요청을 통해 얻은 JSON타입의 Response 메세지 읽어오기 BufferedReader br = new
+	 * BufferedReader(new InputStreamReader(conn.getInputStream())); String line =
+	 * ""; String result = "";
+	 * 
+	 * while ((line = br.readLine()) != null) { result += line; }
+	 * System.out.println("response body : " + result);
+	 * 
+	 * // Gson 라이브러리에 포함된 클래스로 JSON파싱 객체 생성 JsonParser parser = new JsonParser();
+	 * JsonElement element = parser.parse(result);
+	 * 
+	 * access_Token = element.getAsJsonObject().get("access_token").getAsString();
+	 * refresh_Token = element.getAsJsonObject().get("refresh_token").getAsString();
+	 * 
+	 * System.out.println("access_token : " + access_Token);
+	 * System.out.println("refresh_token : " + refresh_Token);
+	 * 
+	 * br.close(); bw.close(); } catch (Exception e) { e.printStackTrace(); } return
+	 * access_Token; }
+	 */
 	
-	public String getUserInfo_kakao(String token) {
+	public String getUserInfoSns(String idKinds, String accessToken) {
 		//요청하는 클라이언트마다 가진 정보가 다를 수 있기에 HashMap타입으로 선언
-	    String reqURL = "https://kapi.kakao.com/v2/user/me";
-	    String kakaoId = null;
-	    try {
-	        URL url = new URL(reqURL);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setDoOutput(true);
-	        //요청에 필요한 Header에 포함될 내용
-	        conn.setRequestProperty("Authorization", "Bearer " + token);
-	        
-	        int responseCode = conn.getResponseCode();
+	    String snsId = null;
+		String reqURL = "";
+		URL url =null;
+		HttpURLConnection conn=null;
+		 BufferedReader br =null;
+		 try {
+		    switch (idKinds) {
+			case "K":
+				reqURL = "https://kapi.kakao.com/v2/user/me";
+				url = new URL(reqURL);
+				conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("POST");
+		        conn.setDoOutput(true);
+		        //요청에 필요한 Header에 포함될 내용
+		        conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+				break;
+	
+			case "N":
+				reqURL = "	https://openapi.naver.com/v1/nid/me";
+				url = new URL(reqURL);
+				conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("POST");
+		        conn.setDoOutput(true);
+		        //요청에 필요한 Header에 포함될 내용
+		        conn.setRequestProperty("Authorization", "Bearer " + accessToken);
+				
+				break;
+			}
+		    
+		    int responseCode = conn.getResponseCode();
 	        System.out.println("responseCode : " + responseCode);
 	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	        
 	        String line = "";
 	        String result_1 = "";
@@ -291,15 +331,17 @@ public class MemberService {
 	        JsonParser parser = new JsonParser();
 	        JsonElement element = parser.parse(result_1);
 	        
-	        kakaoId = element.getAsJsonObject().get("id").getAsString();
-	        System.out.println(kakaoId);
-	        
+	        if (idKinds.equals("K")) {
+	        	snsId = element.getAsJsonObject().get("id").getAsString();
+			}else if (idKinds.equals("N")) {
+	        	snsId = element.getAsJsonObject().get("response").getAsJsonObject().get("id").getAsString();
+			}
+	        System.out.println("Id : " + snsId);
 	        
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    }
-	    
-		return kakaoId;
+		return snsId;
 	}
 
 	public ModelAndView snsIdChk(String SnsId, String IdKinds, HttpSession session, RedirectAttributes rAttr, ModelAndView mav) {
@@ -313,7 +355,7 @@ public class MemberService {
 			//로그인
 			//kakaoId에 대응하는 id를 찾아
 			//세션에 담고, 페이지 redirect 
-			ArrayList<MemberDTO> result = dao.kaoLogin(SnsId);
+			ArrayList<MemberDTO> result = dao.snsLogin(SnsId,IdKinds);
 			String id = result.get(0).getId();
 			page = "redirect:/";
 			msg = "로그인에 성공했습니다.";
@@ -356,8 +398,8 @@ public class MemberService {
 	 * } catch (Exception e) { e.printStackTrace(); } }
 	 */
 
-	public int memberConnect(String id, String pw, String kakaoId) {
-		int success = dao.memberConnect(id,pw,kakaoId);
+	public int memberConnect(String id, String pw, String SnsId, String idKinds) {
+		int success = dao.memberConnect(id,pw,SnsId,idKinds);
 		return success;
 	}
 
@@ -435,7 +477,7 @@ public class MemberService {
 
 	public HashMap<String, Object> NavAcsCode(HashMap<String, Object> map) {
 		
-		String reqURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=8MdhoeyuHdGjRRVM_YPS&state=STATE_STRING&redirect_uri=http://127.0.0.1:8080/project/naverLogin";
+		String reqURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=8MdhoeyuHdGjRRVM_YPS&state=STATE_STRING&redirect_uri=http://127.0.0.1:8080/project/snslogin";
 		map.put("reqURL", reqURL);
 		
 		return map;

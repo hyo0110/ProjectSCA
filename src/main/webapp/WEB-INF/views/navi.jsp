@@ -66,10 +66,17 @@
             <button class="btn btn-default" onclick="location.href='joinForm'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">회원가입</button>              
             </c:when>
             <c:otherwise>
-            	${sessionScope.loginid}님 &nbsp;
-               <button class="btn btn-default" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
-               &nbsp;&nbsp;&nbsp;
-               <button class="btn btn-default" onclick="location.href='kaologout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">카카오 로그아웃</button>
+					${sessionScope.loginid}님 &nbsp;
+				<c:if test="${sessionScope.IdKinds eq  'K'}">
+					<button class="btn btn-default" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-default" onclick="location.href='kaologout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">카카오 로그아웃</button>
+				</c:if>
+				<c:if test="${sessionScope.IdKinds eq  'N'}">
+					<button class="btn btn-default" onclick="location.href='logout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">로그아웃</button>
+					&nbsp;&nbsp;&nbsp;
+					<button class="btn btn-default" onclick="location.href='kaologout'" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">네이버 로그아웃</button>
+				</c:if>
                &nbsp;&nbsp;&nbsp;
                <form method="POST" action="disconnect">
                	<button class="btn btn-default" type="submit" style="border: 1px solid #004c80; font-family: 'Noto Sans KR', sans-serif;">연결끊기</button>

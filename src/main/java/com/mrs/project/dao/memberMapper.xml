@@ -7,8 +7,17 @@
 	SELECT COUNT(id) FROM market_member WHERE id=#{param1} AND pw=#{param2}
 	</select>
 	
-	<select id="kaoLogin" resultType="member">
-	SELECT * FROM market_member WHERE KAKAO_ID=#{param1}
+	<select id="snsLogin" resultType="member">
+	SELECT * FROM market_member WHERE 
+		<if test='param2 == "K"'>
+			 KAKAO_ID = #{param1}
+		 </if>
+		 <if test='param2 == "N"'>
+			NAVER_ID = #{param1}
+		 </if>
+		 <if test='param2 == "G"'>
+			GOOGLE_ID = #{param1}
+		 </if>
 	</select>
 	
 	<insert id="join" parameterType="HashMap">
@@ -77,10 +86,21 @@
 	
 	<update id="kaoIdDelete">
 		UPDATE market_member SET KAKAO_ID = null WHERE KAKAO_ID=#{param1} AND id=#{param2}
+		
 	</update>
 	
 	<update id="memberConnect">
-		UPDATE market_member SET KAKAO_ID = #{param3} WHERE id=#{param1} AND pw = #{param2}
+		UPDATE market_member SET 
+		<if test='param4 == "K"'>
+			 KAKAO_ID = #{param3}
+		 </if>
+		 <if test='param4 == "N"'>
+			NAVER_ID = #{param3}
+		 </if>
+		 <if test='param4 == "G"'>
+			GOOGLE_ID = #{param3}
+		 </if>
+		 WHERE id=#{param1} AND pw = #{param2}
 	</update>
 	
 	<resultMap type="market_board_type" id="market_board_type">

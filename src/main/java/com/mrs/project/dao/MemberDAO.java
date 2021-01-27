@@ -39,11 +39,11 @@ public interface MemberDAO {
 
 	int snsIdChk(String id, String idKinds);
 
-	int memberConnect(String id, String pw, String kakaoId);
+	int memberConnect(String id, String pw, String snsId, String idKinds);
 
 	int kaoIdDelete(String kakaoId, String loginid);
 	
-	ArrayList<MemberDTO> kaoLogin(String id);
+	ArrayList<MemberDTO> snsLogin(String snsId, String idKinds);
 
 	int snsIdChk(HashMap<String, Object> map);
 

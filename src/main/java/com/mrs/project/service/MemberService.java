@@ -223,7 +223,7 @@ public class MemberService {
 	            StringBuilder sb = new StringBuilder();
 	            sb.append("grant_type=authorization_code");
 	            sb.append("&client_id=8MdhoeyuHdGjRRVM_YPS");
-	            sb.append("&client_secret=zL3rzttz0u");
+	            sb.append("&client_secret=dhAJJ0HA2V");
 	            sb.append("&code=" + params.get("code"));
 	            sb.append("&state=" + params.get("state"));
 	            bw.write(sb.toString());
@@ -302,26 +302,28 @@ public class MemberService {
 		return kakaoId;
 	}
 
-	public ModelAndView kaoIdChk(String kaoId, HttpSession session, RedirectAttributes rAttr, ModelAndView mav) {
+	public ModelAndView snsIdChk(String SnsId, String IdKinds, HttpSession session, RedirectAttributes rAttr, ModelAndView mav) {
 		String page = "";
 		String msg = "";
-		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("SnsId", SnsId);
+		map.put("IdKinds", IdKinds);
 		//id가 있다면
-		if (dao.kaoIdChk(kaoId)>0) {
+		if (dao.snsIdChk(map)>0) {
 			//로그인
 			//kakaoId에 대응하는 id를 찾아
 			//세션에 담고, 페이지 redirect 
-			ArrayList<MemberDTO> result = dao.kaoLogin(kaoId);
+			ArrayList<MemberDTO> result = dao.kaoLogin(SnsId);
 			String id = result.get(0).getId();
 			page = "redirect:/";
 			msg = "로그인에 성공했습니다.";
 			session.setAttribute("loginid", id);
 			
 		}else {
-			//아이디가 없으면 kakaoId를 세션에 담기
+			//아이디가 없으면 SnsId를 세션에 담기
 			page = "redirect:/index";
 			msg = "연결된 회원 아이디가 없습니다. 연결하고자 하는 아이디로 로그인 해주세요.";
-			session.setAttribute("kakaoId", kaoId);
+			session.setAttribute("SnsId", SnsId);
 		}
 		mav.setViewName(page);
 		rAttr.addFlashAttribute("msg", msg);
@@ -408,15 +410,15 @@ public class MemberService {
 		return map;
 	}
 
-	public ModelAndView deleteId(String kakaoId, HttpSession session, ModelAndView mav, RedirectAttributes rAttr) {
+	public ModelAndView deleteId(String SnsId, String IdKinds, HttpSession session, ModelAndView mav, RedirectAttributes rAttr) {
 		
 		String msg = "연결끊기에 실패했습니다.";
 		String page = "redirect:/";
-		if (dao.kaoIdChk(kakaoId)>0) {
+		if (dao.snsIdChk(SnsId,IdKinds)>0) {
 			
 			String loginid = (String) session.getAttribute("loginid");
 			
-			if(dao.kaoIdDelete(kakaoId,loginid)>0) {
+			if(dao.kaoIdDelete(SnsId,loginid)>0) {
 				session.removeAttribute("loginid");
 				session.removeAttribute("recent_search");
 				session.removeAttribute("AccessToken");
@@ -429,5 +431,13 @@ public class MemberService {
 		rAttr.addFlashAttribute("msg", msg);
 		
 		return mav;
+	}
+
+	public HashMap<String, Object> NavAcsCode(HashMap<String, Object> map) {
+		
+		String reqURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=8MdhoeyuHdGjRRVM_YPS&state=STATE_STRING&redirect_uri=http://127.0.0.1:8080/project/naverLogin";
+		map.put("reqURL", reqURL);
+		
+		return map;
 	}
 }

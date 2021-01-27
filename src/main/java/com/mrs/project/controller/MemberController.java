@@ -113,6 +113,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session, Model model) {
 		session.removeAttribute("loginid");
+		session.removeAttribute("SnsId");
 		session.removeAttribute("recent_search");
 		model.addAttribute("msg","로그아웃 되었습니다.");		
 		return "index";
@@ -204,7 +205,7 @@ public class MemberController {
 		
 		//인가 코드 받기(페이지 이동) ----------------------------------------------------------------------------------------------------------------
 		@RequestMapping(value = "/AcsCode", method = RequestMethod.GET)
-		public @ResponseBody HashMap<String, Object> AcsCode(@RequestParam String IdKinds)  {
+		public @ResponseBody HashMap<String, Object> AcsCode(@RequestParam String IdKinds, HttpSession session)  {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			
 			//IdKinds : SNS 구분 key(ex : K(카카오), N(네이버), G(구글))
@@ -212,33 +213,50 @@ public class MemberController {
 			switch (IdKinds) {
 			
 			case "K":
+				session.setAttribute("IdKinds", "K");
 				map=service.KaoAcsCode(map);
 				break;
 				
 			case "N":
-				
+				session.setAttribute("IdKinds", "N");
+				map = service.NavAcsCode(map);
 				break;
 			}
 			
 			return map;
 		}
 				
-		//카카오 로그인(AcsCode후 redireturl로 Kakaologin으로 오게된다---------------------------------------------------------------------------------------------------		
-		@RequestMapping(value = "/Kakaologin", method = RequestMethod.GET)
-		public ModelAndView Kakaologin(RedirectAttributes rAttr ,ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
+		//sns 로그인(AcsCode후 redireturl로 snslogin으로 오게된다---------------------------------------------------------------------------------------------------		
+		@RequestMapping(value = "/snslogin", method = RequestMethod.GET)
+		public ModelAndView snslogin(RedirectAttributes rAttr ,ModelAndView mav, HttpSession session, @RequestParam Map<String, Object> params)  {
 			
 			String AccessToken="";
-			String kakaoId="";
+			String SnsId="";
+			String IdKinds = (String) session.getAttribute("IdKinds");
+
 			/*인가코드가 받아지면,
 			 *토큰 발급
 			 */
 			if (params.get("code")!=null) {
-				AccessToken = service.getAccessToken(params);
-				kakaoId =service.getUserInfo_kakao(AccessToken);
-				session.setAttribute("AccessToken", AccessToken);
-				session.setAttribute("IdKinds", "K");
+				
+				switch (IdKinds) {
+				case "K":
+					
+						AccessToken = service.getAccessToken(params);
+						SnsId =service.getUserInfo_kakao(AccessToken);
+						session.setAttribute("AccessToken", AccessToken);
+					
+					break;
+	
+				case "N":
+					
+					break;
+					
+				case "G":
+					break;
+				}
+				mav = service.snsIdChk(SnsId,IdKinds, session ,rAttr,mav);
 			}
-			mav = service.kaoIdChk(kakaoId,session ,rAttr,mav);
 			return mav;
 		}
 		
@@ -267,11 +285,11 @@ public class MemberController {
 				switch (IdKinds) {
 		
 				case "K":
-					String kakaoId = (String) session.getAttribute("kakaoId");
-					if (service.memberConnect(id, pw, kakaoId) > 0) {
+					String SnsId = (String) session.getAttribute("SnsId");
+					if (service.memberConnect(id, pw, SnsId) > 0) {
 						session.setAttribute("loginid", id);
 						session.setAttribute("recent_search", null);
-						session.removeAttribute("kakaoId");
+						session.removeAttribute("SnsId");
 						msg = "로그인에 성공했습니다.";
 						page = "redirect:/";
 					} 
@@ -300,7 +318,8 @@ public class MemberController {
 
 			//System.out.println("access token : "+ session.getAttribute("AccessToken"));
 			String kakaoId = service.disconnect(session);
-			mav = service.deleteId(kakaoId,session,mav,rAttr);
+			String IdKinds = (String) session.getAttribute("IdKinds");
+			mav = service.deleteId(kakaoId,IdKinds,session,mav,rAttr);
 			
 			return mav;
 		}
@@ -321,7 +340,7 @@ public class MemberController {
 			
 			logger.info("params : " + params);
 			String result = service.getAccessToken_naver(params);
-			System.out.println("controller access_token : " + result);
+			System.out.println("access_token : " + result);
 			
 			mav.addObject("result", result);
 			mav.setViewName("index");

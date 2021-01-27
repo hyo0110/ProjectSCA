@@ -85,7 +85,7 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${sessionScope.kakaoId eq  null}">
+		<c:when test="${sessionScope.SnsId eq  null}">
 	        <div class="col">
 	            <p class="display-4 text-dark font-weight-bold">Welcome</p>
 	

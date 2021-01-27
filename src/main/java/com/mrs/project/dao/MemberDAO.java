@@ -37,13 +37,15 @@ public interface MemberDAO {
 	
 	int getTotalCnt(String id);
 
-	int kaoIdChk(String id);
+	int snsIdChk(String id, String idKinds);
 
 	int memberConnect(String id, String pw, String kakaoId);
 
 	int kaoIdDelete(String kakaoId, String loginid);
 	
 	ArrayList<MemberDTO> kaoLogin(String id);
+
+	int snsIdChk(HashMap<String, Object> map);
 
 
 

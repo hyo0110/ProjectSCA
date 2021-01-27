@@ -17,7 +17,7 @@
 	
 	<!-- SQL LOGGER --> <!-- sqltiming: 쿼리+걸린시간 => 응답시간을 반환 // additivity false 안하면 같은 로그가 두 번 -->
 	<logger name="jdbc.sqltiming" additivity="false">
-		<level value="off" />
+		<level value="ON" />
 		<appender-ref ref="console"/>
 	</logger>
 	<!-- resultset  쿼리실행 + 쿼리 결과값을 보여줌 -->

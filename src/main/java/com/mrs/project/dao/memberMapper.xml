@@ -60,19 +60,19 @@
 		SELECT COUNT(board_idx) from market_board where id = #{id}
 	</select>
 	
-	<select id = "kaoIdChk"  resultType="int">
-		SELECT COUNT(KAKAO_ID) from market_member where KAKAO_ID = #{param1}
-		<!-- <isEqual properties="#{param2}" compareValue="K">
-		KAKAO_ID = #{param1}
-		</isEqual>
-		<isEqual properties="#{param2}" compareValue="N">
-		KAKAO_ID = #{param1}
-		</isEqual>
+	<select id = "snsIdChk"  resultType="int">
+		SELECT COUNT(*) from market_member where 1 =1
+		<if test='IdKinds == "K"'>
+			 and KAKAO_ID = #{SnsId}
+		 </if>
+		 <if test='IdKinds == "N"'>
+			and NAVER_ID = #{SnsId}
+		 </if>
+		 <if test='IdKinds == "G"'>
+			and GOOGLE_ID = #{SnsId}
+		 </if>
 		
-		KAKAO_ID = #{param1}
-		KAKAO_ID = #{param1}
-		KAKAO_ID = #{param1}
-		KAKAO_ID = #{param1} -->
+		
 	</select>
 	
 	<update id="kaoIdDelete">

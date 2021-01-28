@@ -84,9 +84,17 @@
 		
 	</select>
 	
-	<update id="kaoIdDelete">
-		UPDATE market_member SET KAKAO_ID = null WHERE KAKAO_ID=#{param1} AND id=#{param2}
-		
+	<update id="snsIdDelete">
+		UPDATE market_member SET
+		<if test='param3 == "K"'>
+			KAKAO_ID = null WHERE  id=#{param2} AND KAKAO_ID=#{param1}
+		 </if>
+		 <if test='param3 == "N"'>
+			NAVER_ID = null WHERE  id=#{param2} AND NAVER_ID=#{param1}
+		 </if>
+		 <if test='param3 == "G"'>
+		  	GOOGLE_ID = null WHERE  id=#{param2} AND GOOGLE_ID=#{param1}
+		 </if>
 	</update>
 	
 	<update id="memberConnect">

@@ -246,9 +246,10 @@ public class MemberController {
 				switch (IdKinds) {
 				case "K":
 					
-						AccessToken = service.getAccessToken(IdKinds, params);
-						SnsId =service.getUserInfoSns(IdKinds, AccessToken);
-						session.setAttribute("AccessToken", AccessToken);
+					AccessToken = service.getAccessToken(IdKinds, params);
+					SnsId =service.getUserInfoSns(IdKinds, AccessToken);
+					session.setAttribute("AccessToken", AccessToken);
+					session.setAttribute("SnsId", SnsId);
 					
 					break;
 	
@@ -256,6 +257,8 @@ public class MemberController {
 					AccessToken = service.getAccessToken(IdKinds, params);
 					SnsId =service.getUserInfoSns(IdKinds, AccessToken);
 					session.setAttribute("AccessToken", AccessToken);
+					session.setAttribute("SnsId", SnsId);
+					
 					break;
 					
 				case "G":
@@ -297,7 +300,6 @@ public class MemberController {
 					if (service.memberConnect(id, pw, SnsId,IdKinds) > 0) {
 						session.setAttribute("loginid", id);
 						session.setAttribute("recent_search", null);
-						session.removeAttribute("SnsId");
 						msg = "로그인에 성공했습니다.";
 						page = "redirect:/";
 					} 
@@ -310,7 +312,6 @@ public class MemberController {
 					if (service.memberConnect(id, pw, SnsId,IdKinds) > 0) {
 						session.setAttribute("loginid", id);
 						session.setAttribute("recent_search", null);
-						session.removeAttribute("SnsId");
 						msg = "로그인에 성공했습니다.";
 						page = "redirect:/";
 					} 
@@ -332,9 +333,9 @@ public class MemberController {
 		public ModelAndView disconnect(RedirectAttributes rAttr, ModelAndView mav, HttpSession session)  {
 
 			//System.out.println("access token : "+ session.getAttribute("AccessToken"));
-			String kakaoId = service.disconnect(session);
 			String IdKinds = (String) session.getAttribute("IdKinds");
-			mav = service.deleteId(kakaoId,IdKinds,session,mav,rAttr);
+			String snsId = service.disconnect(session, IdKinds);
+			mav = service.deleteId(snsId,IdKinds,session,mav,rAttr);
 			
 			return mav;
 		}
@@ -348,27 +349,6 @@ public class MemberController {
 			mav.setViewName("member/kaologout");
 			return mav;
 		}
-		
-	/*
-	 * //네이버
-	 * 로그인--------------------------------------------------------------------------
-	 * ---------------------------------------
-	 * 
-	 * @RequestMapping(value = "/naverLogin", method = RequestMethod.GET) public
-	 * ModelAndView naverLogin(ModelAndView mav, HttpSession session, @RequestParam
-	 * Map<String, Object> params) {
-	 * 
-	 * logger.info("params : " + params); String result =
-	 * service.getAccessToken_naver(params); System.out.println("access_token : " +
-	 * result);
-	 * 
-	 * mav.addObject("result", result); mav.setViewName("index");
-	 * 
-	 * 
-	 * return mav; }
-	 */
-		
-		
 		
 
 }

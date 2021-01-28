@@ -406,41 +406,69 @@ public class MemberService {
 	
 	
 	//카카오 계정 연결 끊기
-	public String disconnect(HttpSession session) {
+	public String disconnect(HttpSession session, String idKinds) {
 
-		//Access token 꺼내오기
-		String AccTk = (String) session.getAttribute("AccessToken");
-		String reqURL = "https://kapi.kakao.com/v1/user/unlink";
-		String kakaoId = null;
+		String snsId = null;
 		try {
-			URL url = new URL(reqURL);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			URL url = null;
+			HttpURLConnection conn = null;
+			String AccTk = null;
+			String reqURL = null;
 			
-			//POST요청
-			conn.setRequestMethod("POST");
-			conn.setDoOutput(true);
-			conn.setDoInput(true);
-		    conn.setRequestProperty("Authorization", "Bearer " + AccTk);
+			switch (idKinds) {
 			
-			int responseCode = conn.getResponseCode();
-			System.out.println("responseCode: "+responseCode);
+			case "K":
+				AccTk = (String) session.getAttribute("AccessToken");
+				reqURL = "https://kapi.kakao.com/v1/user/unlink";
+				url = new URL(reqURL);
+				conn = (HttpURLConnection) url.openConnection();
+				
+				//POST요청
+				conn.setRequestMethod("POST");
+				conn.setDoOutput(true);
+				conn.setDoInput(true);
+			    conn.setRequestProperty("Authorization", "Bearer " + AccTk);
+				break;
+	
+			case "N":
+				AccTk = (String) session.getAttribute("AccessToken");
+				System.out.println(AccTk);
+				reqURL = "https://nid.naver.com/oauth2.0/token?grant_type=delete&client_id=8MdhoeyuHdGjRRVM_YPS&client_secret=dhAJJ0HA2V&access_token="+AccTk;
+				url = new URL(reqURL);
+				conn = (HttpURLConnection) url.openConnection();
+				
+				//POST요청
+				conn.setRequestMethod("POST");
+				conn.setDoOutput(true);
+				conn.setDoInput(true);
+				
+				break;
+			}
+			//Access token 꺼내오기
 			
-			String line = "";
-            String result = "";
-            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            while ((line = br.readLine()) != null) {
-                result += line;
-            }
-            //System.out.println(result); 
-			JsonParser parser = new JsonParser();
-			JsonElement element = parser.parse(result);
-			  
-			  kakaoId = element.getAsJsonObject().get("id").getAsString();
+				
+				int responseCode = conn.getResponseCode();
+				System.out.println("responseCode: "+responseCode);
+				
+				String line = "";
+	            String result = "";
+	            BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	            while ((line = br.readLine()) != null) {
+	                result += line;
+	            }
+	            System.out.println(result); 
+				JsonParser parser = new JsonParser();
+				JsonElement element = parser.parse(result);
+			    if (idKinds.equals("K")) {
+					 snsId = element.getAsJsonObject().get("id").getAsString();
+				}else if (idKinds.equals("N")) {
+					 snsId = (String) session.getAttribute("SnsId");
+				}
 			  
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return kakaoId;
+		return snsId;
 	}
 
 	//인가 코드 받기
@@ -456,14 +484,19 @@ public class MemberService {
 		
 		String msg = "연결끊기에 실패했습니다.";
 		String page = "redirect:/";
-		if (dao.snsIdChk(SnsId,IdKinds)>0) {
-			
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("SnsId", SnsId);
+		map.put("IdKinds", IdKinds);
+		
+		if (dao.snsIdChk(map)>0) {
 			String loginid = (String) session.getAttribute("loginid");
 			
-			if(dao.kaoIdDelete(SnsId,loginid)>0) {
+			if(dao.snsIdDelete(SnsId,loginid, IdKinds)>0) {
 				session.removeAttribute("loginid");
 				session.removeAttribute("recent_search");
 				session.removeAttribute("AccessToken");
+				session.removeAttribute("SnsId");
+				
 				msg = "연결끊기에 성공했습니다.";
 				
 			}

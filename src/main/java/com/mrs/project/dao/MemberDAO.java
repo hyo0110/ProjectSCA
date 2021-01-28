@@ -37,11 +37,9 @@ public interface MemberDAO {
 	
 	int getTotalCnt(String id);
 
-	int snsIdChk(String id, String idKinds);
-
 	int memberConnect(String id, String pw, String snsId, String idKinds);
 
-	int kaoIdDelete(String kakaoId, String loginid);
+	int snsIdDelete(String SnsId, String loginid, String idKinds);
 	
 	ArrayList<MemberDTO> snsLogin(String snsId, String idKinds);
 
